@@ -1,0 +1,34 @@
+@startuml
+
+ODMThing --> "1+" ODMCapability : hasCapability
+ODMCapability --> "1+" ODMInteractionAffordance : hasInteractionAffordance
+ODMInteractionAffordance --> "0+" ODMDataItem : hasDataItem
+
+
+class ODMThing {
+  type
+}
+
+class ODMCapability {
+  type
+}
+
+class ODMInteractionAffordance {
+  type
+}
+
+class ODMDataItem {
+  type
+}
+
+together {
+  ODMInteractionAffordance --> "1" ODMInteractionType : hasType
+
+  enum ODMInteractionType {
+    PropertyInteraction
+    EventInteraction
+    ActionInteraction
+  }
+}
+
+@enduml
