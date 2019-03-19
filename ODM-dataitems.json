@@ -1,0 +1,153 @@
+# SmartThings example (Common context definitions assumed)
+{
+  "@id": "st:Switch.valueData",
+  "rdfs:comment": "value data for Switch (on/off string encoding)",
+  "rdfs:label": "SmartThings SwitchLevel.levelData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:string",
+  "js:enum": ["on", "off"]
+},
+{
+  "@id": "st:SwitchLevel.levelData",
+  "rdfs:comment": "Level data for SwitchLevel",
+  "rdfs:label": "SmartThings SwitchLevel.levelData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 100
+},
+{
+  "@id": "st:SwitchLevel.rateData",
+  "rdfs:comment": "Rate time data for setLevelAction",
+  "rdfs:label": "SmartThings SwitchLevel.rateData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 65535
+}
+
+# ZCL Example
+{
+  "@id": "zcl:OnOff.OnoffData",
+  "rdfs:comment": "On/Off state data",
+  "rdfs:label": "ZCL OnOff.OnOffData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:boolean"
+},
+{
+  "@id": "zcl:OnOff.GlobalSceneControlData",
+  "rdfs:comment": "On/Off GLobal Scene Control Setting",
+  "rdfs:label": "ZCL OnOff.GLobalSceneControlData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:boolean"
+},
+{
+  "@id": "zcl:OnOff.OnTimeData",
+  "rdfs:comment": "On Time Data",
+  "rdfs:label": "ZCL OnOff.OnTimeData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 65534
+},
+{
+  "@id": "zcl:OnOff.OffWaitTimeData",
+  "rdfs:comment": "Off Wait Time Data",
+  "rdfs:label": "ZCL OnOff.OffWaitData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 65534
+},
+# note: these are coupled enums and should be constrained/described better
+{
+  "@id": "zcl:OnOff.EffectIdentifierData",
+  "rdfs:comment": "Efect Identifier Command Field",
+  "rdfs:label": "ZCL OnOff.OnOffData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 1
+},
+{
+  "@id": "zcl:OnOff.EffectVariantData",
+  "rdfs:comment": "Effect Variant Command Field",
+  "rdfs:label": "ZCL OnOff.OnOffData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 2
+},
+# ZCL Level Cluster Data Definitions
+{
+  "@id": "zcl:Level.CurrentLevelData",
+  "rdfs:comment": "Level Cluster Current Level",
+  "rdfs:label": "ZCL Level.CurrentLevelData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 254
+},
+{
+  "@id": "zcl:Level.RemainingTimeData",
+  "rdfs:comment": "Level Custer Remaining Time",
+  "rdfs:label": "ZCL Level.RemainingTimeData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 65535
+},
+{
+  "@id": "zcl:Level.TransitionTimeData",
+  "rdfs:comment": "Transition Time with MoveToLevel Action",
+  "rdfs:label": "ZCL Level.TransitionTimeData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 65535
+},
+{
+  "@id": "zcl:Level.OnOffTransitionTimeData",
+  "rdfs:comment": "OnOff Transition Time Data",
+  "rdfs:label": "ZCL Level.OnOffTransitionTimeData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 65535
+},
+{
+  "@id": "zcl:Level.OnLevelData",
+  "rdfs:comment": "On Level Data",
+  "rdfs:label": "ZCL Level.OnLevelData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 255
+},
+{
+  "@id": "zcl:Level.OnTransitionTimeData",
+  "rdfs:comment": "On Transition Time Data",
+  "rdfs:label": "ZCL Level.OnTransitionTimeData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 65534
+},
+{
+  "@id": "zcl:Level.OffTransitionTimeData",
+  "rdfs:comment": "Off Transition Time Data",
+  "rdfs:label": "ZCL Level.OffTransitionTimeData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 65534
+},
+{
+  "@id": "zcl:Level.DefaultMoveRateData",
+  "rdfs:comment": "Default Move Rate Data",
+  "rdfs:label": "ZCL Level.DefaultMoveRateData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 254
+}

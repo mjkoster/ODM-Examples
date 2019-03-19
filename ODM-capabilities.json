@@ -1,0 +1,63 @@
+# SmartThings example (Common context definitions assumed)
+{
+  "@id": "st:SwitchCapability",
+  "rdfs:subClassOf": "odm:Capability",
+  "rdfs:comment": "Basic On/Off Switch Capability",
+  "rdfs:label": "SmartThings Switch Capability",
+  "odm:hasInteractionAffordance": [
+    "st:Switch.valueProperty",
+    "st:Switch.onAction",
+    "st:Switch.offAction"
+  ]
+},
+{
+  "@id": "st:SwitchLevelCapability",
+  "rdfs:subClassOf": "odm:Capability",
+  "rdfs:comment": "Capability to control the level, for example brightness",
+  "rdfs:label": "SmartThings SwitchLevel Capability",
+  "odm:hasInteractionAffordance": [
+    "st:SwitchLevel.levelProperty",
+    "st:SwitchLevel.setLevelAction"
+  ]
+}
+
+# ZCL example
+{
+  "@id": "zcl:OnOffCapability",
+  "rdfs:subClassOf": "odm:Capability",
+  "rdfs:comment": "Basic On/Off Switch Capability",
+  "rdfs:label": "ZCL OnOff Capability",
+  "odm:hasInteractionAffordance": [
+    "zcl.OnOff.OnOffProperty",
+    "zcl.OnOff.GlobalSceneControlProperty",
+    "zcl.OnOff.OnTimeProperty",
+    "zcl.OnOff.OffWaitTimeProperty",
+    "zcl.OnOff.OnAction",
+    "zcl.OnOff.OffAction",
+    "zcl.OnOff.ToggleAction",
+    "zcl.OnOff.OffWithEffectAction",
+    "zcl.OnOff.OnWithRecallGlobalSceneAction"
+  ]
+},
+{
+  "@id": "zcl:LevelCapability",
+  "rdfs:subClassOf": "odm:Capability",
+  "rdfs:comment": "Level Control Capability",
+  "rdfs:label": "ZCL Level Capability",
+  "odm:hasInteractionAffordance": [
+    "zcl.Level.CurrentLevelProperty",
+    "zcl.Level.RemainingTimeProperty",
+    "zcl.Level.OnOffTransitionTimeProperty",
+    "zcl.Level.OnLevelProperty",
+    "zcl.Level.OnTransitionTimeProperty",
+    "zcl.Level.OffTransitionTimeProperty",
+    "zcl.Level.DefaultMoveRateProperty",
+    "zcl.Level.MoveToLevelAction",
+    "zcl.Level.MoveAction",
+    "zcl.Level.StepAction",
+    "zcl.Level.StopAction",
+    "zcl.Level.MoveToLevelWithOnOffAction",
+    "zcl.Level.MoveWithOnOffAction",
+    "zcl.Level.StepWithOnOffAction"
+  ]
+}

@@ -1,0 +1,11 @@
+# SmartThings example (Common context definitions assumed)
+{
+  "@id": "st:DimmableLight",
+  "rdfs:subClassOf": "odm:Thing",
+  "rdfs:comment": "Simple Dimmable Light Bulb",
+  "rdfs:label": "SmartThings DimmableLight",
+  "odm:hasCapability": [
+    "st:SwitchCapability",
+    "st:SwitchLevelCapability"
+  ]
+}
