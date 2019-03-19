@@ -256,3 +256,55 @@
     "zcl:Level.TransitionTimeData"
   ]
 },
+# OCF Examples
+{
+  "@id": "ocf:BinarySwitch.valueProperty",
+  "rdfs:comment": "Binary Switch state Property",
+  "rdfs:label": "OCF BinarySwitch.valueProperty",
+  "@type": "odm.PropertyInteraction",
+  "rdfs:subClassOf": "odm:InteractionAffordance",
+  "odm:hasDataItem": "ocf:BinarySwitch.valueData"
+},
+{
+  "@id": "ocf:BinarySwitch.OnAction",
+  "rdfs:comment": "Binary Switch On Action",
+  "rdfs:label": "OCF BinarySwitch.valueProperty",
+  "@type": "odm.ActionInteraction",
+  "rdfs:subClassOf": "odm:InteractionAffordance",
+  "odm:hasDataItem": "ocf:BinarySwitch.valueOnData"
+},
+{
+  "@id": "ocf:BinarySwitch.OffAction",
+  "rdfs:comment": "Binary Switch Off Action",
+  "rdfs:label": "OCF BinarySwitch.OffAction",
+  "@type": "odm.ActionInteraction",
+  "rdfs:subClassOf": "odm:InteractionAffordance",
+  "odm:hasDataItem": "ocf:BinarySwitch.valueOffData"
+},
+{
+  "@id": "ocf:Brightness.brightnessProperty",
+  "rdfs:comment": "Brightness Property",
+  "rdfs:label": "OCF Brightness.brightnessProperty",
+  "@type": "odm.PropertyInteraction",
+  "rdfs:subClassOf": "odm:InteractionAffordance",
+  "odm:hasDataItem": "ocf:Brightness.brightnessData"
+},
+{
+  "@id": "ocf:Brightness.SetBrightnessAction",
+  "rdfs:comment": "Set Brightness Action",
+  "rdfs:label": "OCF Brightness.SetBrightnessAction",
+  "@type": "odm.ActionInteraction",
+  "rdfs:subClassOf": "odm:InteractionAffordance",
+  "odm:hasDataItem": [
+    "ocf:Brightness.BrightnessData",
+    "ocf.RampTime.RampTimeData"
+    ]
+},
+{
+  "@id": "ocf:RampTime.ramptimeProperty",
+  "rdfs:comment": "Ramp Time Property",
+  "rdfs:label": "OCF RampTime.ramptimeProperty",
+  "@type": "odm.PropertyInteraction",
+  "rdfs:subClassOf": "odm:InteractionAffordance",
+  "odm:hasDataItem": "ocf:RampTime.ramptimeData"
+},

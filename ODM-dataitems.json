@@ -150,4 +150,46 @@
   "odm:DataItemType": "js:integer",
   "js:minimum": 0,
   "js:maximum": 254
-}
+},
+# OCF Example
+{
+  "@id": "ocf:BinarySwitch.valueData",
+  "rdfs:comment": "Boolean value of switch state",
+  "rdfs:label": "OCF BinarySwitch.valueData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:boolean"
+},
+{
+  "@id": "ocf:BinarySwitch.OnValueData",
+  "rdfs:comment": "Boolean value for On state",
+  "rdfs:label": "OCF BinarySwitch.valueData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:boolean",
+  "js:const": true
+},
+{
+  "@id": "ocf:BinarySwitch.OffValueData",
+  "rdfs:comment": "Boolean value for Off state",
+  "rdfs:label": "OCF BinarySwitch.valueData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:boolean",
+  "js:const": false
+},
+{
+  "@id": "ocf:Brightness.brightnessData",
+  "rdfs:comment": "Brightness Data",
+  "rdfs:label": "OCF Brightness.brightnessData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 255
+},
+{
+  "@id": "ocf:RampTime.ramptimeData",
+  "rdfs:comment": "Ramp Time Data",
+  "rdfs:label": "OCF RampTime.ramptimeData",
+  "rdfs:subClassOf": "odm:DataItem",
+  "odm:DataItemType": "js:integer",
+  "js:minimum": 0,
+  "js:maximum": 65535
+},

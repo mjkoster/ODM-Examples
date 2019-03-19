@@ -61,3 +61,34 @@
     "zcl.Level.StepWithOnOffAction"
   ]
 }
+# OCF Examples
+{
+  "@id": "ocf:BinarySwitchCapability",
+  "rdfs:subClassOf": "odm:Capability",
+  "rdfs:comment": "On/Off Switch Capability",
+  "rdfs:label": "OCF BinarySwitch Capability",
+  "odm:hasInteractionAffordance": [
+    "ocf:BinarySwitch.valueProperty",
+    "ocf.BinarySwitch.OnAction",
+    "ocf.BInarySwitch.OffAction"
+  ]
+},
+{
+  "@id": "ocf:BrightnessCapability",
+  "rdfs:subClassOf": "odm:Capability",
+  "rdfs:comment": "Capability to control the brightness",
+  "rdfs:label": "OCF Brightness Capability",
+  "odm:hasInteractionAffordance": [
+    "ocf:Brightness.BrightnessProperty",
+    "ocf:Brightness.SetBrightnessAction"
+  ]
+},
+{
+  "@id": "ocf:RampTimeCapability",
+  "rdfs:subClassOf": "odm:Capability",
+  "rdfs:comment": "Capability to control the ramp time of a property change",
+  "rdfs:label": "OCF Ramp Time Capability",
+  "odm:hasInteractionAffordance": [
+    "ocf:RampTime.RampTimeProperty"
+  ]
+},
