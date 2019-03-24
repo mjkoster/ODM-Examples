@@ -1,6 +1,6 @@
 # SmartThings example (Common context definitions assumed)
 {
-  "@id": "st:Switch.valueProperty",
+  "@id": "st:Switch.value",
   "rdfs:comment": "Binary switch status (on/off property).",
   "rdfs:label": "Switch valueProperty",
   "@type": "odm:PropertyInteraction",
@@ -8,29 +8,29 @@
   "odm:hasDataItem": "st:Switch.valueData"
 },
 {
-  "@id": "st:Switch.onAction",
+  "@id": "st:Switch.on",
   "rdfs:comment": "Action to turn on a switch",
   "rdfs:label": "Switch onAction",
   "@type": "odm:ActionInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance"
 },
 {
-  "@id": "st:Switch.offAction",
+  "@id": "st:Switch.off",
   "rdfs:comment": "Action to turn off a switch",
   "rdfs:label": "Switch offAction",
   "@type": "odm:ActionInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance"
 },
 {
-  "@id": "st:SwitchLevel.levelProperty",
+  "@id": "st:SwitchLevel.level",
   "rdfs:comment": "The current level setting",
   "rdfs:label": "SwitchLevel levelProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "st:SwitchLevel.levelData"
 },
 {
-  "@id": "st:SwitchLevel.setLevelAction",
+  "@id": "st:SwitchLevel.setLevel",
   "rdfs:comment": "Action to set the level",
   "rdfs:label": "SwitchLevel setLevelAction",
   "@type": "odm:ActionInteraction",
@@ -43,58 +43,58 @@
 
 # ZCL On/Off Cluster Example
 {
-  "@id": "zcl:OnOff.valueProperty",
+  "@id": "zcl:OnOff.value",
   "rdfs:comment": "On/Off Switch status (on/off property).",
-  "rdfs:label": "ZCL OnOff.OnOffProperty",
+  "rdfs:label": "ZCL OnOff.OnOff",
   "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "zcl:OnOff.OnOffData"
 },
 {
-  "@id": "zcl:OnOff.GlobalSceneControlProperty",
+  "@id": "zcl:OnOff.GlobalSceneControl",
   "rdfs:comment": "GLobal Scene COntrol Property.",
   "rdfs:label": "ZCL OnOff.GlobalSceneControlProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "zcl:OnOff.GlobalSceneControlData"
 },{
-  "@id": "zcl:OnOff.OnTimeProperty",
+  "@id": "zcl:OnOff.OnTime",
   "rdfs:comment": "On Time Property",
   "rdfs:label": "ZCL OnOff.OnTimeProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "zcl:OnOff.OnTimeData"
 },{
-  "@id": "zcl:OnOff.OffWaitTimeProperty",
+  "@id": "zcl:OnOff.OffWaitTime",
   "rdfs:comment": "Off Wait TIme Property",
   "rdfs:label": "ZCL OnOff.OffWaitTImeProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "zcl:OnOff.OffWaitTimeData"
 },
 {
-  "@id": "zcl:OnOff.OnAction",
+  "@id": "zcl:OnOff.On",
   "rdfs:comment": "Action to turn on a switch",
   "rdfs:label": "ZCL OnOff.OnAction",
   "@type": "odm:ActionInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance"
 },
 {
-  "@id": "zcl:OnOff.OffAction",
+  "@id": "zcl:OnOff.Off",
   "rdfs:comment": "Action to turn onff a switch",
   "rdfs:label": "ZCL OnOff.OnAction",
   "@type": "odm:ActionInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance"
 },
 {
-  "@id": "zcl:OnOff.ToggleAction",
+  "@id": "zcl:OnOff.Toggle",
   "rdfs:comment": "Action to toggle (XOR) a switch state",
   "rdfs:label": "ZCL OnOff.ToggleAction",
   "@type": "odm:ActionInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance"
 },
 {
-  "@id": "zcl:OnOff.OffWithEffectAction",
+  "@id": "zcl:OnOff.OffWithEffect",
   "rdfs:comment": "Action to turn off a switch with an effect",
   "rdfs:label": "ZCL OnOff.OffWithEffectAction",
   "@type": "odm:ActionInteraction",
@@ -105,14 +105,14 @@
   ]
 },
 {
-  "@id": "zcl:OnOff.OnWithRecallGlobalSceneAction",
+  "@id": "zcl:OnOff.OnWithRecallGlobalScene",
   "rdfs:comment": "Action to turn on a switch with recall of a global scene",
   "rdfs:label": "ZCL OnOff.OnWithRecallGlobalSceneAction",
   "@type": "odm:ActionInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance"
 },
 {
-  "@id": "zcl:OnOff.OnWithTimedOffAction",
+  "@id": "zcl:OnOff.OnWithTimedOff",
   "rdfs:comment": "Action to turn on a switch with a timed interval",
   "rdfs:label": "ZCL OnOff.OnWithTimedOffAction",
   "@type": "odm:ActionInteraction",
@@ -125,63 +125,63 @@
 },
 # ZCL Level Cluster
 {
-  "@id": "zcl:Level.CurrentLevelProperty",
+  "@id": "zcl:Level.CurrentLevel",
   "rdfs:comment": "Current Level Property",
   "rdfs:label": "ZCL Level.CurrentLevelProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "zcl:Level.CurrentLevelData"
 },
 {
-  "@id": "zcl.Level.RemainingTimeProperty",
+  "@id": "zcl:Level.RemainingTime",
   "rdfs:comment": "Remaining Time Property",
   "rdfs:label": "ZCL Level.RemainingTimeProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "zcl:Level.RemainingTimeData"
 },
 {
-  "@id": "zcl.Level.OnOffTransitionTimeProperty",
+  "@id": "zcl:Level.OnOffTransitionTime",
   "rdfs:comment": "OnOff Transition Time Property",
   "rdfs:label": "ZCL Level.OnOffTransitionTimeProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "zcl:Level.OnOffTransitionTimelData"
 },
 {
-  "@id": "zcl.Level.OnLevelProperty",
+  "@id": "zcl:Level.OnLevel",
   "rdfs:comment": "On Level Property",
   "rdfs:label": "ZCL Level.OnLevelProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "zcl:Level.OnLevelData"
 },
 {
-  "@id": "zcl.Level.OnTransitionTimeProperty",
+  "@id": "zcl:Level.OnTransitionTime",
   "rdfs:comment": "On Transition Time Property",
   "rdfs:label": "ZCL Level.OnTransitionTimeProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "zcl:Level.OnTransitionTimeData"
 },
 {
-  "@id": "zcl.Level.OffTransitionTimeProperty",
+  "@id": "zcl:Level.OffTransitionTime",
   "rdfs:comment": "Off Transition TimeP roperty",
   "rdfs:label": "ZCL Level.OffTransitionTimeProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "zcl:Level.OffTransitionTime"
 },
 {
-  "@id": "zcl.Level.DefaultMoveRateProperty",
+  "@id": "zcl:Level.DefaultMoveRate",
   "rdfs:comment": "Default Move Rate Property",
   "rdfs:label": "ZCL Level.DefaultMoveRateProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "zcl:Level.DefaultMoveRateData"
 },
 {
-  "@id": "zcl.Level.MoveToLevelAction",
+  "@id": "zcl:Level.MoveToLevel",
   "rdfs:comment": "Action move to a given level",
   "rdfs:label": "ZCL Level.MoveToLevelAction",
   "@type": "odm:ActionInteraction",
@@ -192,7 +192,7 @@
   ]
 },
 {
-  "@id": "zcl.Level.MoveAction",
+  "@id": "zcl:Level.Move",
   "rdfs:comment": "Action move at a given rate",
   "rdfs:label": "ZCL Level.MoveAction",
   "@type": "odm:ActionInteraction",
@@ -203,7 +203,7 @@
   ]
 },
 {
-  "@id": "zcl.Level.StepAction",
+  "@id": "zcl:Level.Step",
   "rdfs:comment": "Action to change level by a given step size",
   "rdfs:label": "ZCL Level.StepAction",
   "@type": "odm:ActionInteraction",
@@ -214,16 +214,15 @@
     "zcl:Level.TransitionTimeData"
   ]
 },
-"zcl.Level.StopAction",
 {
-  "@id": "zcl.Level.StopAction",
+  "@id": "zcl:Level.Stop",
   "rdfs:comment": "Action to stop moving",
   "rdfs:label": "ZCL Level.StopAction",
   "@type": "odm:ActionInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
 },
 {
-  "@id": "zcl.Level.MoveToLevelWithOnOffAction",
+  "@id": "zcl:Level.MoveToLevelWithOnOff",
   "rdfs:comment": "Action move to a given level with OnOff control",
   "rdfs:label": "ZCL Level.MoveToLevelAction",
   "@type": "odm:ActionInteraction",
@@ -234,7 +233,7 @@
   ]
 },
 {
-  "@id": "zcl.Level.MoveWithOnOffAction",
+  "@id": "zcl:Level.MoveWithOnOff",
   "rdfs:comment": "Action move at a given rate with OnOff control",
   "rdfs:label": "ZCL Level.MoveAction",
   "@type": "odm:ActionInteraction",
@@ -245,7 +244,7 @@
   ]
 },
 {
-  "@id": "zcl.Level.StepWithOnOffAction",
+  "@id": "zcl:Level.StepWithOnOff",
   "rdfs:comment": "Action to change level by a given step size with On/Off control",
   "rdfs:label": "ZCL Level.StepAction",
   "@type": "odm:ActionInteraction",
@@ -258,42 +257,42 @@
 },
 # OCF Examples
 {
-  "@id": "ocf:BinarySwitch.valueProperty",
+  "@id": "ocf:BinarySwitch.value",
   "rdfs:comment": "Binary Switch state Property",
   "rdfs:label": "OCF BinarySwitch.valueProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "ocf:BinarySwitch.valueData"
 },
 {
-  "@id": "ocf:BinarySwitch.OnAction",
+  "@id": "ocf:BinarySwitch.On",
   "rdfs:comment": "Binary Switch On Action",
   "rdfs:label": "OCF BinarySwitch.valueProperty",
-  "@type": "odm.ActionInteraction",
+  "@type": "odm:ActionInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "ocf:BinarySwitch.valueOnData"
 },
 {
-  "@id": "ocf:BinarySwitch.OffAction",
+  "@id": "ocf:BinarySwitch.Off",
   "rdfs:comment": "Binary Switch Off Action",
   "rdfs:label": "OCF BinarySwitch.OffAction",
-  "@type": "odm.ActionInteraction",
+  "@type": "odm:ActionInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "ocf:BinarySwitch.valueOffData"
 },
 {
-  "@id": "ocf:Brightness.brightnessProperty",
+  "@id": "ocf:Brightness.brightness",
   "rdfs:comment": "Brightness Property",
   "rdfs:label": "OCF Brightness.brightnessProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "ocf:Brightness.brightnessData"
 },
 {
-  "@id": "ocf:Brightness.SetBrightnessAction",
+  "@id": "ocf:Brightness.SetBrightness",
   "rdfs:comment": "Set Brightness Action",
   "rdfs:label": "OCF Brightness.SetBrightnessAction",
-  "@type": "odm.ActionInteraction",
+  "@type": "odm:ActionInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": [
     "ocf:Brightness.BrightnessData",
@@ -301,10 +300,10 @@
     ]
 },
 {
-  "@id": "ocf:RampTime.ramptimeProperty",
+  "@id": "ocf:RampTime.ramptime",
   "rdfs:comment": "Ramp Time Property",
   "rdfs:label": "OCF RampTime.ramptimeProperty",
-  "@type": "odm.PropertyInteraction",
+  "@type": "odm:PropertyInteraction",
   "rdfs:subClassOf": "odm:InteractionAffordance",
   "odm:hasDataItem": "ocf:RampTime.ramptimeData"
 },

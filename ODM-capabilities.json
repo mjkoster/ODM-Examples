@@ -1,94 +1,94 @@
 # SmartThings example (Common context definitions assumed)
 {
-  "@id": "st:SwitchCapability",
+  "@id": "st:Switch",
   "rdfs:subClassOf": "odm:Capability",
   "rdfs:comment": "Basic On/Off Switch Capability",
   "rdfs:label": "SmartThings Switch Capability",
   "odm:hasInteractionAffordance": [
-    "st:Switch.valueProperty",
-    "st:Switch.onAction",
-    "st:Switch.offAction"
+    "st:Switch.value",
+    "st:Switch.on",
+    "st:Switch.off"
   ]
 },
 {
-  "@id": "st:SwitchLevelCapability",
+  "@id": "st:SwitchLevel",
   "rdfs:subClassOf": "odm:Capability",
   "rdfs:comment": "Capability to control the level, for example brightness",
   "rdfs:label": "SmartThings SwitchLevel Capability",
   "odm:hasInteractionAffordance": [
-    "st:SwitchLevel.levelProperty",
-    "st:SwitchLevel.setLevelAction"
+    "st:SwitchLevel.level",
+    "st:SwitchLevel.setLevel"
   ]
 }
 
 # ZCL example
 {
-  "@id": "zcl:OnOffCapability",
+  "@id": "zcl:OnOff",
   "rdfs:subClassOf": "odm:Capability",
   "rdfs:comment": "Basic On/Off Switch Capability",
   "rdfs:label": "ZCL OnOff Capability",
   "odm:hasInteractionAffordance": [
-    "zcl.OnOff.OnOffProperty",
-    "zcl.OnOff.GlobalSceneControlProperty",
-    "zcl.OnOff.OnTimeProperty",
-    "zcl.OnOff.OffWaitTimeProperty",
-    "zcl.OnOff.OnAction",
-    "zcl.OnOff.OffAction",
-    "zcl.OnOff.ToggleAction",
-    "zcl.OnOff.OffWithEffectAction",
-    "zcl.OnOff.OnWithRecallGlobalSceneAction"
+    "zcl.OnOff.OnOff",
+    "zcl.OnOff.GlobalSceneControl",
+    "zcl.OnOff.OnTime",
+    "zcl.OnOff.OffWaitTime",
+    "zcl.OnOff.On",
+    "zcl.OnOff.Off",
+    "zcl.OnOff.Toggle",
+    "zcl.OnOff.OffWithEffect",
+    "zcl.OnOff.OnWithRecallGlobalScene"
   ]
 },
 {
-  "@id": "zcl:LevelCapability",
+  "@id": "zcl:Level",
   "rdfs:subClassOf": "odm:Capability",
   "rdfs:comment": "Level Control Capability",
   "rdfs:label": "ZCL Level Capability",
   "odm:hasInteractionAffordance": [
-    "zcl.Level.CurrentLevelProperty",
-    "zcl.Level.RemainingTimeProperty",
-    "zcl.Level.OnOffTransitionTimeProperty",
-    "zcl.Level.OnLevelProperty",
-    "zcl.Level.OnTransitionTimeProperty",
-    "zcl.Level.OffTransitionTimeProperty",
-    "zcl.Level.DefaultMoveRateProperty",
-    "zcl.Level.MoveToLevelAction",
-    "zcl.Level.MoveAction",
-    "zcl.Level.StepAction",
-    "zcl.Level.StopAction",
-    "zcl.Level.MoveToLevelWithOnOffAction",
-    "zcl.Level.MoveWithOnOffAction",
-    "zcl.Level.StepWithOnOffAction"
+    "zcl.Level.CurrentLevel",
+    "zcl.Level.RemainingTime",
+    "zcl.Level.OnOffTransitionTime",
+    "zcl.Level.OnLevel",
+    "zcl.Level.OnTransitionTime",
+    "zcl.Level.OffTransitionTime",
+    "zcl.Level.DefaultMoveRate",
+    "zcl.Level.MoveToLevel",
+    "zcl.Level.Move",
+    "zcl.Level.Step",
+    "zcl.Level.Stop",
+    "zcl.Level.MoveToLevelWithOnOff",
+    "zcl.Level.MoveWithOnOff",
+    "zcl.Level.StepWithOnOff"
   ]
 }
 # OCF Examples
 {
-  "@id": "ocf:BinarySwitchCapability",
+  "@id": "ocf:BinarySwitch",
   "rdfs:subClassOf": "odm:Capability",
   "rdfs:comment": "On/Off Switch Capability",
   "rdfs:label": "OCF BinarySwitch Capability",
   "odm:hasInteractionAffordance": [
-    "ocf:BinarySwitch.valueProperty",
-    "ocf.BinarySwitch.OnAction",
-    "ocf.BInarySwitch.OffAction"
+    "ocf:BinarySwitch.value",
+    "ocf.BinarySwitch.On",
+    "ocf.BInarySwitch.Off"
   ]
 },
 {
-  "@id": "ocf:BrightnessCapability",
+  "@id": "ocf:Brightness",
   "rdfs:subClassOf": "odm:Capability",
   "rdfs:comment": "Capability to control the brightness",
   "rdfs:label": "OCF Brightness Capability",
   "odm:hasInteractionAffordance": [
-    "ocf:Brightness.BrightnessProperty",
-    "ocf:Brightness.SetBrightnessAction"
+    "ocf:Brightness.Brightness",
+    "ocf:Brightness.SetBrightness"
   ]
 },
 {
-  "@id": "ocf:RampTimeCapability",
+  "@id": "ocf:RampTime",
   "rdfs:subClassOf": "odm:Capability",
   "rdfs:comment": "Capability to control the ramp time of a property change",
   "rdfs:label": "OCF Ramp Time Capability",
   "odm:hasInteractionAffordance": [
-    "ocf:RampTime.RampTimeProperty"
+    "ocf:RampTime.RampTime"
   ]
 },
