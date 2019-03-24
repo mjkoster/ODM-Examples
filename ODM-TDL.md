@@ -30,17 +30,17 @@ define [
 ```
 ### keywords:
 
-context - works like JSON-LD context to define namespaces and terms
-uses - specifies one or more default source namespaces, evaluated in order
-scope - specifies default namespace that definitions are added to
-define - creates a definition in some namespace, args are a new term and a definition block
-extends - specifies a class template to use in the definition block
+- context - works like JSON-LD context to define namespaces and terms
+- uses - specifies one or more default source namespaces, evaluated in order
+- scope - specifies default namespace that definitions are added to
+- define - creates a definition in some namespace, args are a new term and a definition block
+- extends - specifies a class template to use in the definition block
 
 ### structure:
 
-keywords
-[ list ] items determined by keyword, use where multiple items are allowed
-{ block } contains key-value pairs, whitespace delimited, according to the class template defined by extends
+- keywords
+- [ list ] items determined by keyword, use where multiple items are allowed
+- { block } contains key-value pairs, whitespace delimited, according to the class template defined by extends
 
 ### namespace resolution order:
 0. keywords
@@ -81,7 +81,7 @@ define [
     }
 ]
 ```
-### Augmanted definition adding turnOn and turnOff actions:
+### Augmented definition adding turnOn and turnOff actions:
 ```
 define [
     oic.r.switch.binary {
