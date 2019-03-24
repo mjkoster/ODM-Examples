@@ -86,33 +86,38 @@ define [
 define [
     oic.r.switch.binary {
         exends Capability
-        seeAlso [zcl:onoff st:Switch]
+        seeAlso [zcl:OnOff st:Switch]
         hasProperty oic.r.switch.binary.value
+        hasAction [ 
+            oic.r.switch.binary.turnOn
+            oic.r.switch.binary.turnOff
+        ]
     }
     oic.r.switch.binary.value {
         extends Property
         hasDataItem oic.r.switch.binary.valueData
     }
     oic.r.switch.binary.valueData {
+        seeAlso [zcl:OnOff.OnOff st:Switch.value]
         extends DataItem
         type boolean
     }
     oic.r.switch.binary.turnOn {
         extends Action
-        seeAlso [zcl:onoff.on st:Switch.on]
-        hasDataItem oic.r.switch.binary.valueData.turnOn
+        seeAlso [zcl:OnOff.on st:Switch.on]
+        hasDataItem oic.r.switch.binary.turnOnData
     }
     oic.r.switch.binary.turnOff {
         extends Action
-        seeAlso [zcl:onoff.off st:switch.off]
-        hasDataItem oic.r.switch.binary.valueData.turnOff
+        seeAlso [zcl:OnOff.off st:switch.off]
+        hasDataItem oic.r.switch.binary.turnOffData
     }
-    oic.r.switch.binary.valueData.turnOn {
+    oic.r.switch.binary.turnOnData {
         extends DataItem
         type boolean
         const true
     }
-    oic.r.switch.binary.valueData.turnOff {
+    oic.r.switch.binary.turnOffData {
         extends DataItem
         type boolean
         const false
