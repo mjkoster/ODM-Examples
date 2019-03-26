@@ -104,12 +104,12 @@ define [
     }
     oic.r.switch.binary.turnOn {
         extends Action
-        seeAlso [zcl:OnOff.on st:Switch.on]
+        seeAlso [zcl:OnOff.On st:Switch.on]
         hasDataItem oic.r.switch.binary.turnOnData
     }
     oic.r.switch.binary.turnOff {
         extends Action
-        seeAlso [zcl:OnOff.off st:switch.off]
+        seeAlso [zcl:OnOff.Off st:switch.off]
         hasDataItem oic.r.switch.binary.turnOffData
     }
     oic.r.switch.binary.turnOnData {
