@@ -43,7 +43,7 @@
 
 # ZCL On/Off Cluster Example
 {
-  "@id": "zcl:OnOff.value",
+  "@id": "zcl:OnOff.OnOff",
   "rdfs:comment": "On/Off Switch status (on/off property).",
   "rdfs:label": "ZCL OnOff.OnOff",
   "@type": "odm:PropertyInteraction",

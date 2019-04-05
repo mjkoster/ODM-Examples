@@ -1,0 +1,39 @@
+{
+    "info": {
+        "title": "Example file for ODM Simple JSON Definition Format",
+        "version": "20190404",
+        "copyright": "Copyright 2019 Example Corporation, Inc. All rights reserved.",
+        "license": "http://example.com/license"
+    },
+    "namespace": {
+        "odm": "http://onedm.example.org/vocab/core",
+        "js": "http://onedm.example.com/vocab/jschema",
+        "st": "http://smartthings.example.com/capability/odm"
+    },
+    "defaultnamespace": "odm",
+    "define": {
+        "st:Switch": {
+            "type": "Object",
+            "hasProperty": "st:Switch.value",
+            "hasAction": [
+                "st:Switch.on",
+                "st:Switch.off"
+            ]
+        },
+        "st:Switch.value": {
+            "type": "Property",
+            "hasData": "st:Switch.valueData"
+        },
+        "st:Switch.on": {
+            "type": "Action"
+        },
+        "st:Switch.off": {
+            "type": "Action"
+        },
+        "st:Switch.valueData": {
+            "type": "Data",
+            "js:type": "string",
+            "js:enum": ["on", "off"]
+        }    
+    }
+}

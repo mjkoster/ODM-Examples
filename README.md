@@ -1,2 +1,2 @@
 # ODM-Examples
-Examples of a Common Definition Format for use in One Data Model
+Examples of Definition Formats for use in One Data Model

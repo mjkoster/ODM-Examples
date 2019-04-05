@@ -1,0 +1,125 @@
+{
+    "info": {
+        "title": "Example zcl definition file for ODM Simple JSON Definition Format",
+        "version": "20190404",
+        "copyright": "Copyright 2019 Example Corporation, Inc. All rights reserved.",
+        "license": "http://example.com/license"
+    },
+    "namespace": {
+        "odm": "http://onedm.example.org/vocab/core",
+        "js": "http://onedm.example.com/vocab/jschema",
+        "zcl": "http://zigbeeorg.example.com/zcl/odm"
+    },
+    "defaultnamespace": "odm",
+    "define": {
+        "zcl:OnOff": {
+            "type": "Object",
+            "hasProperty": "zcl:onoff.onoff",
+            "hasAction": [
+                "zcl:OnOff.On",
+                "zcl:OnOff.Off",
+                "zcl:OnOff.Toggle"
+            ]
+        },
+        "zcl:OnOff.OnOff": {
+            "type": "Property",
+            "hasData": "zcl:onoff.OnOffData",
+            "readable": true,
+            "writeable": false,
+            "required": true
+        },
+        "zcl:OnOff.GlobalSceneControl": {
+            "type": "Property",
+            "hasData": "zcl:onoff.GlobalSceneControlData",
+            "readable": true,
+            "writeable": false,
+            "required": false
+        },
+        "zcl:OnOff.OnTime": {
+            "type": "Property",
+            "hasData": "zcl:onoff.OnTimeData",
+            "readable": true,
+            "writeable": true,
+            "required": false
+        },
+        "zcl:OnOff.OffWaitTime": {
+            "type": "Property",
+            "hasData": "zcl:onoff.OffWaitTimeData",
+            "readable": true,
+            "writeable": true,
+            "required": false
+        },        
+        "zcl:OnOff.On": {
+            "type": "Action",
+            "required": true
+        },
+        "zcl:OnOff.Off": {
+            "type": "Action",
+            "required": true
+        },
+        "zcl:OnOff.Toggle": {
+            "type": "Action",
+            "required": true
+        },
+        "zcl:OnOff.OffWithEffect": {
+            "type": "Action",
+            "required": false,
+            "hasDataItem": [
+                "zcl:OnOff.EffectIdentifierData",
+                "zcl:OnOff.EffectVariantData"
+            ]
+        },
+        "zcl:OnOff.OnWithRecallGlobalScene": {
+            "type": "Action",
+            "required": false
+        },
+        "zcl:OnOff.OnWithTimedOff": {
+            "type": "Action",
+            "required": false,
+            "hasDataItem": [
+                "zcl:OnOff.OnOffControlData",
+                "zcl:OnOff.OnTimeData",
+                "zcl:OnOff.OffWaitTimeData"
+            ]
+        },
+        "zcl:OnOff.OnOffData": {
+            "type": "Data",
+            "js:type": "js:boolean",
+            "js:default": false
+        },
+        "zcl:OnOff.EffectIdentifierData": {
+            "type": "Data",
+            "js:type": "js:number",
+            "js:enum": [0, 1]
+        },
+        "zcl:OnOff.EffectVariantData" : {
+            "type": "Data",
+            "js:type": "js:number",
+            "js:enum": [0, 1, 2]
+        },   
+        "zcl:OnOff.OnOffControlData": {
+            "type": "Data",
+            "js:type": "js:number",
+            "js:enum": [0, 1]
+        },
+        "zcl:OnOff.GLobalSceneControlData": {
+            "type": "Data",
+            "js:type": "js:boolean",
+            "js:default": true
+        },        
+        "zcl:OnOff.OnTimeData": {
+            "type": "Data",
+            "js:type": "js:number",
+            "js:minimum": 0,
+            "js:maximum": 65535,
+            "js:default": 0
+        },
+        "zcl:OnOff.OffWaitTimeData": {
+            "type": "Data",
+            "js:type": "js:number",
+            "js:minimum": 0,
+            "js:maximum": 65535,
+            "js:default": 0
+       }
+    }
+}

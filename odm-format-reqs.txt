@@ -1,0 +1,48 @@
+ODM Requirements for a common data modeling format
+
+Process:
+
+1. Define a JSON vocabulary and structure
+2. Create mock tooling
+3. Make sample representations of existing models from diversa sources
+
+
+Language and meta-model:
+
+- Separation of the abstract semantic model from the protocol binding
+
+- Support for multiple namespaces
+
+- JSON encoding
+
+- Semantic definitions of objects that define events, actions, properties, with semantic data types
+
+- Semantic datatypes (temperatureData) and structural datatypes (integer, 0-254)
+
+- Separate data typing (JSON, XSD, coplex types, data item orthogonality)
+
+- Complex data types like arrays and maps (is this mostly about on-the-wire formats?)
+
+
+
+Actions, events, and propertires:
+
+- Actions meta-verbs Invoke (rich command and response)
+
+- Properties meta-verbs Read, Write
+
+- Events meta-verbs Subscribe/notify, (batch) retrieve
+
+- Meta-verbs may not need to be described in the abstract model; could be mapped in protocol bindings
+
+
+Structural:
+
+- Objects compose into things, objects are fully reusable 
+
+- Things can be composed into products/devices
+
+- Terms from multiple namespaces can be combined in a definition
+
+- An Object definition can refer/link to elements (Events, Actions, Properties) that are defined in other Objects, in the same definition, as a method of composition
+

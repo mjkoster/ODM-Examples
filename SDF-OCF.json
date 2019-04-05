@@ -1,0 +1,50 @@
+{
+    "info": {
+        "title": "Example file for OCF definition using the ODM Simple JSON Definition Format",
+        "version": "20190404",
+        "copyright": "Copyright 2019 Example Corporation, Inc. All rights reserved.",
+        "license": "http://example.com/license"
+    },
+    "namespace": {
+        "odm": "http://onedm.example.org/vocab/core",
+        "js": "http://onedm.example.com/vocab/jschema",
+        "ocf": "http://openconnectivity.example.com/definitions/odm"
+    },
+    "defaultnamespace": "odm",
+    "define": {
+        "ocf:BinarySwitch": {
+            "type": "Object",
+            "hasProperty": "ocf:BinarySwitch.value",
+            "hasAction": [
+                "ocf:BinarySwitch.on",
+                "ocf:BinarySwitch.off"
+            ]
+        },
+        "ocf:BinarySwitch.value": {
+            "type": "Property",
+            "hasData": "ocf:BinarySwitch.valueData"
+        },
+        "ocf:BinarySwitch.valueData": {
+            "type": "Data",
+            "js:type": "boolean"
+        },
+        "ocf:BinarySwitch.on": {
+            "type": "Action",
+            "hasData": "ocf:BinarySwitch.onData"
+        },
+        "ocf:BinarySwitch.off": {
+            "type": "Action",
+            "hasData": "ocf:BinarySwitch.offData"
+        },
+        "ocf:BinarySwitch.onData": {
+            "type": "Data",
+            "js:type": "boolean",
+            "js:const": true
+        },
+        "ocf:BinarySwitch.offData": {
+            "type": "Data",
+            "js:type": "boolean",
+            "js:const": false
+        }    
+    }
+}
