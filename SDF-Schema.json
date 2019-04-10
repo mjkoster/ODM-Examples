@@ -1,0 +1,106 @@
+
+
+{
+  "info": {
+    "title": "Example file for ODM Simple JSON Definition Format",
+    "version": "20190404",
+    "copyright": "Copyright 2019 Example Corporation, Inc. All rights reserved.",
+    "license": "http://example.com/license"
+  },
+  "namespace": {
+    "odm": "http://onedm.example.org/vocab/core",
+    "js": "http://onedm.example.com/vocab/jschema",
+    "st": "http://smartthings.example.com/capability/odm"
+  },
+  "defaultnamespace": "odm",
+  "object": {
+    "name": "st:Switch"
+  },
+  "property": [
+    {
+        "name": "st:Switch.value",
+        "type": "string",
+        "enum": ["on", "off"]
+    }
+  ],
+  "action": [
+    { "name": "st:Switch.on" },
+    { "name": "st:Switch.off" }
+  ],
+  "event": [],
+  "data": []
+}
+
+
+{
+  "type": "object",
+  "properties": {
+    "info": {
+      "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "version": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "copyright": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "license": {
+            "type": "string",
+            "maxLength": 255
+          }
+        }
+    },
+    "namespace": {
+      "type": "object",
+      "additionalProperties": "true"
+    },
+    "defaultnamespace": {
+      "type": "object",
+      "additionalProperties": "true"
+    },
+    "object": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 255,
+        },
+        "type": {
+          "type": "string",
+        },
+        "enum": { 
+          "type": "array"
+        }
+      },
+      "additionalProperties": "true"
+    },
+    "property": {
+      "type": "array",
+      "items": {
+        "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 255,
+            }
+          },
+        "additionalProperties": "true"
+      }
+    },
+    "action": {
+
+    },
+    "event": {
+
+    },
+    "data": {
+
+    }
+  }  
+}

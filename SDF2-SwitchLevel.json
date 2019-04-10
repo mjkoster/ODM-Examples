@@ -1,0 +1,45 @@
+{
+    "info": {
+        "title": "Example file for ODM Simple JSON Definition Format",
+        "version": "20190404",
+        "copyright": "Copyright 2019 Example Corporation, Inc. All rights reserved.",
+        "license": "http://example.com/license"
+    },
+    "namespace": {
+        "odm": "http://onedm.example.org/vocab/core",
+        "js": "http://onedm.example.com/vocab/jschema",
+        "st": "http://smartthings.example.com/capability/odm"
+    },
+    "defaultnamespace": "odm",
+    "object": {
+        "st:SwitchLevel": {}
+    },
+    "property": {
+        "st:SwitchLevel.level": {
+            "data": "st:SwitchLevel.levelData"
+        }
+    },
+    "action": {
+        "st:SwitchLevel.setLevel:": {
+            "data": [
+                "st:SwitchLevel.levelData",
+                "st:SwitchLevel.rateData"
+            ]
+        }
+    },
+    "event": {},
+    "data": {
+        "st:SwitchLevel.levelData": {
+            "js:type": "number",
+            "js:minimum": 0,
+            "js:maximum": 100,
+            "js:multipleOf": 1
+        },
+        "st:SwitchLevel.rateData": {
+            "js:type": "number",
+            "js:minimum": 0,
+            "js:maximum": 65535,
+            "js:multipleOf": 1
+        }
+    }
+}
