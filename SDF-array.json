@@ -39,44 +39,33 @@
       "type": "object",
         "properties": {
           "title": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "version": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "copyright": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "license": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         }
     },
     "namespace": {
       "type": "object",
-      "additionalProperties": "true"
+      "additionalProperties": {
+        "type": "string",
+        "patttern": "#definitions/uripattern"
+      }
     },
     "defaultnamespace": {
-      "type": "object",
-      "additionalProperties": "true"
+      "type": "string"
     },
     "object": {
       "type": "object",
       "properties": {
-        "name": {
-          "type": "string",
-          "maxLength": 255,
-        },
-        "type": {
-          "type": "string",
-        },
-        "enum": { 
-          "type": "array"
-        }
+        "$ref": "#definitions/objectqualities"
       },
       "additionalProperties": "true"
     },
@@ -85,10 +74,7 @@
       "items": {
         "type": "object",
           "properties": {
-            "name": {
-              "type": "string",
-              "maxLength": 255,
-            }
+            "$ref": "#definitions/propertyqualities"
           },
         "additionalProperties": "true"
       }
