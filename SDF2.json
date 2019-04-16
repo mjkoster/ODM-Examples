@@ -5,11 +5,14 @@
       "copyright": "Copyright 2019 Example Corporation, Inc. All rights reserved.",
       "license": "http://example.com/license"
   },
-  "namespace": {
-      "st": "http://smartthings.example.com/capability/odm"
-  },
+  "namespace": { "st": "http://smartthings.example.com/capability/odm" },
+  "defaultnamespace": "st",
   "object": {
-      "Switch": {}
+      "Switch": {
+        "id": "someID",
+        "name": "SmartThings Switch",
+        "description": "A simple on/off binary switch object"
+      }
   },
   "property": {
       "Switch.value": {
