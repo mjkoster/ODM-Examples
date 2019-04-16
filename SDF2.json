@@ -105,5 +105,22 @@
         }
       }  
     }
-  }  
+  },
+  "definitions": {
+    "commonqualities": {
+      "id": {},
+      "name": {},
+      "extends": {},
+      "refines": {},
+      "includes": {},
+      "metaverb": {},
+      "protocolbinding": {},
+      "data": {}
+    },
+    "objectqualities": {},
+    "propertyqualities": {},
+    "actionqualities": {},
+    "eventqualities": {},
+    "dataqualities": {}
+  }
 }
