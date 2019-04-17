@@ -168,6 +168,12 @@
         "units": {
           "type": "string"
         },
+        "scaleMinimum": {
+          "type": "number"
+        },
+        "scaleMaximum": {
+          "type": "number"
+        },
         "observable": {
           "type": "boolean"
         },
@@ -177,12 +183,12 @@
         "encoding": {
           "type": "object",
           "properties": {
-            "width": {
+            "widthInBits": {
             "type": "number"
             }
           }
         },
-        "contentformat": {
+        "contentFormat": {
           "type": "string"
         }   
       },
