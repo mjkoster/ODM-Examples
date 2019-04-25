@@ -2,18 +2,15 @@
 
 ## Introduction
 
-The Simple Definition Format is a format for domain experts to use in the
-creation and maintenance of OneDM definitions.
+The Simple Definition Format is a format for domain experts to use in the creation and maintenance of OneDM definitions.
 
-OneDM tools convert this format to database formats and other serializations as
-needed.
+OneDM tools convert this format to database formats and other serializations as needed.
 
-This document describes definitions of OneDM Objects and their associated
-Events, Actions, Properties, and Data types.
+This document describes definitions of OneDM Objects and their associated Events, Actions, Properties, and Data types.
 
 The JSON format of an SDF definition is described in this document.
 
-## example OneDM Object Definition for the SmartThings Switch Capability:
+## Example Definition:
 ```
 {
   "info": {
@@ -45,39 +42,37 @@ The JSON format of an SDF definition is described in this document.
 
 ## SDF structure
 
-A SDF definition file has two sections, the information block and the definitions
-section.
+A SDF definition file has two sections, the information block and the definitions section.
 
 ### Information block
 The information block contains generic meta data for the file itself
 and all included definitions.
 
-The keyword that defines an information block is "info". It contains a set of
-key-value pairs that represent qualities that apply to the included definition.
+The keyword that defines an information block is "info". It contains a set of key-value pairs that represent qualities that apply to the included definition.
 
-Qualities of the information block are shown in the following table:
+Qualities of the information block are shown in the following table.
 
 | Quality | Type | Optional | Description |
 |---|---|---|---|
-|Title|string|No|A short summary to be displayed in search results, etc.|
-|Version|string|No|Format TBD|
-|Copyright|string|No|Link to text or embedded text containing a copyright notice|
-|License|string|No|Link to text or embedded text containing license terms|
+|title|string|no|A short summary to be displayed in search results, etc.|
+|version|string|no|Format TBD|
+|copyright|string|no|Link to text or embedded text containing a copyright notice|
+|license|string|no|Link to text or embedded text containing license terms|
 
 ### Definitions block
 
 The Definitions block contains the namespace and default namespace declarations.
-The namespace declaration is a map containing one or more definitions of short
-names for URIs. The defaultnamespace declaration defines one of the short names
-in the namespace map to be the default namespace.
+
+The namespace declaration is a map containing one or more definitions of short names for URIs.
+
+The defaultnamespace declaration defines one of the short names in the namespace map to be the default namespace.
 
 | Quality | Type | Optional | Description |
 |---|---|---|---|
-|namespace|map|Yes|Defines short names mapped to namespace URIs, to be used as identifier prefixes|
-|defaultnamespace|string|Yes|Identifies one of the prefixes in the namespace map to be used as a default in resolving identifiers|
+|namespace|map|yes|Defines short names mapped to namespace URIs, to be used as identifier prefixes|
+|defaultnamespace|string|yes|Identifies one of the prefixes in the namespace map to be used as a default in resolving identifiers|
 
-The following example declares a set of namespaces and defines  "st"" as the
-default namespace.
+The following example declares a set of namespaces and defines  "st"" as the default namespace.
 ```
 "namespace": {
   "st": "http://example.com/capability/odm",
@@ -85,16 +80,13 @@ default namespace.
 },
 "defaultnamespace": "st",
 ```
-The definitions block contains one or more type definitions according to the
-class name keywords for type definition (see below).
+The definitions block contains one or more type definitions according to the class name keywords for type definition (see below).
 
-Each class may have zero or more type definitions associated with it. Each defined
-identifier creates a new type and has a scope of the current definition block.
-A definition may in turn contain other definitions. Each definition consists of
-the newly defined identifier and a set of key value pairs that represent the
-defined qualities and contained type definitions.
+Each class may have zero or more type definitions associated with it. Each defined identifier creates a new type and has a scope of the current definition block.
 
-for example, an Object definition looks like this:
+A definition may in turn contain other definitions. Each definition consists of the newly defined identifier and a set of key value pairs that represent the defined qualities and contained type definitions.
+
+For example, an Object definition looks like this:
 
 ```
 "object": {
@@ -109,22 +101,33 @@ for example, an Object definition looks like this:
   }
 }
 ```
-An Object "foo" is defined in the default namespace, with an ID of 3001,
-containing a property "foo.bar", with an ID of 5150 and of type boolean.
+An Object "foo" is defined in the default namespace, with an ID of 3001, containing a property "foo.bar", with an ID of 5150 and of type boolean.
+
+## Scope of Identifiers
+### Namespace resolution order:
+1. identifiers with an explicit namespace prefix
+2. keywords and quality names in the ODM and JSON Schema namespaces, defined in
+the JSON Schema for SDF
+3. identifier defined in the same (local) block
+4. identifier defined in the next closest enclosing block recursively
+5. identifier defined in the file
+6. identifier defined in the default namespace
+
+### Identifier name expansion from JSON path
+
+When a type is defined, the identifier is internally prefixed with the JSON path that locates the definition in the file.
+
+Types defined at the top level in the file go into the namespace as they are.
+
+Types defined within another definition are prefixed with the path to the enclosing definition. For example, if there is an Object "foo" defined, and a definition for "bar" with Object foo, the path to bar will be "foo.bar" within the default namespace. The Property name "foo.bar" can be used as a reference within some other definition, provided that the scope can be correctly resolved.
 
 ## Keywords for type definitions
 
-The following SDF keywords are used to create type definitions in the target
-namespace. The target namespace is defined by the default namespace, or by
-an explicit prefix on the identifier separated by a semicolon ":". For example
-if the default namespace in the example above is "baz", then you could refer
-to "baz:foo.bar" to point to the property "bar" in the namespace.
+The following SDF keywords are used to create type definitions in the target namespace. The target namespace is defined by the default namespace, or by an explicit prefix on the identifier separated by a semicolon ":". For example if the default namespace in the example above is "baz", then you could refer to "baz:foo.bar" to point to the property "bar" in the namespace.
 
 ### Object
 
-- Description
-The object keyword denotes one or more Object definitions. A object may contain
-or include definitions of events, actions, properties, and data types.
+The object keyword denotes zero or more Object definitions. A object may contain or include definitions of events, actions, properties, and data types.
 
 - Qualities of Object
 
@@ -151,8 +154,9 @@ or include definitions of events, actions, properties, and data types.
 
 ### Property
 
-- Description
 The property keyword denotes zero or more property definitions.
+
+Properties are used to model elements of state.
 
 - Qualities of Property
 
@@ -188,13 +192,16 @@ The property keyword denotes zero or more property definitions.
 
 
 - Types Property may contain
+
 |Type|
 |---|
 |data|
 
 ### Action
 
-- Description
+The action keyword denotes zero or more Action definitions.
+
+Actions are used to model commands and methods which are invoked. Actions have parameter data that are supplied upon invocation.
 
 - Qualities of Action
 
@@ -218,7 +225,9 @@ The property keyword denotes zero or more property definitions.
 
 ### Event
 
-- Description
+The event keyword denotes zero or more Event definitions.
+
+Events are used to model asynchronous occurences that may be communicated proactively. Events have data elements which are communicated upon the occurence of the event.
 
 - Qualities of Event
 
@@ -243,7 +252,9 @@ The property keyword denotes zero or more property definitions.
 
 ### Data
 
-- Description
+The data keyword denotes zero or more Data type definitions.
+
+A Data type definition provides a semantic identifier for a data item and describes the constraints on the defined data item.
 
 - Qualities of Data
 
@@ -280,30 +291,7 @@ The property keyword denotes zero or more property definitions.
 |N/A|
 
 
-## Scope of Identifiers
-### Namespace resolution order:
-1. identifiers with an explicit namespace prefix
-2. keywords and quality names in the ODM and JSON Schema namespaces, defined in
-the JSON Schema for SDF
-3. identifier defined in the same (local) block
-4. identifier defined in the next closest enclosing block recursively
-5. identifier defined in the file
-6. identifier defined in the default namespace
-
-### Identifier name expansion from JSON path
-
-When a type is defined, the identifier is internally prefixed with the JSON path
-that locates the definition in the file.
-
-Types defined at the top level in the file go into the namespace as they are.
-
-Types defined within another definition are prefixed with the path to the
-enclosing definition. For example, if there is an Object "foo" defined, and an
-definition for "bar" with Object foo, the path to bar will be "foo.bar" within
-the default namespace. The Action name "foo.bar" can be used as a reference
-within some other definition, provided that the scope can be resolved.
-
-## example OneDM Object Definition for the SmartThings Switch Capability:
+## Example Definition:
 ```
 {
   "info": {
