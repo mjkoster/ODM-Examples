@@ -55,7 +55,7 @@ Qualities of the information block are shown in the following table.
 | Quality | Type | Optional | Description |
 |---|---|---|---|
 |title|string|no|A short summary to be displayed in search results, etc.|
-|version|string|no|Format TBD|
+|version|string|no|The incremental version of the definition, format TBD|
 |copyright|string|no|Link to text or embedded text containing a copyright notice|
 |license|string|no|Link to text or embedded text containing license terms|
 
@@ -80,9 +80,11 @@ The following example declares a set of namespaces and defines  "st"" as the def
 },
 "defaultnamespace": "st",
 ```
-The definitions block contains one or more type definitions according to the class name keywords for type definition (see below).
+The definitions block contains one or more type definitions according to the class name keywords for type definitions (object, property, action, event, data).
 
-Each class may have zero or more type definitions associated with it. Each defined identifier creates a new type and has a scope of the current definition block.
+Each class may have zero or more type definitions associated with it. Each defined identifier creates a new type and term in the target namespace, and has a scope of the current definition block.
+
+A definition consists of a map entry using the newly defined term as a JSON keyword, with a value consisting of a map of Qualities and their values.
 
 A definition may in turn contain other definitions. Each definition consists of the newly defined identifier and a set of key value pairs that represent the defined qualities and contained type definitions.
 
@@ -121,9 +123,15 @@ Types defined at the top level in the file go into the namespace as they are.
 
 Types defined within another definition are prefixed with the path to the enclosing definition. For example, if there is an Object "foo" defined, and a definition for "bar" with Object foo, the path to bar will be "foo.bar" within the default namespace. The Property name "foo.bar" can be used as a reference within some other definition, provided that the scope can be correctly resolved.
 
+### Target namespace
+
+The target namespace is the namespace into which the defined terms are added. The target namespace is defined by the default namespace, or by an explicit prefix on the identifier separated by a semicolon ":".
+
+For example if the default namespace in the example above is "baz", then you could refer to "baz:foo.bar" to point to the property defined by the "bar" definition.
+
 ## Keywords for type definitions
 
-The following SDF keywords are used to create type definitions in the target namespace. The target namespace is defined by the default namespace, or by an explicit prefix on the identifier separated by a semicolon ":". For example if the default namespace in the example above is "baz", then you could refer to "baz:foo.bar" to point to the property "bar" in the namespace.
+The following SDF keywords are used to create type definitions in the target namespace.
 
 ### Object
 
