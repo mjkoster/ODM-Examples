@@ -2,8 +2,11 @@
 
 ## Introduction
 
-The Simple Definition Format is meant to be used as a format for domain experts
-to use in the creation and maintenance of OneDM definitions.
+The Simple Definition Format is a format for domain experts to use in the
+creation and maintenance of OneDM definitions.
+
+OneDM tools convert this format to database formats and other serializations as
+needed.
 
 This document describes definitions of OneDM Objects and their associated
 Events, Actions, Properties, and Data types.
@@ -88,11 +91,16 @@ or include definitions of events, actions, properties, and data types.
 
 - Qualities of Object
 
-| Quality | Type | Required | Description |
+| Quality | Type | Optional | Description |
 |---|---|---|---|
-|id| integer, string | no | internal unique identifier for the definition |
-|name|string|no|human readable name|
-|description|string|no|human readable description|
+|id| integer, string | yes | internal unique identifier for the definition |
+|name|string|yes|human readable name|
+|description|string|yes|human readable description|
+|title|String|yes|human readable title to display|
+|optional| boolean|yes|defines whether this element is optional in an implementation|
+|includes|string|yes|reference to a definition to be included|
+|refines|string|yes|reference to a definition to be refined|
+|extends|string|yes|reference to a definition to be extended|
 
 - Types Object may contain
 
@@ -111,11 +119,36 @@ The property keyword denotes zero or more property definitions.
 
 - Qualities of Property
 
-| Quality | Type | Required | Description |
+| Quality | Type | Optional | Description |
 |---|---|---|---|
-|id| integer, string | no | internal unique identifier for the definition |
-|name|string|no|human readable name|
-|description|string|no|human readable description|
+|id| integer, string | yes | internal unique identifier for the definition |
+|name|string|yes|human readable name|
+|description|string|yes|human readable description|
+|title|String|yes|human readable title to display|
+|optional| boolean|yes|defines whether this element is optional in an implementation|
+|includes|string|yes|reference to a definition to be included|
+|refines|string|yes|reference to a definition to be refined|
+|extends|string|yes|reference to a definition to be extended|
+|readOnly|boolean|yes|Only reads are allowed|
+|writeOnly|boolean|yes|Only writes are allowed|
+|observable|boolean|yes| flag to indicate asynchronous notification is available|
+|contentFormat|string|yes|IANA media type string|
+|units|string|yes|UCUM unit code|
+|nullable|boolean|yes|indicates a null value is available for this type|
+|encoding|map|yes|applies additional constraints|
+|scaleMinimum|number|yes|lower limit of value in units|
+|scaleMaximum|number|yes|upper limit of value in units|
+|type|string, enum|yes|JSON data type|
+|minimum|number|yes|lower limit of value in the representation format|
+|maximum|number|yes|upper limit of value in the representation format|
+|multipleOf|number|yes|indicates the resolution of the number in representation format|
+|enum|array|yes|enumeration constraint|
+|pattern|string|yes|regular expression to constrain a string pattern|
+|minLength|integer|yes|shortest length string in octets|
+|maxLength|integer|yes|longest length string in octets|
+|default|number, boolean, string|yes|specifies the default value for initialization|
+|const|number, boolean, string|yes|specifies a constant value for a data item or properety|
+
 
 - Types Property may contain
 |Type|
@@ -128,11 +161,16 @@ The property keyword denotes zero or more property definitions.
 
 - Qualities of Action
 
-| Quality | Type | Required | Description |
+| Quality | Type | Optional | Description |
 |---|---|---|---|
-|id| integer, string | no | internal unique identifier for the definition |
-|name|string|no|human readable name|
-|description|string|no|human readable description|
+|id| integer, string | yes | internal unique identifier for the definition |
+|name|string|yes|human readable name|
+|description|string|yes|human readable description|
+|title|String|yes|human readable title to display|
+|optional| boolean|yes|defines whether this element is optional in an implementation|
+|includes|string|yes|reference to a definition to be included|
+|refines|string|yes|reference to a definition to be refined|
+|extends|string|yes|reference to a definition to be extended|
 
 - Types Action may contain
 
@@ -147,11 +185,17 @@ The property keyword denotes zero or more property definitions.
 
 - Qualities of Event
 
-| Quality | Type | Required | Description |
+| Quality | Type | Optional | Description |
 |---|---|---|---|
-|id| integer, string | no | internal unique identifier for the definition |
-|name|string|no|human readable name|
-|description|string|no|human readable description|
+|id| integer, string | yes | internal unique identifier for the definition |
+|name|string|yes|human readable name|
+|description|string|yes|human readable description|
+|title|String|yes|human readable title to display|
+|optional| boolean|yes|defines whether this element is optional in an implementation|
+|includes|string|yes|reference to a definition to be included|
+|refines|string|yes|reference to a definition to be refined|
+|extends|string|yes|reference to a definition to be extended|
+ readable title to display|
 
 - Types Event may contain
 
@@ -166,11 +210,31 @@ The property keyword denotes zero or more property definitions.
 
 - Qualities of Data
 
-| Quality | Type | Required | Description |
+| Quality | Type | Optional | Description |
 |---|---|---|---|
-|id| integer, string | no | internal unique identifier for the definition |
-|name|string|no|human readable name|
-|description|string|no|human readable description|
+|id| integer, string | yes | internal unique identifier for the definition |
+|name|string|yes|human readable name|
+|description|string|yes|human readable description|
+|title|String|yes|human readable title to display|
+|optional| boolean|yes|defines whether this element is optional in an implementation|
+|includes|string|yes|reference to a definition to be included|
+|refines|string|yes|reference to a definition to be refined|
+|extends|string|yes|reference to a definition to be extended|
+|units|string|yes|UCUM unit code|
+|nullable|boolean|yes|indicates a null value is available for this type|
+|encoding|map|yes|applies additional constraints|
+|scaleMinimum|number|yes|lower limit of value in units|
+|scaleMaximum|number|yes|upper limit of value in units|
+|type|string, enum|yes|JSON data type|
+|minimum|number|yes|lower limit of value in the representation format|
+|maximum|number|yes|upper limit of value in the representation format|
+|multipleOf|number|yes|indicates the resolution of the number in representation format|
+|enum|array|yes|enumeration constraint|
+|pattern|string|yes|regular expression to constrain a string pattern|
+|minLength|integer|yes|shortest length string in octets|
+|maxLength|integer|yes|longest length string in octets|
+|default|number, boolean, string|yes|specifies the default value for initialization|
+|const|number, boolean, string|yes|specifies a constant value for a data item or properety|
 
 - Types Data may contain
 
@@ -180,13 +244,14 @@ The property keyword denotes zero or more property definitions.
 
 
 ## Scope of Identifiers
-### namespace resolution order:
-0. identifiers with an explicit namespace prefix
-1. keywords and quality names in the ODM and JSON Schema namespaces, defined in the JSON Schema for SDF
-2. identifier defined in the most local block
-3. identifier defined in the next closest enclosing block recursively
-4. identifier defined in the file
-5. identifier defined in the default namespace
+### Namespace resolution order:
+1. identifiers with an explicit namespace prefix
+2. keywords and quality names in the ODM and JSON Schema namespaces, defined in
+the JSON Schema for SDF
+3. identifier defined in the same (local) block
+4. identifier defined in the next closest enclosing block recursively
+5. identifier defined in the file
+6. identifier defined in the default namespace
 
 ### Identifier name expansion from JSON path
 
