@@ -13,6 +13,36 @@ Events, Actions, Properties, and Data types.
 
 The JSON format of an SDF definition is described in this document.
 
+## example OneDM Object Definition for the SmartThings Switch Capability:
+```
+{
+  "info": {
+    "title": "Example file for ODM Simple JSON Definition Format",
+    "version": "20190424",
+    "copyright": "Copyright 2019 Example Corp. All rights reserved.",
+    "license": "http://example.com/license"
+  },
+  "namespace": {
+    "st": "http://example.com/capability/odm"
+  },
+  "defaultNamespace": "st",
+  "object": {
+    "Switch": {
+      "property": {
+        "value": {
+          "type": "string",
+          "enum": ["on", "off"]
+        }
+      },
+      "action": {
+        "on": {},
+        "off": {}
+      }
+    }
+  }
+}
+```
+
 ## SDF structure
 
 A SDF definition file has two sections, the information block and the definitions
@@ -27,10 +57,12 @@ key-value pairs that represent qualities that apply to the included definition.
 
 Qualities of the information block are shown in the following table:
 
-Title
-Version
-Copyright
-License
+| Quality | Type | Optional | Description |
+|---|---|---|---|
+|Title|string|No|A short summary to be displayed in search results, etc.|
+|Version|string|No|Format TBD|
+|Copyright|string|No|Link to text or embedded text containing a copyright notice|
+|License|string|No|Link to text or embedded text containing license terms|
 
 ### Definitions block
 
@@ -39,12 +71,17 @@ The namespace declaration is a map containing one or more definitions of short
 names for URIs. The defaultnamespace declaration defines one of the short names
 in the namespace map to be the default namespace.
 
+| Quality | Type | Optional | Description |
+|---|---|---|---|
+|namespace|map|Yes|Defines short names mapped to namespace URIs, to be used as identifier prefixes|
+|defaultnamespace|string|Yes|Identifies one of the prefixes in the namespace map to be used as a default in resolving identifiers|
+
 The following example declares a set of namespaces and defines  "st"" as the
 default namespace.
 ```
 "namespace": {
-  "st": "smartthings.example.com/odmterms",
-  "zcl"" "zigbee.example.com/odm"
+  "st": "http://example.com/capability/odm",
+  "zcl": "http://example.com/zcl/odm"
 },
 "defaultnamespace": "st",
 ```
