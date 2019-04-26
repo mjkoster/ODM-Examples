@@ -1,0 +1,282 @@
+{
+"example":
+{
+  "info": {
+      "title": "Example file for ODM Simple JSON Definition Format",
+      "version": "20190404",
+      "copyright": "Copyright 2019 Example Corporation, Inc. All rights reserved.",
+      "license": "http://example.com/license"
+  },
+  "namespace": {
+      "st": "http://example.com/capability/odm"
+  },
+  "defaultnamespace": "st",
+  "object": {
+    "Switch": {
+      "property": {
+        "value": {
+          "type": "string",
+          "enum": ["on", "off"]
+        }
+      },
+      "action": {
+        "on": {},
+        "off": {}
+      }
+    }
+  }
+},
+
+"schema": 
+{
+  "type": "object",
+  "properties": {
+    "info": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "copyright": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        }
+      }
+    },
+    "namespace": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "defaultnamespace": {
+      "type": "string"
+    },
+    "thing": {
+      "type": "object",
+      "additionalProperties": [
+        { "$ref": "#definitions/commonqualities" },
+        { "$ref": "#definitions/thingqualities" }
+      ]
+    },
+    "object": {
+      "type": "object",
+      "additionalProperties": [
+        { "$ref": "#definitions/commonqualities" },
+        { "$ref": "#definitions/objectqualities" }
+      ]
+    },
+    "property": {
+      "type": "object",
+      "additionalProperties": {
+        "properties": [
+            { "$ref": "#definitions/commonqualities" },
+            { "$ref": "#definitions/propertyqualities" }
+        ]
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": [
+        { "$ref": "#definitions/commonqualities" },
+        { "$ref": "#definitions/actionqualities" }
+      ]
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": [
+        { "$ref": "#definitions/commonqualities" },
+        { "$ref": "#definitions/eventqualities" }
+      ]
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": [
+        { "$ref": "#definitions/commonqualities" },
+        { "$ref": "#definitions/dataqualities" }
+      ]  
+    }
+  },
+  "definitions": {
+    "commonqualities": {
+      "description": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "id": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string"
+      },
+      "extends": {
+        "type": "string"
+      },
+      "refines": {
+        "type": "string"
+      },
+      "includes": {
+        "type": "string"
+      },
+      "metaverb": {
+        "type": "string"
+      },
+      "protocolbinding": {
+        "type": "string"
+      },
+      "data": {
+        "type": "string"
+      },
+      "optional": {
+        "type": "boolean"
+      }
+    },
+    "thingqualities": {
+      "type": "object",
+      "properties": {}
+    },
+    "objectqualities": {
+      "type": "object",
+      "properties": {}
+    },
+    "propertyqualities": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": { "$ref": "#definitions/dataqualities" },
+    },
+    "actionqualities": {
+      "type": "object",
+      "properties": {}
+    },
+    "eventqualities": {
+      "type": "object",
+      "properties": {}
+    },
+    "dataqualities": {
+      "type": "object",
+      "properties": {
+        "units": {
+          "type": "string"
+        },
+        "scaleMinimum": {
+          "type": "number"
+        },
+        "scaleMaximum": {
+          "type": "number"
+        },
+        "observable": {
+          "type": "boolean"
+        },
+        "nullable": {
+          "type": "boolean"
+        },
+        "encoding": {
+          "type": "object",
+          "properties": {
+            "widthInBits": {
+            "type": "number"
+            }
+          }
+        },
+        "contentFormat": {
+          "type": "string"
+        }   
+      },
+      "additionalProperties": { "$ref": "#definitions/jsonschema" }
+    },
+    "jsonschema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [ "number", "string", "boolean", "integer", "array", "object" ]
+        },
+        "enum": {
+          "type": "array"
+        },
+        "const": {
+          "type": { "oneOf" : [ "number", "string", "boolean", "array", "object", "null" ] }
+        },
+        "default": {
+          "type": { "oneOf" : [ "number", "string", "boolean", "array", "object", "null" ] }
+        },
+        "pattern": {
+          "type": "string"
+        },
+        "minimum": {
+          "type": "number"
+        },
+        "maximum": {
+          "type": "number"
+        },
+        "multipleOf": {
+          "type": "number"
+        },
+        "maxLength": {
+          "type": "number"
+        },
+        "minLength": {
+          "type": "number"
+        },
+        "oneOf": {
+          "type": "array",
+          "minItems": 1
+        },
+        "anyOf": {
+          "type": "array",
+          "minItems": 1 
+        },
+        "allOf": {
+          "type": "array",
+          "minItems": 1
+        },
+        "items": {
+          "oneOf": [
+            {
+              "type": "array"
+            },
+            {
+              "type": "object"
+            }
+          ]
+        },
+        "contains": {
+            "oneOf": [
+              {
+                "type": "array"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+        "minItems": {
+          "type": "number"
+        },
+        "maxItems": {
+          "type": "number"
+        },
+        "properties": {
+          "type": "object"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "writeOnly": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
+}
