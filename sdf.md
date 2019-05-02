@@ -45,8 +45,7 @@ The JSON format of an SDF definition is described in this document.
 A SDF definition file has two sections, the information block and the definitions section.
 
 ### Information block
-The information block contains generic meta data for the file itself
-and all included definitions.
+The information block contains generic meta data for the file itself and all included definitions.
 
 The keyword that defines an information block is "info". It contains a set of key-value pairs that represent qualities that apply to the included definition.
 

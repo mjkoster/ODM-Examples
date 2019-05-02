@@ -1,0 +1,30 @@
+info {
+  title "Example file for ODM Simple JSON Definition Format"
+  version "20190424"
+  copyright "Copyright 2019 Example Corp. All rights reserved."
+  license http://example.com/license
+}
+namespace {
+  st http://example.com/capability/odm
+}
+defaultnamespace st
+object {
+  Switch {
+    property {
+      value {
+        type string
+        enum [on off]
+      }
+    }
+    action {
+      on {}
+      off {}
+    }
+  }
+}
+
+Simply JSONify a TDL file to convert to SDF
+
+- Tokenize and classify the tokens, identify value types
+- Build an in-memory data model using the language e.g. Python objects and arrays
+- Serialize to JSON
