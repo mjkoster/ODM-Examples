@@ -30,6 +30,6 @@ object {
 
 JSONify a TDL file to convert to SDF
 
-- Tokenize and classify, identify value types
+- Tokenize and classify, identify value types 
 - Build an in-memory data model using the language e.g. Python objects and arrays
 - Serialize to JSON
