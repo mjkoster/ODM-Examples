@@ -83,7 +83,7 @@ The definitions block contains one or more type definitions according to the cla
 
 Each class may have zero or more type definitions associated with it. Each defined identifier creates a new type and term in the target namespace, and has a scope of the current definition block.
 
-A definition consists of a map entry using the newly defined term as a JSON keyword, with a value consisting of a map of Qualities and their values.
+A definition consists of a map entry using the newly defined term as a JSON key, with a value consisting of a map of Qualities and their values.
 
 A definition may in turn contain other definitions. Each definition consists of the newly defined identifier and a set of key-value pairs that represent the defined qualities and contained type definitions.
 
