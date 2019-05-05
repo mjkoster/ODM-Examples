@@ -1,0 +1,197 @@
+
+/*
+zcl-level.tdl.txt
+zcl level cluster with bitfield definitions
+*/
+
+info {
+  title
+    "Example ODM model for the ZCL Level cluster"
+  version
+    "20190504"
+  copyright
+    "no copyright"
+  license
+    "not licensed"
+}
+namespace {
+  zcl http://example.com/zcl/odm
+}
+defaultnamespace zcl
+object /* cluster */ {
+  Level {
+    name "Level Control"
+    id 8
+    property /* attributes */ {
+      CurrentLevel {
+        name "CurrentLevel"
+        id 0
+        type number
+        width 8
+        minimum 0
+        maximum 254
+      }
+      RemainingTime {
+        name "RemainingTime"
+        extends transitiontimedata
+        id 1
+        default 0
+      }
+      OnOffTransitionTime {
+        name "OnOffTransitionTime"
+        extends transitiontimedata
+        id 16
+        default 0
+      }
+      OnLevel {
+        name "OnLevel"
+        id 17
+        type number
+        width 8
+        minimum 0
+        maximum 255
+        default 255
+      }
+      OnTransitionTime {
+        name "OnTransitionTime"
+        extends transitiontimedata
+        id 18
+        maximum 65534
+        scaleMaximum 6553.4
+      }
+      OffTransitionTime {
+        name "OffTransitionTime"
+        extends transitiontimedata
+        id 19
+        maximum 65534
+        scaleMaximum 6553.4
+      }
+      DefaultMoveRate {
+        name "DefaultMoveRate"
+        id 20
+        type number
+        width 16
+        minimum 0
+        maximum 254
+      }
+    }
+    action /* commands */ {
+      MoveToLevel {
+        name "Move to Level"
+        id 0
+        data {
+          level {
+            name "Level"
+            type number
+            width 8
+            minimum 0
+            maximum 255
+          }
+          transitiontime {
+            name "Transition Time"
+            extends transitiontimedata
+          }
+        }
+      }
+      Move {
+        name "Move"
+        id 1
+        data {
+          movemode {
+            name "Move mode"
+            type number
+            width 8
+            enum [ 0 1 ]
+            enumdata {
+              up {
+                name "Move Up"
+                const 0
+              }
+              down {
+                name "Move Down"
+                const 1
+              }
+            }
+          }
+          rate {
+            name "Move rate"
+            type number
+            width 8
+            minimum 0
+            maximum 255
+          }
+        }
+      }
+      Step {
+        name "Step"
+        id 2
+        data {
+          stepmode {
+            name "Step mode"
+            type number
+            width 8
+            enum [ 0 1 ]
+            enumdata {
+              up {
+                name "Step Up"
+                const 0
+              }
+              down {
+                name "Step Down"
+                const 1
+              }
+            }
+          }
+          stepsize {
+            name "Step size"
+            type number
+            width 8
+            minimum 0
+            maximum 255
+          }
+          transitiontime {
+            name "Step Transition Time"
+            extends transitiontimedata
+          }
+        }
+      }
+      Stop {
+        name "Stop"
+        id 3
+      }
+      MovetoLevelwithOnOff {
+        extends movetolevel
+        name "Move To Level with On/Off"
+        id 4
+      }
+      MovewithOnOff {
+        extends Move
+        name "Move with On/Off"
+        id 5
+      }
+      StepwithOnOff {
+        extends Step
+        name "Step with On/Off"
+        id 6
+      }
+      StopwithOnOff {
+        extends Stop
+        name "Stop with On/Off"
+        id 7
+      }
+  }
+  data {
+    transitiontimedata {
+      type number
+      width 16
+      minimum 0
+      maximum 65535
+      multipleOf 1
+      unit seconds
+      unitMultiplier 0.1
+      scaleUnit seconds
+      scaleMinimum 0
+      scaleMaximum 6553.5
+    }
+  }
+}
