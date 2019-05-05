@@ -60,7 +60,7 @@ Qualities of the information block are shown in the following table.
 
 ### Definitions block
 
-The Definitions block contains the namespace and default namespace declarations.
+The Definitions block contains the namespace and default namespace declarations along with one or more type definitions according to the class name keywords for type definitions (object, property, action, event, data).
 
 The namespace declaration is a map containing one or more definitions of short names for URIs.
 
@@ -79,7 +79,6 @@ The following example declares a set of namespaces and defines `st` as the defau
 },
 "defaultnamespace": "st",
 ```
-The definitions block contains one or more type definitions according to the class name keywords for type definitions (object, property, action, event, data).
 
 Each class may have zero or more type definitions associated with it. Each defined identifier creates a new type and term in the target namespace, and has a scope of the current definition block.
 
