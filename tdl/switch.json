@@ -1,0 +1,29 @@
+{
+  "info": {
+    "version": "20190424", 
+    "license": "http://example.com/license", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "title": "Example file for ODM Simple JSON Definition Format"
+  }, 
+  "defaultnamespace": "st", 
+  "object": {
+    "Switch": {
+      "action": {
+        "on": {}, 
+        "off": {}
+      }, 
+      "property": {
+        "value": {
+          "enum": [
+            "on", 
+            "off"
+          ], 
+          "type": "string"
+        }
+      }
+    }
+  }, 
+  "namespace": {
+    "st": "http://example.com/capability/odm"
+  }
+}
