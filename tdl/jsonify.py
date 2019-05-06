@@ -2,10 +2,9 @@
 convert a tdl format thing definition to json
 
 bugs:
-- key order is recursively or alphabetically sorted
 
 """
-import json, string, sys
+import json, string, sys, collections
 
 
 test_data = """
@@ -44,42 +43,42 @@ class input():
     def __init__(self, string):
         self.buffer = list(string)
         self.index = 0
-        
+
     def __iter__(self):
         return self
-    
+
     def __next__(self):
         return self.next
-    
+
     def next(self):
         self.index += 1
-        if self.index <= len(self.buffer) : 
+        if self.index <= len(self.buffer) :
             return self.buffer[self.index-1]
         else :
           raise StopIteration
-      
+
     def prev(self):
         if self.index > 0 :
             self.index -= 1
-        
+
 class tokenbuffer():
     def __init__(self):
         self.buffer = []
         self.index = 0
-        
+
     def __iter__(self):
         return self
-    
+
     def next(self):
         self.index += 1
-        if self.index <= len(self.buffer) : 
+        if self.index <= len(self.buffer) :
             return self.buffer[self.index-1]
         else :
           raise StopIteration
     def prev(self):
         if self.index > 0 :
             self.index -= 1
-    
+
     def addtoken(self, token):
         self.buffer.append(token)
 
@@ -116,14 +115,15 @@ def scantokens(input_string):
         elif ("{" == nextchar or "}" == nextchar or "[" == nextchar or "]" == nextchar ):
             buffer.addtoken(nextchar)
         elif ( nextchar in string.printable and not nextchar in string.whitespace ):
-            buffer.addtoken(naturalstring(nextchar,input_gen))          
-        try: 
+            buffer.addtoken(naturalstring(nextchar,input_gen))
+        try:
             nextchar = input_gen.next()
         except StopIteration:
             return buffer
 
 def object(buffer):
-    object = {}
+    object = collections.OrderedDict()
+    #object = {}
     key = ""
     while "}" != key :
         try:
@@ -132,7 +132,8 @@ def object(buffer):
             return object
         if key != "}":
             object[key] = value(buffer.next(), buffer)
-    return object
+        else:
+            return object
 
 def array(buffer):
     array = []
@@ -159,7 +160,7 @@ def value(item, buffer):
     elif any((c in '"') for c in item):
         return item.strip('"')
     else:
-        return item 
+        return item
 
 
 def isinteger(string):
@@ -193,5 +194,3 @@ if __name__ == '__main__' :
         print json.dumps(object(scantokens(input_string)), indent=2, sort_keys=False)
     else:
         print json.dumps(object(scantokens(test_data)), indent=2, sort_keys=False)
-                 
-

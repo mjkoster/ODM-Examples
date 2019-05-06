@@ -1,0 +1,52 @@
+{
+  "type": {
+    "bitarray": {
+      "width": 8, 
+      "data": {
+        "mode": {
+          "bitfield": [
+            0, 
+            1
+          ], 
+          "enum": [
+            0, 
+            1, 
+            2
+          ], 
+          "enumdata": {
+            "noretry": {
+              "const": 0
+            }, 
+            "retrycount": {
+              "const": 1
+            }, 
+            "retryforever": {
+              "const": 2
+            }
+          }
+        }, 
+        "command": {
+          "bitfield": [
+            2, 
+            4
+          ], 
+          "enum": [
+            0, 
+            1, 
+            2, 
+            7
+          ]
+        }, 
+        "parameter": {
+          "bitfield": [
+            5, 
+            7
+          ], 
+          "type": "number", 
+          "minimum": 0, 
+          "maximum": 7
+        }
+      }
+    }
+  }
+}
