@@ -1,4 +1,5 @@
 """
+tdl2json.py
 jsonify.py
 
 convert a tdl format thing definition to json
@@ -10,7 +11,8 @@ bugs:
 import json, string, sys, collections
 
 
-test_data = """
+test_data = \
+"""
 info {
   title
       "Example file for ODM Simple JSON Definition Format"
@@ -41,7 +43,11 @@ object {
   }
 }
 """
-
+test_compact = \
+"""
+info{title"Example file for ODM Simple JSON Definition Format"version"20190424"copyright"Copyright 2019 Example Corp. All rights reserved."license http://example.com/license}namespace{st http://example.com/capability/odm}defaultnamespace st
+odmObject{Switch{odmProperty{value{type string enum[on off]}}odmAction{on{}off{}}}}
+"""
 
 """
 raw input generator for string, with a previous (backspace) feature
@@ -122,7 +128,7 @@ def naturalstring(character,input_gen):
     result = "" + character
     nextchar = input_gen.next()
     while not nextchar in string.whitespace :
-        if nextchar in "{}[]":
+        if nextchar in "{}[]" or '"' == nextchar:
             input_gen.prev()
             return result
         result += nextchar
@@ -259,4 +265,4 @@ if __name__ == '__main__' :
         input_string = infile.read()
         print json.dumps(object(scantokens(input_string)), indent=2, sort_keys=False)
     else:
-        print json.dumps(object(scantokens(test_data)), indent=2, sort_keys=False)
+        print json.dumps(object(scantokens(test_compact)), indent=2, sort_keys=False)

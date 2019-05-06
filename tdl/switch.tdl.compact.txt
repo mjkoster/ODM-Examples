@@ -1,0 +1,3 @@
+info{title"Example file for ODM Simple JSON Definition Format"version"20190424"copyright"Copyright 2019 Example Corp. All rights reserved."license http://example.com/license}
+namespace{st http://example.com/capability/odm}defaultnamespace st
+odmObject{Switch{odmProperty{value{type string enum[on off]}}odmAction{on{}off{}}}}
