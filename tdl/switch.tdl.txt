@@ -13,15 +13,15 @@ namespace {
   st http://example.com/capability/odm
 }
 defaultnamespace st
-object {
+odmObject {
   Switch {
-    property {
+    odmProperty {
       value {
         type string
         enum [on off]
       }
     }
-    action {
+    odmAction {
       on {}
       off {}
     }

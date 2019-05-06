@@ -13,11 +13,11 @@ namespace {
   zcl http://example.com/zcl/odm
 }
 defaultnamespace zcl
-object {
+odmObject {
   Level {
     name "Level Control"
     id 8
-    property {
+    odmProperty {
       CurrentLevel {
         name "CurrentLevel"
         optional false
@@ -77,12 +77,12 @@ object {
         maximum 254
       }
     }
-    action {
+    odmAction {
       MoveToLevel {
         name "Move to Level"
         optional false
         id 0
-        data {
+        odmData {
           level {
             name "Level"
             optional false
@@ -102,7 +102,7 @@ object {
         name "Move"
         optional false
         id 1
-        data {
+        odmData {
           movemode {
             name "Move mode"
             optional false
@@ -136,7 +136,7 @@ object {
         name "Step"
         optional false
         id 2
-        data {
+        odmData {
           stepmode {
             name "Step mode"
             type number
@@ -200,7 +200,7 @@ object {
         id 7
       }
     }
-    data {
+    odmData {
       transitiontimedata {
         type number
         width 16

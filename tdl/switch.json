@@ -9,9 +9,9 @@
     "st": "http://example.com/capability/odm"
   }, 
   "defaultnamespace": "st", 
-  "object": {
+  "odmObject": {
     "Switch": {
-      "property": {
+      "odmProperty": {
         "value": {
           "type": "string", 
           "enum": [
@@ -20,7 +20,7 @@
           ]
         }
       }, 
-      "action": {
+      "odmAction": {
         "on": {}, 
         "off": {}
       }
