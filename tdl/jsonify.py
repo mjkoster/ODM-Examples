@@ -6,6 +6,7 @@ convert a tdl format thing definition to json
 bugs:
 
 """
+
 import json, string, sys, collections
 
 
@@ -69,7 +70,7 @@ class input():
 
 
 """
-The token buffer is a generatoe with a previous (backspace) feature
+The token buffer is a generator with a previous (backspace) feature
 
 The output from the char scanner is tokenized and inserted into the token buffer,
 and contains unquoted strings, quoted strings, and block delimiters {}[]
@@ -95,9 +96,10 @@ class tokenbuffer():
     def addtoken(self, token):
         self.buffer.append(token)
 
+
 """
 called by the scanner when an opening DQUOTE is encountered, makes a token of everything until the closing DQUOTE,
-and puts it into the tokenboffer with quotes
+and puts it into the tokenbuffer with enclosing quotes
 """
 def quotestring(input_gen):
     result = ""
@@ -107,9 +109,12 @@ def quotestring(input_gen):
         nextchar = input_gen.next()
     return '"' + result + '"'
 
+
 """
-called by the scanner when a non0whitespace char is encountered, signifying the beginning od a string
-in the input. follow until a nonwhitespace char or a block delimiter is encountered
+called by the scanner when a non-whitespace char is encountered, signifying the beginning od a string
+in the input. follow until a whitespace char or a block delimiter is encountered
+
+when a block delimiter token is encountered, the generator is backed up so the caller can process it
 
 JSON and JSON schema processing will complete the block closure checking for now
 """
@@ -123,6 +128,8 @@ def naturalstring(character,input_gen):
         result += nextchar
         nextchar = input_gen.next()
     return result
+
+
 """
 character scanner
 apply quoted string rule first, then block delimiter processing (insert block delimiters as tokens)
@@ -146,11 +153,16 @@ def scantokens(input_string):
             nextchar = input_gen.next()
         except StopIteration:
             return buffer
+
+
 """
 process objects signified by open curly brace token {
 use ordered dictionary to preserve source file ordering
 store the key and its typed value in the dictionary
 process all keys until closing curly brace token } is encountered
+
+This is also the entry point for processing TDL instances. The top level is
+by default an object, and is currently required to be an object
 """
 def object(buffer):
     object = collections.OrderedDict()
@@ -165,6 +177,7 @@ def object(buffer):
         else:
             return object
 
+
 """
 process arrays as lists of values starting after opening square bracket token [ is encountered
 end array processing when closing square bracket token ] is encountered
@@ -177,6 +190,7 @@ def array(buffer):
         if "]" != item :
             array.append(value(item, buffer))
     return array
+
 
 """
 process a value, either an item of an object or an item of an array
@@ -203,6 +217,7 @@ def value(item, buffer):
     else:
         return item
 
+
 """
 test to see if it ccan be converted to int
 """
@@ -217,6 +232,7 @@ def isinteger(string):
 test to see if it ccan be converted to float (also fixed point)
 """
 
+
 def isfloat(string):
     try:
         float(string)
@@ -224,6 +240,8 @@ def isfloat(string):
         return False
     else:
         return True
+
+
 """
 usage python jsonify.py <input TDL filename> <output json filename, including the .json extension>
 """
