@@ -60,7 +60,7 @@ Qualities of the information block are shown in the following table.
 
 ### Definitions block
 
-The Definitions block contains the namespace and default namespace declarations.
+The Definitions block contains the namespace and default namespace declarations along with one or more type definitions according to the class name keywords for type definitions (object, property, action, event, data).
 
 The namespace declaration is a map containing one or more definitions of short names for URIs.
 
@@ -71,7 +71,7 @@ The defaultnamespace declaration defines one of the short names in the namespace
 |namespace|map|yes|Defines short names mapped to namespace URIs, to be used as identifier prefixes|
 |defaultnamespace|string|yes|Identifies one of the prefixes in the namespace map to be used as a default in resolving identifiers|
 
-The following example declares a set of namespaces and defines  "st"" as the default namespace.
+The following example declares a set of namespaces and defines `st` as the default namespace.
 ```
 "namespace": {
   "st": "http://example.com/capability/odm",
@@ -79,13 +79,12 @@ The following example declares a set of namespaces and defines  "st"" as the def
 },
 "defaultnamespace": "st",
 ```
-The definitions block contains one or more type definitions according to the class name keywords for type definitions (object, property, action, event, data).
 
 Each class may have zero or more type definitions associated with it. Each defined identifier creates a new type and term in the target namespace, and has a scope of the current definition block.
 
-A definition consists of a map entry using the newly defined term as a JSON keyword, with a value consisting of a map of Qualities and their values.
+A definition consists of a map entry using the newly defined term as a JSON key, with a value consisting of a map of Qualities and their values.
 
-A definition may in turn contain other definitions. Each definition consists of the newly defined identifier and a set of key value pairs that represent the defined qualities and contained type definitions.
+A definition may in turn contain other definitions. Each definition consists of the newly defined identifier and a set of key-value pairs that represent the defined qualities and contained type definitions.
 
 For example, an Object definition looks like this:
 
