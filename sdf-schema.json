@@ -1,34 +1,4 @@
 {
-"example":
-{
-  "info": {
-      "title": "Example file for ODM Simple JSON Definition Format",
-      "version": "20190404",
-      "copyright": "Copyright 2019 Example Corporation, Inc. All rights reserved.",
-      "license": "http://example.com/license"
-  },
-  "namespace": {
-      "st": "http://example.com/capability/odm"
-  },
-  "defaultnamespace": "st",
-  "object": {
-    "Switch": {
-      "property": {
-        "value": {
-          "type": "string",
-          "enum": ["on", "off"]
-        }
-      },
-      "action": {
-        "on": {},
-        "off": {}
-      }
-    }
-  }
-},
-
-"schema":
-{
   "type": "object",
   "properties": {
     "info": {
@@ -279,5 +249,4 @@
       }
     }
   }
-}
 }
