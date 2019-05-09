@@ -1,0 +1,221 @@
+{
+  "info": {
+    "title": "Example ODM model for the ZCL Level cluster", 
+    "version": "20190504", 
+    "copyright": "no copyright", 
+    "license": "not licensed"
+  }, 
+  "namespace": {
+    "zcl": "http://example.com/zcl/odm"
+  }, 
+  "defaultnamespace": "zcl", 
+  "odmObject": {
+    "Level": {
+      "name": "Level Control", 
+      "id": 8, 
+      "odmProperty": {
+        "CurrentLevel": {
+          "name": "CurrentLevel", 
+          "optional": false, 
+          "id": 0, 
+          "type": "number", 
+          "width": 8, 
+          "minimum": 0, 
+          "maximum": 254
+        }, 
+        "RemainingTime": {
+          "name": "RemainingTime", 
+          "optional": true, 
+          "extends": "transitiontimedata", 
+          "id": 1, 
+          "default": 0
+        }, 
+        "OnOffTransitionTime": {
+          "name": "OnOffTransitionTime", 
+          "optional": true, 
+          "extends": "transitiontimedata", 
+          "id": 16, 
+          "default": 0
+        }, 
+        "OnLevel": {
+          "name": "OnLevel", 
+          "optional": true, 
+          "id": 17, 
+          "type": "number", 
+          "width": 8, 
+          "minimum": 0, 
+          "maximum": 255, 
+          "default": 255
+        }, 
+        "OnTransitionTime": {
+          "name": "OnTransitionTime", 
+          "optional": true, 
+          "extends": "transitiontimedata", 
+          "id": 18, 
+          "maximum": 65534, 
+          "scaleMaximum": 6553.4
+        }, 
+        "OffTransitionTime": {
+          "name": "OffTransitionTime", 
+          "optional": true, 
+          "extends": "transitiontimedata", 
+          "id": 19, 
+          "maximum": 65534, 
+          "scaleMaximum": 6553.4
+        }, 
+        "DefaultMoveRate": {
+          "name": "DefaultMoveRate", 
+          "optional": true, 
+          "id": 20, 
+          "type": "number", 
+          "width": 16, 
+          "minimum": 0, 
+          "maximum": 254
+        }
+      }, 
+      "odmAction": {
+        "MoveToLevel": {
+          "name": "Move to Level", 
+          "optional": false, 
+          "id": 0, 
+          "odmData": {
+            "level": {
+              "name": "Level", 
+              "optional": false, 
+              "type": "number", 
+              "width": 8, 
+              "minimum": 0, 
+              "maximum": 254
+            }, 
+            "transitiontime": {
+              "name": "Transition Time", 
+              "optional": false, 
+              "extends": "transitiontimedata"
+            }
+          }
+        }, 
+        "Move": {
+          "name": "Move", 
+          "optional": false, 
+          "id": 1, 
+          "odmData": {
+            "movemode": {
+              "name": "Move mode", 
+              "optional": false, 
+              "type": "number", 
+              "width": 8, 
+              "enum": [
+                0, 
+                1
+              ], 
+              "enumdata": {
+                "up": {
+                  "name": "Move Up", 
+                  "type": "number", 
+                  "const": 0
+                }, 
+                "down": {
+                  "name": "Move Down", 
+                  "type": "number", 
+                  "const": 1
+                }
+              }
+            }, 
+            "rate": {
+              "name": "Move rate", 
+              "optional": false, 
+              "type": "number", 
+              "width": 8, 
+              "minimum": 0, 
+              "maximum": 255
+            }
+          }
+        }, 
+        "Step": {
+          "name": "Step", 
+          "optional": false, 
+          "id": 2, 
+          "odmData": {
+            "stepmode": {
+              "name": "Step mode", 
+              "type": "number", 
+              "width": 8, 
+              "enum": [
+                0, 
+                1
+              ], 
+              "enumdata": {
+                "up": {
+                  "name": "Step Up", 
+                  "type": "number", 
+                  "const": 0
+                }, 
+                "down": {
+                  "name": "Step Down", 
+                  "type": "number", 
+                  "const": 1
+                }
+              }
+            }, 
+            "stepsize": {
+              "name": "Step size", 
+              "optional": false, 
+              "type": "number", 
+              "width": 8, 
+              "minimum": 0, 
+              "maximum": 255
+            }, 
+            "transitiontime": {
+              "name": "Step Transition Time", 
+              "optional": false, 
+              "extends": "transitiontimedata"
+            }
+          }
+        }, 
+        "Stop": {
+          "name": "Stop", 
+          "optional": false, 
+          "id": 3
+        }, 
+        "MovetoLevelwithOnOff": {
+          "extends": "movetolevel", 
+          "name": "Move To Level with On/Off", 
+          "optional": false, 
+          "id": 4
+        }, 
+        "MovewithOnOff": {
+          "extends": "Move", 
+          "name": "Move with On/Off", 
+          "optional": false, 
+          "id": 5
+        }, 
+        "StepwithOnOff": {
+          "extends": "Step", 
+          "name": "Step with On/Off", 
+          "optional": false, 
+          "id": 6
+        }, 
+        "StopwithOnOff": {
+          "extends": "Stop", 
+          "name": "Stop with On/Off", 
+          "optional": false, 
+          "id": 7
+        }
+      }, 
+      "odmData": {
+        "transitiontimedata": {
+          "type": "number", 
+          "width": 16, 
+          "minimum": 0, 
+          "maximum": 65535, 
+          "multipleOf": 1, 
+          "unit": "seconds", 
+          "unitMultiplier": 0.1, 
+          "scaleUnit": "seconds", 
+          "scaleMinimum": 0, 
+          "scaleMaximum": 6553.5
+        }
+      }
+    }
+  }
+}

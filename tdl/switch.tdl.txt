@@ -13,23 +13,17 @@ namespace {
   st http://example.com/capability/odm
 }
 defaultnamespace st
-object {
+odmObject {
   Switch {
-    property {
+    odmProperty {
       value {
         type string
         enum [on off]
       }
     }
-    action {
+    odmAction {
       on {}
       off {}
     }
   }
 }
-
-JSONify a TDL file to convert to SDF
-
-- Tokenize and classify, identify value types 
-- Build an in-memory data model using the language e.g. Python objects and arrays
-- Serialize to JSON
