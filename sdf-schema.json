@@ -27,7 +27,7 @@
   }
 },
 
-"schema": 
+"schema":
 {
   "type": "object",
   "properties": {
@@ -46,7 +46,8 @@
         "license": {
           "type": "string"
         }
-      }
+      },
+      "required": []
     },
     "namespace": {
       "type": "object",
@@ -99,7 +100,7 @@
       "additionalProperties": [
         { "$ref": "#definitions/commonqualities" },
         { "$ref": "#definitions/dataqualities" }
-      ]  
+      ]
     }
   },
   "definitions": {
@@ -190,7 +191,7 @@
         },
         "contentFormat": {
           "type": "string"
-        }   
+        }
       },
       "additionalProperties": { "$ref": "#definitions/jsonschema" }
     },
@@ -234,7 +235,7 @@
         },
         "anyOf": {
           "type": "array",
-          "minItems": 1 
+          "minItems": 1
         },
         "allOf": {
           "type": "array",
