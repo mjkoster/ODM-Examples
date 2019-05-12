@@ -68,8 +68,13 @@
     "data": {
       "type": "object",
       "additionalProperties": [
+<<<<<<< HEAD
         { "$ref": "#/definitions/commonqualities" },
         { "$ref": "#/definitions/dataqualities" }
+=======
+        { "$ref": "#definitions/commonqualities" },
+        { "$ref": "#definitions/dataqualities" }
+>>>>>>> d2ae623962f8695227a86e8ca79efe68db9cc773
       ]
     }
   },
