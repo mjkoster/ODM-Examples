@@ -2,7 +2,8 @@
 
 Convert a file in TDL (thing definition) text format to JSON for ODM definitions
 
-TDL is a text language that is essentially JSON with most of the punctuation stripped out except for 3 classes of block delimiters:
+TDL is a text language that is essentially JSON with most of the punctuation
+stripped out and replaced with whitespace, except for 3 classes of block delimiters:
 
 - quoted strings using DQUOTE ""
 - arrays using []

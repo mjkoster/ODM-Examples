@@ -117,7 +117,7 @@ def quotestring(input_gen):
 
 
 """
-called by the scanner when a non-whitespace char is encountered, signifying the beginning od a string
+called by the scanner when a non-whitespace char is encountered, signifying the beginning of a string
 in the input. follow until a whitespace char or a block delimiter is encountered
 
 when a block delimiter token is encountered, the generator is backed up so the caller can process it
