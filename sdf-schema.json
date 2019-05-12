@@ -28,43 +28,50 @@
     "defaultnamespace": {
       "type": "string"
     },
-    "thing": {
+    "odmThing": {
+      "description": "Thing is a set of objects and components that can define an instance",
       "type": "object",
       "additionalProperties": {
         "$ref": "#/definitions/thingqualities"
       }
     },
-    "component": {
+    "odmComponent": {
+      "description": "Component is a set of objects that can be composed as a unit into a thing",
       "type": "object",
       "additionalProperties": {
         "$ref": "#/definitions/componentqualities"
       }
     },
-    "object": {
+    "odmObject": {
+      "description": "Object is a set of Properties, Actions, and Events that together perform a particular function",
       "type": "object",
       "additionalProperties": {
         "$ref": "#/definitions/objectqualities"
       }
     },
-    "property": {
+    "odmProperty": {
+      "description": "Property represents the state of an instance of an object",
       "type": "object",
       "additionalProperties": {
         "$ref": "#/definitions/propertyqualities"
       }
     },
-    "action": {
+    "odmAction": {
+      "description": "Action is a directive to invoke an application layer verb associated with an object",
       "type": "object",
       "additionalProperties": {
         "$ref": "#/definitions/actionqualities"
       }
     },
-    "event": {
+    "odmEvent": {
+      "description": "Event represents an occurence of something associated with an object",
       "type": "object",
       "additionalProperties": {
         "$ref": "#/definitions/eventqualities"
       }
     },
-    "data": {
+    "odmData": {
+      "description": "Data represents a piece of information that can be the state of a property or a parameter to an action or a signal in an event",
       "type": "object",
       "additionalProperties": {
         "$ref": "#/definitions/dataqualities"
@@ -86,13 +93,29 @@
         "type": "string"
       },
       "extends": {
+        "description": "reuse a definition with a new name and some new quality settings",
         "type": "string"
+      },
+      "refines": {
+        "description": "reuse a definition with the same name and some new quality settings",
+        "type": "object",
+        "properties": {
+          "oneOf": [
+            {"$ref": "#/odmThing"},
+            {"$ref": "#/odmComponent"},
+            {"$ref": "#/odmObject"},
+            {"$ref": "#/odmProperty"},
+            {"$ref": "#/odmAction"},
+            {"$ref": "#/odmEvent"},
+            {"$ref": "#/odmData"}
+        ]
       },
       "includes": {
-        "type": "string"
-      },
-      "data": {
-        "type": "string"
+        "type": "array",
+        "items": {
+          "description": "pointer to an expected instance within a thing, creates a plural view",
+          "type": "string"
+        }
       },
       "optional": {
         "type": "boolean"
@@ -102,24 +125,25 @@
       "type": "object",
       "properties": {
         "$ref": "#/definitions/commonqualities",
-        "$ref": "#/component",
-        "$ref": "#/object"
+        "$ref": "#/odmComponent",
+        "$ref": "#/odmObject"
       }
     },
     "componentqualities": {
       "type": "object",
       "properties": {
         "$ref": "#/definitions/commonqualities",
-        "$ref": "#/object"
+        "$ref": "#/odmObject"
       }
     },
     "objectqualities": {
       "type": "object",
       "properties": {
         "$ref": "#/definitions/commonqualities",
-        "$ref": "#/property",
-        "$ref": "#/action",
-        "$ref": "#/event"
+        "$ref": "#/odmProperty",
+        "$ref": "#/odmAction",
+        "$ref": "#/odmEvent",
+        "$ref": "#/odmData"
       }
     },
     "propertyqualities": {
