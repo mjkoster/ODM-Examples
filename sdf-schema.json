@@ -30,52 +30,45 @@
     },
     "thing": {
       "type": "object",
-      "additionalProperties": [
-        { "$ref": "#/definitions/commonqualities" },
-        { "$ref": "#/definitions/thingqualities" }
-      ]
+      "additionalProperties": {
+        "$ref": "#/definitions/thingqualities"
+      }
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/componentqualities"
+      }
     },
     "object": {
       "type": "object",
-      "additionalProperties": [
-        { "$ref": "#/definitions/commonqualities" },
-        { "$ref": "#/definitions/objectqualities" }
-      ]
+      "additionalProperties": {
+        "$ref": "#/definitions/objectqualities"
+      }
     },
     "property": {
       "type": "object",
       "additionalProperties": {
-        "properties": [
-            { "$ref": "#/definitions/commonqualities" },
-            { "$ref": "#/definitions/propertyqualities" }
-        ]
+        "$ref": "#/definitions/propertyqualities"
       }
     },
     "action": {
       "type": "object",
-      "additionalProperties": [
-        { "$ref": "#/definitions/commonqualities" },
-        { "$ref": "#/definitions/actionqualities" }
-      ]
+      "additionalProperties": {
+        "$ref": "#/definitions/actionqualities"
+      }
     },
     "event": {
       "type": "object",
-      "additionalProperties": [
-        { "$ref": "#/definitions/commonqualities" },
-        { "$ref": "#/definitions/eventqualities" }
-      ]
+      "additionalProperties": {
+        "$ref": "#/definitions/eventqualities"
+      }
     },
     "data": {
       "type": "object",
-      "additionalProperties": [
-<<<<<<< HEAD
-        { "$ref": "#/definitions/commonqualities" },
-        { "$ref": "#/definitions/dataqualities" }
-=======
-        { "$ref": "#definitions/commonqualities" },
-        { "$ref": "#definitions/dataqualities" }
->>>>>>> d2ae623962f8695227a86e8ca79efe68db9cc773
-      ]
+      "additionalProperties": {
+        "$ref": "#/definitions/dataqualities"
+      }
     }
   },
   "definitions": {
@@ -87,27 +80,15 @@
         "type": "string"
       },
       "id": {
-        "type": "string"
+        "type": "number"
       },
       "name": {
-        "type": "string"
-      },
-      "type": {
         "type": "string"
       },
       "extends": {
         "type": "string"
       },
-      "refines": {
-        "type": "string"
-      },
       "includes": {
-        "type": "string"
-      },
-      "metaverb": {
-        "type": "string"
-      },
-      "protocolbinding": {
         "type": "string"
       },
       "data": {
@@ -119,26 +100,48 @@
     },
     "thingqualities": {
       "type": "object",
-      "properties": {}
+      "properties": {
+        "$ref": "#/definitions/commonqualities",
+        "$ref": "#/component",
+        "$ref": "#/object"
+      }
+    },
+    "componentqualities": {
+      "type": "object",
+      "properties": {
+        "$ref": "#/definitions/commonqualities",
+        "$ref": "#/object"
+      }
     },
     "objectqualities": {
       "type": "object",
-      "properties": {}
+      "properties": {
+        "$ref": "#/definitions/commonqualities",
+        "$ref": "#/property",
+        "$ref": "#/action",
+        "$ref": "#/event"
+      }
     },
     "propertyqualities": {
       "type": "object",
-      "properties": {},
+      "properties": {
+        "$ref": "#/definitions/commonqualities"
+      },
       "additionalProperties": {
         "$ref": "#/definitions/dataqualities"
       }
     },
     "actionqualities": {
       "type": "object",
-      "properties": {}
+      "properties": {
+        "$ref": "#/definitions/commonqualities"
+      }
     },
     "eventqualities": {
       "type": "object",
-      "properties": {}
+      "properties": {
+        "$ref": "#/definitions/commonqualities"
+      }
     },
     "dataqualities": {
       "type": "object",
