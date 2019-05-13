@@ -23,15 +23,15 @@ The JSON format of an SDF definition is described in this document.
     "st": "http://example.com/capability/odm"
   },
   "defaultNamespace": "st",
-  "object": {
+  "odmObject": {
     "Switch": {
-      "property": {
+      "odmProperty": {
         "value": {
           "type": "string",
           "enum": ["on", "off"]
         }
       },
-      "action": {
+      "odmAction": {
         "on": {},
         "off": {}
       }
@@ -89,10 +89,10 @@ A definition may in turn contain other definitions. Each definition consists of 
 For example, an Object definition looks like this:
 
 ```
-"object": {
+"odmObject": {
   "foo": {
     "id": 3001,
-    "property": {
+    "odmProperty": {
       "bar": {
         "type": "boolean"
         "id": 5150
@@ -131,11 +131,11 @@ For example if the default namespace in the example above is "baz", then you cou
 
 The following SDF keywords are used to create type definitions in the target namespace.
 
-### Object
+### odmObject
 
-The object keyword denotes zero or more Object definitions. A object may contain or include definitions of events, actions, properties, and data types.
+The odmObject keyword denotes zero or more Object definitions. A object may contain or include definitions of events, actions, properties, and data types.
 
-- Qualities of Object
+- Qualities of odmObject
 
 | Quality | Type | Optional | Description |
 |---|---|---|---|
@@ -148,23 +148,23 @@ The object keyword denotes zero or more Object definitions. A object may contain
 |refines|string|yes|reference to a definition to be refined|
 |extends|string|yes|reference to a definition to be extended|
 
-- Types Object may contain
+- Types Object may define or contain
 
 |Type|
 |---|
-|property|
-|action|
-|event|
-|data|
+|odmProperty|
+|odmAction|
+|odmEvent|
+|odmData|
 
 
-### Property
+### odmProperty
 
-The property keyword denotes zero or more property definitions.
+The odmProperty keyword denotes zero or more property definitions.
 
 Properties are used to model elements of state.
 
-- Qualities of Property
+- Qualities of odmProperty
 
 | Quality | Type | Optional | Description |
 |---|---|---|---|
@@ -197,19 +197,19 @@ Properties are used to model elements of state.
 |const|number, boolean, string|yes|specifies a constant value for a data item or properety|
 
 
-- Types Property may contain
+- Types Property may define or contain
 
 |Type|
 |---|
-|data|
+|odmData|
 
-### Action
+### odmAction
 
-The action keyword denotes zero or more Action definitions.
+The odmAction keyword denotes zero or more Action definitions.
 
 Actions are used to model commands and methods which are invoked. Actions have parameter data that are supplied upon invocation.
 
-- Qualities of Action
+- Qualities of odmAction
 
 | Quality | Type | Optional | Description |
 |---|---|---|---|
@@ -222,20 +222,20 @@ Actions are used to model commands and methods which are invoked. Actions have p
 |refines|string|yes|reference to a definition to be refined|
 |extends|string|yes|reference to a definition to be extended|
 
-- Types Action may contain
+- Types Action may define or contain
 
 |Type|
 |---|
-|data|
+|odmData|
 
 
-### Event
+### odmEvent
 
-The event keyword denotes zero or more Event definitions.
+The odmEvent keyword denotes zero or more Event definitions.
 
 Events are used to model asynchronous occurences that may be communicated proactively. Events have data elements which are communicated upon the occurence of the event.
 
-- Qualities of Event
+- Qualities of odmEvent
 
 | Quality | Type | Optional | Description |
 |---|---|---|---|
@@ -249,20 +249,22 @@ Events are used to model asynchronous occurences that may be communicated proact
 |extends|string|yes|reference to a definition to be extended|
  readable title to display|
 
-- Types Event may contain
+- Types Event may define or contain
 
 |Type|
 |---|
-|data|
+|odmData|
 
 
-### Data
+### odmData
 
-The data keyword denotes zero or more Data type definitions.
+The odmData keyword denotes zero or more Data type definitions.
 
-A Data type definition provides a semantic identifier for a data item and describes the constraints on the defined data item.
+An odmData definition provides a semantic identifier for a data item and describes the constraints on the defined data item.
 
-- Qualities of Data
+odmData is used for Action parameters, for Event data, and for reusable constraints in property definitions
+
+- Qualities of odmData
 
 | Quality | Type | Optional | Description |
 |---|---|---|---|
@@ -290,14 +292,14 @@ A Data type definition provides a semantic identifier for a data item and descri
 |default|number, boolean, string|yes|specifies the default value for initialization|
 |const|number, boolean, string|yes|specifies a constant value for a data item or properety|
 
-- Types Data may contain
+- Types Data may define or contain
 
 |Type|
 |---|
-|N/A|
+|JSON Schema Types with numeric constraint extensions|
 
 
-## Example Definition:
+## Example Simple Object Definition:
 ```
 {
   "info": {
@@ -310,15 +312,15 @@ A Data type definition provides a semantic identifier for a data item and descri
     "st": "http://example.com/capability/odm"
   },
   "defaultNamespace": "st",
-  "object": {
+  "odmObject": {
     "Switch": {
-      "property": {
+      "odmProperty": {
         "value": {
           "type": "string",
           "enum": ["on", "off"]
         }
       },
-      "action": {
+      "odmAction": {
         "on": {},
         "off": {}
       }
@@ -326,3 +328,102 @@ A Data type definition provides a semantic identifier for a data item and descri
   }
 }
 ```
+## High Level Composition
+
+The requirements for high level composition include the following:
+
+- The ability to represent products, standardized product types, and modular products while maintaing the atomicity of Objects.
+
+- The ability to compose a reusable definition block from objects, for example a single plug unit of an outlet strip with on/off control, energy monitor, and optional dimmer objects, while retaining the atomicity of the individual objects.
+
+- The ability to compose objects and other definition blocks into a higher level thing that represents a product, while retaining the atomicity of objects.
+
+- The ability to enrich and refine a base definition to have product-specific qualities and quality values, e.g. unit, range, and scale settings.
+
+- The ability to reference items in one part of a complex definition from another part of the same definition, for example to summarize the energy readings from all plugs in an outlet strip.
+
+### Paths in the model namespaces
+
+The model namespace is organized according to terms that are defined in the definition files that are loaded into the namespace. For example, definitions that originate from an organization or vendor are expected to be in a namespace that is peculiar to that org or vendor.
+
+In general, the structure of a path in a namespace is defined by the hierarchical relationship of the definitions in the file. For example, if there is a file defining an object "Switch" with an action "on", then the external reference to the action would be "Switch.on" (assuming for the moment the use of dot as a path segment separator).
+
+A reference within the "Switch" object would simply use "on" according to the identifier resolution precedence rules.
+
+### Re-use and Recursion
+Re-use of definitions enables an existing definition (could be in the same file or another file) to become part of a new definition by including a reference to the existing definition within the model namespace. There are currently considered three cases for reuse of definitions. The semantics are similar to those of typed links.
+
+### The "extends" pattern
+An existing definition can be used as a template for a new definition, that is a new term is created in the namespace which uses the defined qualities of some existing definition. This pattern will use the keyword "extends" as a quality of a new definition with a value consisting of a reference to the existing definition that is to be used as a template. Optionally, new qualities may be added and values of defined qualities may be changed in the extended definition.
+
+### The "refines" pattrern
+An existing definition may be re-used with its name, that is the name of some existing definition is re-used as an element in a new definition, along with it's defined qualities. This pattern will use the keyword "refines" and will allow qualities in the new definition to override values from the source definition.
+
+### The "includes" pattern
+An existing definition may be used, with its name and its path in the model namespace, as an element in a new definition. This has the effect of linking to an instance of the model in the deployment. This pattern will use the keyword "includes" and is useful to link properties, actions, and events from one object to another object, or to link objects together in a complex thing definition.
+
+### odmComponent
+
+An odmComponent is a potentially reusable composition of objects that is part of a more complex model. For example, the objects that make up the definition of a single plug of an outlet strip could be encapsulated by a component.
+
+Component defintions work much like object definitions, except that a component is composed of objects. Components may use the include, refines, or extends pattern, or may define objects within the component definition. Component definitions may include their own Object definitions, as well as reusable Property, Action, and Event definitions that can be used to extend or complete the included Object definitions.
+
+Using the "includes" pattern enables a component to provide a specific "view" into the functionality of a complex device, for example a way to summarize the energy readings of all plugs in an outlet strip, or a way of including common functions, like power controls, in the definition of the sub-functions in a multifunction device like a printer + scanner product.
+
+Components may carry semantic meaning, such as a defined refrigerator compartment and a defined freezer compartment, making up a combination refer-freezer product.
+
+- Qualities of odmComponent
+
+| Quality | Type | Optional | Description |
+|---|---|---|---|
+|id| integer, string | yes | internal unique identifier for the definition |
+|name|string|yes|human readable name|
+|description|string|yes|human readable description|
+|title|String|yes|human readable title to display|
+|optional| boolean|yes|defines whether this element is optional in an implementation|
+|includes|string|yes|reference to a definition to be included|
+|refines|string|yes|reference to a definition to be refined|
+|extends|string|yes|reference to a definition to be extended|
+
+- Types odmComponent may define or contain
+
+|Type|
+|---|
+|odmObject|
+|odmProperty|
+|odmAction|
+|odmEvent|
+|odmData|
+
+
+### odmThing
+
+An odmThing provides the level of abstraction for representing a unique product or a profile for a standardized type of product, for example a "device type" definition with required minimum functionality.
+
+Things may be composed of Objects and Components at the high level, and may contain their own definitions of Properties, Actions, and Events that can be used to extend or complete the included Object definitions.
+
+Thing definitions may use the includes, refines, or extends pattern, and are expected to override defaults for specific use cases, for example units, range, and scale settings for properties, or available parameters for Actions.
+
+- Qualities of odmThing
+
+| Quality | Type | Optional | Description |
+|---|---|---|---|
+|id| integer, string | yes | internal unique identifier for the definition |
+|name|string|yes|human readable name|
+|description|string|yes|human readable description|
+|title|String|yes|human readable title to display|
+|optional| boolean|yes|defines whether this element is optional in an implementation|
+|includes|string|yes|reference to a definition to be included|
+|refines|string|yes|reference to a definition to be refined|
+|extends|string|yes|reference to a definition to be extended|
+
+- Types odmThing may define or contain
+
+|Type|
+|---|
+|odmObject|
+|odmComponent|
+|odmProperty|
+|odmAction|
+|odmEvent|
+|odmData|
