@@ -142,7 +142,7 @@ The odmObject keyword denotes zero or more Object definitions. A object may cont
 |id| integer, string | yes | internal unique identifier for the definition |
 |name|string|yes|human readable name|
 |description|string|yes|human readable description|
-|title|String|yes|human readable title to display|
+|title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
 |includes|string|yes|reference to a definition to be included|
 |refines|string|yes|reference to a definition to be refined|
@@ -171,7 +171,7 @@ Properties are used to model elements of state.
 |id| integer, string | yes | internal unique identifier for the definition |
 |name|string|yes|human readable name|
 |description|string|yes|human readable description|
-|title|String|yes|human readable title to display|
+|title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
 |includes|string|yes|reference to a definition to be included|
 |refines|string|yes|reference to a definition to be refined|
@@ -194,7 +194,7 @@ Properties are used to model elements of state.
 |minLength|integer|yes|shortest length string in octets|
 |maxLength|integer|yes|longest length string in octets|
 |default|number, boolean, string|yes|specifies the default value for initialization|
-|const|number, boolean, string|yes|specifies a constant value for a data item or properety|
+|const|number, boolean, string|yes|specifies a constant value for a data item or property|
 
 
 - Types Property may define or contain
@@ -216,7 +216,7 @@ Actions are used to model commands and methods which are invoked. Actions have p
 |id| integer, string | yes | internal unique identifier for the definition |
 |name|string|yes|human readable name|
 |description|string|yes|human readable description|
-|title|String|yes|human readable title to display|
+|title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
 |includes|string|yes|reference to a definition to be included|
 |refines|string|yes|reference to a definition to be refined|
@@ -233,7 +233,7 @@ Actions are used to model commands and methods which are invoked. Actions have p
 
 The odmEvent keyword denotes zero or more Event definitions.
 
-Events are used to model asynchronous occurences that may be communicated proactively. Events have data elements which are communicated upon the occurence of the event.
+Events are used to model asynchronous occurrences that may be communicated proactively. Events have data elements which are communicated upon the occurrence of the event.
 
 - Qualities of odmEvent
 
@@ -242,7 +242,7 @@ Events are used to model asynchronous occurences that may be communicated proact
 |id| integer, string | yes | internal unique identifier for the definition |
 |name|string|yes|human readable name|
 |description|string|yes|human readable description|
-|title|String|yes|human readable title to display|
+|title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
 |includes|string|yes|reference to a definition to be included|
 |refines|string|yes|reference to a definition to be refined|
@@ -271,7 +271,7 @@ odmData is used for Action parameters, for Event data, and for reusable constrai
 |id| integer, string | yes | internal unique identifier for the definition |
 |name|string|yes|human readable name|
 |description|string|yes|human readable description|
-|title|String|yes|human readable title to display|
+|title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
 |includes|string|yes|reference to a definition to be included|
 |refines|string|yes|reference to a definition to be refined|
@@ -290,7 +290,7 @@ odmData is used for Action parameters, for Event data, and for reusable constrai
 |minLength|integer|yes|shortest length string in octets|
 |maxLength|integer|yes|longest length string in octets|
 |default|number, boolean, string|yes|specifies the default value for initialization|
-|const|number, boolean, string|yes|specifies a constant value for a data item or properety|
+|const|number, boolean, string|yes|specifies a constant value for a data item or property|
 
 - Types Data may define or contain
 
@@ -332,7 +332,7 @@ odmData is used for Action parameters, for Event data, and for reusable constrai
 
 The requirements for high level composition include the following:
 
-- The ability to represent products, standardized product types, and modular products while maintaing the atomicity of Objects.
+- The ability to represent products, standardized product types, and modular products while maintaining the atomicity of Objects.
 
 - The ability to compose a reusable definition block from objects, for example a single plug unit of an outlet strip with on/off control, energy monitor, and optional dimmer objects, while retaining the atomicity of the individual objects.
 
@@ -344,7 +344,7 @@ The requirements for high level composition include the following:
 
 ### Paths in the model namespaces
 
-The model namespace is organized according to terms that are defined in the definition files that are loaded into the namespace. For example, definitions that originate from an organization or vendor are expected to be in a namespace that is peculiar to that org or vendor.
+The model namespace is organized according to terms that are defined in the definition files that are loaded into the namespace. For example, definitions that originate from an organization or vendor are expected to be in a namespace that is specific to that organization or vendor.
 
 In general, the structure of a path in a namespace is defined by the hierarchical relationship of the definitions in the file. For example, if there is a file defining an object "Switch" with an action "on", then the external reference to the action would be "Switch.on" (assuming for the moment the use of dot as a path segment separator).
 
@@ -353,20 +353,20 @@ A reference within the "Switch" object would simply use "on" according to the id
 ### Re-use and Recursion
 Re-use of definitions enables an existing definition (could be in the same file or another file) to become part of a new definition by including a reference to the existing definition within the model namespace. There are currently considered three cases for reuse of definitions. The semantics are similar to those of typed links.
 
-### The "extends" pattern
-An existing definition can be used as a template for a new definition, that is a new term is created in the namespace which uses the defined qualities of some existing definition. This pattern will use the keyword "extends" as a quality of a new definition with a value consisting of a reference to the existing definition that is to be used as a template. Optionally, new qualities may be added and values of defined qualities may be changed in the extended definition.
+#### The "extends" pattern
+An existing definition can be used as a template for a new definition, that is, a new term is created in the namespace which uses the defined qualities of some existing definition. This pattern will use the keyword "extends" as a quality of a new definition with a value consisting of a reference to the existing definition that is to be used as a template. Optionally, new qualities may be added and values of defined qualities may be changed in the extended definition.
 
-### The "refines" pattrern
-An existing definition may be re-used with its name, that is the name of some existing definition is re-used as an element in a new definition, along with it's defined qualities. This pattern will use the keyword "refines" and will allow qualities in the new definition to override values from the source definition.
+#### The "refines" pattern
+An existing definition may be re-used with its name, that is, the name of some existing definition is re-used as an element in a new definition, along with its defined qualities. This pattern will use the keyword "refines" and will allow qualities in the new definition to override values from the source definition.
 
-### The "includes" pattern
+#### The "includes" pattern
 An existing definition may be used, with its name and its path in the model namespace, as an element in a new definition. This has the effect of linking to an instance of the model in the deployment. This pattern will use the keyword "includes" and is useful to link properties, actions, and events from one object to another object, or to link objects together in a complex thing definition.
 
 ### odmComponent
 
 An odmComponent is a potentially reusable composition of objects that is part of a more complex model. For example, the objects that make up the definition of a single plug of an outlet strip could be encapsulated by a component.
 
-Component defintions work much like object definitions, except that a component is composed of objects. Components may use the include, refines, or extends pattern, or may define objects within the component definition. Component definitions may include their own Object definitions, as well as reusable Property, Action, and Event definitions that can be used to extend or complete the included Object definitions.
+Component definitions work much like object definitions, except that a component is composed of objects. Components may use the "includes", "refines", or "extends" pattern, or may define objects within the component definition. Component definitions may include their own Object definitions, as well as reusable Property, Action, and Event definitions that can be used to extend or complete the included Object definitions.
 
 Using the "includes" pattern enables a component to provide a specific "view" into the functionality of a complex device, for example a way to summarize the energy readings of all plugs in an outlet strip, or a way of including common functions, like power controls, in the definition of the sub-functions in a multifunction device like a printer + scanner product.
 
@@ -379,7 +379,7 @@ Components may carry semantic meaning, such as a defined refrigerator compartmen
 |id| integer, string | yes | internal unique identifier for the definition |
 |name|string|yes|human readable name|
 |description|string|yes|human readable description|
-|title|String|yes|human readable title to display|
+|title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
 |includes|string|yes|reference to a definition to be included|
 |refines|string|yes|reference to a definition to be refined|
@@ -411,7 +411,7 @@ Thing definitions may use the includes, refines, or extends pattern, and are exp
 |id| integer, string | yes | internal unique identifier for the definition |
 |name|string|yes|human readable name|
 |description|string|yes|human readable description|
-|title|String|yes|human readable title to display|
+|title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
 |includes|string|yes|reference to a definition to be included|
 |refines|string|yes|reference to a definition to be refined|
