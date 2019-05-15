@@ -180,7 +180,7 @@ Properties are used to model elements of state.
 |writeOnly|boolean|yes|Only writes are allowed|
 |observable|boolean|yes| flag to indicate asynchronous notification is available|
 |contentFormat|string|yes|IANA media type string|
-|units|string|yes|UCUM unit code|
+|units|string|yes|[SenML unit][] code|
 |nullable|boolean|yes|indicates a null value is available for this type|
 |encoding|map|yes|applies additional constraints|
 |scaleMinimum|number|yes|lower limit of value in units|
@@ -276,7 +276,7 @@ odmData is used for Action parameters, for Event data, and for reusable constrai
 |includes|string|yes|reference to a definition to be included|
 |refines|string|yes|reference to a definition to be refined|
 |extends|string|yes|reference to a definition to be extended|
-|units|string|yes|UCUM unit code|
+|units|string|yes|[SenML unit][] code|
 |nullable|boolean|yes|indicates a null value is available for this type|
 |encoding|map|yes|applies additional constraints|
 |scaleMinimum|number|yes|lower limit of value in units|
@@ -427,3 +427,6 @@ Thing definitions may use the includes, refines, or extends pattern, and are exp
 |odmAction|
 |odmEvent|
 |odmData|
+
+
+[SenML unit]: https://www.iana.org/assignments/senml/senml.xhtml#senml-units
