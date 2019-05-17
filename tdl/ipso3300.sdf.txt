@@ -1,0 +1,38 @@
+/* in the file that defines an instance or instance template */
+odmThing {
+  odmObject {
+    "3300/0" {
+      extends omaSensor
+      minimumRange -200
+      maximumRange 300
+    }
+    "3300/1" {
+      extends omaSensor
+      minimumRange 0
+      maximumRange 100
+    }
+  }
+}
+/* maybe in another file */
+odmObject {
+  omaSensor {
+    id "3300"
+    odmProperty {
+      currentValue {
+        id "5700"
+        type number
+        subtype float
+      }
+      minimumRange {
+        id "5701"
+        type number
+        subtype float
+      }
+      maximumRange {
+        id "5702"
+        type number
+        subtype float
+      }
+    }
+  }
+}
