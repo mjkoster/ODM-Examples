@@ -1,10 +1,12 @@
 """
-tdl2json.py
+txt2json.py
 jsonify.py
 
-convert a tdl format thing definition to json
+convert a txt format file to json
 
 bugs:
+add a comment blocktype using /* */
+comment blocks in input txt do not generate any output 
 
 """
 
