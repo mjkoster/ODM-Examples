@@ -1,0 +1,50 @@
+{
+  "odmThing": {
+    "odmObject": {
+      "3300/0": {
+        "extends": "omaSensor", 
+        "odmProperty": {
+          "minimumRange": {
+            "const": -200
+          }, 
+          "maximumRange": {
+            "const": 300
+          }
+        }
+      }, 
+      "3300/1": {
+        "extends": "omaSensor", 
+        "odmProperty": {
+          "minimumRange": {
+            "const": -0.2
+          }, 
+          "maximumRange": {
+            "const": 0.3
+          }
+        }
+      }
+    }
+  }, 
+  "odmObject": {
+    "omaSensor": {
+      "id": "3300", 
+      "odmProperty": {
+        "currentValue": {
+          "id": "5700", 
+          "type": "number", 
+          "subtype": "float"
+        }, 
+        "minimumRange": {
+          "id": "5701", 
+          "type": "number", 
+          "subtype": "float"
+        }, 
+        "maximumRange": {
+          "id": "5702", 
+          "type": "number", 
+          "subtype": "float"
+        }
+      }
+    }
+  }
+}

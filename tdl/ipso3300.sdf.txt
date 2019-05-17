@@ -1,19 +1,29 @@
-/* in the file that defines an instance or instance template */
 odmThing {
   odmObject {
-    "3300/0" {
+    3300/0 {
       extends omaSensor
-      minimumRange -200
-      maximumRange 300
+      odmProperty {
+        minimumRange {
+          const -200
+        }
+        maximumRange {
+          const 300
+        }
+      }
     }
-    "3300/1" {
+    3300/1 {
       extends omaSensor
-      minimumRange 0
-      maximumRange 100
+      odmProperty {
+        minimumRange {
+          const -0.2
+        }
+        maximumRange {
+          const 0.3
+        }
+      }
     }
   }
 }
-/* maybe in another file */
 odmObject {
   omaSensor {
     id "3300"
