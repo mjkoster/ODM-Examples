@@ -1,46 +1,46 @@
 {
   "odmThing": {
     "CompoundVacuumGauge": {
-      "extends": "productType",
-      "productTypeName": "Compound Vacuum Gauge",
+      "extends": "product", 
+      "productTypeListing": "Compound Vacuum Gauge", 
       "odmObject": {
         "3300/0": {
-          "extends": "genericSensor",
-          "optional": false,
+          "extends": "genericSensor", 
+          "optional": false, 
           "odmProperty": {
             "minimumRange": {
               "const": -120000
-            },
+            }, 
             "maximumRange": {
               "const": 120000
-            },
+            }, 
             "applicationType": {
               "const": "Vacuum Gauge"
-            },
+            }, 
             "sensorType": {
               "const": "absolutePressure"
-            },
+            }, 
             "units": {
               "const": "Pa"
             }
           }
-        },
+        }, 
         "3300/1": {
-          "extends": "genericSensor",
-          "optional": true,
+          "extends": "genericSensor", 
+          "optional": true, 
           "odmProperty": {
             "minimumRange": {
               "const": 0
-            },
+            }, 
             "maximumRange": {
               "const": 20000
-            },
+            }, 
             "applicationType": {
               "const": "Vacuum Gauge"
-            },
+            }, 
             "sensorType": {
               "const": "vacuum"
-            },
+            }, 
             "units": {
               "const": "micron"
             }
@@ -48,62 +48,62 @@
         }
       }
     }
-  },
+  }, 
   "odmObject": {
     "genericSensor": {
-      "id": "3300",
+      "id": "3300", 
       "refines": {
-        "sensorValue": {},
-        "minimumMeasuredValue": {},
-        "maximumMeasuredValue": {},
-        "minimumRangeValue": {},
-        "resetMinMax": {},
-        "maximumRangeValue": {},
-        "applicationType": {},
-        "sensorType": {},
+        "sensorValue": {}, 
+        "minimumMeasuredValue": {}, 
+        "maximumMeasuredValue": {}, 
+        "minimumRangeValue": {}, 
+        "resetMinMax": {}, 
+        "maximumRangeValue": {}, 
+        "applicationType": {}, 
+        "sensorType": {}, 
         "units": {}
       }
     }
-  },
+  }, 
   "odmProperty": {
     "sensorValue": {
-      "id": "5700",
-      "type": "number",
+      "id": "5700", 
+      "type": "number", 
       "subtype": "float"
-    },
+    }, 
     "minimumMeasuredValue": {
-      "id": "5601",
-      "type": "number",
+      "id": "5601", 
+      "type": "number", 
       "subtype": "float"
-    },
-    "maximumRMeasuredValue": {
-      "id": "5602",
-      "type": "number",
+    }, 
+    "maximumMeasuredValue": {
+      "id": "5602", 
+      "type": "number", 
       "subtype": "float"
-    },
+    }, 
     "minimumRangeValue": {
-      "id": "5603",
-      "type": "number",
+      "id": "5603", 
+      "type": "number", 
       "subtype": "float"
-    },
+    }, 
     "maximumRangeValue": {
-      "id": "5604",
-      "type": "number",
+      "id": "5604", 
+      "type": "number", 
       "subtype": "float"
-    },
+    }, 
     "applicationType": {
-      "id": "5750",
+      "id": "5750", 
       "type": "string"
-    },
+    }, 
     "sensorType": {
-      "id": "5750",
+      "id": "5750", 
       "type": "string"
-    },
+    }, 
     "units": {
-      "id": "5750",
+      "id": "5750", 
       "type": "string"
     }
-  },
+  }, 
   "odmAction": {
     "resetMinMax": {
       "id": "5605"

@@ -75,7 +75,7 @@ odmProperty {
     type number
     subtype float
   }
-  maximumRMeasuredValue {
+  maximumMeasuredValue {
     id "5602"
     type number
     subtype float
