@@ -50,7 +50,7 @@ odmThing {
 }
 odmObject {
   genericSensor {
-    id "3300"
+    id 3300
     refines {
       sensorValue {}
       minimumMeasuredValue {}
@@ -66,45 +66,45 @@ odmObject {
 }
 odmProperty {
   sensorValue {
-    id "5700"
+    id 5700
     type number
     subtype float
   }
   minimumMeasuredValue {
-    id "5601"
+    id 5601
     type number
     subtype float
   }
   maximumMeasuredValue {
-    id "5602"
+    id 5602
     type number
     subtype float
   }
   minimumRangeValue {
-    id "5603"
+    id 5603
     type number
     subtype float
   }
   maximumRangeValue {
-    id "5604"
+    id 5604
     type number
     subtype float
   }
   applicationType {
-    id "5750"
+    id 5750
     type string
   }
   sensorType {
-    id "5750"
+    id 5750
     type string
   }
   units {
-    id "5750"
+    id 5750
     type string
   }
 }
 odmAction {
   resetMinMax {
-    id "5605"
+    id 5605
   }
 }
