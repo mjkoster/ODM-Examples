@@ -5,6 +5,7 @@ jsonify.py
 convert a txt format file to json
 
 bugs:
+- handle spaces in keys
 
 """
 

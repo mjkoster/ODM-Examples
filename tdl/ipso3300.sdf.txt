@@ -15,16 +15,16 @@ namespace {
 }
 defaultnamespace ex
 
+/*
+This product template definition contains two instances of GenericSensor (3300) with
+defined terms corresponding to the LWM2M path of the two instances ("3300/0" and "3300/1")
+the instances use "extends" to reuse the defined qualities with additional constraints set
+specifically for the functionality of each instance
+*/
 odmProduct {
   SKU_19934774 {
     productTypeListing "Compound Vacuum Gauge"
     odmObject {
-    /*
-    This product template definition contains two instances of GenericSensor (3300) with
-    defined terms corresponding to the LWM2M path of the two instances ("3300/0" and "3300/1")
-    the instances use "extends" to reuse the defined qualities with additional constraints set
-    specifically for the functionality of each instance
-    */
       3300/0 {
         extends genericSensor
         optional false
@@ -71,20 +71,41 @@ odmProduct {
   }
 }
 /* This is a reusable Object definition after the pattern of IPSO Smart Objects
-It would normally be in a different file but shown here for illustration */
+It would normally be in a different file but shown here for illustration 
+Here the optionality is set in th eobject definition, though it is a quality 
+of the property */
 odmObject {
   genericSensor {
     id 3300
     refines {
-      sensorValue {}
-      minimumMeasuredValue {}
-      maximumMeasuredValue {}
-      minimumRangeValue {}
-      resetMinMax {}
-      maximumRangeValue {}
-      applicationType {}
-      sensorType {}
-      units {}
+      sensorValue {
+        optional false
+      }
+      minimumMeasuredValue {
+        optional true
+      }
+      maximumMeasuredValue {
+        optional true
+      }
+      minimumRangeValue {
+        optional true
+
+      }
+      resetMinMax {
+        optional true
+      }
+      maximumRangeValue {
+        optional true
+      }
+      applicationType {
+        optional true
+      }
+      sensorType {
+        optional true
+      }
+      units {
+        optional true
+      }
     }
   }
 }

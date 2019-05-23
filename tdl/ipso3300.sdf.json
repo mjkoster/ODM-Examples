@@ -62,15 +62,33 @@
     "genericSensor": {
       "id": 3300, 
       "refines": {
-        "sensorValue": {}, 
-        "minimumMeasuredValue": {}, 
-        "maximumMeasuredValue": {}, 
-        "minimumRangeValue": {}, 
-        "resetMinMax": {}, 
-        "maximumRangeValue": {}, 
-        "applicationType": {}, 
-        "sensorType": {}, 
-        "units": {}
+        "sensorValue": {
+          "optional": false
+        }, 
+        "minimumMeasuredValue": {
+          "optional": true
+        }, 
+        "maximumMeasuredValue": {
+          "optional": true
+        }, 
+        "minimumRangeValue": {
+          "optional": true
+        }, 
+        "resetMinMax": {
+          "optional": true
+        }, 
+        "maximumRangeValue": {
+          "optional": true
+        }, 
+        "applicationType": {
+          "optional": true
+        }, 
+        "sensorType": {
+          "optional": true
+        }, 
+        "units": {
+          "optional": true
+        }
       }
     }
   }, 
