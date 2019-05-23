@@ -134,6 +134,8 @@ def naturalstring(character,input_gen):
                 input_gen.prev()
                 input_gen.prev()
                 return result
+            else :
+                input_gen.prev()
         elif nextchar in "{}[]" or '"' == nextchar:
             input_gen.prev()
             return result

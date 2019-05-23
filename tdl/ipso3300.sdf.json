@@ -4,7 +4,28 @@
       "extends": "product", 
       "productTypeListing": "Compound Vacuum Gauge", 
       "odmObject": {
-        "3300/": {
+        "3300/0": {
+          "extends": "genericSensor", 
+          "optional": false, 
+          "odmProperty": {
+            "minimumRange": {
+              "const": -120000
+            }, 
+            "maximumRange": {
+              "const": 120000
+            }, 
+            "applicationType": {
+              "const": "Vacuum Gauge"
+            }, 
+            "sensorType": {
+              "const": "absolutePressure"
+            }, 
+            "units": {
+              "const": "Pa"
+            }
+          }
+        }, 
+        "3300/1": {
           "extends": "genericSensor", 
           "optional": true, 
           "odmProperty": {
