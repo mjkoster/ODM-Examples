@@ -1,6 +1,22 @@
-odmThing {
-  CompoundVacuumGauge {
-    extends product /* product definition would contain qualities like productTypeListing */
+
+info {
+  title
+    "Example ODM model for a relatively simple composed thing using
+    IPSO Smart Object Components"
+  version
+    "20190524"
+  copyright
+    "no copyright"
+  license
+    "not licensed"
+}
+namespace {
+  ex http://example.com/
+}
+defaultnamespace ex
+
+odmProduct {
+  SKU_19934774 {
     productTypeListing "Compound Vacuum Gauge"
     odmObject {
     /*
@@ -54,7 +70,8 @@ odmThing {
     }
   }
 }
-/* This is a reusable Object definition after the pattern of IPSO Smart Objects */
+/* This is a reusable Object definition after the pattern of IPSO Smart Objects
+It would normally be in a different file but shown here for illustration */
 odmObject {
   genericSensor {
     id 3300
@@ -71,7 +88,8 @@ odmObject {
     }
   }
 }
-/* This is a reusable Property definition after the pattern of IPSO Smart Object Resources */
+/* This is a reusable Property definition after the pattern of IPSO Smart Object Resources
+It would normally be in a different file but shown here for illustration */
 odmProperty {
   sensorValue {
     id 5700

@@ -1,7 +1,16 @@
 {
-  "odmThing": {
-    "CompoundVacuumGauge": {
-      "extends": "product", 
+  "info": {
+    "title": "Example ODM model for a relatively simple composed thing using\n    IPSO Smart Object Components", 
+    "version": "20190524", 
+    "copyright": "no copyright", 
+    "license": "not licensed"
+  }, 
+  "namespace": {
+    "ex": "http://example.com/"
+  }, 
+  "defaultnamespace": "ex", 
+  "odmProduct": {
+    "SKU_19934774": {
       "productTypeListing": "Compound Vacuum Gauge", 
       "odmObject": {
         "3300/0": {
