@@ -1,8 +1,14 @@
 odmThing {
   CompoundVacuumGauge {
-    extends product
+    extends product /* product definition would contain qualities like productTypeListing */
     productTypeListing "Compound Vacuum Gauge"
     odmObject {
+    /*
+    This product template definition contains two instances of GenericSensor (3300) with
+    defined terms corresponding to the LWM2M path of the two instances ("3300/0" and "3300/1")
+    the instances use "extends" to reuse the defined qualities with additional constraints set
+    specifically for the functionality of each instance
+    */
       3300/0 {
         extends genericSensor
         optional false
@@ -48,6 +54,7 @@ odmThing {
     }
   }
 }
+/* This is a reusable Object definition after the pattern of IPSO Smart Objects */
 odmObject {
   genericSensor {
     id 3300
@@ -64,6 +71,7 @@ odmObject {
     }
   }
 }
+/* This is a reusable Property definition after the pattern of IPSO Smart Object Resources */
 odmProperty {
   sensorValue {
     id 5700
