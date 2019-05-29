@@ -89,7 +89,6 @@ odmObject {
       }
       minimumRangeValue {
         optional true
-
       }
       resetMinMax {
         optional true
