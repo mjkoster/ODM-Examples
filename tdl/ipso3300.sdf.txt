@@ -99,11 +99,16 @@ odmObject {
           }
         }
       }
+<<<<<<< HEAD
       {
       type {
         minimumRangeValue {
           optional true
         }
+=======
+      minimumRangeValue {
+        optional true
+>>>>>>> 7f244f91cf35084589edbb4e25be1a8b2e983be9
       }
       {
         type {
