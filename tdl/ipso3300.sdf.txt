@@ -72,7 +72,7 @@ odmProduct {
 }
 /* This is a reusable Object definition after the pattern of IPSO Smart Objects
 It would normally be in a different file but shown here for illustration
-Here the optionality is set in th eobject definition, though it is a quality
+Here the optionality is set in the object definition, though it is a quality
 of the property */
 odmObject {
   genericSensor {
@@ -99,21 +99,18 @@ odmObject {
           }
         }
       }
-<<<<<<< HEAD
       {
-      type {
-        minimumRangeValue {
-          optional true
+        type {
+          minimumRangeValue {
+            optional true
+          }
         }
-=======
-      minimumRangeValue {
-        optional true
->>>>>>> 7f244f91cf35084589edbb4e25be1a8b2e983be9
       }
       {
         type {
           resetMinMax {
             optional true
+          }
         }
       }
       {
@@ -142,7 +139,7 @@ odmObject {
           }
         }
       }
-    }
+    ]
   }
 }
 /* This is a reusable Property definition after the pattern of IPSO Smart Object Resources

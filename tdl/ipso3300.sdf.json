@@ -14,7 +14,7 @@
       "productTypeListing": "Compound Vacuum Gauge", 
       "odmObject": {
         "3300/0": {
-          "extends": "genericSensor", 
+          "type": "genericSensor", 
           "optional": false, 
           "odmProperty": {
             "minimumRange": {
@@ -35,7 +35,7 @@
           }
         }, 
         "3300/1": {
-          "extends": "genericSensor", 
+          "type": "genericSensor", 
           "optional": true, 
           "odmProperty": {
             "minimumRange": {
@@ -61,35 +61,66 @@
   "odmObject": {
     "genericSensor": {
       "id": 3300, 
-      "refines": {
-        "sensorValue": {
-          "optional": false
+      "includes": [
+        {
+          "type": {
+            "sensorValue": {
+              "optional": false
+            }
+          }
         }, 
-        "minimumMeasuredValue": {
-          "optional": true
+        {
+          "type": {
+            "minimumMeasuredValue": {
+              "optional": true
+            }
+          }
         }, 
-        "maximumMeasuredValue": {
-          "optional": true
+        {
+          "type": {
+            "maximumMeasuredValue": {
+              "optional": true
+            }
+          }
         }, 
-        "minimumRangeValue": {
-          "optional": true
+        {
+          "type": {
+            "minimumRangeValue": {
+              "optional": true
+            }
+          }
         }, 
-        "resetMinMax": {
-          "optional": true
+        {
+          "type": {
+            "resetMinMax": {
+              "optional": true
+            }
+          }
         }, 
-        "maximumRangeValue": {
-          "optional": true
+        {
+          "type": {
+            "maximumRangeValue": {
+              "optional": true
+            }
+          }
         }, 
-        "applicationType": {
-          "optional": true
+        {
+          "type": {
+            "applicationType": {
+              "optional": true
+            }
+          }
         }, 
-        "sensorType": {
-          "optional": true
-        }, 
-        "units": {
-          "optional": true
+        {
+          "type": {
+            "sensorType": {
+              "optional": true
+            }, 
+            "{": "optional", 
+            "true": "}"
+          }
         }
-      }
+      ]
     }
   }, 
   "odmProperty": {
