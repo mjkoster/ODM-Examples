@@ -26,7 +26,7 @@ odmProduct {
     productTypeListing "Compound Vacuum Gauge"
     odmObject {
       3300/0 {
-        extends genericSensor
+        type genericSensor
         optional false
         odmProperty {
           minimumRange {
@@ -47,7 +47,7 @@ odmProduct {
         }
       }
       3300/1 {
-        extends genericSensor
+        type genericSensor
         optional true
         odmProperty {
           minimumRange {
@@ -71,40 +71,71 @@ odmProduct {
   }
 }
 /* This is a reusable Object definition after the pattern of IPSO Smart Objects
-It would normally be in a different file but shown here for illustration 
-Here the optionality is set in th eobject definition, though it is a quality 
+It would normally be in a different file but shown here for illustration
+Here the optionality is set in th eobject definition, though it is a quality
 of the property */
 odmObject {
   genericSensor {
     id 3300
-    refines {
-      sensorValue {
-        optional false
+    includes [
+      {
+        type {
+          sensorValue {
+            optional false
+          }
+        }
       }
-      minimumMeasuredValue {
-        optional true
+      {
+        type {
+          minimumMeasuredValue {
+            optional true
+          }
+        }
       }
-      maximumMeasuredValue {
-        optional true
+      {
+        type {
+          maximumMeasuredValue {
+            optional true
+          }
+        }
       }
-      minimumRangeValue {
-        optional true
-
+      {
+      type {
+        minimumRangeValue {
+          optional true
+        }
       }
-      resetMinMax {
-        optional true
+      {
+        type {
+          resetMinMax {
+            optional true
+        }
       }
-      maximumRangeValue {
-        optional true
+      {
+        type {
+          maximumRangeValue {
+            optional true
+          }
+        }
       }
-      applicationType {
-        optional true
+      {
+        type {
+          applicationType {
+            optional true
+          }
+        }
       }
-      sensorType {
-        optional true
+      {
+        type {
+          sensorType {
+            optional true
       }
-      units {
-        optional true
+      {
+        type {
+          units {
+            optional true
+          }
+        }
       }
     }
   }
