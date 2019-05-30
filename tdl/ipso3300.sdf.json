@@ -14,7 +14,9 @@
       "productTypeListing": "Compound Vacuum Gauge", 
       "odmObject": {
         "3300/0": {
-          "type": "genericSensor", 
+          "type": {
+            "$ref": "#/odmObject/genericSensor"
+          }, 
           "optional": false, 
           "odmProperty": {
             "minimumRange": {
@@ -35,7 +37,9 @@
           }
         }, 
         "3300/1": {
-          "type": "genericSensor", 
+          "type": {
+            "$ref": "#/odmObject/genericSensor"
+          }, 
           "optional": true, 
           "odmProperty": {
             "minimumRange": {
@@ -64,61 +68,57 @@
       "includes": [
         {
           "type": {
-            "sensorValue": {
-              "optional": false
-            }
-          }
+            "$ref": "#/odmProperty/sensorValue"
+          }, 
+          "optional": false
         }, 
         {
           "type": {
-            "minimumMeasuredValue": {
-              "optional": true
-            }
-          }
+            "$ref": "#/odmProperty/minimumMeasuredValue"
+          }, 
+          "optional": true
         }, 
         {
           "type": {
-            "maximumMeasuredValue": {
-              "optional": true
-            }
-          }
+            "$ref": "#/odmProperty/maximumMeasuredValue"
+          }, 
+          "optional": true
         }, 
         {
           "type": {
-            "minimumRangeValue": {
-              "optional": true
-            }
-          }
+            "$ref": "#/odmProperty/minimumRangeValue"
+          }, 
+          "optional": true
         }, 
         {
           "type": {
-            "resetMinMax": {
-              "optional": true
-            }
-          }
+            "$ref": "#/odmProperty/resetMinMax"
+          }, 
+          "optional": true
         }, 
         {
           "type": {
-            "maximumRangeValue": {
-              "optional": true
-            }
-          }
+            "$ref": "#/odmProperty/maximumRangeValue"
+          }, 
+          "optional": true
         }, 
         {
           "type": {
-            "applicationType": {
-              "optional": true
-            }
-          }
+            "$ref": "#/odmProperty/applicationType"
+          }, 
+          "optional": true
         }, 
         {
           "type": {
-            "sensorType": {
-              "optional": true
-            }, 
-            "{": "optional", 
-            "true": "}"
-          }
+            "$ref": "#/odmProperty/sensorType"
+          }, 
+          "optional": true
+        }, 
+        {
+          "type": {
+            "$ref": "#/odmProperty/units"
+          }, 
+          "optional": true
         }
       ]
     }

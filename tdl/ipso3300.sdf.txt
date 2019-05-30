@@ -26,7 +26,7 @@ odmProduct {
     productTypeListing "Compound Vacuum Gauge"
     odmObject {
       3300/0 {
-        type genericSensor
+        type { $ref #/odmObject/genericSensor }
         optional false
         odmProperty {
           minimumRange {
@@ -47,7 +47,7 @@ odmProduct {
         }
       }
       3300/1 {
-        type genericSensor
+        type { $ref #/odmObject/genericSensor }
         optional true
         odmProperty {
           minimumRange {
@@ -79,65 +79,40 @@ odmObject {
     id 3300
     includes [
       {
-        type {
-          sensorValue {
-            optional false
-          }
-        }
+        type { $ref #/odmProperty/sensorValue }
+        optional false
       }
       {
-        type {
-          minimumMeasuredValue {
-            optional true
-          }
-        }
+        type { $ref #/odmProperty/minimumMeasuredValue }
+        optional true
       }
       {
-        type {
-          maximumMeasuredValue {
-            optional true
-          }
-        }
+        type { $ref #/odmProperty/maximumMeasuredValue }
+        optional true
       }
       {
-        type {
-          minimumRangeValue {
-            optional true
-          }
-        }
+        type { $ref #/odmProperty/minimumRangeValue }
+        optional true
       }
       {
-        type {
-          resetMinMax {
-            optional true
-          }
-        }
+        type { $ref #/odmProperty/resetMinMax }
+        optional true
       }
       {
-        type {
-          maximumRangeValue {
-            optional true
-          }
-        }
+        type { $ref #/odmProperty/maximumRangeValue }
+        optional true
       }
       {
-        type {
-          applicationType {
-            optional true
-          }
-        }
+        type { $ref #/odmProperty/applicationType }
+        optional true
       }
       {
-        type {
-          sensorType {
-            optional true
+        type { $ref #/odmProperty/sensorType }
+        optional true
       }
       {
-        type {
-          units {
-            optional true
-          }
-        }
+        type { $ref #/odmProperty/units }
+        optional true
       }
     ]
   }
