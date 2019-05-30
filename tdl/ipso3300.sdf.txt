@@ -77,7 +77,7 @@ of the property */
 odmObject {
   genericSensor {
     id 3300
-    includes [
+    include [
       {
         type { $ref #/odmProperty/sensorValue }
         optional false
