@@ -1,0 +1,79 @@
+info {
+  title
+    "Example ODM model to illustrate the use of the odmView class"
+  version
+    "20190531"
+  copyright
+    "no copyright"
+  license
+    "not licensed"
+}
+namespace {
+  ex http://example.com/
+}
+defaultnamespace ex
+
+/*
+This is an example to show how SDF can be used to model the OCF Interface Type
+functionality using the odmView class
+*/
+
+odmObject {
+  temperature {
+    name oic.r.temperature
+    id 1234
+    odmProperty {
+      temperature {
+        type number
+      }
+      units {
+        type string
+        enum [ C F K ]
+      }
+      range { $ref ocf:/odmData/rangeData }
+      step { $ref ocf:/odmData/stepData }
+      precision { $ref ocf:/odmData/precisionData }
+      rt { $ref ocf:/odmData/rtData }
+      if { $ref ocf:/odmData/ifData }
+      n { $ref ocf:/odmData/nData }
+      id { $ref ocf:/odmData/idData }
+    }
+  }
+}
+
+odmView {
+  sensor {
+    include [
+      { $ref #/odmObject/odmProperty/temperature }
+      { $ref #/odmObject/odmProperty/units }
+    ]
+  }
+  actuator {
+    include [
+      { $ref #/odmObject/odmProperty/temperature }
+      { $ref #/odmObject/odmProperty/units }
+    ]
+  }
+  readWrite {
+    include [
+      { $ref #/odmObject/odmProperty/temperature }
+      { $ref #/odmObject/odmProperty/units }
+      { $ref #/odmObject/odmProperty/range }
+      { $ref #/odmObject/odmProperty/step }
+      { $ref #/odmObject/odmProperty/precision }
+    ]
+  }
+  baseline {
+    include [
+      { $ref #/odmObject/odmProperty/temperature }
+      { $ref #/odmObject/odmProperty/units }
+      { $ref #/odmObject/odmProperty/range }
+      { $ref #/odmObject/odmProperty/step }
+      { $ref #/odmObject/odmProperty/precision }
+      { $ref #/odmObject/odmProperty/rt }
+      { $ref #/odmObject/odmProperty/if }
+      { $ref #/odmObject/odmProperty/n }
+      { $ref #/odmObject/odmProperty/id }
+    ]
+  }
+}
