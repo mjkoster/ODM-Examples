@@ -35,12 +35,19 @@
         "$ref": "#/definitions/thingqualities"
       }
     },
-    "odmComponent": {
-      "description": "Component is a set of objects that can be composed as a unit into a thing",
+    "odmProduct": {
+      "description": "Product is a composition of things and objects that can model a SKU-level instance of a product",
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/definitions/componentqualities"
+        "$ref": "#/definitions/productqualities"
       }
+    },
+    "odmView": {
+      "description": "odmView uses include to define a list of instances in the deployed model to include by reference",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/viewqualities"
+     }
     },
     "odmObject": {
       "description": "Object is a set of Properties, Actions, and Events that together perform a particular function",
@@ -92,30 +99,43 @@
       "name": {
         "type": "string"
       },
-      "extends": {
-        "description": "reuse a definition with a new name and some new quality settings",
-        "type": "string"
-      },
-      "refines": {
-        "description": "reuse a definition with the same name and some new quality settings",
+      "type": {
         "type": "object",
         "properties": {
-          "oneOf": [
-            {"$ref": "#/odmThing"},
-            {"$ref": "#/odmComponent"},
-            {"$ref": "#/odmObject"},
-            {"$ref": "#/odmProperty"},
-            {"$ref": "#/odmAction"},
-            {"$ref": "#/odmEvent"},
-            {"$ref": "#/odmData"}
-        ]
+          "$ref": {
+            "type": "string"
+          }            
+        }
       },
-      "includes": {
+      "include": {
         "type": "array",
         "items": {
-          "description": "pointer to an expected instance within a thing, creates a plural view",
-          "type": "string"
-        }
+          "description": "set of pointers to definitions to be included, each as an instance or as a type",
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "$ref": {
+                  "type": "string"
+                }            
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "object",
+                  "properties": {
+                    "$ref": {
+                      "type": "string"
+                    }            
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "minitems": 1
       },
       "optional": {
         "type": "boolean"
@@ -125,25 +145,33 @@
       "type": "object",
       "properties": {
         "$ref": "#/definitions/commonqualities",
-        "$ref": "#/odmComponent",
-        "$ref": "#/odmObject"
+        "odmObject": {"$ref": "#/odmObject"},
+        "odmView": {"$ref": "#/odmView"}
       }
     },
-    "componentqualities": {
+    "productqualities": {
       "type": "object",
       "properties": {
         "$ref": "#/definitions/commonqualities",
-        "$ref": "#/odmObject"
+        "odmObject": {"$ref": "#/odmObject"},
+        "odmThing": {"$ref": "#/odmThing"},
+        "odmView": {"$ref": "#/odmView"}
       }
     },
-    "objectqualities": {
+    "viewqualities": {
+      "type": "object",
+      "properties": {
+        "$ref": "#/definitions/commonqualities"
+      }
+    },
+   "objectqualities": {
       "type": "object",
       "properties": {
         "$ref": "#/definitions/commonqualities",
-        "$ref": "#/odmProperty",
-        "$ref": "#/odmAction",
-        "$ref": "#/odmEvent",
-        "$ref": "#/odmData"
+        "odmProperty": {"$ref": "#/odmProperty"},
+        "odmAction": {"$ref": "#/odmAction"},
+        "odmEvent": {"$ref": "#/odmEvent"},
+        "odmData": {"$ref": "#/odmData"},
       }
     },
     "propertyqualities": {
