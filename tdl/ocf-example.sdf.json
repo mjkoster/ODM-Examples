@@ -10,7 +10,7 @@
   }, 
   "defaultnamespace": "ocf", 
   "odmObject": {
-    "oic.r.temperature": {
+    "temperature": {
       "name": "oic.r.temperature", 
       "id": 1234, 
       "odmProperty": {
@@ -26,31 +26,45 @@
           ]
         }, 
         "range": {
-          "type": {"$ref": "ocf:/odmData/rangeData"}
+          "type": {
+            "$ref": "ocf:/odmData/rangeData"
+          }
         }, 
         "step": {
-          "type": {"$ref": "ocf:/odmData/stepData"}
+          "type": {
+            "$ref": "ocf:/odmData/stepData"
+          }
         }, 
         "precision": {
-          "type": {"$ref": "ocf:/odmData/precisionData"}
+          "type": {
+            "$ref": "ocf:/odmData/precisionData"
+          }
         }, 
         "rt": {
-          "type": {"$ref": "ocf:/odmData/rtData"}
+          "type": {
+            "$ref": "ocf:/odmData/rtData"
+          }
         }, 
         "if": {
-          "type": {"$ref": "ocf:/odmData/ifData"}
+          "type": {
+            "$ref": "ocf:/odmData/ifData"
+          }
         }, 
         "n": {
-          "type": {"$ref": "ocf:/odmData/nData"}
+          "type": {
+            "$ref": "ocf:/odmData/nData"
+          }
         }, 
         "id": {
-          "type": {"$ref": "ocf:/odmData/idData"}
+          "type": {
+            "$ref": "ocf:/odmData/idData"
+          }
         }
       }
     }
   }, 
   "odmView": {
-    "oic.if.s": {
+    "sensor": {
       "include": [
         {
           "$ref": "#/odmObject/odmProperty/temperature"
@@ -60,7 +74,7 @@
         }
       ]
     }, 
-    "oic.if.a": {
+    "actuator": {
       "include": [
         {
           "$ref": "#/odmObject/odmProperty/temperature"
@@ -70,7 +84,7 @@
         }
       ]
     }, 
-    "oic.if.rw": {
+    "readWrite": {
       "include": [
         {
           "$ref": "#/odmObject/odmProperty/temperature"
@@ -89,7 +103,7 @@
         }
       ]
     }, 
-    "oic.if.baseline": {
+    "baseline": {
       "include": [
         {
           "$ref": "#/odmObject/odmProperty/temperature"

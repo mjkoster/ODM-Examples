@@ -9,9 +9,9 @@ info {
     "not licensed"
 }
 namespace {
-  ex http://example.com/
+  ocf http://example.com/
 }
-defaultnamespace ex
+defaultnamespace ocf
 
 /*
 This is an example to show how SDF can be used to model the OCF Interface Type
@@ -30,13 +30,13 @@ odmObject {
         type string
         enum [ C F K ]
       }
-      range { $ref ocf:/odmData/rangeData }
-      step { $ref ocf:/odmData/stepData }
-      precision { $ref ocf:/odmData/precisionData }
-      rt { $ref ocf:/odmData/rtData }
-      if { $ref ocf:/odmData/ifData }
-      n { $ref ocf:/odmData/nData }
-      id { $ref ocf:/odmData/idData }
+      range { type{ $ref ocf:/odmData/rangeData } }
+      step { type { $ref ocf:/odmData/stepData } }
+      precision { type { $ref ocf:/odmData/precisionData } }
+      rt { type { $ref ocf:/odmData/rtData } }
+      if { type { $ref ocf:/odmData/ifData } }
+      n { type { $ref ocf:/odmData/nData } }
+      id { type { $ref ocf:/odmData/idData } }
     }
   }
 }
