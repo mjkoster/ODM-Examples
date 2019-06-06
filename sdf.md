@@ -117,9 +117,9 @@ the JSON Schema for SDF
 
 When a type is defined, the identifier is internally prefixed with the JSON path that locates the definition in the file.
 
-Types defined at the top level in the file go into the namespace as they are.
+Types defined at the top level in the file go into the namespace at the root level.
 
-Types defined within another definition are prefixed with the path to the enclosing definition. For example, if there is an Object "foo" defined, and a definition for "bar" with Object foo, the path to bar will be "foo.bar" within the default namespace. The Property name "foo.bar" can be used as a reference within some other definition, provided that the scope can be correctly resolved.
+Types defined within another definition are prefixed with the path to the enclosing definition. For example, if there is an Object "foo" defined, and a definition for "bar" with Object foo, the path to bar will be "/odmObject/foo/odmProperty/bar" within the default namespace.
 
 ### Target namespace
 
@@ -144,9 +144,8 @@ The odmObject keyword denotes zero or more Object definitions. A object may cont
 |description|string|yes|human readable description|
 |title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
-|includes|string|yes|reference to a definition to be included|
-|refines|string|yes|reference to a definition to be refined|
-|extends|string|yes|reference to a definition to be extended|
+|include|array|yes|reference to definitions to be included|
+|type|object|yes|reference to a definition to be used as a template for a new definition|
 
 - Types Object may define or contain
 
@@ -173,9 +172,8 @@ Properties are used to model elements of state.
 |description|string|yes|human readable description|
 |title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
-|includes|string|yes|reference to a definition to be included|
-|refines|string|yes|reference to a definition to be refined|
-|extends|string|yes|reference to a definition to be extended|
+|include|array|yes|reference to definitions to be included|
+|type|object|yes|reference to a definition to be used as a template for a new definition|
 |readOnly|boolean|yes|Only reads are allowed|
 |writeOnly|boolean|yes|Only writes are allowed|
 |observable|boolean|yes| flag to indicate asynchronous notification is available|
@@ -218,9 +216,8 @@ Actions are used to model commands and methods which are invoked. Actions have p
 |description|string|yes|human readable description|
 |title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
-|includes|string|yes|reference to a definition to be included|
-|refines|string|yes|reference to a definition to be refined|
-|extends|string|yes|reference to a definition to be extended|
+|include|array|yes|reference to definitions to be included|
+|type|object|yes|reference to a definition to be used as a template for a new definition|
 
 - Types Action may define or contain
 
@@ -244,10 +241,8 @@ Events are used to model asynchronous occurrences that may be communicated proac
 |description|string|yes|human readable description|
 |title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
-|includes|string|yes|reference to a definition to be included|
-|refines|string|yes|reference to a definition to be refined|
-|extends|string|yes|reference to a definition to be extended|
- readable title to display|
+|include|array|yes|reference to definitions to be included|
+|type|object|yes|reference to a definition to be used as a template for a new definition|
 
 - Types Event may define or contain
 
@@ -273,9 +268,8 @@ odmData is used for Action parameters, for Event data, and for reusable constrai
 |description|string|yes|human readable description|
 |title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
-|includes|string|yes|reference to a definition to be included|
-|refines|string|yes|reference to a definition to be refined|
-|extends|string|yes|reference to a definition to be extended|
+|include|array|yes|reference to definitions to be included|
+|type|object|yes|reference to a definition to be used as a template for a new definition|
 |units|string|yes|UCUM unit code|
 |nullable|boolean|yes|indicates a null value is available for this type|
 |encoding|map|yes|applies additional constraints|
@@ -346,33 +340,28 @@ The requirements for high level composition include the following:
 
 The model namespace is organized according to terms that are defined in the definition files that are loaded into the namespace. For example, definitions that originate from an organization or vendor are expected to be in a namespace that is specific to that organization or vendor.
 
-In general, the structure of a path in a namespace is defined by the hierarchical relationship of the definitions in the file. For example, if there is a file defining an object "Switch" with an action "on", then the external reference to the action would be "Switch.on" (assuming for the moment the use of dot as a path segment separator).
+The structure of a path in a namespace is defined by the JSON Pointers to the definitions in each file. For example, if there is a file defining an object "Switch" with an action "on", then the external reference to the action would be "ns:/odmObject/Switch/odmAction/on" where ns is the short name fpr the namespace prefix.
 
-A reference within the "Switch" object would simply use "on" according to the identifier resolution precedence rules.
+A reference within the "Switch" object could simply use "on" according to the identifier resolution precedence rules.
 
 ### Re-use and Recursion
 Re-use of definitions enables an existing definition (could be in the same file or another file) to become part of a new definition by including a reference to the existing definition within the model namespace. There are currently considered three cases for reuse of definitions. The semantics are similar to those of typed links.
 
-#### The "extends" pattern
-An existing definition can be used as a template for a new definition, that is, a new term is created in the namespace which uses the defined qualities of some existing definition. This pattern will use the keyword "extends" as a quality of a new definition with a value consisting of a reference to the existing definition that is to be used as a template. Optionally, new qualities may be added and values of defined qualities may be changed in the extended definition.
+#### Use of the "type" keyword to re-use a definition
+An existing definition can be used as a template for a new definition, that is, a new term is created in the namespace which uses the defined qualities of some existing definition. This pattern will use the keyword "type" as a quality of a new definition with a value consisting of a reference to the existing definition that is to be used as a template. Optionally, new qualities may be added and values of optional qualities and quality values may be defined.
 
-#### The "refines" pattern
+#### The "include" keyword
 An existing definition may be re-used with its name, that is, the name of some existing definition is re-used as an element in a new definition, along with its defined qualities. This pattern will use the keyword "refines" and will allow qualities in the new definition to override values from the source definition.
 
-#### The "includes" pattern
+#### Use of "include" with "type"
 An existing definition may be used, with its name and its path in the model namespace, as an element in a new definition. This has the effect of linking to an instance of the model in the deployment. This pattern will use the keyword "includes" and is useful to link properties, actions, and events from one object to another object, or to link objects together in a complex thing definition.
 
-### odmComponent
 
-An odmComponent is a potentially reusable composition of objects that is part of a more complex model. For example, the objects that make up the definition of a single plug of an outlet strip could be encapsulated by a component.
+### odmView
 
-Component definitions work much like object definitions, except that a component is composed of objects. Components may use the "includes", "refines", or "extends" pattern, or may define objects within the component definition. Component definitions may include their own Object definitions, as well as reusable Property, Action, and Event definitions that can be used to extend or complete the included Object definitions.
+An odmView provides
 
-Using the "includes" pattern enables a component to provide a specific "view" into the functionality of a complex device, for example a way to summarize the energy readings of all plugs in an outlet strip, or a way of including common functions, like power controls, in the definition of the sub-functions in a multifunction device like a printer + scanner product.
-
-Components may carry semantic meaning, such as a defined refrigerator compartment and a defined freezer compartment, making up a combination refer-freezer product.
-
-- Qualities of odmComponent
+- Qualities of odmView
 
 | Quality | Type | Optional | Description |
 |---|---|---|---|
@@ -381,28 +370,27 @@ Components may carry semantic meaning, such as a defined refrigerator compartmen
 |description|string|yes|human readable description|
 |title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
-|includes|string|yes|reference to a definition to be included|
-|refines|string|yes|reference to a definition to be refined|
-|extends|string|yes|reference to a definition to be extended|
+|include|array|yes|reference to definitions to be included in the view|
 
-- Types odmComponent may define or contain
+
+- Types odmView may define or contain
 
 |Type|
 |---|
+|odmThing|
 |odmObject|
 |odmProperty|
 |odmAction|
 |odmEvent|
-|odmData|
 
 
 ### odmThing
 
-An odmThing provides the level of abstraction for representing a unique product or a profile for a standardized type of product, for example a "device type" definition with required minimum functionality.
+An odmThing is a potentially reusable composition of objects that is part of a more complex model. For example, the objects that make up the definition of a single plug of an outlet strip could be encapsulated by a component.
 
-Things may be composed of Objects and Components at the high level, and may contain their own definitions of Properties, Actions, and Events that can be used to extend or complete the included Object definitions.
+Thing definitions work much like Object definitions, except that a Thing is composed of Objects. Thing definitions may use include for Object definitions from elsewhere, or Thing definitions may include their own Object definitions, as well as reusable Property, Action, and Event definitions that can be used to extend or complete the Object definitions.
 
-Thing definitions may use the includes, refines, or extends pattern, and are expected to override defaults for specific use cases, for example units, range, and scale settings for properties, or available parameters for Actions.
+Thing definitions carry semantic meaning, such as a defined refrigerator compartment and a defined freezer compartment, making up a combination refer-freezer product.
 
 - Qualities of odmThing
 
@@ -413,16 +401,49 @@ Thing definitions may use the includes, refines, or extends pattern, and are exp
 |description|string|yes|human readable description|
 |title|string|yes|human readable title to display|
 |optional| boolean|yes|defines whether this element is optional in an implementation|
-|includes|string|yes|reference to a definition to be included|
-|refines|string|yes|reference to a definition to be refined|
-|extends|string|yes|reference to a definition to be extended|
+|include|array|yes|reference to definitions to be included|
+|type|object|yes|reference to a definition to be used as a template for a new definition|
 
 - Types odmThing may define or contain
 
 |Type|
 |---|
+|odmView|
+|odmThing|
 |odmObject|
-|odmComponent|
+|odmProperty|
+|odmAction|
+|odmEvent|
+|odmData|
+
+
+
+### odmProduct
+
+An odmProduct provides the level of abstraction for representing a unique product or a profile for a standardized type of product, for example a "device type" definition with required minimum functionality.
+
+Products may be composed of Objects and Things at the high level, and may contain their own definitions of Properties, Actions, and Events that can be used to extend or complete the included Object definitions.
+
+Product definitions may set optional defaults and constant values for specific use cases, for example units, range, and scale settings for properties, or available parameters for Actions.
+
+- Qualities of odmProduct
+
+| Quality | Type | Optional | Description |
+|---|---|---|---|
+|id| integer, string | yes | internal unique identifier for the definition |
+|name|string|yes|human readable name|
+|description|string|yes|human readable description|
+|title|string|yes|human readable title to display|
+|include|string|yes|reference to a definition to be included|
+
+
+- Types odmProduct may define or contain
+
+|Type|
+|---|
+|odmThing|
+|odmView|
+|odmObject|
 |odmProperty|
 |odmAction|
 |odmEvent|
