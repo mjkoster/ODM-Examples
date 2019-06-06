@@ -29,7 +29,7 @@
       "type": "string"
     },
     "odmThing": {
-      "description": "Thing is a set of objects and components that can define an instance",
+      "description": "Thing is a composition of objects that work together in some way",
       "type": "object",
       "additionalProperties": {
         "$ref": "#/definitions/thingqualities"
@@ -87,117 +87,120 @@
   },
   "definitions": {
     "commonqualities": {
-      "description": {
-        "type": "string"
-      },
-      "title": {
-        "type": "string"
-      },
-      "id": {
-        "type": "number"
-      },
-      "name": {
-        "type": "string"
-      },
-      "type": {
-        "type": "object",
-        "properties": {
-          "$ref": {
-            "type": "string"
-          }            
-        }
-      },
-      "include": {
-        "type": "array",
-        "items": {
-          "description": "set of pointers to definitions to be included, each as an instance or as a type",
-          "oneOf": [
-            {
-              "type": "object",
-              "properties": {
-                "$ref": {
-                  "type": "string"
-                }            
-              }
-            },
-            {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "object",
-                  "properties": {
-                    "$ref": {
-                      "type": "string"
-                    }            
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "id": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "object",
+          "properties": {
+            "$ref": {
+              "type": "string"
+            }            
+          }
+        },
+        "include": {
+          "type": "array",
+          "items": {
+            "description": "set of pointers to definitions to be included, each as an instance or as a type",
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "$ref": {
+                    "type": "string"
+                  }            
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "object",
+                    "properties": {
+                      "$ref": {
+                        "type": "string"
+                      }            
+                    }
                   }
                 }
               }
-            }
-          ]
+            ]
+          },
+          "minitems": 1
         },
-        "minitems": 1
-      },
-      "optional": {
-        "type": "boolean"
+        "optional": {
+          "type": "boolean"
+        }
       }
     },
     "thingqualities": {
       "type": "object",
       "properties": {
-        "$ref": "#/definitions/commonqualities",
         "odmObject": {"$ref": "#/odmObject"},
         "odmThing": {"$ref": "#/odmThing"},
         "odmView": {"$ref": "#/odmView"}
-      }
+      },
+      "additionalProperties": {"$ref": "#/definitions/commonqualities"}
     },
     "productqualities": {
       "type": "object",
       "properties": {
-        "$ref": "#/definitions/commonqualities",
         "odmObject": {"$ref": "#/odmObject"},
         "odmThing": {"$ref": "#/odmThing"},
         "odmView": {"$ref": "#/odmView"}
-      }
+      },
+      "additionalProperties": {"$ref": "#/definitions/commonqualities"}
     },
     "viewqualities": {
       "type": "object",
       "properties": {
-        "$ref": "#/definitions/commonqualities",
         "isDefaultView": {
           "type": "boolean"
         }
-      }
+      },
+      "additionalProperties": {"$ref": "#/definitions/commonqualities"}
     },
    "objectqualities": {
       "type": "object",
       "properties": {
-        "$ref": "#/definitions/commonqualities",
         "odmProperty": {"$ref": "#/odmProperty"},
         "odmAction": {"$ref": "#/odmAction"},
         "odmEvent": {"$ref": "#/odmEvent"},
-        "odmData": {"$ref": "#/odmData"},
-      }
+        "odmData": {"$ref": "#/odmData"}
+      },
+      "additionalProperties": {"$ref": "#/definitions/commonqualities"}
     },
     "propertyqualities": {
       "type": "object",
       "properties": {
-        "$ref": "#/definitions/commonqualities"
       },
       "additionalProperties": {
-        "$ref": "#/definitions/dataqualities"
+        "$ref": "#/definitions/dataqualities",
+        "$ref": "#/definitions/commonqualities"
       }
     },
     "actionqualities": {
       "type": "object",
       "properties": {
-        "$ref": "#/definitions/commonqualities"
-      }
+      },
+      "additionalProperties": {"$ref": "#/definitions/commonqualities"}
     },
     "eventqualities": {
       "type": "object",
       "properties": {
-        "$ref": "#/definitions/commonqualities"
-      }
+      },
+      "additionalProperties": {"$ref": "#/definitions/commonqualities"}
     },
     "dataqualities": {
       "type": "object",
@@ -230,7 +233,8 @@
         }
       },
       "additionalProperties": {
-        "$ref": "#/definitions/jsonschema"
+        "$ref": "#/definitions/jsonschema",
+        "$ref": "#/definitions/commonqualities"
       }
     },
     "jsonschema": {
@@ -251,28 +255,24 @@
           "type": "array"
         },
         "const": {
-          "type": {
-            "oneOf": [
-              "number",
-              "string",
-              "boolean",
-              "array",
-              "object",
-              "null"
-            ]
-          }
+          "oneOf": [
+            { "type": "number"},
+            { "type": "string"},
+            { "type": "boolean"},
+            { "type": "array"},
+            { "type": "object"},
+            { "type": "null"}
+          ]
         },
         "default": {
-          "type": {
-            "oneOf": [
-              "number",
-              "string",
-              "boolean",
-              "array",
-              "object",
-              "null"
-            ]
-          }
+          "oneOf": [
+            { "type": "number"},
+            { "type": "string"},
+            { "type": "boolean"},
+            { "type": "array"},
+            { "type": "object"},
+            { "type": "null"}
+          ]
         },
         "pattern": {
           "type": "string"
