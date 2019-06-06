@@ -161,7 +161,10 @@
     "viewqualities": {
       "type": "object",
       "properties": {
-        "$ref": "#/definitions/commonqualities"
+        "$ref": "#/definitions/commonqualities",
+        "isDefaultView": {
+          "type": "boolean"
+        }
       }
     },
    "objectqualities": {

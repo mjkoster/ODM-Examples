@@ -65,6 +65,7 @@
   }, 
   "odmView": {
     "sensor": {
+      "isDefaultView": true, 
       "include": [
         {
           "$ref": "#/odmObject/odmProperty/temperature"

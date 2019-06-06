@@ -43,6 +43,7 @@ odmObject {
 
 odmView {
   sensor {
+    isDefaultView true
     include [
       { $ref #/odmObject/odmProperty/temperature }
       { $ref #/odmObject/odmProperty/units }
