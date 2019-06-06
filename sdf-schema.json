@@ -146,6 +146,7 @@
       "properties": {
         "$ref": "#/definitions/commonqualities",
         "odmObject": {"$ref": "#/odmObject"},
+        "odmThing": {"$ref": "#/odmThing"},
         "odmView": {"$ref": "#/odmView"}
       }
     },
