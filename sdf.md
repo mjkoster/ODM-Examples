@@ -359,7 +359,7 @@ An existing definition may be used, with its name and its path in the model name
 
 ### odmView
 
-An odmView provides
+The odmView element provides a composed type that defines a named view which includes one or more instances of odmThing, odmObject, odmProperty, odmEvent, or odmAction. 
 
 - Qualities of odmView
 
