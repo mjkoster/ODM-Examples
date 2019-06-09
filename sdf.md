@@ -354,7 +354,7 @@ An existing definition may be used as a template for a new definition, that is, 
 An existing definition may be used, with its name and its path in the model namespace, as virtual element in a new definition. This has the effect of linking to an instance when the model is deployed as run time. This pattern is useful to link properties, actions, and events from one object to another object, or to link objects together in a complex thing definition. This, aling with named views, supports modeling of the OCF "interface type" feature denoted by the "if" query parameter.
 
 #### Use of "include" with "type"
-An existing definition may be re-used with its name and id, that is, the name of some existing definition is as the name of an element in a new definition, along with its id and defined qualities. This is to support the definition re-use style of IPSO/OMA.
+An existing definition may be re-used with its name and id, that is, the name of some existing definition is as the name of an element in a new definition, along with its id and defined qualities. This pattern supports modeling the re-use of IPSO/OMA resource definitions.
 
 ### odmView
 
@@ -410,12 +410,6 @@ Thing definitions carry semantic meaning, such as a defined refrigerator compart
 |odmView|
 |odmThing|
 |odmObject|
-|odmProperty|
-|odmAction|
-|odmEvent|
-|odmData|
-
-
 
 ### odmProduct
 
