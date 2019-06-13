@@ -348,18 +348,17 @@ A reference within the "Switch" object could simply use "on" according to the id
 Re-use of definitions enables an existing definition (could be in the same file or another file) to become part of a new definition by including a reference to the existing definition within the model namespace. There are currently considered three cases for reuse of definitions. The semantics are similar to those of typed links.
 
 #### Use of the "type" keyword to re-use a definition
-An existing definition can be used as a template for a new definition, that is, a new term is created in the namespace which uses the defined qualities of some existing definition. This pattern will use the keyword "type" as a quality of a new definition with a value consisting of a reference to the existing definition that is to be used as a template. Optionally, new qualities may be added and values of optional qualities and quality values may be defined.
+An existing definition may be used as a template for a new definition, that is, a new definition is created in the target namespace which uses the defined qualities of some existing definition. This pattern will use the keyword "type" as a quality of a new definition with a value consisting of a reference to the existing definition that is to be used as a template. Optionally, new qualities may be added and values of optional qualities and quality values may be defined.
 
 #### The "include" keyword
-An existing definition may be re-used with its name, that is, the name of some existing definition is re-used as an element in a new definition, along with its defined qualities. This pattern will use the keyword "refines" and will allow qualities in the new definition to override values from the source definition.
+An existing definition may be used, with its name and its path in the model namespace, as virtual element in a new definition. This has the effect of linking to an instance when the model is deployed as run time. This pattern is useful to link properties, actions, and events from one object to another object, or to link objects together in a complex thing definition. This, aling with named views, supports modeling of the OCF "interface type" feature denoted by the "if" query parameter.
 
 #### Use of "include" with "type"
-An existing definition may be used, with its name and its path in the model namespace, as an element in a new definition. This has the effect of linking to an instance of the model in the deployment. This pattern will use the keyword "includes" and is useful to link properties, actions, and events from one object to another object, or to link objects together in a complex thing definition.
-
+An existing definition may be re-used with its name and id, that is, the name of some existing definition is as the name of an element in a new definition, along with its id and defined qualities. This pattern supports modeling the re-use of IPSO/OMA resource definitions.
 
 ### odmView
 
-An odmView provides
+The odmView element provides a composed type that defines a named view which includes one or more instances of odmThing, odmObject, odmProperty, odmEvent, or odmAction.
 
 - Qualities of odmView
 
@@ -411,12 +410,6 @@ Thing definitions carry semantic meaning, such as a defined refrigerator compart
 |odmView|
 |odmThing|
 |odmObject|
-|odmProperty|
-|odmAction|
-|odmEvent|
-|odmData|
-
-
 
 ### odmProduct
 
