@@ -10,7 +10,7 @@
   }, 
   "defaultnamespace": "ocf", 
   "odmObject": {
-    "temperature": {
+    "oic.r.temperature": {
       "name": "oic.r.temperature", 
       "id": 1234, 
       "odmProperty": {
@@ -64,7 +64,7 @@
     }
   }, 
   "odmView": {
-    "sensor": {
+    "oic.if.s": {
       "isDefaultView": true, 
       "include": [
         {
@@ -75,7 +75,7 @@
         }
       ]
     }, 
-    "actuator": {
+    "oic.if.a": {
       "include": [
         {
           "$ref": "#/odmObject/odmProperty/temperature"
@@ -85,7 +85,7 @@
         }
       ]
     }, 
-    "readWrite": {
+    "oic.if.rw": {
       "include": [
         {
           "$ref": "#/odmObject/odmProperty/temperature"
@@ -104,7 +104,7 @@
         }
       ]
     }, 
-    "baseline": {
+    "oic.if.baseline": {
       "include": [
         {
           "$ref": "#/odmObject/odmProperty/temperature"
