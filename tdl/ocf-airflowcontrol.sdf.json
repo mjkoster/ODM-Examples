@@ -73,21 +73,22 @@
            }
         }
       }
-    },
+    }
+  },
+
+  "odmThing": {
 
     "oic.r.airflowcontrol": {
       "name": "oic.r.airflowcontrol",
       "id": 2,
       "desc" : "",
-      "odmProperty": {
-         "anyOf" : [
-              {"$ref-link": "#/odmObject/oic.r.switch.binary/value" },
-              {"$ref-link": "#/odmObject/oic.r.airflow/speed" },
-              {"$ref-link": "#/odmObject/oic.r.airflow/direction"},
-              {"$ref-link": "#/odmObject/oic.r.airflow/automode"},
-              {"$ref-link": "#/odmObject/oic.r.airflow/supporteddirections"},
-              {"$ref-link": "#/odmObject/oic.r.airflow/range"}
-            ]
+      "odmObject": {
+        "switch": {
+          "type": { "$ref": "#/odmObject/oic.r.switch.binary" }
+        },
+        "airflow": {
+          "type": { "$ref": "#/odmObject/oic.r.airflow" }
+        }
       }
     }
 
