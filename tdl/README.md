@@ -1,15 +1,15 @@
-## tdl2json
+## txt2json
 
-Convert a file in TDL (thing definition) text format to JSON for ODM definitions
+Convert a file in text format to JSON for ODM definitions
 
-TDL is a text language that is essentially JSON with most of the punctuation
+The input is plain text in a format format that is essentially JSON with most of the punctuation
 stripped out and replaced with whitespace, except for 3 classes of block delimiters:
 
 - quoted strings using DQUOTE ""
 - arrays using []
 - objects using {}
 
-an example text definition:
+an example text file:
 
 ```
 info {
@@ -79,5 +79,5 @@ when converted to JSON becomes:
 usage:
 
 ```
-python tdl2json.py <input filename (text format)> <output file name (json format)>
+python txt2json.py <input filename (text format)> <output file name (json format)>
 ```

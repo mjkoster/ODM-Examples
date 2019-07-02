@@ -28,16 +28,16 @@ odmObject {
         maximum 254
       }
       RemainingTime {
+        type { $ref #/odmData/transitiontimedata }
         name "RemainingTime"
         optional true
-        extends transitiontimedata
         id 1
         default 0
       }
       OnOffTransitionTime {
+        type { $ref #/odmData/transitiontimedata }
         name "OnOffTransitionTime"
         optional true
-        extends transitiontimedata
         id 16
         default 0
       }
@@ -52,17 +52,17 @@ odmObject {
         default 255
       }
       OnTransitionTime {
+        type { $ref #/odmData/transitiontimedata }
         name "OnTransitionTime"
         optional true
-        extends transitiontimedata
         id 18
         maximum 65534
         scaleMaximum 6553.4
       }
       OffTransitionTime {
+        type { $ref #/odmData/transitiontimedata }
         name "OffTransitionTime"
         optional true
-        extends transitiontimedata
         id 19
         maximum 65534
         scaleMaximum 6553.4
@@ -94,7 +94,7 @@ odmObject {
           transitiontime {
             name "Transition Time"
             optional false
-            extends transitiontimedata
+            type { $ref #/odmData/transitiontimedata }
           }
         }
       }
@@ -166,7 +166,7 @@ odmObject {
           transitiontime {
             name "Step Transition Time"
             optional false
-            extends transitiontimedata
+            type { $ref #/odmData/transitiontimedata }
           }
         }
       }
@@ -175,26 +175,26 @@ odmObject {
         optional false
         id 3
       }
-      MovetoLevelwithOnOff {
-        extends movetolevel
+      MoveYoLevelwithOnOff {
+        type { $ref /odmObject/Level/odmAction/MoveToLevel }
         name "Move To Level with On/Off"
         optional false
         id 4
       }
       MovewithOnOff {
-        extends Move
+        type { $ref /odmObject/Level/odmAction/Move }
         name "Move with On/Off"
         optional false
         id 5
       }
       StepwithOnOff {
-        extends Step
+        type { $ref /odmObject/Level/odmAction/Step }
         name "Step with On/Off"
         optional false
         id 6
       }
       StopwithOnOff {
-        extends Stop
+        type { $ref /odmObject/Level/odmAction/Stop } 
         name "Stop with On/Off"
         optional false
         id 7

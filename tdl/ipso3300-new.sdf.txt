@@ -1,0 +1,168 @@
+
+info {
+  title
+    "Example ODM model for a relatively simple composed thing using
+    IPSO Smart Object Components"
+  version
+    "20190524"
+  copyright
+    "no copyright"
+  license
+    "not licensed"
+}
+namespace {
+  ex http://example.com/
+}
+defaultnamespace ex
+
+/*
+This product template definition contains two instances of GenericSensor (3300) with
+defined terms corresponding to the LWM2M path of the two instances ("3300/0" and "3300/1")
+the instances use "extends" to reuse the defined qualities with additional constraints set
+specifically for the functionality of each instance
+*/
+odmProduct {
+  SKU_19934774 {
+    productTypeListing "Compound Vacuum Gauge"
+    odmObject {
+      3300/0 {
+        type { $ref #/odmObject/genericSensor }
+        optional false
+        odmProperty {
+          minimumRange {
+            const -120000
+          }
+          maximumRange {
+            const 120000
+          }
+          applicationType {
+            const "Vacuum Gauge"
+          }
+          sensorType {
+            const absolutePressure
+          }
+          units {
+            const Pa
+          }
+        }
+      }
+      3300/1 {
+        type { $ref #/odmObject/genericSensor }
+        optional true
+        odmProperty {
+          minimumRange {
+            const 0
+          }
+          maximumRange {
+            const 20000
+          }
+          applicationType {
+            const "Vacuum Gauge"
+          }
+          sensorType {
+            const vacuum
+          }
+          units {
+            const micron
+          }
+        }
+      }
+    }
+  }
+}
+/* This is a reusable Object definition after the pattern of IPSO Smart Objects
+It would normally be in a different file but shown here for illustration
+Here the optionality is set in the object definition, though it is a quality
+of the property */
+odmObject {
+  genericSensor {
+    id 3300
+    odmProperty {
+      sensorValue {
+        type { $ref #/odmProperty/sensorValue }
+        optional false
+      }
+      minimumMeasuredValue {
+        type { $ref #/odmProperty/minimumMeasuredValue }
+        optional true
+      }
+      maximumMeasuredValue {
+        type { $ref #/odmProperty/maximumMeasuredValue }
+        optional true
+      }
+      minimumRangeValue {
+        type { $ref #/odmProperty/minimumRangeValue }
+        optional true
+      }
+      maximumRangeValue {
+        type { $ref #/odmProperty/maximumRangeValue }
+        optional true
+      }
+      applicationType {
+        type { $ref #/odmProperty/applicationType }
+        optional true
+      }
+      sensorType {
+        type { $ref #/odmProperty/sensorType }
+        optional true
+      }
+      units {
+        type { $ref #/odmProperty/units }
+        optional true
+      }
+    }
+    odmAction {
+      resetMinMax {
+        type { $ref #/odmProperty/resetMinMax }
+        optional true
+      }
+ 
+    }
+  }
+}
+/* This is a reusable Property definition after the pattern of IPSO Smart Object Resources
+It would normally be in a different file but shown here for illustration */
+odmProperty {
+  sensorValue {
+    id 5700
+    type number
+    subtype float
+  }
+  minimumMeasuredValue {
+    id 5601
+    type number
+    subtype float
+  }
+  maximumMeasuredValue {
+    id 5602
+    type number
+    subtype float
+  }
+  minimumRangeValue {
+    id 5603
+    type number
+    subtype float
+  }
+  maximumRangeValue {
+    id 5604
+    type number
+    subtype float
+  }
+  applicationType {
+    id 5750
+    type string
+  }
+  sensorType {
+    id 5750
+    type string
+  }
+  units {
+    id 5750
+    type string
+  }
+}
+odmAction {
+  resetMinMax {
+    id 5605
+  }
+}

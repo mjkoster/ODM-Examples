@@ -1,0 +1,96 @@
+{
+  "info": {
+    "title": "OCF odmObject libarary",
+    "version": "20190530",
+    "copyright": "OCF (TBD)",
+    "license": "OCF (TBD)"
+  },
+
+  "odmObject": {
+    "oic.r.switch.binary": {
+      "name": "oic.r.switch.binary",
+      "id": 1,
+      "desc" : "This odmObject describes a binary switch (on/off).\nThe Property \"value\" is a boolean.\nA value of 'true' means that the switch is on.\nA value of 'false' means that the switch is off.\n",
+      "odmProperty": {
+        "value": {
+          "name": "value",
+          "id": 0,
+          "optional": false,
+          "type": "boolean"
+        }
+      }
+    },
+
+    "oic.r.airflow": {
+      "name": "oic.r.airflow",
+      "id": 2,
+      "desc" : "",
+      "odmProperty": {
+        "speed" : {
+          "name": "speed",
+          "id": 1,
+          "description": "The current speed level.",
+          "type": "integer"
+        },
+        "direction" : {
+          "name": "direction",
+          "id": 1,
+          "description": "The directionality of the air flow, a value indicated by \"supporteddirections\".",
+          "optional": true,
+          "type": "string"
+        },
+        "automode" : {
+          "name": "automode",
+          "id": 1,
+          "description": "The status of the automode feature, if on speed is set by the Device.",
+          "optional": true,
+          "type": "string",
+          "enum": [
+            "On",
+            "Off"
+          ]
+        },
+        "supporteddirections" : {
+          "description": "The array of possible direction settings for this instance of the Resource Type.",
+          "readOnly": true,
+          "optional": true,
+          "type": "array",
+          "items": {
+            "minItems": 1,
+            "type": "string",
+            "uniqueItems": true
+          }
+        },
+        "range": {
+          "name": "range",
+          "id": 1,
+          "desc" : "applies to the allowed values of speed",
+          "optional": false,
+          "readOnly": true,
+          "type": "array",
+          "items": {
+            "type": "integer"
+           }
+        }
+      }
+    }
+  },
+
+  "odmThing": {
+
+    "oic.r.airflowcontrol": {
+      "name": "oic.r.airflowcontrol",
+      "id": 2,
+      "desc" : "",
+      "odmObject": {
+        "switch": {
+          "type": { "$ref": "#/odmObject/oic.r.switch.binary" }
+        },
+        "airflow": {
+          "type": { "$ref": "#/odmObject/oic.r.airflow" }
+        }
+      }
+    }
+
+  }
+}

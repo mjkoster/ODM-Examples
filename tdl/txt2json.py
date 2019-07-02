@@ -1,10 +1,11 @@
 """
-tdl2json.py
+txt2json.py
 jsonify.py
 
-convert a tdl format thing definition to json
+convert a txt format file to json
 
 bugs:
+- handle spaces in keys
 
 """
 
@@ -13,8 +14,9 @@ import json, string, sys, collections
 
 test_data = \
 """
+/* this is a comment block */
 info {
-  title
+  title/**/
       "Example file for ODM Simple JSON Definition Format"
   version
       "20190424"
@@ -128,13 +130,26 @@ def naturalstring(character,input_gen):
     result = "" + character
     nextchar = input_gen.next()
     while not nextchar in string.whitespace :
-        if nextchar in "{}[]" or '"' == nextchar:
+        if '/' == nextchar :
+            if '*' == input_gen.next() :
+                input_gen.prev()
+                input_gen.prev()
+                return result
+            else :
+                input_gen.prev()
+        elif nextchar in "{}[]" or '"' == nextchar:
             input_gen.prev()
             return result
         result += nextchar
         nextchar = input_gen.next()
     return result
 
+def skip_comment(input_gen):
+    while True :
+        nextchar = input_gen.next()
+        if '*' == nextchar :
+            if '/' == input_gen.next():
+                return
 
 """
 character scanner
@@ -149,7 +164,12 @@ def scantokens(input_string):
     except StopIteration:
         return buffer
     while True:
-        if '"' == nextchar :
+        if '/' == nextchar :
+            if '*' == input_gen.next() :
+                skip_comment(input_gen)
+            else :
+                input_gen.prev()
+        elif '"' == nextchar :
             buffer.addtoken(quotestring(input_gen))
         elif nextchar in "{}[]":
             buffer.addtoken(nextchar)
@@ -225,7 +245,7 @@ def value(item, buffer):
 
 
 """
-test to see if it ccan be converted to int
+test to see if it can be converted to int
 """
 def isinteger(string):
     try:
@@ -235,7 +255,7 @@ def isinteger(string):
     else:
         return True
 """
-test to see if it ccan be converted to float (also fixed point)
+test to see if it can be converted to float (also fixed point)
 """
 
 
@@ -265,4 +285,4 @@ if __name__ == '__main__' :
         input_string = infile.read()
         print json.dumps(object(scantokens(input_string)), indent=2, sort_keys=False)
     else:
-        print json.dumps(object(scantokens(test_compact)), indent=2, sort_keys=False)
+        print json.dumps(object(scantokens(test_data)), indent=2, sort_keys=False)
