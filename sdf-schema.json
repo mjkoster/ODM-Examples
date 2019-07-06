@@ -31,6 +31,7 @@
     "defaultnamespace": {
       "type": "string"
     },
+    
     "odmThing": {
       "description": "Thing is a composition of objects that work together in some way",
       "type": "object",
@@ -88,6 +89,7 @@
       }
     }
   },
+
   "definitions": {
     "commonqualities": {
       "type": "object",
