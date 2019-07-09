@@ -11,8 +11,10 @@
   "defaultnamespace": "st", 
   "odmObject": {
     "Switch": {
+      "id": 0,
       "odmProperty": {
         "value": {
+          "id": 1,
           "type": "string", 
           "enum": [
             "on", 
@@ -21,8 +23,8 @@
         }
       }, 
       "odmAction": {
-        "on": {}, 
-        "off": {}
+        "on": { "id": 3 }, 
+        "off": { "id": 4 }
       }
     }
   }
