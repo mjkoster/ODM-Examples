@@ -84,10 +84,10 @@
       "desc" : "",
       "odmObject": {
         "switch": {
-          "type": { "$ref": "#/odmObject/oic.r.switch.binary" }
+          "odmType": { "$ref": "#/odmObject/oic.r.switch.binary" }
         },
         "airflow": {
-          "type": { "$ref": "#/odmObject/oic.r.airflow" }
+          "odmType": { "$ref": "#/odmObject/oic.r.airflow" }
         }
       }
     }

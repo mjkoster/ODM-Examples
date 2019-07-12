@@ -15,19 +15,19 @@
     "washer" : {
       "odmObject": {
         "powerswitch": {
-          "type": { "$ref": "<library>#/odmObject/oic.r.switch.binary" },
+          "odmType": { "$ref": "<library>#/odmObject/oic.r.switch.binary" },
           "optional": false
         },
         "washerstate": {
-            "type": { "$ref": "<library>#/odmObject/oic.r.operational.state" },
+            "odmType": { "$ref": "<library>#/odmObject/oic.r.operational.state" },
             "optional": false
         },
         "washermode": {
-            "type": { "$ref": "<library>#/odmObject/oic.r.mode" },
+            "odmType": { "$ref": "<library>#/odmObject/oic.r.mode" },
             "optional": true
         },
         "watertemperature": {
-            "type": { "$ref": "<library>#/odmObject/oic.r.temperature" },
+            "odmType": { "$ref": "<library>#/odmObject/oic.r.temperature" },
             "optional": true
         }
     }

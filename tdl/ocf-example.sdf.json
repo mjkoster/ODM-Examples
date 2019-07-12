@@ -26,37 +26,37 @@
           ]
         }, 
         "range": {
-          "type": {
+          "odmType": {
             "$ref": "ocf:/odmData/rangeData"
           }
         }, 
         "step": {
-          "type": {
+          "odmType": {
             "$ref": "ocf:/odmData/stepData"
           }
         }, 
         "precision": {
-          "type": {
+          "odmType": {
             "$ref": "ocf:/odmData/precisionData"
           }
         }, 
         "rt": {
-          "type": {
+          "odmType": {
             "$ref": "ocf:/odmData/rtData"
           }
         }, 
         "if": {
-          "type": {
+          "odmType": {
             "$ref": "ocf:/odmData/ifData"
           }
         }, 
         "n": {
-          "type": {
+          "odmType": {
             "$ref": "ocf:/odmData/nData"
           }
         }, 
         "id": {
-          "type": {
+          "odmType": {
             "$ref": "ocf:/odmData/idData"
           }
         }

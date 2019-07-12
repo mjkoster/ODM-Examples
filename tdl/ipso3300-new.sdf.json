@@ -67,49 +67,49 @@
       "id": 3300, 
       "odmProperty": {
         "sensorValue": {
-          "type": {
+          "odmType": {
             "$ref": "#/odmProperty/sensorValue"
           }, 
           "optional": false
         }, 
         "minimumMeasuredValue": {
-          "type": {
+          "odmType": {
             "$ref": "#/odmProperty/minimumMeasuredValue"
           }, 
           "optional": true
         }, 
         "maximumMeasuredValue": {
-          "type": {
+          "odmType": {
             "$ref": "#/odmProperty/maximumMeasuredValue"
           }, 
           "optional": true
         }, 
         "minimumRangeValue": {
-          "type": {
+          "odmType": {
             "$ref": "#/odmProperty/minimumRangeValue"
           }, 
           "optional": true
         }, 
         "maximumRangeValue": {
-          "type": {
+          "odmType": {
             "$ref": "#/odmProperty/maximumRangeValue"
           }, 
           "optional": true
         }, 
         "applicationType": {
-          "type": {
+          "odmType": {
             "$ref": "#/odmProperty/applicationType"
           }, 
           "optional": true
         }, 
         "sensorType": {
-          "type": {
+          "odmType": {
             "$ref": "#/odmProperty/sensorType"
           }, 
           "optional": true
         }, 
         "units": {
-          "type": {
+          "odmType": {
             "$ref": "#/odmProperty/units"
           }, 
           "optional": true
@@ -117,7 +117,7 @@
       }, 
       "odmAction": {
         "resetMinMax": {
-          "type": {
+          "odmType": {
             "$ref": "#/odmProperty/resetMinMax"
           }, 
           "optional": true
