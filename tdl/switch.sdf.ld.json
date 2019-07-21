@@ -1,5 +1,5 @@
 {
-  "info": {
+    "info": {
     "title": "Example file for ODM Simple JSON Definition Format", 
     "version": "20190424", 
     "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
@@ -17,8 +17,8 @@
           "id": 1,
           "type": "string", 
           "enum": [
-            { "on": 1}, 
-            { "off": 0 }
+            "on", 
+            "off"
           ]
         }
       }, 

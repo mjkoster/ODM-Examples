@@ -68,10 +68,10 @@
       "isDefaultView": true, 
       "include": [
         {
-          "$ref": "#/odmObject/odmProperty/temperature"
+          "$ref": "#/odmObject/oic.r.temperature/odmProperty/temperature"
         }, 
         {
-          "$ref": "#/odmObject/odmProperty/units"
+          "$ref": "#/odmObject/oic.r.temperature/odmProperty/units"
         }
       ]
     }, 

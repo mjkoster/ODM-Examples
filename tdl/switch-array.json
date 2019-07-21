@@ -1,0 +1,43 @@
+{
+  "info": {
+    "title": "Example file for ODM Simple JSON Definition Format", 
+    "version": "20190424", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "st": "http://example.com/capability/odm"
+  }, 
+  "defaultnamespace": "st", 
+  "odmObject": {
+    "name": "Switch",
+    "id": 0,
+    "odmProperty": [
+      {
+        "name": "value",
+        "id": 1,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "on",
+            "off"
+          ]
+        }
+      }
+    ],
+    "odmAction": [
+      {
+        "name": "on"
+      },
+      {
+        "name": "off"
+      }
+    ]
+  }
+}
+{
+    "odmView": {
+        "$ref": "$.odmObject.odmProperty.?(name==value)"
+                "#/odmObject/odmProperty/[0]"
+    }
+}
