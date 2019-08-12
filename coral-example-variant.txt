@@ -1,0 +1,44 @@
+http://example.com/rel/item [
+  { 
+    href "/a"
+    describedBy [
+      { href http://example.com/a }
+    ],
+    http://example.com/rt [
+      { href http://example.com/rt/temperature }
+    ],
+    http://example.com/if [
+      { href http://example.com/if/sensor }
+    ],
+    http://example.com/actions/rescan [
+      {
+        href "/x"
+        this form
+      }
+    ],
+    rep [
+      {
+        data TWljaGFlbCBKIEtvc3Rlcg==
+        type text/plain
+      }
+    ]
+  }
+]
+http://example.com/types/action/setcolor [
+  {
+    @type form
+    @ref "/b"
+    http://coreapps.org/coap#method [
+      { @value post }
+    ],
+    http://coreapps.org/coap#accept [
+      { @value 40 }
+    ]
+  }
+],
+rep [
+  {
+    data eyAidmFsdWUiOiA1MzkgfQ==
+    type application/json
+  }
+]

@@ -1,0 +1,76 @@
+{
+  "link": [
+    {
+      "href": "/a", 
+      "rel": "http://example.com/rel/item", 
+      "link": [
+        {
+          "href": "http://example.com/a", 
+          "rel": "describedBy"
+        }, 
+        {
+          "href": "http://example.com/rt/temperature", 
+          "rel": "http://example.com/rt"
+        }, 
+        {
+          "href": "http://example.com/if/sensor", 
+          "rel": "http://example.com/if"
+        }, 
+        {
+          "href": "http://example.com/types/property/temperature", 
+          "rel": "http://example.com/rdftype"
+        },
+        {
+          "rel": "http typical refresh interval",
+          "literal": 30
+        },
+        {
+          "rel": "http last calibration date",
+          "datetime": "2018-01-01T00:00:01"
+        },
+        {
+          "rel": "http last calibration certificate data",
+          "base64": "lsaosa483roiauh398y44sep8htsiu=="
+        }
+      ], 
+      "form": [
+        {
+          "href": "/x", 
+          "op": "rescan", 
+          "method": "post"
+        }
+      ], 
+      "rep": [
+        {
+          "data": "TWljaGFlbCBKIEtvc3Rlcg=="
+        }
+      ]
+    }
+  ], 
+  "form": [
+    {
+      "href": "/b", 
+      "op": "http://example.com/invokeaction", 
+      "fields": [
+        {
+          "href": "http://example.com/types/action/setcolor",
+          "rel": "http://example.com/rdftype"
+        },
+        {
+          "literal": "get",
+          "rel": "http://coreapps.org/coap#method"
+        },
+        {
+          "literal": 40,
+          "rel": "http://coreapps.org/coap#accept"
+        }
+      ]
+    }
+  ], 
+  "rep": [
+    {
+      "data": "eyAidmFsdWUiOiA1MzkgfQ==", 
+      "type": "application/json"
+    }
+  ]
+}

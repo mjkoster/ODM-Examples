@@ -1,0 +1,21 @@
+OneDM SDF use case considerations
+
+Translation models
+ - one model to another
+ 
+on-the-wire adaptation protocols and formats
+ - d2d
+ - d2c
+
+Thing Developer
+ - domain expert
+ - SDO definitions - use SDF to create new definitions in some ecosystem 
+ - SDO definitions - use SDF to export definitions from some ecosystem 
+ - accomodate special feature that doesn't map to any other ecosystem
+
+Application developer
+ - uses SDF to write API/SDK
+ - uses SDF API
+ 
+Protocol binding integration 
+ - hints, patterns?
