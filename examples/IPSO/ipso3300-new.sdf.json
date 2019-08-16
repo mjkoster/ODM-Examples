@@ -12,12 +12,14 @@
   "odmProduct": {
     "SKU_19934774": {
       "productTypeListing": "Compound Vacuum Gauge", 
+      "required": [
+        { "$ref": "#0/odmObject/3300_0" }
+      ],
       "odmObject": {
-        "3300/0": {
+        "3300_0": {
           "type": {
             "$ref": "#/odmObject/genericSensor"
           }, 
-          "optional": false, 
           "odmProperty": {
             "minimumRange": {
               "const": -120000
@@ -36,11 +38,10 @@
             }
           }
         }, 
-        "3300/1": {
+        "3300_1": {
           "type": {
             "$ref": "#/odmObject/genericSensor"
           }, 
-          "optional": true, 
           "odmProperty": {
             "minimumRange": {
               "const": 0
@@ -65,62 +66,56 @@
   "odmObject": {
     "genericSensor": {
       "id": 3300, 
+      "required": [
+        { "$ref": "#0/odmProperty/sensorValue" }
+      ],
       "odmProperty": {
         "sensorValue": {
           "odmType": {
             "$ref": "#/odmProperty/sensorValue"
-          }, 
-          "optional": false
+          }
         }, 
         "minimumMeasuredValue": {
           "odmType": {
             "$ref": "#/odmProperty/minimumMeasuredValue"
-          }, 
-          "optional": true
+          }
         }, 
         "maximumMeasuredValue": {
           "odmType": {
             "$ref": "#/odmProperty/maximumMeasuredValue"
-          }, 
-          "optional": true
+          }
         }, 
         "minimumRangeValue": {
           "odmType": {
             "$ref": "#/odmProperty/minimumRangeValue"
-          }, 
-          "optional": true
+          }
         }, 
         "maximumRangeValue": {
           "odmType": {
             "$ref": "#/odmProperty/maximumRangeValue"
-          }, 
-          "optional": true
+          }
         }, 
         "applicationType": {
           "odmType": {
             "$ref": "#/odmProperty/applicationType"
-          }, 
-          "optional": true
+          }
         }, 
         "sensorType": {
           "odmType": {
             "$ref": "#/odmProperty/sensorType"
-          }, 
-          "optional": true
+          }
         }, 
         "units": {
           "odmType": {
             "$ref": "#/odmProperty/units"
-          }, 
-          "optional": true
+          }
         }
       }, 
       "odmAction": {
         "resetMinMax": {
           "odmType": {
             "$ref": "#/odmProperty/resetMinMax"
-          }, 
-          "optional": true
+          }
         }
       }
     }

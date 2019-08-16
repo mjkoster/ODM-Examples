@@ -133,7 +133,18 @@
         "required": {
           "type": "array",
           "items": {
-            "type": "string"
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "object",
+                "properties": {
+                  "$ref": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false     
+              }
+            ]
           },
           "minitems": 1
         }

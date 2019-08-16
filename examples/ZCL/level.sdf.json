@@ -13,13 +13,22 @@
     "Level": {
       "name": "Level Control", 
       "id": 8, 
+      "required": [
+        { "$ref": "#0/odmProperty/CurrentLevel" }, 
+        { "$ref": "#0/odmAction/MoveToLevel" }, 
+        { "$ref": "#0/odmAction/Move" }, 
+        { "$ref": "#0/odmAction/Stop" }, 
+        { "$ref": "#0/odmAction/MoveToLevelwithOnOff" }, 
+        { "$ref": "#0/odmAction/MovewithOnOff" }, 
+        { "$ref": "#0/odmAction/StepwithOnOff" }, 
+        { "$ref": "#0/odmAction/StopwithOnOff" }
+      ],
       "odmProperty": {
         "CurrentLevel": {
-          "name": "CurrentLevel", 
-          "optional": false, 
+          "name": "Current Level", 
           "id": 0, 
           "type": "number", 
-          "width": 8, 
+          "widthInBits": 8, 
           "minimum": 0, 
           "maximum": 254
         }, 
@@ -27,8 +36,7 @@
           "odmType": {
             "$ref": "#/odmData/transitiontimedata"
           }, 
-          "name": "RemainingTime", 
-          "optional": true, 
+          "name": "Remaining Time", 
           "id": 1, 
           "default": 0
         }, 
@@ -36,17 +44,15 @@
           "odmType": {
             "$ref": "#/odmData/transitiontimedata"
           }, 
-          "name": "OnOffTransitionTime", 
-          "optional": true, 
+          "name": "On Off Transition Time", 
           "id": 16, 
           "default": 0
         }, 
         "OnLevel": {
-          "name": "OnLevel", 
-          "optional": true, 
+          "name": "On Level", 
           "id": 17, 
           "type": "number", 
-          "width": 8, 
+          "widthInBits": 8, 
           "minimum": 0, 
           "maximum": 255, 
           "default": 255
@@ -55,28 +61,21 @@
           "odmType": {
             "$ref": "#/odmData/transitiontimedata"
           }, 
-          "name": "OnTransitionTime", 
-          "optional": true, 
-          "id": 18, 
-          "maximum": 65534, 
-          "scaleMaximum": 6553.4
+          "name": "On Transition Time", 
+          "id": 18
         }, 
         "OffTransitionTime": {
           "odmType": {
             "$ref": "#/odmData/transitiontimedata"
           }, 
-          "name": "OffTransitionTime", 
-          "optional": true, 
-          "id": 19, 
-          "maximum": 65534, 
-          "scaleMaximum": 6553.4
+          "name": "Off Transition Time", 
+          "id": 19
         }, 
         "DefaultMoveRate": {
-          "name": "DefaultMoveRate", 
-          "optional": true, 
+          "name": "Default Move Rate", 
           "id": 20, 
           "type": "number", 
-          "width": 16, 
+          "widthInBits": 16, 
           "minimum": 0, 
           "maximum": 254
         }
@@ -84,20 +83,25 @@
       "odmAction": {
         "MoveToLevel": {
           "name": "Move to Level", 
-          "optional": false, 
           "id": 0, 
+          "required": [
+            { "$ref": "#0/odmData/level" }, 
+            { "$ref": "#0/odmData/transitiontime" }
+          ],
+          "inputData": [
+            { "$ref": "#0/odmData/level" }, 
+            { "$ref": "#0/odmData/transitiontime" }
+          ],
           "odmData": {
             "level": {
               "name": "Level", 
-              "optional": false, 
               "type": "number", 
-              "width": 8, 
+              "widthInBits": 8, 
               "minimum": 0, 
               "maximum": 254
             }, 
             "transitiontime": {
               "name": "Transition Time", 
-              "optional": false, 
               "odmType": {
                 "$ref": "#/odmData/transitiontimedata"
               }
@@ -106,36 +110,29 @@
         }, 
         "Move": {
           "name": "Move", 
-          "optional": false, 
           "id": 1, 
+          "required": [
+            { "$ref": "#0/odmData/movemode" }, 
+            { "$ref": "#0/odmData/rate" }
+          ],
+          "inputData": [
+            { "$ref": "#0/odmData/movemode" }, 
+            { "$ref": "#0/odmData/rate" }
+          ],
           "odmData": {
             "movemode": {
               "name": "Move mode", 
-              "optional": false, 
               "type": "number", 
-              "width": 8, 
+              "widthInBits": 8, 
               "enum": [
-                0, 
-                1
-              ], 
-              "enumdata": {
-                "up": {
-                  "name": "Move Up", 
-                  "type": "number", 
-                  "const": 0
-                }, 
-                "down": {
-                  "name": "Move Down", 
-                  "type": "number", 
-                  "const": 1
-                }
-              }
+                { "up": 0 }, 
+                { "down": 1 }
+             ]
             }, 
             "rate": {
               "name": "Move rate", 
-              "optional": false, 
               "type": "number", 
-              "width": 8, 
+              "widthInBits": 8, 
               "minimum": 0, 
               "maximum": 255
             }
@@ -143,41 +140,36 @@
         }, 
         "Step": {
           "name": "Step", 
-          "optional": false, 
           "id": 2, 
+          "required": [
+            { "$ref": "#0/odmData/stepmode" },
+            { "$ref": "#0/odmData/stepsize" },
+            { "$ref": "#0/odmData/transitiontime" }
+          ],
+          "inputData": [
+            { "$ref": "#0/odmData/stepmode" },
+            { "$ref": "#0/odmData/stepsize" },
+            { "$ref": "#0/odmData/transitiontime" }
+          ],
           "odmData": {
             "stepmode": {
               "name": "Step mode", 
               "type": "number", 
-              "width": 8, 
+              "widthInBits": 8, 
               "enum": [
-                0, 
-                1
-              ], 
-              "enumdata": {
-                "up": {
-                  "name": "Step Up", 
-                  "type": "number", 
-                  "const": 0
-                }, 
-                "down": {
-                  "name": "Step Down", 
-                  "type": "number", 
-                  "const": 1
-                }
-              }
+                { "up": 0 }, 
+                { "down": 1 }
+              ]
             }, 
             "stepsize": {
               "name": "Step size", 
-              "optional": false, 
               "type": "number", 
-              "width": 8, 
+              "widthInBits": 8, 
               "minimum": 0, 
               "maximum": 255
             }, 
             "transitiontime": {
               "name": "Step Transition Time", 
-              "optional": false, 
               "odmType": {
                 "$ref": "#/odmData/transitiontimedata"
               }
@@ -186,15 +178,13 @@
         }, 
         "Stop": {
           "name": "Stop", 
-          "optional": false, 
           "id": 3
         }, 
-        "MoveYoLevelwithOnOff": {
+        "MoveToLevelwithOnOff": {
           "odmType": {
             "$ref": "odmObject/Level/odmAction/MoveToLevel"
           }, 
           "name": "Move To Level with On/Off", 
-          "optional": false, 
           "id": 4
         }, 
         "MovewithOnOff": {
@@ -202,7 +192,6 @@
             "$ref": "odmObject/Level/odmAction/Move"
           }, 
           "name": "Move with On/Off", 
-          "optional": false, 
           "id": 5
         }, 
         "StepwithOnOff": {
@@ -210,7 +199,6 @@
             "$ref": "odmObject/Level/odmAction/Step"
           }, 
           "name": "Step with On/Off", 
-          "optional": false, 
           "id": 6
         }, 
         "StopwithOnOff": {
@@ -218,20 +206,17 @@
             "$ref": "odmObject/Level/odmAction/Stop"
           }, 
           "name": "Stop with On/Off", 
-          "optional": false, 
           "id": 7
         }
       }, 
       "odmData": {
         "transitiontimedata": {
           "type": "number", 
-          "width": 16, 
+          "widthInBits": 16, 
           "minimum": 0, 
           "maximum": 65535, 
           "multipleOf": 1, 
           "unit": "seconds", 
-          "unitMultiplier": 0.1, 
-          "scaleUnit": "seconds", 
           "scaleMinimum": 0, 
           "scaleMaximum": 6553.5
         }
