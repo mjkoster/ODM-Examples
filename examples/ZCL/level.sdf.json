@@ -14,14 +14,14 @@
       "name": "Level Control", 
       "id": 8, 
       "required": [
-        { "$ref": "#0/odmProperty/CurrentLevel" }, 
-        { "$ref": "#0/odmAction/MoveToLevel" }, 
-        { "$ref": "#0/odmAction/Move" }, 
-        { "$ref": "#0/odmAction/Stop" }, 
-        { "$ref": "#0/odmAction/MoveToLevelwithOnOff" }, 
-        { "$ref": "#0/odmAction/MovewithOnOff" }, 
-        { "$ref": "#0/odmAction/StepwithOnOff" }, 
-        { "$ref": "#0/odmAction/StopwithOnOff" }
+        { "$ref": "0/odmProperty/CurrentLevel" }, 
+        { "$ref": "0/odmAction/MoveToLevel" }, 
+        { "$ref": "0/odmAction/Move" }, 
+        { "$ref": "0/odmAction/Stop" }, 
+        { "$ref": "0/odmAction/MoveToLevelwithOnOff" }, 
+        { "$ref": "0/odmAction/MovewithOnOff" }, 
+        { "$ref": "0/odmAction/StepwithOnOff" }, 
+        { "$ref": "0/odmAction/StopwithOnOff" }
       ],
       "odmProperty": {
         "CurrentLevel": {
@@ -85,12 +85,12 @@
           "name": "Move to Level", 
           "id": 0, 
           "required": [
-            { "$ref": "#0/odmData/level" }, 
-            { "$ref": "#0/odmData/transitiontime" }
+            { "$ref": "0/odmData/level" }, 
+            { "$ref": "0/odmData/transitiontime" }
           ],
           "inputData": [
-            { "$ref": "#0/odmData/level" }, 
-            { "$ref": "#0/odmData/transitiontime" }
+            { "$ref": "0/odmData/level" }, 
+            { "$ref": "0/odmData/transitiontime" }
           ],
           "odmData": {
             "level": {
@@ -112,12 +112,12 @@
           "name": "Move", 
           "id": 1, 
           "required": [
-            { "$ref": "#0/odmData/movemode" }, 
-            { "$ref": "#0/odmData/rate" }
+            { "$ref": "0/odmData/movemode" }, 
+            { "$ref": "0/odmData/rate" }
           ],
           "inputData": [
-            { "$ref": "#0/odmData/movemode" }, 
-            { "$ref": "#0/odmData/rate" }
+            { "$ref": "0/odmData/movemode" }, 
+            { "$ref": "0/odmData/rate" }
           ],
           "odmData": {
             "movemode": {
@@ -142,14 +142,14 @@
           "name": "Step", 
           "id": 2, 
           "required": [
-            { "$ref": "#0/odmData/stepmode" },
-            { "$ref": "#0/odmData/stepsize" },
-            { "$ref": "#0/odmData/transitiontime" }
+            { "$ref": "0/odmData/stepmode" },
+            { "$ref": "0/odmData/stepsize" },
+            { "$ref": "0/odmData/transitiontime" }
           ],
           "inputData": [
-            { "$ref": "#0/odmData/stepmode" },
-            { "$ref": "#0/odmData/stepsize" },
-            { "$ref": "#0/odmData/transitiontime" }
+            { "$ref": "0/odmData/stepmode" },
+            { "$ref": "0/odmData/stepsize" },
+            { "$ref": "0/odmData/transitiontime" }
           ],
           "odmData": {
             "stepmode": {
@@ -182,28 +182,28 @@
         }, 
         "MoveToLevelwithOnOff": {
           "odmType": {
-            "$ref": "odmObject/Level/odmAction/MoveToLevel"
+            "$ref": "1/MoveToLevel"
           }, 
           "name": "Move To Level with On/Off", 
           "id": 4
         }, 
         "MovewithOnOff": {
           "odmType": {
-            "$ref": "odmObject/Level/odmAction/Move"
+            "$ref": "1/Move"
           }, 
           "name": "Move with On/Off", 
           "id": 5
         }, 
         "StepwithOnOff": {
           "odmType": {
-            "$ref": "odmObject/Level/odmAction/Step"
+            "$ref": "1/Step"
           }, 
           "name": "Step with On/Off", 
           "id": 6
         }, 
         "StopwithOnOff": {
           "odmType": {
-            "$ref": "odmObject/Level/odmAction/Stop"
+            "$ref": "1/Stop"
           }, 
           "name": "Stop with On/Off", 
           "id": 7
