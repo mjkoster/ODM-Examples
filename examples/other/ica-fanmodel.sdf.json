@@ -281,6 +281,9 @@
     "name": {
       "type": "string"
     }, 
+    "required": {
+      "type": "boolean"
+    }, 
     "categoryId": {
       "type": "number"
     }, 
@@ -307,9 +310,6 @@
     }, 
     "thingTemplateId": {
       "type": "number"
-    }, 
-    "required": {
-      "type": "boolean"
     }, 
     "version": {
       "type": "string"

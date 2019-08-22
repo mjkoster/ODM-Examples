@@ -185,7 +185,9 @@ icaQualities {
     resourceType { type string enum [ PROPERTY EVENT SERVICE ] } /* defined by odmClass */
     id { type number } /* defined by id quality */
     name { type string } /* defined by name quality */
-
+    required { type boolean } /* handled by the JSON schema style pattern on SDF */
+    
+    /* these could be added as metadata qualities */
     categoryId { type number }
     categoryName { type string }
     contributor { type string }
@@ -194,7 +196,6 @@ icaQualities {
     flag { type string }
     identifier { type string }
     thingTemplateId { type number }
-    required { type boolean }
     version { type string }
     versionID { type number }
     gmtCreate { type string format datetime }
@@ -208,7 +209,7 @@ icaQualities {
     basePropertyId { type number }
     baseEventId { type number }
 
-    /* specific to property type, mostly duplicated by SDF use of JSON Schema */
+    /* specific to property type, mostly handled by SDF use of JSON Schema */
     dataType { type string enum [ INT DOUBLE BOOL ] } /* JSON Schema type */
     unit { type string } /* SDF unit */
     min { type number } /* JSON Schema minimum */
@@ -216,6 +217,7 @@ icaQualities {
     step { type number } /* JSON Schema multipleOf */
     accessMode { type string enum [ READ_ONLY READ_WRITE ] } /* readOnly, writeOnly or readable, writeable */
 
+    /* could be added qualities */
     unitName { type string } /* ? */
     unitType { type numnber } /* ? */
     value { type string } /* ? */
