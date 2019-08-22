@@ -144,7 +144,6 @@ odmObject {
             StopCountdown {
                 id 122
                 name StopCountdown
-                outputData []
             }
             SetPowerSwitchTImer {
                 name SetPowerSwitchTimer
@@ -182,18 +181,20 @@ odmObject {
 icaQualities {
 
     /* generic to all types */
+
+    resourceType { type string enum [ PROPERTY EVENT SERVICE ] } /* defined by odmClass */
+    id { type number } /* defined by id quality */
+    name { type string } /* defined by name quality */
+
     categoryId { type number }
     categoryName { type string }
     contributor { type string }
     contributorID { type number }
     featureState { type string enum [ APPROVED ] }
     flag { type string }
-    name { type string } /* defined by name quality */
     identifier { type string }
-    id { type number } /* defined by id quality */
     thingTemplateId { type number }
     required { type boolean }
-    resourceType { type string enum [ PROPERTY EVENT SERVICE ] } /* defined by odmClass */
     version { type string }
     versionID { type number }
     gmtCreate { type string format datetime }
@@ -207,21 +208,22 @@ icaQualities {
     basePropertyId { type number }
     baseEventId { type number }
 
-    /* specific to property type, mostly duplicated in SDF */
+    /* specific to property type, mostly duplicated by SDF use of JSON Schema */
     dataType { type string enum [ INT DOUBLE BOOL ] } /* JSON Schema type */
     unit { type string } /* SDF unit */
-    unitName { type string } /* ? */
-    unitType { type numnber } /* ? */
-    value { type string } /* ? */
-    valueName { type string } /* ? */
     min { type number } /* JSON Schema minimum */
     max { type number } /* JSON Schema maximum */
     step { type number } /* JSON Schema multipleOf */
     accessMode { type string enum [ READ_ONLY READ_WRITE ] } /* readOnly, writeOnly or readable, writeable */
 
+    unitName { type string } /* ? */
+    unitType { type numnber } /* ? */
+    value { type string } /* ? */
+    valueName { type string } /* ? */
+
     /* specific to parameters */
     direction { type string enum [ PARAM_INPUT PARAM_OUTPUT ] } /* defined by inputData, outputData */
-    paraOrder { type number } /* could use the array order or add explicit */
+    paraOrder { type number } /* binding hint, could use the array order or add explicit order flag */
     inputParams { type array } /* defined by inputData */
     outputParams { type array } /* defined by outputData */
 
