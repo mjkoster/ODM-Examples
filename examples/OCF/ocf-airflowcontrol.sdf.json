@@ -12,7 +12,7 @@
       "id": 1,
       "desc" : "This odmObject describes a binary switch (on/off).\nThe Property \"value\" is a boolean.\nA value of 'true' means that the switch is on.\nA value of 'false' means that the switch is off.\n",
       "required": [
-        { "$ref": "#0/odmProperty/value" }
+        { "$ref": "0/odmProperty/value" }
       ],
       "odmProperty": {
         "value": {
@@ -28,8 +28,8 @@
       "id": 2,
       "desc" : "",
       "required": [
-        { "$ref": "#0/odmProperty/speed" },
-        { "$ref": "#0/odmProperty/range" }
+        { "$ref": "0/odmProperty/speed" },
+        { "$ref": "0/odmProperty/range" }
       ],
       "odmProperty": {
         "speed" : {

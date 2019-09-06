@@ -12,10 +12,13 @@
   "defaultnamespace": "ocf",
 
   "odmThing": {
-    "washer" : {
+    "oic.d.washer" : {
+      "id": 1,
+      "name" : "oic.d.washer",
+      "title" : "washing machine",
       "required": [
-        { "$ref": "#0/odmObject/powerswitch" },
-        { "$ref": "#0/odmObject/washerstate" }
+        { "$ref": "0/odmObject/powerswitch" },
+        { "$ref": "0/odmObject/washerstate" }
       ],
       "odmObject": {
         "powerswitch": {
@@ -30,6 +33,7 @@
         "watertemperature": {
             "odmType": { "$ref": "<library>#/odmObject/oic.r.temperature" }
         }
+      }
     }
   }
 }
