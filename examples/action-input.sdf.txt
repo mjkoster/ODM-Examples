@@ -1,0 +1,32 @@
+odmObject {
+  Brightness {
+    required [ 
+      { $ref 0/odmData/currentBrightness }
+      { $ref 0/odmAction/setBrightness }
+    ]
+    odmProperty {
+      currentBrightness {
+        type number
+      }
+    }
+    odmAction {
+      setLevel { 
+        inputData [
+          { $ref 0/odmData/targetBrightness }
+          { $ref 0/odmData/transitionTime }
+        ]
+        required [
+          { $ref 0/odmData/targetBrightness }
+        ]
+        odmData {
+          targetBrightness {
+            type number
+          }
+          transitionTime {
+            type number
+          }
+        }
+      }
+    }
+  }
+}
