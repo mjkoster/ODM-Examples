@@ -1,4 +1,7 @@
 //
+//  Incept Date: 9/17/2019
+//  Author:  Bryan Mann, robert.mann@resideo.com
+//
 //  Comments and notes to the interested reader appear in C++ single
 //  line styled comments.
 //
@@ -23,12 +26,13 @@
 
 {
   "info": {
-    "title": "Example ODM Model for the ZCL Thermostat",
+    "title": "Example ODM Model for the zigbee/DotDot Thermostat",
     "version": "20190917",
     "copyright": "No Copyright Yet.",
     "license": "No Applicable License Yet."
   },
   "namespace": {
+// Fake a global repo.
     "zcl": "http://oneDataModel.io/repo/zcl/odm"
   },
   "defaultnamespace": "zcl",
@@ -707,8 +711,10 @@
               //  Here as:  array:[ { type }, { size } ]
               //
               "odmType": array [ 
-                { "$ref": "0/odmData/transitiontypedata" },
-                { "$ref": "#/odmData/numberoftransitions" }
+                "type": { "$ref": "0/odmData/transitiontypedata" },
+                "size": {
+                  { "$ref": "#/odmData/numberoftransitions" }
+                }
               ] 
             }  
           }
