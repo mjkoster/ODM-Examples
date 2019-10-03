@@ -78,11 +78,11 @@
       "odmObject": {
         "_b0": {
           "odmRef": "#/odmObject/oic.r.switch.binary",
-          "stag": "power"
+          "semanticTag": "power"
         },
         "_b1": {
           "odmRef": "#/odmObject/oic.r.airflow",
-          "stag": "power"
+          "semanticTag": "airflow"
         }
       }
     }
