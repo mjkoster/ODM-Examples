@@ -10,8 +10,25 @@ This document describes definitions of OneDM Objects and their associated Events
 
 The JSON format of an SDF definition is described in this document.
 
+## Defined Terms
+
+Note: Should we use RFC 2119?
+
+Quality 
+- a metadata item in a definition or declaration which says something about that definition or declaration. A quality is represented in SDF as a member in a JSON object that serves as a definition or declaration
+
+Definition 
+- Creates a new semantic term for use in SDF models and associates it with a set of qualities
+
+Declaration
+- A reference to and a use of a definition within an enclosing definition, intended to create component instances within that enclosing definition.
+
+## Conventions
+
+- The singular form is preferred for keywords.
+
 ## Example Definition:
-```
+```json
 {
   "info": {
     "title": "Example file for ODM Simple JSON Definition Format",
@@ -25,11 +42,9 @@ The JSON format of an SDF definition is described in this document.
   "defaultNamespace": "st",
   "odmObject": {
     "Switch": {
-      "id":0,
       "odmProperty": {
         "value": {
-        "id":1,
-          "type": "string"
+          "type": "string",
           "enum": [
             { "on":1 },
             { "off":0 }
@@ -37,8 +52,8 @@ The JSON format of an SDF definition is described in this document.
         }
       },
       "odmAction": {
-        "on": {"id":3},
-        "off": {"id":4}
+        "on": {},
+        "off": {}
       }
     }
   }
@@ -77,7 +92,7 @@ The defaultnamespace declaration defines one of the short names in the namespace
 |defaultnamespace|string|no|Identifies one of the prefixes in the namespace map to be used as a default in resolving identifiers|
 
 The following example declares a set of namespaces and defines `st` as the default namespace.
-```
+```json
 "namespace": {
   "st": "http://example.com/capability/odm",
   "zcl": "http://example.com/zcl/odm"
@@ -93,44 +108,51 @@ A definition may in turn contain other definitions. Each definition consists of 
 
 For example, an Object definition looks like this:
 
-```
+```json
 "odmObject": {
   "foo": {
-    "id": 3001,
     "odmProperty": {
       "bar": {
         "type": "boolean"
-        "id": 5150
       }
     }
   }
 }
 ```
-An Object "foo" is defined in the default namespace, with an ID of 3001, containing a property "foo.bar", with an ID of 5150 and of type boolean.
+An Object "foo" is defined in the default namespace, containing a property "foo.bar",  of type boolean.
 
 ## Identifier name resolution
-### $ref and JSON Pointer
-Name references in SDF are resolved using JSON Pointer. That is, every name reference is the value of a "$ref" statement and includes a JSON Pointer reference. For example, this reference :
+
+### JSON Pointer and Reference Objects
+References in SDF are resolved using JSON Pointer. That is, every reference includes a JSON Pointer reference. 
+
+The keyword "$ref" is used in a definition to copy all of the qualities of the referenced definition, indicated by the included JSON pointer, into the newly formed definition.
+
+For example, this reference :
 ```
 "temperatureProperty": {
   "$ref": "#/odmData/temperatureData"
 }
 ```
+Creates a new definition "temperatureProperty" that contains all of the qualities defined in the definition at /odmData/temperatureData.
+
+If a JSON Pointer is used without the "$ref" tag, it points to an SDF element. See the sections on "odmRequired" for an example.
+
 ### Namespace Prefix
 
 Compact URI, or CURI, notation may be used to refer to definitions in another namespace. Names are resolved by expanding the prefix using the value for that prefix which is defined in the "namespace" section. For example, if a namespace prefix is defined:
-```
+```json
 "namespace": {
   "foo": "https://example.com/#"
 }
 ```
 Then a reference to that namespace:
-```
-"foo:temperatureData"
+```json
+"foo:odmData/temperatureData"
 ```
 Would be expanded into:
-```
-"https://example.com/#temperatureData"
+```json
+"https://example.com/#odmData/temperatureData"
 ```
 
 ### Target namespace
@@ -139,7 +161,67 @@ The target namespace is the namespace into which the defined terms are added. Th
 
 For example if the default namespace in the example above is "foo", then you could use "temperatureData" to refer to the property defined at the URI:
 ```
-https://example.com/#temperatureData
+https://example.com/#odmData/temperatureData
+```
+
+## Optionality using the keyword "odmRequired"
+
+The keyword "odmRequired" is provided to apply a constraint for which definitions are mandatory in an instance conforming to a particular definition in which the constraint appears.
+
+The value of "odmRequired" is an array JSON pointers, each indicating one mandatory definition.
+
+``` json
+{
+  "odmObject": {
+    "temperatureWithAlarm": {
+      "odmRequired": [
+        "0/odmData/temperatureData",
+        "0/odmEvent/overTemperatureEvent"
+      ],
+      "odmData":{
+        "temperatureData": {
+          "type": "number"
+        }
+      },
+      "odmEvent": {
+        "overTemperatureEvent": {
+          "outputData": {
+            "alarmType": {
+              "odmType": { "$ref": "odm:/#odmData/alarmTypes/quantityAlarms" },
+              "const": { "OverTemperature": 3774 }
+            },
+            "temperature": {
+              "odmType": { "$ref": "4/odmData/temperatureData" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+The above example uses [Relative JSON Pointer][] syntax to point to nearby definitions. 
+
+The prefix of a relative JSON pointer indicates how many levels above the parent element of the JSON Pointer the following path string is relative to.
+
+In this section, the pointer prefix "0" indicates that the following path is relative to the parent element "temperatureWithAlarm". 
+
+```json
+    "temperatureWithAlarm": {
+      "odmRequired": [
+        "0/odmData/temperatureData",
+        "0/odmEvent/overTemperatureEvent"
+      ],
+    }
+```
+
+In this section, the pointer prefix of "4" indicates that the following path is relative to the element four levels above the parent element, in this case also pointing to the element "temperatureWithAlarm". 
+
+```json
+            "temperature": {
+              "odmType": { "$ref": "4/odmData/temperatureData" }
+            }
 ```
 
 ## Keywords for type definitions
@@ -154,22 +236,20 @@ The odmObject keyword denotes zero or more Object definitions. A object may cont
 
 | Quality | Type | Required | Description | Default |
 |---|---|---|---|---|
-|id| integer | yes | internal unique identifier for the definition |  N/A |
 |name|string|no|human readable name| N/A |
 |description|string|no|human readable description| N/A |
 |title|string|no|human readable title to display| N/A |
-|include|array|no|list of references to definitions to be included| N/A |
-| odmType|object|no|reference to a definition to be used as a template for a new definition|N/A |
-| required | array | no | list of required items in a valid definition | N/A |
+|$comment|string|no|explanatory comments | N/A |
+|odmInclude|array|no|Array of JSON Pointers to definitions to be included| N/A |
+|odmType|object|no|reference to a definition to be used as a template for a new definition|N/A |
+|odmRequired|array|no|Array of JSON Pointers to mandatory items in a valid definition | N/A |
 
-- odmTypes Object may define or contain
+odmObject may define or include the following odmTypes:
 
-|odmType|
-|---|
-|odmProperty|
-|odmAction|
-|odmEvent|
-|odmData|
+- odmProperty
+- odmAction
+- odmEvent
+- odmData
 
 
 ### odmProperty
@@ -182,15 +262,15 @@ Properties are used to model elements of state.
 
 | Quality | Type | Required | Description | Default |
 |---|---|---|---|---|
-|id| integer | yes | internal unique identifier for the definition | N/A |
 |name|string|no|human readable name| N/A |
 |description|string|no|human readable description| N/A |
 |title|string|no|human readable title to display| N/A |
-| required | array | no | list of required items in a valid definition | N/A |
-|include|array|no|reference to definitions to be included|
+|$comment|string|no|explanatory comments | N/A |
+|odmRequired|array|no|Array of JSON Pointers to mandatory items in a valid definition | N/A |
+|odmInclude|array|no|Array of JSON Pointers to definitions to be included|N/A|
 |odmType|object|no|reference to a definition to be used as a template for a new definition| N/A |
-|readOnly|boolean|no|Only reads are allowed| false |
-|writeOnly|boolean|no|Only writes are allowed| false |
+|readable|boolean|no|Reads are allowed| true |
+|writeable|boolean|no|Writes are allowed| true |
 |observable|boolean|no| flag to indicate asynchronous notification is available| true |
 |contentFormat|string|no|IANA media type string| N/A |
 |subtype|string|no|subtype enumeration|N/A|
@@ -212,11 +292,9 @@ Properties are used to model elements of state.
 |const|number, boolean, string|no|specifies a constant value for a data item or property| N/A |
 
 
-- odmTypes Property may define or contain
+odmProperty may define or include the following odmTypes:
 
-|odmType|
-|---|
-|odmData|
+- odmData
 
 ### odmAction
 
@@ -228,19 +306,20 @@ Actions are used to model commands and methods which are invoked. Actions have p
 
 | Quality | Type | Required | Description |
 |---|---|---|---|
-|id| integer | yes | internal unique identifier for the definition |
 |name|string|no|human readable name|
 |description|string|no|human readable description|
 |title|string|no|human readable title to display|
-| required | array | no | list of required items in a valid definition | none |
-|include|array|no|reference to definitions to be included|
+|$comment|string|no|explanatory comments | N/A |
+|odmRequired|array|no|Array of JSON Pointers to mandatory items in a valid action definition | N/A |
+|odmInputData|array|no|Array of JSON Pointers to mandatory items in a valid action definition | N/A |
+|odmRequiredInputData|array|no|Array of JSON Pointers to mandatory items in a valid action definition | N/A |
+|odmOutputData|array|no|Array of JSON Pointers to mandatory items in a valid action definition | N/A |
+|odmInclude|array|no|Array of JSON Pointers to definitions to be included|N/A|
 |odmType|object|no|reference to a definition to be used as a template for a new definition|
 
-- odmTypes Action may define or contain
+odmAction may define or include the following odmTypes:
 
-|odmType|
-|---|
-|odmData|
+- odmData
 
 
 ### odmEvent
@@ -253,19 +332,18 @@ Events are used to model asynchronous occurrences that may be communicated proac
 
 | Quality | Type | Required | Description |
 |---|---|---|---|
-|id| integer | yes | internal unique identifier for the definition |
 |name|string|no|human readable name|
 |description|string|no|human readable description|
 |title|string|no|human readable title to display|
-| required | array | no | list of required items in a valid definition | none |
-|include|array|no|reference to definitions to be included|
+|$comment|string|no|explanatory comments | N/A |
+|odmOutputData|array|no|Array of JSON Pointers to mandatory items in a valid action definition | N/A |
+|odmRequired|array|no|Array of JSON Pointers to mandatory items in a valid definition | N/A |
+|odmInclude|array|no|Array of JSON Pointers to definitions to be included|N/A|
 |odmType|object|no|reference to a definition to be used as a template for a new definition|
 
-- odmTypes Event may define or contain
+odmEvent may define or include the following odmTypes:
 
-|odmType|
-|---|
-|odmData|
+- odmData
 
 
 ### odmData
@@ -280,12 +358,12 @@ odmData is used for Action parameters, for Event data, and for reusable constrai
 
 | Quality | Type | Required | Description |
 |---|---|---|---|
-|id| integer | yes | internal unique identifier for the definition |
 |name|string|no|human readable name|
 |description|string|no|human readable description|
 |title|string|no|human readable title to display|
-| required | array | no | list of required items in a valid definition | none |
-|include|array|no|reference to definitions to be included|
+|$comment|string|no|explanatory comments | N/A |
+|required|array|no|list of references to mandatory items in a valid definition | N/A |
+|odmInclude|array|no|Array of JSON Pointers to definitions to be included|N/A|
 |type|object|no|reference to a definition to be used as a template for a new definition|
 |subtype|string|no|subtype enumeration|N/A|
 |widthInBits|integer|no|hint for protocol binding| N/A|
@@ -305,15 +383,13 @@ odmData is used for Action parameters, for Event data, and for reusable constrai
 |default|number, boolean, string|no|specifies the default value for initialization|
 |const|number, boolean, string|no|specifies a constant value for a data item or property|
 
-- odmTypes Data may define or contain
+odmData may define or contain the following odmTypes:
 
-|odmType|
-|---|
-|(JSON Schema Types with numeric constraint extensions)|
+- JSON Schema Types with numeric constraint extensions
 
 
 ## Example Simple Object Definition:
-```
+```json
 {
   "info": {
     "title": "Example file for ODM Simple JSON Definition Format",
@@ -327,11 +403,9 @@ odmData is used for Action parameters, for Event data, and for reusable constrai
   "defaultNamespace": "st",
   "odmObject": {
     "Switch": {
-      "id":0,
       "odmProperty": {
         "value": {
-        "id":1,
-          "type": "string"
+          "type": "string",
           "enum": [
             { "on":1 },
             { "off":0 }
@@ -339,8 +413,8 @@ odmData is used for Action parameters, for Event data, and for reusable constrai
         }
       },
       "odmAction": {
-        "on": {"id":3},
-        "off": {"id":4}
+        "on": {},
+        "off": {}
       }
     }
   }
@@ -372,69 +446,64 @@ Modular composition of definitions enables an existing definition (could be in t
 #### Use of the "odmType" keyword to re-use a definition
 An existing definition may be used as a template for a new definition, that is, a new definition is created in the target namespace which uses the defined qualities of some existing definition. This pattern will use the keyword "odmType" as a quality of a new definition with a value consisting of a reference to the existing definition that is to be used as a template. Optionally, new qualities may be added and values of optional qualities and quality values may be defined.
 
-#### The "include" keyword
-An existing definition may be used, with its name and its path in the model namespace, as virtual element in a new definition. This has the effect of linking to an instance when the model is deployed as run time. This pattern is useful to link properties, actions, and events from one object to another object, or to link objects together in a complex thing definition. This, aling with named views, supports modeling of the OCF "interface type" feature denoted by the "if" query parameter.
+#### The "odmInclude" keyword
+One or more existing definition may be used, with its name and its path in the model namespace, as virtual element in a new definition. This has the effect of linking to an instance when the model is deployed as run time. This pattern is useful to link properties, actions, and events from one object to another object, or to link objects together in a complex thing definition. This, aling with named views, supports modeling of the OCF "interface type" feature denoted by the "if" query parameter.
 
 ### odmView
-
-The odmView element provides a composed type that defines a named view, and which uses the include keyword to populate the view with one or more instances of odmThing, odmObject, odmProperty, odmEvent, or odmAction. 
+The odmView element provides a composed type that defines a named view, and which uses the odmInclude keyword to populate the view with one or more instances of odmThing, odmObject, odmProperty, odmEvent, or odmAction. 
 
 - Qualities of odmView
 
 | Quality | Type | Required | Description |
 |---|---|---|---|
-|id| integer | yes | internal unique identifier for the definition |
 |name|string|no|human readable name|
 |description|string|no|human readable description|
 |title|string|no|human readable title to display|
-| required | array | no | list of required items in a valid definition | none |
-|include|array|no|reference to definitions to be included in the view|
+|$comment|string|no|explanatory comments | N/A |
+|odmRequired|array|no|Array of JSON Pointers to mandatory items in a valid definition | N/A |
+|odmInclude|array|no|Array of JSON Pointers to definitions to be included|N/A|
 
 
-- odmTypes odmView may define or contain
+odmView may define or include the following odmTypes:
 
-|odmType|
-|---|
-|odmThing|
-|odmObject|
-|odmProperty|
-|odmAction|
-|odmEvent|
+- odmThing
+- odmObject
+- odmProperty
+- odmAction
+- odmEvent
 
 
 ### odmThing
 
-An odmThing is a potentially reusable composition of objects that is part of a more complex model. For example, the objects that make up the definition of a single plug of an outlet strip could be encapsulated by a component.
+An odmThing is a set of declarations and qualities that may be part of a more complex model. For example, the object declarations that make up the definition of a single socket of an outlet strip could be encapsulated in an odmThing, and the socket-thing itself could be used in a declaration in the odmThing definition for the outlet strip.
 
-Thing definitions work much like Object definitions, except that a Thing is composed of Objects. Thing definitions may use include for Object definitions from elsewhere, or Thing definitions may include their own Object definitions, as well as reusable Property, Action, and Event definitions that can be used to extend or complete the Object definitions.
+odmThing definitions carry semantic meaning, such as a defined refrigerator compartment and a defined freezer compartment, making up a combination referigerator-freezer product.
 
-Thing definitions carry semantic meaning, such as a defined refrigerator compartment and a defined freezer compartment, making up a combination refer-freezer product.
+An odmThing may be composed of odmObjects and other odmThings. 
 
 - Qualities of odmThing
 
 | Quality | Type | Required | Description |
 |---|---|---|---|
-|id| integer | yes | internal unique identifier for the definition |
 |name|string|no|human readable name|
 |description|string|no|human readable description|
 |title|string|no|human readable title to display|
-| required | array | no | list of required items in a valid definition | none |
-|include|array|no|reference to definitions to be included|
+|$comment|string|no|explanatory comments | N/A |
+|odmRequired|array|no|Array of JSON Pointers to mandatory items in a valid definition | N/A |
+|odmInclude|array|no|Array of JSON Pointers to definitions to be included|N/A|
 |odmType|object|no|reference to a definition to be used as a template for a new definition|
 
-- odmTypes odmThing may define or contain
+odmThing may define or include the following odmTypes:
 
-|odmType|
-|---|
-|odmView|
-|odmThing|
-|odmObject|
+- odmView
+- odmThing
+- odmObject
 
 ### odmProduct
 
 An odmProduct provides the level of abstraction for representing a unique product or a profile for a standardized type of product, for example a "device type" definition with required minimum functionality.
 
-Products may be composed of Objects and Things at the high level, and may contain their own definitions of Properties, Actions, and Events that can be used to extend or complete the included Object definitions.
+Products may be composed of Objects and Things at the high level, and may include their own definitions of Properties, Actions, and Events that can be used to extend or complete the included Object definitions.
 
 Product definitions may set optional defaults and constant values for specific use cases, for example units, range, and scale settings for properties, or available parameters for Actions.
 
@@ -442,25 +511,24 @@ Product definitions may set optional defaults and constant values for specific u
 
 | Quality | Type | Required | Description |
 |---|---|---|---|
-|id| integer | yes | internal unique identifier for the definition |
 |name|string|no|human readable name|
 |description|string|no|human readable description|
 |title|string|no|human readable title to display|
-| required | array | no | list of required items in a valid definition | none |
-|include|string|no|reference to a definition to be included|
+|$comment|string|no|explanatory comments | N/A |
+|odmRequired|array|no|Array of JSON Pointers to mandatory items in a valid definition  | N/A |
+|odmInclude|array|no|Array of JSON Pointers to definitions to be included|N/A|
 
 
-- odmTypes odmProduct may define or contain
+odmProduct may define or include the following odmTypes:
 
-|odmType|
-|---|
-|odmThing|
-|odmView|
-|odmObject|
-|odmProperty|
-|odmAction|
-|odmEvent|
-|odmData|
+- odmThing
+- odmView
+- odmObject
+- odmProperty
+- odmAction
+- odmEvent
+- odmData
 
 
 [SenML unit]: https://www.iana.org/assignments/senml/senml.xhtml#senml-units
+[Relative JSON Pointer]: https://tools.ietf.org/id/draft-handrews-relative-json-pointer-00.html

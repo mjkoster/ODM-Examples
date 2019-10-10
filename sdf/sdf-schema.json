@@ -92,17 +92,38 @@
   },
 
   "definitions": {
+    "pointer-ref": {
+      "type": "object",
+      "properties": {
+        "$ref": {
+            "type": "string"
+        }
+      }
+    },
+    "pointer-ref-list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/pointer-ref"
+      },
+      "minitems": 1
+    },
+    "pointer-list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "commonqualities": {
       "type": "object",
       "properties": {
         "description": {
           "type": "string"
         },
-        "title": {
+        "$comment": {
           "type": "string"
         },
-        "id": {
-          "type": "number"
+        "title": {
+          "type": "string"
         },
         "name": {
           "type": "string"
@@ -116,40 +137,14 @@
           "additionalProperties": false        
           }
         },
-        "include": {
-          "type": "array",
-          "items": {
-            "description": "set of pointers to definitions to be included as instances",
-            "type": "object",
-            "properties": {
-              "$ref": {
-                  "type": "string"
-              },
-            "additionalProperties": false     
-            }
-          },
-          "minitems": 1
+        "odmInclude": {
+          "$ref": "#/definitions/pointer-list"
         },
-        "required": {
-          "type": "array",
-          "items": {
-            "oneOf": [
-              { "type": "string" },
-              {
-                "type": "object",
-                "properties": {
-                  "$ref": {
-                    "type": "string"
-                  }
-                },
-                "additionalProperties": false     
-              }
-            ]
-          },
-          "minitems": 1
+        "odmRequired": {
+          "$ref": "#/definitions/pointer-list"
         }
       },
-      "required": ["id"]
+      "required": []
     },
 
     "thingqualities": {
@@ -229,11 +224,41 @@
     },
 
     "actionqualities": {
-      "$ref": "#/definitions/commonqualities"
+      "allOf":[
+        {
+          "$ref": "#/definitions/commonqualities"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "odmInputData": {
+              "$ref": "#/definitions/pointer-list"
+            },
+            "odmRequiredInputData": {
+              "$ref": "#/definitions/pointer-list"
+            },
+            "odmOutputData": {
+              "$ref": "#/definitions/pointer-list"
+            }          
+          }
+        }
+      ]   
     },
 
     "eventqualities": {
-      "$ref": "#/definitions/commonqualities"
+      "allOf":[
+        {
+          "$ref": "#/definitions/commonqualities"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "odmOutputData": {
+              "$ref": "#/definitions/pointer-list"
+            }          
+          }
+        }
+      ]    
     },
 
     "dataqualities": {
@@ -259,6 +284,12 @@
             "observable": {
               "type": "boolean"
             },
+            "readable": {
+              "type": "boolean"
+            },
+            "writeable": {
+              "type": "boolean"
+            },
             "nullable": {
               "type": "boolean"
             },
@@ -280,6 +311,9 @@
     "jsonschema": {
       "type": "object",
       "properties": {
+        "$comment": {
+          "type": "string"
+        },
         "type": {
           "type": "string",
           "enum": [
@@ -399,12 +433,6 @@
         },
         "properties": {
           "type": "object"
-        },
-        "readOnly": {
-          "type": "boolean"
-        },
-        "writeOnly": {
-          "type": "boolean"
         }
       }
     }
