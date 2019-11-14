@@ -3,7 +3,8 @@
     "title": "Example ODM model for the ZCL Level cluster", 
     "version": "20190504", 
     "copyright": "no copyright", 
-    "license": "not licensed"
+    "license": "not licensed",
+    "sdfSchema": "http://github.com/one-data-model/language/v1/sdf-schema.json"
   }, 
   "namespace": {
     "zcl": "http://example.com/zcl/odm"

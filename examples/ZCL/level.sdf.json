@@ -31,16 +31,12 @@
           "maximum": 254
         }, 
         "RemainingTime": {
-          "odmType": {
-            "$ref": "#/odmData/transitiontimedata"
-          }, 
+          "odmRef": "#/odmData/transitiontimedata", 
           "name": "Remaining Time", 
           "default": 0
         }, 
         "OnOffTransitionTime": {
-          "odmType": {
-            "$ref": "#/odmData/transitiontimedata"
-          }, 
+          "odmRef": "#/odmData/transitiontimedata", 
           "name": "On Off Transition Time", 
           "default": 0
         }, 
@@ -53,14 +49,12 @@
           "default": 255
         }, 
         "OnTransitionTime": {
-            "odmRef": "#/odmData/transitiontimedata", 
+          "odmRef": "#/odmData/transitiontimedata", 
           "name": "On Transition Time", 
           "odmRequired": true 
         }, 
         "OffTransitionTime": {
-          "odmType": {
-            "$ref": "#/odmData/transitiontimedata"
-          }, 
+          "odmRef": "#/odmData/transitiontimedata", 
           "name": "Off Transition Time", 
           "id": 19
         }, 
@@ -94,9 +88,7 @@
             }, 
             "transitiontime": {
               "name": "Transition Time", 
-              "odmType": {
-                "$ref": "#/odmData/transitiontimedata"
-              }
+              "odmRef": "#/odmData/transitiontimedata"
             }
           }
         }, 
@@ -160,9 +152,7 @@
             }, 
             "transitiontime": {
               "name": "Step Transition Time", 
-              "odmType": {
-                "$ref": "#/odmData/transitiontimedata"
-              }
+              "odmRef": "#/odmData/transitiontimedata"
             }
           }
         }, 
@@ -170,27 +160,19 @@
           "name": "Stop"
         }, 
         "MoveToLevelwithOnOff": {
-          "odmType": {
-            "$ref": "1/MoveToLevel"
-          }, 
+          "odmRef": "1/MoveToLevel", 
           "name": "Move To Level with On/Off"
         }, 
         "MovewithOnOff": {
-          "odmType": {
-            "$ref": "1/Move"
-          }, 
+          "odmRef": "1/Move", 
           "name": "Move with On/Off"
         }, 
         "StepwithOnOff": {
-          "odmType": {
-            "$ref": "1/Step"
-          }, 
+          "odmRef": "1/Step", 
           "name": "Step with On/Off"
         }, 
         "StopwithOnOff": {
-          "odmType": {
-            "$ref": "1/Stop"
-          }, 
+          "odmRef": "1/Stop", 
           "name": "Stop with On/Off"
         }
       }, 
