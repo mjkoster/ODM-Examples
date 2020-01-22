@@ -92,25 +92,14 @@
   },
 
   "definitions": {
-    "pointer-ref": {
-      "type": "object",
-      "properties": {
-        "$ref": {
-            "type": "string"
-        }
-      }
-    },
-    "pointer-ref-list": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/pointer-ref"
-      },
-      "minitems": 1
+    "sdf-pointer": {
+          "type": "string",
+          "format": "uri-reference"
     },
     "pointer-list": {
       "type": "array",
       "items": {
-        "type": "string"
+        "$ref": "#/definitions/sdf-pointer"
       }
     },
     "commonqualities": {
@@ -128,6 +117,9 @@
         "name": {
           "type": "string"
         },
+        "odmRef": {
+          "$ref": "#/definitions/sdf-pointer"
+        },
         "odmType": {
           "type": "object",
           "properties": {
@@ -137,7 +129,7 @@
           "additionalProperties": false        
           }
         },
-        "odmInclude": {
+        "odmComponent": {
           "$ref": "#/definitions/pointer-list"
         },
         "odmRequired": {
@@ -314,6 +306,9 @@
         "$comment": {
           "type": "string"
         },
+        "$ref": {
+          "$ref": "#/definitions/sdf-pointer"
+        },
         "type": {
           "type": "string",
           "enum": [
@@ -327,13 +322,7 @@
         },
         "enum": {
           "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "number"
-            },
-            "minitems": 1
-          }
+          "minItems": 1
         },
         "const": {
           "oneOf": [
