@@ -74,14 +74,14 @@
           "odmData": {
             "transitiontypedata": {
               "required": [
-                { $ref": "0/transitiontype/odmData/transitiontime" },
-                { $ref": "0/transitiontype/odmData/heatsetpoint" },
-                { $ref": "0/transitiontype/odmData/coolsetpoint" },
+                { "$ref": "0/transitiontype/odmData/transitiontime" },
+                { "$ref": "0/transitiontype/odmData/heatsetpoint" },
+                { "$ref": "0/transitiontype/odmData/coolsetpoint" },
               ],
               "inputData": [
-                { $ref": "0/transitiontype/odmData/transitiontime" },
-                { $ref": "0/transitiontype/odmData/heatsetpoint" },
-                { $ref": "0/transitiontype/odmData/coolsetpoint" },
+                { "$ref": "0/transitiontype/odmData/transitiontime" },
+                { "$ref": "0/transitiontype/odmData/heatsetpoint" },
+                { "$ref": "0/transitiontype/odmData/coolsetpoint" },
               ],
               "odmData": {
                 "transitiontime": {
@@ -695,26 +695,25 @@
               "maximum": 10
             },
             "dayofweek": {
-              "name": "DayOfWeek"
+              "name": "DayOfWeek",
               "odmType": { "$ref": "0/odmData/dayoftheweek" } 
             },  
             "mode": {
-              "name": "Mode"
+              "name": "Mode",
               "odmType": { "$ref": "0/odmData/tstatschedulemode" } 
             },  
             "transitions": {
-              "name": "Transitions"
+              "name": "Transitions",
               //
               //  This should be an array of type 'TransitionType' or as
               //  defined in this file 'transitiontypedata'. 
               //  One DM doesn't have an 'array' so I'm adding it.
               //  Here as:  array:[ { type }, { size } ]
               //
-              "odmType": array [ 
-                "type": { "$ref": "0/odmData/transitiontypedata" },
-                "size": {
-                  { "$ref": "#/odmData/numberoftransitions" }
-                }
+              "odmType": "array",
+              "items": [ 
+                { "type": { "$ref": "0/odmData/transitiontypedata" }},
+                { "size": { "$ref": "#/odmData/numberoftransitions" }}
               ] 
             }  
           }
