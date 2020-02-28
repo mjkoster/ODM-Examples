@@ -12,19 +12,21 @@
   "odmObject": {
     "Level": {
       "name": "Level Control", 
+      "id": 8, 
       "odmRequired": [
-        "0/odmProperty/CurrentLevel", 
-        "0/odmAction/MoveToLevel", 
-        "0/odmAction/Move", 
-        "0/odmAction/Stop", 
-        "0/odmAction/MoveToLevelwithOnOff", 
-        "0/odmAction/MovewithOnOff", 
-        "0/odmAction/StepwithOnOff", 
-        "0/odmAction/StopwithOnOff"
+        "#/odmObject/Level/odmProperty/CurrentLevel", 
+        "#/odmObject/Level/odmAction/MoveToLevel", 
+        "#/odmObject/Level/odmAction/Move", 
+        "#/odmObject/Level/odmAction/Stop", 
+        "#/odmObject/Level/odmAction/MoveToLevelwithOnOff", 
+        "#/odmObject/Level/odmAction/MovewithOnOff", 
+        "#/odmObject/Level/odmAction/StepwithOnOff", 
+        "#/odmObject/Level/odmAction/StopwithOnOff"
       ],
       "odmProperty": {
         "CurrentLevel": {
           "name": "Current Level", 
+          "id": 0, 
           "type": "number", 
           "widthInBits": 8, 
           "minimum": 0, 
@@ -33,15 +35,18 @@
         "RemainingTime": {
           "odmRef": "#/odmData/transitiontimedata", 
           "name": "Remaining Time", 
+          "id": 1, 
           "default": 0
         }, 
         "OnOffTransitionTime": {
           "odmRef": "#/odmData/transitiontimedata", 
           "name": "On Off Transition Time", 
+          "id": 16, 
           "default": 0
         }, 
         "OnLevel": {
           "name": "On Level", 
+          "id": 17, 
           "type": "number", 
           "widthInBits": 8, 
           "minimum": 0, 
@@ -50,8 +55,8 @@
         }, 
         "OnTransitionTime": {
           "odmRef": "#/odmData/transitiontimedata", 
-          "name": "On Transition Time", 
-          "odmRequired": true 
+          "name": "On Transition Time",
+          "id": 18
         }, 
         "OffTransitionTime": {
           "odmRef": "#/odmData/transitiontimedata", 
@@ -70,13 +75,14 @@
       "odmAction": {
         "MoveToLevel": {
           "name": "Move to Level", 
+          "id": 0, 
           "odmRequired": [
-            "0/odmData/level", 
-            "0/odmData/transitiontime"
+            "#/odmObject/Level/odmAction/MoveToLevel/odmData/level", 
+            "#/odmObject/Level/odmAction/MoveToLevel/odmData/transitiontime"
           ],
           "odmInputData": [
-            "0/odmData/level", 
-            "0/odmData/transitiontime"
+            "#/odmObject/Level/odmAction/MoveToLevel/odmData/level", 
+            "#/odmObject/Level/odmAction/MoveToLevel/odmData/transitiontime"
           ],
           "odmData": {
             "level": {
@@ -94,13 +100,14 @@
         }, 
         "Move": {
           "name": "Move", 
+          "id": 1, 
           "odmRequired": [
-            "0/odmData/movemode", 
-            "0/odmData/rate"
+            "#/odmObject/Level/odmAction/Move/odmData/movemode", 
+            "#/odmObject/Level/odmAction/Move/odmData/rate"
           ],
           "odmInputData": [
-            "0/odmData/movemode", 
-            "0/odmData/rate"
+            "#/odmObject/Level/odmAction/Move/odmData/movemode", 
+            "#/odmObject/Level/odmAction/Move/odmData/rate"
           ],
           "odmData": {
             "movemode": {
@@ -123,15 +130,16 @@
         }, 
         "Step": {
           "name": "Step", 
+          "id": 2, 
           "odmRequired": [
-            "0/odmData/stepmode",
-            "0/odmData/stepsize",
-            "0/odmData/transitiontime"
+            "#/odmObject/Level/odmAction/Step/odmData/stepmode",
+            "#/odmObject/Level/odmAction/Step/odmData/stepsize",
+            "#/odmObject/Level/odmAction/Step/odmData/transitiontime"
           ],
           "odmInputData": [
-            "0/odmData/stepmode",
-            "0/odmData/stepsize",
-            "0/odmData/transitiontime"
+            "#/odmObject/Level/odmAction/Step/odmData/stepmode",
+            "#/odmObject/Level/odmAction/Step/odmData/stepsize",
+            "#/odmObject/Level/odmAction/Step/odmData/transitiontime"
           ],
           "odmData": {
             "stepmode": {
@@ -157,23 +165,28 @@
           }
         }, 
         "Stop": {
-          "name": "Stop"
+          "name": "Stop",
+          "id": 3
         }, 
         "MoveToLevelwithOnOff": {
-          "odmRef": "1/MoveToLevel", 
-          "name": "Move To Level with On/Off"
+          "odmRef": "#/odmObject/Level/odmAction/MoveToLevel", 
+          "name": "Move To Level with On/Off",
+          "id": 4
         }, 
         "MovewithOnOff": {
-          "odmRef": "1/Move", 
-          "name": "Move with On/Off"
+          "odmRef": "#/odmObject/Level/odmAction/Move", 
+          "name": "Move with On/Off",
+          "id": 5
         }, 
         "StepwithOnOff": {
-          "odmRef": "1/Step", 
-          "name": "Step with On/Off"
+          "odmRef": "#/odmObject/Level/odmAction/Step", 
+          "name": "Step with On/Off",
+          "id": 6
         }, 
         "StopwithOnOff": {
-          "odmRef": "1/Stop", 
-          "name": "Stop with On/Off"
+          "odmRef": "#/odmObject/Level/odmAction/Stop", 
+          "name": "Stop with On/Off",
+          "id": 7
         }
       }, 
       "odmData": {
