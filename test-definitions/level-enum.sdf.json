@@ -27,19 +27,16 @@
         "CurrentLevel": {
           "name": "Current Level", 
           "id": 0, 
-          "type": "number", 
-          "widthInBits": 8, 
-          "minimum": 0, 
-          "maximum": 254
+          "$ref": "#/odmObject/Level/odmData/LevelData"            }, 
         }, 
         "RemainingTime": {
-          "odmRef": "#/odmObject/Level/odmData/transitiontimedata", 
+          "odmRef": "#/odmObject/Level/odmData/TransitionTimeData", 
           "name": "Remaining Time", 
           "id": 1, 
           "default": 0
         }, 
         "OnOffTransitionTime": {
-          "odmRef": "#/odmObject/Level/odmData/transitiontimedata", 
+          "odmRef": "#/odmObject/Level/odmData/TransitionTimeData", 
           "name": "On Off Transition Time", 
           "id": 16, 
           "default": 0
@@ -54,12 +51,12 @@
           "default": 255
         }, 
         "OnTransitionTime": {
-          "odmRef": "#/odmObject/Level/odmData/transitiontimedata", 
+          "odmRef": "#/odmObject/Level/odmData/TransitionTimeData", 
           "name": "On Transition Time",
           "id": 18
         }, 
         "OffTransitionTime": {
-          "odmRef": "#/odmObject/Level/odmData/transitiontimedata", 
+          "odmRef": "#/odmObject/Level/odmData/TransitionTimeData", 
           "name": "Off Transition Time", 
           "id": 19
         }, 
@@ -77,24 +74,20 @@
           "name": "Move to Level", 
           "id": 0, 
           "odmRequired": [
-            "#/odmObject/Level/odmAction/MoveToLevel/odmData/level", 
-            "#/odmObject/Level/odmAction/MoveToLevel/odmData/transitiontime"
+            "#/odmObject/Level/odmAction/MoveToLevel/odmData/LevelData", 
+            "#/odmObject/Level/odmAction/MoveToLevel/odmData/TransitionTimeData"
           ],
           "odmInputData": [
-            "#/odmObject/Level/odmAction/MoveToLevel/odmData/level", 
-            "#/odmObject/Level/odmAction/MoveToLevel/odmData/transitiontime"
+            "#/odmObject/Level/odmAction/MoveToLevel/odmData/LevelData", 
+            "#/odmObject/Level/odmAction/MoveToLevel/odmData/TransitionTimeData"
           ],
           "odmData": {
-            "level": {
-              "name": "Level", 
-              "type": "number", 
-              "widthInBits": 8, 
-              "minimum": 0, 
-              "maximum": 254
-            }, 
-            "transitiontime": {
-              "name": "Transition Time", 
-              "odmRef": "#/odmObject/Level/odmData/transitiontimedata"
+            "LevelData": {
+              "name": "Level Data", 
+              "$ref": "#/odmObject/Level/odmData/LevelData"            }, 
+            "TransitionTimeData": {
+              "name": "Transition Time Data", 
+              "odmRef": "#/odmObject/Level/odmData/TransitionTimeData"
             }
           }
         }, 
@@ -102,19 +95,19 @@
           "name": "Move", 
           "id": 1, 
           "odmRequired": [
-            "#/odmObject/Level/odmAction/Move/odmData/movemode", 
-            "#/odmObject/Level/odmAction/Move/odmData/rate"
+            "#/odmObject/Level/odmAction/Move/odmData/MoveMode", 
+            "#/odmObject/Level/odmAction/Move/odmData/Rate"
           ],
           "odmInputData": [
-            "#/odmObject/Level/odmAction/Move/odmData/movemode", 
-            "#/odmObject/Level/odmAction/Move/odmData/rate"
+            "#/odmObject/Level/odmAction/Move/odmData/MoveMode", 
+            "#/odmObject/Level/odmAction/Move/odmData/Rate"
           ],
           "odmData": {
-            "movemode": {
+            "MoveMode": {
               "name": "Move mode", 
-              "$ref": "#/odmObject/Level/odmData/directionData"
+              "$ref": "#/odmObject/Level/odmData/DirectionData"
             }, 
-            "rate": {
+            "Rate": {
               "name": "Move rate", 
               "type": "number", 
               "widthInBits": 8, 
@@ -127,30 +120,30 @@
           "name": "Step", 
           "id": 2, 
           "odmRequired": [
-            "#/odmObject/Level/odmAction/Step/odmData/stepmode",
-            "#/odmObject/Level/odmAction/Step/odmData/stepsize",
-            "#/odmObject/Level/odmAction/Step/odmData/transitiontime"
+            "#/odmObject/Level/odmAction/Step/odmData/StepMode",
+            "#/odmObject/Level/odmAction/Step/odmData/StepSize",
+            "#/odmObject/Level/odmAction/Step/odmData/TransitionTime"
           ],
           "odmInputData": [
-            "#/odmObject/Level/odmAction/Step/odmData/stepmode",
-            "#/odmObject/Level/odmAction/Step/odmData/stepsize",
-            "#/odmObject/Level/odmAction/Step/odmData/transitiontime"
+            "#/odmObject/Level/odmAction/Step/odmData/StepMode",
+            "#/odmObject/Level/odmAction/Step/odmData/StepSize",
+            "#/odmObject/Level/odmAction/Step/odmData/TransitionTime"
           ],
           "odmData": {
-            "stepmode": {
+            "StepMode": {
               "name": "Step mode", 
-              "$ref": "#/odmObject/Level/odmData/directionData"
+              "$ref": "#/odmObject/Level/odmData/DirectionData"
             }, 
-            "stepsize": {
+            "StepSize": {
               "name": "Step size", 
               "type": "number", 
               "widthInBits": 8, 
               "minimum": 0, 
               "maximum": 255
             }, 
-            "transitiontime": {
+            "TransitionTime": {
               "name": "Step Transition Time", 
-              "odmRef": "#/odmObject/Level/odmData/transitiontimedata"
+              "odmRef": "#/odmObject/Level/odmData/TransitionTimeData"
             }
           }
         }, 
@@ -180,17 +173,17 @@
         }
       }, 
       "odmData": {
-        "transitiontimedata": {
+        "TransitionTimeData": {
           "type": "number", 
           "widthInBits": 16, 
           "minimum": 0, 
           "maximum": 65535, 
           "multipleOf": 1, 
-          "unit": "seconds", 
+          "scaleUnit": "seconds", 
           "scaleMinimum": 0, 
           "scaleMaximum": 6553.5
         },
-        "directionData": {
+        "DirectionData": {
           "odmEnum": {
             "up": {
               "type": "number",
@@ -203,6 +196,12 @@
               "const": 1
             }
           }
+        },
+        "LevelData": {
+          "type": "number", 
+          "widthInBits": 8, 
+          "minimum": 0, 
+          "maximum": 254
         }
       }
     }
