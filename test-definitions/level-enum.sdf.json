@@ -185,12 +185,12 @@
         },
         "DirectionData": {
           "odmEnum": {
-            "up": {
+            "Up": {
               "type": "number",
               "widthInBits": 8,
               "const": 0
             },
-            "down": {
+            "Down": {
               "type": "number",
               "widthInBits": 8,
               "const": 1
