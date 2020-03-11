@@ -13,12 +13,8 @@
     "Switch": {
       "odmProperty": {
         "value": {
-          "id": 1,
           "type": "string", 
-          "enum": [
-            { "on": 1}, 
-            { "off": 0 }
-          ]
+          "enum": [ "on", "off" ]
         }
       }, 
       "odmAction": {
