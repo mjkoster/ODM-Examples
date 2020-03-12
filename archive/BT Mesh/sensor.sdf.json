@@ -76,9 +76,9 @@
         }
       }
     }, 
-    "SensorSetting": {
+    "SensorSetting": { // 0 or more multiple instances of this object
       "odmProperty": {
-        "SensorPropertyID": {
+        "SensorPropertyID": {// link to the corresponding sensor descriptor object
           "odmType": {
             "$ref": "#/odmData/PropertyIdType"
           }
@@ -109,7 +109,7 @@
         "SensorSettingRawValueType": {}
       }
     }, 
-    "SensorCadence": {
+    "SensorCadence": {// one for each sensor descriptor, regulates the publication
       "odmProperty": {
         "SensorPropertyID": {
           "odmType": {
