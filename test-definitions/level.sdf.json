@@ -114,10 +114,7 @@
               "name": "Move mode", 
               "type": "number", 
               "widthInBits": 8, 
-              "enum": [
-                { "up": 0 }, 
-                { "down": 1 }
-             ]
+              "enum": [0,1]
             }, 
             "rate": {
               "name": "Move rate", 
@@ -146,10 +143,7 @@
               "name": "Step mode", 
               "type": "number", 
               "widthInBits": 8, 
-              "enum": [
-                { "up": 0 }, 
-                { "down": 1 }
-              ]
+              "enum": [0,1]
             }, 
             "stepsize": {
               "name": "Step size", 
@@ -196,7 +190,7 @@
           "minimum": 0, 
           "maximum": 65535, 
           "multipleOf": 1, 
-          "unit": "seconds", 
+          "scaleUnit": "seconds", 
           "scaleMinimum": 0, 
           "scaleMaximum": 6553.5
         }
