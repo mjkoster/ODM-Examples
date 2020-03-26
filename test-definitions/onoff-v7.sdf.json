@@ -42,7 +42,6 @@
           "odmRef": "#/odmData/TransitionTimeData", 
           "name": "OffWaitTime", 
           "id": "4002", 
-          "type": "number", 
           "default": 0
         }, 
         "StartUpOnOff": {

@@ -1,7 +1,7 @@
 {
   "info": {
     "title": "Example ODM model for the ZCL Level cluster", 
-    "version": "20190504", 
+    "version": "20200326", 
     "copyright": "no copyright", 
     "license": "not licensed"
   }, 
@@ -11,8 +11,8 @@
   "defaultnamespace": "zcl", 
   "odmObject": {
     "Level": {
-      "name": "Level Control", 
-      "id": 8, 
+      "name": "Level", 
+      "id": "0008", 
       "odmRequired": [
         "#/odmObject/Level/odmProperty/CurrentLevel", 
         "#/odmObject/Level/odmAction/MoveToLevel", 
@@ -26,25 +26,50 @@
       ],
       "odmProperty": {
         "CurrentLevel": {
-          "name": "Current Level", 
-          "id": 0, 
-          "$ref": "#/odmObject/Level/odmData/LevelData"            }, 
+          "name": "CurrentLevel", 
+          "id": "0000", 
+          "$ref": "#/odmObject/Level/odmData/LevelData"
         }, 
         "RemainingTime": {
           "odmRef": "#/odmObject/Level/odmData/TransitionTimeData", 
-          "name": "Remaining Time", 
-          "id": 1, 
+          "name": "RemainingTime", 
+          "id": "0001", 
           "default": 0
-        }, 
+        },
+        "MinLevel": {
+          "name": "MinLevel", 
+          "id": "0002", 
+          "$ref": "#/odmObject/Level/odmData/LevelData"
+        },
+        "MaxLevel": {
+          "name": "MaxLevel", 
+          "id": "0003", 
+          "$ref": "#/odmObject/Level/odmData/LevelData"
+        },
+        "CurrentFrequency": {
+          "name": "CurrentFrequency", 
+          "id": "0004", 
+          "$ref": "#/odmObject/Level/odmData/FrequencyData"
+        },
+        "MinFrequency": {
+          "name": "CurrentFrequency", 
+          "id": "0005", 
+          "$ref": "#/odmObject/Level/odmData/FrequencyData"
+        },
+        "MaxFrequency": {
+          "name": "CurrentFrequency", 
+          "id": "0006", 
+          "$ref": "#/odmObject/Level/odmData/FrequencyData"
+        },
         "OnOffTransitionTime": {
           "odmRef": "#/odmObject/Level/odmData/TransitionTimeData", 
-          "name": "On Off Transition Time", 
-          "id": 16, 
+          "name": "OnOffTransitionTime", 
+          "id": "0010", 
           "default": 0
         }, 
         "OnLevel": {
-          "name": "On Level", 
-          "id": 17, 
+          "name": "OnLevel", 
+          "id": "0011", 
           "type": "number", 
           "widthInBits": 8, 
           "minimum": 0, 
@@ -53,27 +78,56 @@
         }, 
         "OnTransitionTime": {
           "odmRef": "#/odmObject/Level/odmData/TransitionTimeData", 
-          "name": "On Transition Time",
-          "id": 18
+          "name": "OnTransitionTime",
+          "id": "0012"
         }, 
         "OffTransitionTime": {
           "odmRef": "#/odmObject/Level/odmData/TransitionTimeData", 
-          "name": "Off Transition Time", 
-          "id": 19
+          "name": "OffTransitionTime", 
+          "id": "0013"
         }, 
         "DefaultMoveRate": {
-          "name": "Default Move Rate", 
-          "id": 20, 
+          "name": "DefaultMoveRate", 
+          "id": "0014", 
           "type": "number", 
           "widthInBits": 16, 
           "minimum": 0, 
           "maximum": 254
-        }
-      }, 
+        },
+        "Options": {
+          "name": "Options",
+          "id": "000F",
+          "odmRef": "#/odmObject/Level/odmData/LevelOptions",
+          "default": {
+            "ExecuteIfOff": false,
+            "CoupleColorTempToLevel": false
+          }
+        },
+        "StartUpCurrentLevel": {
+          "name": "StartUpCurrentLevel", 
+          "id": "4000", 
+          "type": "number", 
+          "widthInBits": 8, 
+          "minimum": 1, 
+          "maximum": 254,
+          "odmEnum": {
+            "MinimumDeviceValuePermitted": {
+            "type": "number",
+            "widthInBits": 8, 
+            "const": 0
+            },
+            "SetToPreviousValue": {
+            "type": "number",
+            "widthInBits": 8, 
+            "const": 255
+            }
+          }
+        } 
+      },
       "odmAction": {
         "MoveToLevel": {
-          "name": "Move to Level", 
-          "id": 0, 
+          "name": "MoveToLevel", 
+          "id": "0000", 
           "odmRequired": [
             "#/odmObject/Level/odmAction/MoveToLevel/odmData/LevelData", 
             "#/odmObject/Level/odmAction/MoveToLevel/odmData/TransitionTimeData"
@@ -83,18 +137,27 @@
             "#/odmObject/Level/odmAction/MoveToLevel/odmData/TransitionTimeData"
           ],
           "odmData": {
-            "LevelData": {
-              "name": "Level Data", 
-              "$ref": "#/odmObject/Level/odmData/LevelData"            }, 
+            "Level": {
+              "name": "LevelData", 
+              "odmRef": "#/odmObject/Level/odmData/LevelData"            
+            }, 
             "TransitionTimeData": {
-              "name": "Transition Time Data", 
+              "name": "TransitionTimeData", 
               "odmRef": "#/odmObject/Level/odmData/TransitionTimeData"
+            },
+            "OptionsMask": {
+              "name": "OptionsMask",
+              "odmRef": "#/odmObject/Level/odmData/LevelOptions"
+            },
+            "OptionsOverride": {
+              "name": "OptionsMask",
+              "odmRef": "#/odmObject/Level/odmData/LevelOptions"
             }
           }
         }, 
         "Move": {
           "name": "Move", 
-          "id": 1, 
+          "id":"0001", 
           "odmRequired": [
             "#/odmObject/Level/odmAction/Move/odmData/MoveMode", 
             "#/odmObject/Level/odmAction/Move/odmData/Rate"
@@ -105,21 +168,29 @@
           ],
           "odmData": {
             "MoveMode": {
-              "name": "Move mode", 
+              "name": "MoveMode", 
               "$ref": "#/odmObject/Level/odmData/MoveStepMode"
             }, 
             "Rate": {
-              "name": "Move rate", 
+              "name": "Rate", 
               "type": "number", 
               "widthInBits": 8, 
               "minimum": 0, 
               "maximum": 255
+            },
+            "OptionsMask": {
+              "name": "OptionsMask",
+              "odmRef": "#/odmObject/Level/odmData/LevelOptions"
+              },
+            "OptionsOverride": {
+              "name": "OptionsMask",
+              "odmRef": "#/odmObject/Level/odmData/LevelOptions"
             }
           }
         }, 
         "Step": {
           "name": "Step", 
-          "id": 2, 
+          "id": "0002", 
           "odmRequired": [
             "#/odmObject/Level/odmAction/Step/odmData/StepMode",
             "#/odmObject/Level/odmAction/Step/odmData/StepSize",
@@ -145,32 +216,69 @@
             "TransitionTime": {
               "name": "Step Transition Time", 
               "odmRef": "#/odmObject/Level/odmData/TransitionTimeData"
+            },
+            "OptionsMask": {
+              "name": "OptionsMask",
+              "odmRef": "#/odmObject/Level/odmData/LevelOptions"
+            },
+            "OptionsOverride": {
+              "name": "OptionsMask",
+              "odmRef": "#/odmObject/Level/odmData/LevelOptions"
             }
           }
         }, 
         "Stop": {
           "name": "Stop",
-          "id": 3
+          "id": "0003",
+          "odmInputData": [
+            "#/odmObject/Level/odmAction/Stop/ocmData/OptionsMask",
+            "#/odmObject/Level/odmAction/Stop/ocmData/OptionsOverride"
+          ],
+          "odmData": {
+            "OptionsMask": {
+              "name": "OptionsMask",
+              "odmRef": "#/odmObject/Level/odmData/LevelOptions"
+            },
+            "OptionsOverride": {
+              "name": "OptionsMask",
+              "odmRef": "#/odmObject/Level/odmData/LevelOptions"
+            }
+          }
         }, 
         "MoveToLevelwithOnOff": {
           "odmRef": "#/odmObject/Level/odmAction/MoveToLevel", 
-          "name": "Move To Level with On/Off",
-          "id": 4
+          "name": "MoveToLevelwithOnOff",
+          "id": "0004"
         }, 
         "MovewithOnOff": {
           "odmRef": "#/odmObject/Level/odmAction/Move", 
-          "name": "Move with On/Off",
-          "id": 5
+          "name": "MovewithOnOff",
+          "id": "0005"
         }, 
         "StepwithOnOff": {
           "odmRef": "#/odmObject/Level/odmAction/Step", 
-          "name": "Step with On/Off",
-          "id": 6
+          "name": "StepwithOnOff",
+          "id": "0006"
         }, 
         "StopwithOnOff": {
           "odmRef": "#/odmObject/Level/odmAction/Stop", 
-          "name": "Stop with On/Off",
-          "id": 7
+          "name": "StopwithOnOff",
+          "id": "0007"
+        },
+        "MoveToClosestFrequency": {
+          "name": "MoveToClosestFrequency",
+          "id": "0008",
+          "odmInputData": [
+            "#/odmObject/Level/odmAction/Stop/odmData/Frequency"
+          ],
+          "odmRequired": [
+            "#/odmObject/Level/odmAction/Stop/odmData/Frequency"
+          ],
+          "odmData": {
+            "Frequency": {
+              "odmRef": "#/odmObject/Level/odmData/FrequencyData"
+            }
+          }
         }
       }, 
       "odmData": {
@@ -180,7 +288,7 @@
           "minimum": 0, 
           "maximum": 65535, 
           "multipleOf": 1, 
-          "scaleUnit": "seconds", 
+          "unit": "seconds", 
           "scaleMinimum": 0, 
           "scaleMaximum": 6553.5
         },
@@ -215,6 +323,12 @@
               "type": "boolean"
             }
           }
+        },
+        "FrequencyData": {
+          "type": "number",
+          "widthInBits": 16,
+          "minimum": 0,
+          "maximum": 65535
         }
       }
     }
