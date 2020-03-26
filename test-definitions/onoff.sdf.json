@@ -1,0 +1,157 @@
+{
+  "info": {
+    "title": "Example ODM model for the ZCL OnOff cluster", 
+    "version": "20200326", 
+    "copyright": "no copyright", 
+    "license": "not licensed"
+  }, 
+  "namespace": {
+    "zcl": "http://example.com/zcl/odm"
+  }, 
+  "defaultnamespace": "zcl", 
+  "odmObject": {
+    "OnOff": {
+      "name": "OnOff", 
+      "id": "6", 
+      "odmRequired": [
+        "#/odmObject/OnOff/odmProperty/OnOff", 
+        "#/odmObject/OnOff/odmAction/On",
+        "#/odmObject/OnOff/odmAction/Off",
+        "#/odmObject/OnOff/odmAction/Toggle"
+      ],
+      "odmProperty": {
+        "OnOff": {
+          "name": "OnOff", 
+          "id": "0000", 
+          "type": "boolean",
+          "default": false
+        }, 
+        "GlobalSceneControl": {
+          "name": "GlobalSceneControl", 
+          "id": "4000", 
+          "type": "boolean",
+          "default": true
+        }, 
+        "OnTime": {
+          "odmRef": "#/odmData/TransitionTimeData", 
+          "name": "OnTime", 
+          "id": "4001", 
+          "default": 0
+        }, 
+        "OffWaitTime": {
+          "odmRef": "#/odmData/TransitionTimeData", 
+          "name": "OffWaitTime", 
+          "id": "4002", 
+          "type": "number", 
+          "default": 0
+        }, 
+        "StartUpOnOff": {
+          "odmRef": "#/odmData/StartUpOnOffMode", 
+          "name": "StartUpOnOff",
+          "id": "4003"
+      }, 
+      "odmAction": {
+        "Off": {
+          "name": "Off", 
+          "id": "0"
+        }, 
+        "On": {
+          "name": "On", 
+          "id": "1"
+        }, 
+        "Toggle": {
+          "name": "Toggle", 
+          "id": "2" 
+        }, 
+        "OffWithEffect": {
+          "name": "OffWithEffect",
+          "id": "40",
+          "odmRequired": [
+          ],
+          "odmInputData": [
+            "#/odmObject/OnOff/odmAction/OffWithEffect/odmData/EffectIdentifier", 
+            "#/odmObject/OnOff/odmAction/OffWithEffect/odmData/EffectVariant"
+          ],
+          "odmData": {
+            "EffectIdentifier": {
+              "name": "EffectIdentifier", 
+              "widthInBits": 8, 
+              "odmEnum": {
+                "DelayedAllOff": {
+                  "type": "number",
+                  "widthInBits": 8,
+                  "const": 0
+                },
+                "DyingLight": {
+                  "type": "number",
+                  "widthInBits": 8,
+                  "const": 1
+                }
+              } 
+            }, 
+            "EffectVariant": {
+              "name": "EffectVariant", 
+              "type": "number", 
+              "widthInBits": 8
+            }
+          }
+        },
+        "OnWithRecallGlobalScene": {
+          "name": "OnWithRecallGlobalScene", 
+          "id": "41"
+        }, 
+        "OnWithTimedOff": {
+          "name": "OnWithTimedOff", 
+          "id": "42",
+          "odmData": {
+            "OnOffControl": {
+              "type": "object",
+              "widthInBits": 8,
+              "properties" : {
+                "AcceptOnlyWhenOn": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }, 
+      "odmData": {
+        "TransitionTimeData": {
+          "type": "number", 
+          "widthInBits": 16, 
+          "minimum": 0, 
+          "maximum": 65535, 
+          "multipleOf": 1, 
+          "scaleUnit": "seconds", 
+          "scaleMinimum": 0, 
+          "scaleMaximum": 6553.5
+        },
+        "StartUpOnOffMode": {
+          "odmEnum": {
+            "SetOnOffTo0": {
+              "type": "number",
+              "widthInBits": 8,
+              "const": "0"
+            },
+            "SetOnOffTo1": {
+              "type": "number",
+              "widthInBits": 8,
+              "const": "1"
+            },
+            "TogglePreviousOnOff": {
+              "type": "number",
+              "widthInBits": 8,
+              "const": "2"
+            },
+            "SetPreviousOnOff": {
+              "type": "number",
+              "widthInBits": 8,
+              "const": "FF"
+            }
+          }
+        }
+      }
+    }
+  }
+}
