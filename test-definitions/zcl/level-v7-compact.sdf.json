@@ -105,21 +105,9 @@
             "#/odmObject/Level/odmAction/Step/odmData/TransitionTime"
           ],
           "odmData": {
-            "StepMode": {
-              "name": "Step mode", 
-              "$ref": "#/odmObject/Level/odmData/MoveStepMode"
-            }, 
-            "StepSize": {
-              "name": "Step size", 
-              "type": "number", 
-              "widthInBits": 8, 
-              "minimum": 0, 
-              "maximum": 255
-            }, 
-            "TransitionTime": {
-              "name": "Step Transition Time", 
-              "odmRef": "#/odmObject/Level/odmData/TransitionTimeData"
-            },
+            "StepMode": {"name": "Step mode", "$ref": "#/odmObject/Level/odmData/MoveStepMode" }, 
+            "StepSize": {"name": "Step size", "type": "number", "widthInBits": 8, "minimum": 0,  "maximum": 255}, 
+            "TransitionTime": { "name": "Step Transition Time",  "odmRef": "#/odmObject/Level/odmData/TransitionTimeData"},
             "OptionsMask": {"name": "OptionsMask","odmRef": "#/odmObject/Level/odmData/LevelOptions"},
             "OptionsOverride": {"name": "OptionsMask", "odmRef": "#/odmObject/Level/odmData/LevelOptions"}
             }
