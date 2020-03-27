@@ -1,0 +1,42 @@
+{
+  "info": {
+    "title": "Example file for ODM Simple JSON Definition Format", 
+    "version": "20190424", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "st": "http://example.com/capability/odm"
+  }, 
+  "defaultnamespace": "st", 
+  "odmObject": {
+    "Switch": {
+      "odmProperty": {
+        "State": {
+          "description": "The state of the switch, whether on or off",
+          "odmRef": "#/odmObject/Switch/odmData/StateData"
+        }
+      }, 
+      "odmAction": {
+        "On": { "description": "Action to turn the switch on" }, 
+        "Off": { "description": "Action to turn the switch off" }
+      },
+      "odmData": {
+        "StateData": {
+          "odmEnum": {
+            "On": {
+                "type": "string",
+                "const": "on",
+                "description": "The on state"
+            },
+            "Off": {
+                "type": "string",
+                "const": "off",
+                "description": "The off state"
+            }
+          }
+        }
+      }
+    }
+  }
+}
