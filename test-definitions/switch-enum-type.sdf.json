@@ -11,16 +11,16 @@
   "defaultnamespace": "st", 
   "odmObject": {
     "Switch": {
+      "odmAction": {
+        "On": { "description": "Action to turn the switch on" }, 
+        "Off": { "description": "Action to turn the switch off" }
+      },
       "odmProperty": {
         "State": {
           "description": "The state of the switch, whether on or off",
           "odmRef": "#/odmObject/Switch/odmData/StateData"
         }
       }, 
-      "odmAction": {
-        "On": { "description": "Action to turn the switch on" }, 
-        "Off": { "description": "Action to turn the switch off" }
-      },
       "odmData": {
         "StateData": {
           "odmEnum": {
