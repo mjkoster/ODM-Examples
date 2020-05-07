@@ -1,0 +1,69 @@
+{
+  "info": {
+    "title": "Example for complex property type", 
+    "version": "20190424", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "odm": "http://example.com/namespaces/odm"
+  }, 
+  "defaultnamespace": "odm", 
+  "odmObject": {
+    "MediaCore": {
+      "odmProperty": {
+        "genres": {
+          "odmRef": "odm:/odmData/MediaGenre",
+          "multiInstance": true
+        }
+      }, 
+      "odmAction": {
+        "on": { }, 
+        "off": { }
+      }
+    }
+  },
+  "odmData": {
+    "MediaGenre": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "odmRef": "odm:/odmData/MediaCategory",
+            "description": "Genre Category for Media Information."
+          },
+          "subcategory": {
+            "odmRef": "odm:/odmData/SubCategory",
+            "description": "Genre Sub-Category for Media Information."
+          }
+        }
+    },
+    "MediaCategory": {
+        "odmEnum": {
+            "Music": {
+                "type": "string",
+                "const": "Music",
+                "description": "https://en.wikipedia.org/wiki/Music"
+            },
+            "MotionPicture": {
+                "type": "string",
+                "const": "MotionPicture",
+                "description": "https://en.wikipedia.org/wiki/Film"
+            }
+        }
+    },
+    "MediaSubCategory": {
+        "odmEnum": {
+            "Rock": {
+                "type": "string",
+                "const": "Rock",
+                "description": "https://en.wikipedia.org/wiki/Rock_music"
+            },
+            "Pop": {
+                "type": "string",
+                "const": "Pop",
+                "description": "https://en.wikipedia.org/wiki/Pop_music"
+            }
+        }
+    }     
+  }
+}
