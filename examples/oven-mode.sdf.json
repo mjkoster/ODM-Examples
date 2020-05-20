@@ -14,9 +14,9 @@
       "name": "ovenMode",
       "label": "Oven Mode",
       "odmRequired": [
-        "#/odmObject/switch/odmProperty/value",
-        "#/odmObject/switch/odmAction/on",
-        "#/odmObject/switch/odmAction/off"
+        "#/odmObject/ovenMode/odmProperty/ovenMode",
+        "#/odmObject/ovenMode/odmProperty/supportedOvenModes",
+        "#/odmObject/ovenMode/odmAction/setOvenMode"
       ],
       "odmProperty": {
         "ovenMode": {
