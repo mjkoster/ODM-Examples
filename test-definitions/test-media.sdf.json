@@ -13,13 +13,9 @@
     "MediaCore": {
       "odmProperty": {
         "genres": {
-          "odmRef": "odm:/odmData/MediaGenre",
+          "odmRef": "/odmData/MediaGenre",
           "multiInstance": true
         }
-      }, 
-      "odmAction": {
-        "on": { }, 
-        "off": { }
       }
     }
   },
@@ -28,11 +24,11 @@
         "type": "object",
         "properties": {
           "category": {
-            "odmRef": "odm:/odmData/MediaCategory",
+            "odmRef": "/odmData/MediaCategory",
             "description": "Genre Category for Media Information."
           },
           "subcategory": {
-            "odmRef": "odm:/odmData/SubCategory",
+            "odmRef": "/odmData/MediaSubCategory",
             "description": "Genre Sub-Category for Media Information."
           }
         }
