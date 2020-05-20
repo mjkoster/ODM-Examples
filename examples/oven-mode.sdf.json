@@ -1,0 +1,52 @@
+{
+  "info": {
+    "title": "Example file for ODM Simple JSON Definition Format", 
+    "version": "20190424", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "st": "http://example.com/capability/smartthings"
+  }, 
+  "defaultnamespace": "st", 
+  "odmObject": {
+    "ovenMode": {
+      "name": "ovenMode",
+      "label": "Oven Mode",
+      "odmRequired": [
+        "#/odmObject/switch/odmProperty/value",
+        "#/odmObject/switch/odmAction/on",
+        "#/odmObject/switch/odmAction/off"
+      ],
+      "odmProperty": {
+        "ovenMode": {
+          "type": "string", 
+          "enum": [ "on", "off" ]
+        },
+        "supportedOvenModes": {
+          "type": "array",
+          "items": {
+            "$ref": "/odmData/OvenMode"
+          },
+          "odmRef": "/odmData/OvenMode",
+          "multiInstance": true
+        }
+      }, 
+      "odmAction": {
+        "setOvenMode": { 
+          "odmInputData": [
+            "#/odmObject/ovenMode/odmAction/setOvenMode/odmData/ovenMode"
+          ],
+          "odmRequired": [
+            "#/odmObject/ovenMode/odmAction/setOvenMode/odmData/ovenMode"
+          ],          
+          "odmData": {
+            "ovenMode": {
+              "odmRef": "/odmData/OvenMode"
+            }
+          }
+        }
+      }
+    }
+  }
+}
