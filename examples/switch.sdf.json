@@ -6,11 +6,18 @@
     "license": "http://example.com/license"
   }, 
   "namespace": {
-    "st": "http://example.com/capability/odm"
+    "st": "http://example.com/capability/smartthings"
   }, 
   "defaultnamespace": "st", 
   "odmObject": {
-    "Switch": {
+    "switch": {
+      "name": "switch",
+      "label": "Switch",
+      "odmRequired": [
+        "#/odmObject/switch/odmProperty/value",
+        "#/odmObject/switch/odmAction/on",
+        "#/odmObject/switch/odmAction/off"
+      ],
       "odmProperty": {
         "value": {
           "type": "string", 

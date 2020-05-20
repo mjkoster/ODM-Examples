@@ -1,0 +1,51 @@
+{
+  "info": {
+    "title": "Example file for ODM Simple JSON Definition Format", 
+    "version": "20190424", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "st": "http://example.com/playground/smartthings"
+  }, 
+  "defaultnamespace": "st", 
+  "odmObject": {
+    "switchLevel": {
+      "name": "switchLevel",
+      "label": "Switch Level",
+      "odmRequired": [
+        "#/odmObject/SwitchLevel/odmProperty/level",
+        "#/odmObject/SwitchLevel/odmAction/setLevel"
+      ],
+      "odmProperty": {
+        "level": {
+          "type": "integer", 
+          "minimum": 0,
+          "maximum": 100
+        }
+      }, 
+      "odmAction": {
+        "setLevel": { 
+          "odmRequired": [
+            "#/odmObject/SwitchLevel/odmAction/setLevel/odmData/level"
+          ],
+          "odmInputData": [
+            "#/odmObject/SwitchLevel/odmAction/setLevel/odmData/level",
+            "#/odmObject/SwitchLevel/odmAction/setLevel/odmData/rate"
+          ],
+          "odmData": {
+            "level": {
+              "type": "integer", 
+              "minimum": 0,
+              "maximum": 100
+            },
+            "rate": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}
