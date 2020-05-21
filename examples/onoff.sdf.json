@@ -1,0 +1,32 @@
+{
+  "info": {
+    "title": "Example file for ODM Simple JSON Definition Format", 
+    "version": "20190424", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "iot": "http://example.com/capability/iotschema"
+  }, 
+  "defaultnamespace": "iot", 
+  "odmObject": {
+    "onoff": {
+      "label": "OnOff Switch",
+      "odmRequired": [
+        "#/odmObject/onoff/odmProperty/state",
+        "#/odmObject/onoff/odmAction/on",
+        "#/odmObject/onoff/odmAction/off"
+      ],
+      "odmProperty": {
+        "state": {
+          "type": "boolean", 
+          "enum": [ true, false ]
+        }
+      }, 
+      "odmAction": {
+        "turnon": { }, 
+        "turnoff": { }
+      }
+    }
+  }
+}
