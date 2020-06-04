@@ -1,0 +1,93 @@
+{
+  "info": {
+    "title": "Example file for Semantic Definition Format", 
+    "version": "20200603", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "ex": "https://onedm.org/exploratory/#"
+  }, 
+  "defaultNamespace": "ex", 
+  "sdfObject": {
+    "oic.r.switch.binary": {
+      "name": "oic.r.switch.binary",
+      "description" : "This sdfObject describes a binary switch (on/off).\nThe Property \"value\" is a boolean.\nA value of 'true' means that the switch is on.\nA value of 'false' means that the switch is off.\n",
+      "sdfRequired": [
+        "#/sdfObject/oic.r.switch.binary/sdfProperty/value"
+      ],
+      "sdfProperty": {
+        "value": {
+          "label": "value",
+          "type": "boolean"
+        }
+      }
+    },
+
+    "oic.r.airflow": {
+      "label": "oic.r.airflow",
+      "description" : "",
+      "sdfRequired": [
+        "#/sdfObject/oic.r.airflow/sdfProperty/speed",
+        "#/sdfObject/oic.r.airflow/sdfProperty/range"
+      ],
+      "sdfProperty": {
+        "speed" : {
+          "label": "speed",
+          "description": "The current speed level.",
+          "type": "integer"
+        },
+        "direction" : {
+          "label": "direction",
+          "description": "The directionality of the air flow, a value indicated by \"supporteddirections\".",
+          "type": "string"
+        },
+        "automode" : {
+          "label": "automode",
+          "description": "The status of the automode feature, if on speed is set by the Device.",
+          "type": "string",
+          "enum": [
+            "On",
+            "Off"
+          ]
+        },
+        "supporteddirections" : {
+          "description": "The array of possible direction settings for this instance of the Resource Type.",
+          "writable": false,
+          "type": "array",
+          "items": {
+            "minItems": 1,
+            "type": "string",
+            "uniqueItems": true
+          }
+        },
+        "range": {
+          "name": "range",
+          "description" : "applies to the allowed values of speed",
+          "writable": false,
+          "type": "array",
+          "items": {
+            "type": "integer"
+           }
+        }
+      }
+    }
+  },
+
+  "sdfThing": {
+    "oic.r.airflowcontrol": {
+      "name": "oic.r.airflowcontrol",
+      "description" : "",
+      "sdfObject": {
+        "_b0": {
+          "sdfRef": "#/sdfObject/oic.r.switch.binary",
+          "semanticTag": "power"
+        },
+        "_b1": {
+          "sdfRef": "#/sdfObject/oic.r.airflow",
+          "semanticTag": "airflow"
+        }
+      }
+    }
+  }
+}

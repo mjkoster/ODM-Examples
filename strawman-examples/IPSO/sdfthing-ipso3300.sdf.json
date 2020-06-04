@@ -1,0 +1,145 @@
+{
+  "info": {
+    "title": "Example file for Semantic Definition Format", 
+    "version": "20200603", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "ex": "https://onedm.org/exploratory/#"
+  }, 
+  "defaultNamespace": "ex", 
+  "sdfProduct": {
+    "SKU_19934774": {
+      "productTypeListing": "Compound Vacuum Gauge", 
+      "sdfRequired": [
+        "#/sdfProduct/SKU_19934774/sdfObject/3300~10"
+      ],
+      "sdfObject": {
+        "3300/0": {
+          "sdfRef": "#/sdfObject/genericSensor", 
+          "sdfProperty": {
+            "minimumRange": {
+              "const": -120000
+            }, 
+            "maximumRange": {
+              "const": 120000
+            }, 
+            "applicationType": {
+              "const": "Vacuum Gauge"
+            }, 
+            "sensorType": {
+              "const": "absolutePressure"
+            }, 
+            "units": {
+              "const": "Pa"
+            }
+          }
+        }, 
+        "3300/1": {
+          "sdfRef": "#/sdfObject/genericSensor", 
+          "sdfProperty": {
+            "minimumRange": {
+              "const": 0
+            }, 
+            "maximumRange": {
+              "const": 20000
+            }, 
+            "applicationType": {
+              "const": "Vacuum Gauge"
+            }, 
+            "sensorType": {
+              "const": "vacuum"
+            }, 
+            "units": {
+              "const": "micron"
+            }
+          }
+        }
+      }
+    }
+  }, 
+  "sdfObject": {
+    "genericSensor": {
+      "id": 3300, 
+      "sdfRequired": [
+        "#/sdfObject/genericSensor/sdfProperty/sensorValue"
+      ],
+      "sdfProperty": {
+        "sensorValue": {
+          "sdfRef": "#/sdfProperty/sensorValue"
+        }, 
+        "minimumMeasuredValue": {
+          "sdfRef": "#/sdfProperty/minimumMeasuredValue"
+        }, 
+        "maximumMeasuredValue": {
+          "sdfRef": "#/sdfProperty/maximumMeasuredValue"
+        }, 
+        "minimumRangeValue": {
+          "sdfref": "#/sdfProperty/minimumRangeValue"
+        }, 
+        "maximumRangeValue": {
+          "sdfRef": "#/sdfProperty/maximumRangeValue"
+        }, 
+        "applicationType": {
+          "sdfRef": "#/sdfProperty/applicationType"
+        }, 
+        "sensorType": {
+          "sdfRef": "#/sdfProperty/sensorType"
+        }, 
+        "units": {
+          "sdfRef": "#/sdfProperty/units"
+        }
+      }, 
+      "sdfAction": {
+        "resetMinMax": {
+          "sdfRef": "#/sdfProperty/resetMinMax"
+        }
+      }
+    }
+  }, 
+  "sdfProperty": {
+    "sensorValue": {
+      "id": 5700, 
+      "type": "number", 
+      "subtype": "float"
+    }, 
+    "minimumMeasuredValue": {
+      "id": 5601, 
+      "type": "number", 
+      "subtype": "float"
+    }, 
+    "maximumMeasuredValue": {
+      "id": 5602, 
+      "type": "number", 
+      "subtype": "float"
+    }, 
+    "minimumRangeValue": {
+      "id": 5603, 
+      "type": "number", 
+      "subtype": "float"
+    }, 
+    "maximumRangeValue": {
+      "id": 5604, 
+      "type": "number", 
+      "subtype": "float"
+    }, 
+    "applicationType": {
+      "id": 5750, 
+      "type": "string"
+    }, 
+    "sensorType": {
+      "id": 5750, 
+      "type": "string"
+    }, 
+    "units": {
+      "id": 5750, 
+      "type": "string"
+    }
+  }, 
+  "sdfAction": {
+    "resetMinMax": {
+      "id": 5605
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "info": {
+    "title": "Example file for Semantic Definition Format", 
+    "version": "20200603", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "ex": "https://onedm.org/exploratory/#"
+  }, 
+  "defaultNamespace": "ex", 
+  "sdfObject": {
+    "ovenOperatingState": {
+      "label": "Oven Operating State",
+      "sdfRequired": [
+        "#/sdfObject/ovenOperatingState/sdfProperty/machineState",
+        "#/sdfObject/ovenOperatingState/sdfProperty/supportedMachineStates",
+        "#/sdfObject/ovenOperatingState/sdfAction/setMachineState"
+      ],
+      "sdfProperty": {
+        "machineState": {
+          "type": "string", 
+          "enum": [ "ready", "running", "paused" ]
+        },
+        "supportedMachineStates": {
+          "type": "array",
+          "items": {
+            "enum": [ "ready", "running", "paused" ]
+          }
+        },
+        "ovenJobState": {
+          "type": "string",
+          "enum": [
+            "cleaning",
+            "cooking",
+            "cooling",
+            "draining",
+            "preheat",
+            "ready",
+            "rinsing"
+          ]
+        },
+        "completionTime": {
+          "sdfRef": "pg:/sdfData/iso8601date"
+        },
+        "operationTime": {
+          "sdfRef": "pg:/sdfData/PositiveInteger"
+        },
+        "progress": {
+          "sdfRef": "pg:/sdfData/IntegerPercent"
+        }
+      }, 
+      "sdfAction": {
+        "setMachineState": { 
+          "sdfInputData": [
+            "#/sdfObject/ovenOperatingState/sdfAction/setMachineState/sdfData/ovenMode"
+          ],
+          "sdfRequiredInputData": [
+            "#/sdfObject/ovenOperatingState/sdfAction/setMachineState/sdfData/ovenMode"
+          ],          
+          "sdfData": {
+            "ovenMode": {
+              "sdfRef": "pg:/sdfData/OvenMode"
+            }
+          }
+        },
+        "stop": {},
+        "start": {
+          "sdfInputData": [
+            "pg:/sdfObject/ovenMode/sdfAction/start/sdfData/ovenMode"
+          ],
+          "sdfData": {
+            "sdfRef": "pg:/sdfData/OvenMode"
+          }
+        }
+      }
+    }
+  }
+}

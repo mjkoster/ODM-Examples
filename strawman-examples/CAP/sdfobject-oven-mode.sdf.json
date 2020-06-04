@@ -1,0 +1,48 @@
+{
+  "info": {
+    "title": "Example file for Semantic Definition Format", 
+    "version": "20200603", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "ex": "https://onedm.org/exploratory/#"
+  }, 
+  "defaultNamespace": "ex", 
+  "sdfObject": {
+    "ovenMode": {
+      "label": "Oven Mode",
+      "sdfRequired": [
+        "#/sdfObject/ovenMode/sdfProperty/ovenMode",
+        "#/sdfObject/ovenMode/sdfProperty/supportedOvenModes",
+        "#/sdfObject/ovenMode/sdfAction/setOvenMode"
+      ],
+      "sdfProperty": {
+        "ovenMode": {
+            "sdfRef": "pg:sdfData/OvenMode"
+        },
+        "supportedOvenModes": {
+          "type": "array",
+          "items": {
+            "sdfRef": "pg:sdfData/OvenMode"
+          }
+        }
+      }, 
+      "sdfAction": {
+        "setOvenMode": { 
+          "sdfInputData": [
+            "#/sdfObject/ovenMode/sdfAction/setOvenMode/sdfData/ovenMode"
+          ],
+          "sdfRequired": [
+            "#/sdfObject/ovenMode/sdfAction/setOvenMode/sdfData/ovenMode"
+          ],          
+          "sdfData": {
+            "ovenMode": {
+              "sdfRef": "pg:sdfData/OvenMode"
+            }
+          }
+        }
+      }
+    }
+  }
+}
