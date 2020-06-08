@@ -1,0 +1,38 @@
+{
+    "@context": [
+        "https://www.w3.org/2019/wot/td/v1",
+        { "cap": "https://onedm.org/exploratory/cap/" }
+    ],
+    "id": "00bd91a5-06bd-4cf6-bc02-fe5c2dd5959f",
+    "title": "Switch",
+    "@type": "cap:#/sdfObject/Switch",
+    "securityDefinitions": {"basic_sc": {
+        "scheme": "basic",
+        "in": "header"
+    }},
+    "security": ["basic_sc"],
+    "properties": {
+        "State": {
+            "@type": "cap:#/sdfObject/Switch/sdfProperty/State",
+            "type": "string",
+            "enum": ["on", "off"],
+            "forms": [{
+                "href": "https://example.com/Switch/State"
+            }]
+        }
+    },
+    "actions": {
+        "On": {
+            "@type": "cap:#/sdfObject/Switch/sdfAction/On",
+            "forms": [{
+                "href": "https://example.com/Switch/OnAction"
+            }]
+        },
+        "Off": {
+            "@type": "cap:#/sdfObject/Switch/sdfAction/On",
+            "forms": [{
+                "href": "https://example.com/Switch/OffAction"
+            }]
+        }
+    }
+}
