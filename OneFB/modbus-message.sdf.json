@@ -1,0 +1,187 @@
+{
+  "info": {
+    "title": "SDF model for the Modbus message (transmission) layer", 
+    "version": "2020-06-15", 
+    "copyright": "Copyright Michael J. Koster\n        All rights reserved.", 
+    "license": "pointer to common BSD 3-clause"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/fieldbus/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfObject": {
+    "modbusMessage": {
+      "description": "The Modbus message layer",
+      "label": "Modbus Message Layer",
+
+      "sdfProperty": {
+        "modbusAddress": {
+          "type": "number", 
+          "minimum": 0,
+          "maximum": 255
+        },
+        "modbusFunctionCode": {
+          "type": "number", 
+          "minimum": 0,
+          "maximum": 127,
+          "sdfEnum": {
+            "readCoilStatus": {
+              "default": 1
+            },
+            "readInputStatus": {
+              "default": 2
+            },         
+            "readHoldingRegisters": {
+              "default": 3
+            },
+            "readInputRegisters": {
+              "default": 4
+            },
+            "forceSingleCoil": {
+              "default": 5
+            },
+            "presetSingleRegister": {
+              "default": 6
+            },
+            "readExceptionStatus": {
+              "default": 7
+            },
+            "forceMultipleCoils": {
+              "default": 15
+            },
+            "presetMultipleRegisters": {
+              "default": 16
+            },
+            "reportResponderID": {
+              "default": 17
+            }         
+          }
+        },
+        "modbusFunctionExceptionCode": {
+          "type": "number", 
+          "minimum": 128,
+          "maximum": 255,
+          "sdfEnum": {
+            "readCoilStatusException": {
+              "default": 129
+            },
+            "readInputStatusException": {
+              "default": 130
+            },         
+            "readHoldingRegistersException": {
+              "default": 131
+            },
+            "readInputRegistersException": {
+              "default": 132
+            },
+            "forceSingleCoilException": {
+              "default": 133
+            },
+            "presetSingleRegisterException": {
+              "default": 134
+            },
+            "readExceptionStatusException": {
+              "default": 135
+            },
+            "forceMultipleCoilsException": {
+              "default": 143
+            },
+            "presetMultipleRegistersException": {
+              "default": 144
+            },
+            "reportResponderIDException": {
+              "default": 145
+            }         
+          }
+        },        
+        "modbusData": {
+          "type": "string",
+          "subType": "byteString",
+          "minLength": 0
+        },
+        "modbusCheckData": {
+          "type": "number", 
+          "oneOf": [
+            {
+              "minimum": 0,
+              "maximum": 255
+            },
+            {
+              "minimum": 0,
+              "maximum": 65535
+            }
+          ]
+        },
+        "modbusRequestFrame": {
+          "type": "array",
+          "items": [
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusAddress" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusFunctionCode" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfProperty//modbusData" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusCheckData" }
+          ]
+        },
+        "modbusResponseFrame": {
+          "type": "array",
+          "items": [
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusAddress" },
+            { 
+              "oneOf":[
+                { "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusFunctionCode" },
+                { "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusFunctionExceptionCode" }
+              ]
+            },
+            {
+              "oneOf": [
+                { "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusData" },
+                { "sdfRef": "#/sdfObject/modbusMessage/sdfEvent/modbusException/sdfData/modbusExceptionCode" }
+              ]
+            },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusCheckData" }
+          ]
+        }      }, 
+
+      "sdfAction": {
+        "sendRequest": {
+          "sdfInputData": [
+            "#/sdfObject/modbusMessage/sdfAction/sendRequest/sdfData/requestFrame"
+          ],
+          "sdfData": {
+            "requestFrame": {
+              "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusRequestFrame"
+            }
+          }
+         }, 
+        "sendResponse": { 
+          "sdfInputData": [
+            "#/sdfObject/modbusMessage/sdfAction/sendRequest/sdfData/responseFrame"
+          ],
+          "sdfData": {
+            "responseFrame": {
+              "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusResponseFrame"
+            }
+          }
+    
+        }
+      },
+
+      "sdfEvent": {
+        "modbusException": {
+          "sdfData": {
+            "modbusExceptionCode": {
+              "enum": [ 1,3 ],
+              "sdfEnum": {
+                "illegalFunction": {
+                  "default": 1
+                },
+                "illegalData": {
+                  "default": 3
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
