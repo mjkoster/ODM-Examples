@@ -8,7 +8,7 @@
   "namespace": {
     "cap": "http://onedm.org/exploratory/cap/"
   }, 
-  "defaultnamespace": "cap", 
+  "defaultNamespace": "cap", 
   "sdfObject": {
     "Switch": {
       "sdfAction": {
