@@ -21,78 +21,10 @@
           "maximum": 255
         },
         "modbusFunctionCode": {
-          "type": "number", 
-          "minimum": 0,
-          "maximum": 127,
-          "sdfEnum": {
-            "readCoilStatus": {
-              "default": 1
-            },
-            "readInputStatus": {
-              "default": 2
-            },         
-            "readHoldingRegisters": {
-              "default": 3
-            },
-            "readInputRegisters": {
-              "default": 4
-            },
-            "forceSingleCoil": {
-              "default": 5
-            },
-            "presetSingleRegister": {
-              "default": 6
-            },
-            "readExceptionStatus": {
-              "default": 7
-            },
-            "forceMultipleCoils": {
-              "default": 15
-            },
-            "presetMultipleRegisters": {
-              "default": 16
-            },
-            "reportResponderID": {
-              "default": 17
-            }         
-          }
+          "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionCodeDataType"
         },
         "modbusFunctionExceptionCode": {
-          "type": "number", 
-          "minimum": 128,
-          "maximum": 255,
-          "sdfEnum": {
-            "readCoilStatusException": {
-              "default": 129
-            },
-            "readInputStatusException": {
-              "default": 130
-            },         
-            "readHoldingRegistersException": {
-              "default": 131
-            },
-            "readInputRegistersException": {
-              "default": 132
-            },
-            "forceSingleCoilException": {
-              "default": 133
-            },
-            "presetSingleRegisterException": {
-              "default": 134
-            },
-            "readExceptionStatusException": {
-              "default": 135
-            },
-            "forceMultipleCoilsException": {
-              "default": 143
-            },
-            "presetMultipleRegistersException": {
-              "default": 144
-            },
-            "reportResponderIDException": {
-              "default": 145
-            }         
-          }
+          "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionExceptionCodeDataType"
         },        
         "modbusData": {
           "type": "string",
@@ -179,6 +111,82 @@
                 }
               }
             }
+          }
+        }
+      },
+      "sdfData": {
+        "modbusFunctionCodeDataType": {
+          "type": "number", 
+          "minimum": 0,
+          "maximum": 127,
+          "sdfEnum": {
+            "readCoilStatus": {
+              "default": 1
+            },
+            "readInputStatus": {
+              "default": 2
+            },         
+            "readHoldingRegisters": {
+              "default": 3
+            },
+            "readInputRegisters": {
+              "default": 4
+            },
+            "forceSingleCoil": {
+              "default": 5
+            },
+            "presetSingleRegister": {
+              "default": 6
+            },
+            "readExceptionStatus": {
+              "default": 7
+            },
+            "forceMultipleCoils": {
+              "default": 15
+            },
+            "presetMultipleRegisters": {
+              "default": 16
+            },
+            "reportResponderID": {
+              "default": 17
+            }         
+          }
+        },
+        "modbusFunctionExceptionCodeDataType": {
+          "type": "number", 
+          "minimum": 128,
+          "maximum": 255,
+          "sdfEnum": {
+            "readCoilStatusException": {
+              "default": 129
+            },
+            "readInputStatusException": {
+              "default": 130
+            },         
+            "readHoldingRegistersException": {
+              "default": 131
+            },
+            "readInputRegistersException": {
+              "default": 132
+            },
+            "forceSingleCoilException": {
+              "default": 133
+            },
+            "presetSingleRegisterException": {
+              "default": 134
+            },
+            "readExceptionStatusException": {
+              "default": 135
+            },
+            "forceMultipleCoilsException": {
+              "default": 143
+            },
+            "presetMultipleRegistersException": {
+              "default": 144
+            },
+            "reportResponderIDException": {
+              "default": 145
+            }         
           }
         }
       }
