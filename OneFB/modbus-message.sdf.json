@@ -29,13 +29,13 @@
           "items": [
             { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusAddress" },
             { 
-              "oneOf":[
+              "anyOf":[
                 { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionCode" },
                 { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionExceptionCode" }
               ]
             },
             {
-              "oneOf": [
+              "anyOf": [
                 { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusData" },
                 { "sdfRef": "#/sdfObject/modbusMessage/sdfEvent/modbusException/sdfData/modbusExceptionCode" }
               ]
