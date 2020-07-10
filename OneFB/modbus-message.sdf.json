@@ -21,10 +21,10 @@
           "maximum": 255
         },
         "modbusFunctionCode": {
-          "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionCodeDataType"
+          "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionCode"
         },
         "modbusFunctionExceptionCode": {
-          "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionExceptionCodeDataType"
+          "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionExceptionCode"
         },        
         "modbusData": {
           "type": "string",
@@ -71,7 +71,8 @@
             },
             { "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusCheckData" }
           ]
-        }      }, 
+        }      
+      }, 
 
       "sdfAction": {
         "sendRequest": {
@@ -112,13 +113,13 @@
                 "illegalDataValue": {
                   "const": 3
                 },
-                "deviceFailure": {
+                "responderFailure": {
                   "const": 4
                 },
                 "acknowledge": {
                   "const": 5
                 },
-                "deviceBusy": {
+                "responderBusy": {
                   "const": 6
                 }
               }
@@ -127,77 +128,77 @@
         }
       },
       "sdfData": {
-        "modbusFunctionCodeDataType": {
+        "modbusFunctionCode": {
           "type": "number", 
           "minimum": 0,
           "maximum": 127,
           "sdfEnum": {
             "readCoilStatus": {
-              "default": 1
+              "const": 1
             },
             "readInputStatus": {
-              "default": 2
+              "const": 2
             },         
             "readHoldingRegisters": {
-              "default": 3
+              "const": 3
             },
             "readInputRegisters": {
-              "default": 4
+              "const": 4
             },
             "forceSingleCoil": {
-              "default": 5
+              "const": 5
             },
             "presetSingleRegister": {
-              "default": 6
+              "const": 6
             },
             "readExceptionStatus": {
-              "default": 7
+              "const": 7
             },
             "forceMultipleCoils": {
-              "default": 15
+              "const": 15
             },
             "presetMultipleRegisters": {
-              "default": 16
+              "const": 16
             },
             "reportResponderID": {
-              "default": 17
+              "const": 17
             }         
           }
         },
-        "modbusFunctionExceptionCodeDataType": {
+        "modbusFunctionExceptionCode": {
           "type": "number", 
           "minimum": 128,
           "maximum": 255,
           "sdfEnum": {
             "readCoilStatusException": {
-              "default": 129
+              "const": 129
             },
             "readInputStatusException": {
-              "default": 130
+              "const": 130
             },         
             "readHoldingRegistersException": {
-              "default": 131
+              "const": 131
             },
             "readInputRegistersException": {
-              "default": 132
+              "const": 132
             },
             "forceSingleCoilException": {
-              "default": 133
+              "const": 133
             },
             "presetSingleRegisterException": {
-              "default": 134
+              "const": 134
             },
             "readExceptionStatusException": {
-              "default": 135
+              "const": 135
             },
             "forceMultipleCoilsException": {
-              "default": 143
+              "const": 143
             },
             "presetMultipleRegistersException": {
-              "default": 144
+              "const": 144
             },
             "reportResponderIDException": {
-              "default": 145
+              "const": 145
             }         
           }
         }
