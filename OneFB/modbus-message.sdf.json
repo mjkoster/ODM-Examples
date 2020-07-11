@@ -2,8 +2,8 @@
   "info": {
     "title": "SDF model for the Modbus message (transmission) layer", 
     "version": "2020-06-15", 
-    "copyright": "Copyright Michael J. Koster\n        All rights reserved.", 
-    "license": "pointer to common BSD 3-clause"
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
   }, 
   "namespace": {
     "fb": "https://onedm.org/exploratory/fieldbus/"
