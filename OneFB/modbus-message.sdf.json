@@ -18,14 +18,14 @@
         "modbusRequestFrame": {
           "anyOf": [
             { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusRtuFrame" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusSerialFrame" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusAsciiFrame" },
             { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusTcpFrame" }
           ]
         },
         "modbusResponseFrame": {
           "anyOf": [
             { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusRtuResponseFrame" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusSerialResponseFrame" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusAsciiResponseFrame" },
             { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusTcpResponseFrame" }
           ]
         }      
