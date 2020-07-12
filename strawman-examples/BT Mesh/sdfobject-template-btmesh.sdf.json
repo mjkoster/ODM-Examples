@@ -1,0 +1,18 @@
+{
+  "info": {
+    "title": "Example BT Mesh Generic OnOff Model", 
+    "version": "20200710", 
+    "copyright": "Copyright 2019 Michael Koster. All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "pg": "https://onedm.org/playground/"
+  }, 
+  "defaultnamespace": "pg", 
+  "sdfObject": {
+    "OnOff": {
+      "sdfProperty": {},
+      "sdfAction": {}
+    }
+  }
+}
