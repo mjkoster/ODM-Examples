@@ -27,8 +27,9 @@
               "sdfRef": "#/sdfObject/GenericOnOff/sdfData/GenericOnOffData"
             },
             "RemainingTime": {
-              "sdfRef": "#/sdfObject/GenericOnOff/sdfData/TransitionTmeData"
+              "sdfRef": "#/sdfObject/GenericOnOff/sdfData/TransitionTimeData"
             }
+          }
         },
         "Set": {
           "description": "Set the On/Off server state with time and delay parameters",
@@ -37,14 +38,10 @@
               "sdfRef": "#/sdfObject/GenericOnOff/sdfData/GenericOnOffData"
             },
             "TransitionTime": {
-              "sdfRef": "#/sdfObject/GenericOnOff/sdfData/TransitionTmeData"
+              "sdfRef": "#/sdfObject/GenericOnOff/sdfData/TransitionTimeData"
             },
             "Delay": {
-              "description": "deley in increments of 5mS",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 255,
-              "multipleOf": 1
+              "sdfRef": "#/sdfObject/GenericOnOff/sdfData/DelayData"
             }
           }
         }
@@ -78,6 +75,13 @@
               ]
             }
           ]
+        },
+        "DelayData": {
+          "description": "delay in increments of 5mS",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 255,
+          "multipleOf": 1
         }
       }
     }
