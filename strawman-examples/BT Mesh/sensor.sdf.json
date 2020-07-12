@@ -1,167 +1,65 @@
 {
   "info": {
-    "title": "Example BT Mesh Sensor Settings Server Model", 
+    "title": "Example BT Mesh Sensor Server Model", 
     "version": "20200710", 
     "copyright": "Copyright 2019 Michael Koster. All rights reserved.", 
-    "license": "http://example.com/license"
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
   }, 
   "namespace": {
-    "btm": "http://example.com/btm-example/#"
+    "pg": "https://onedm.org/playground/"
   }, 
-  "defaultnamespace": "btm", 
-  "odmObject": {
+  "defaultnamespace": "pg", 
+  "sdfObject": {
     "SensorDescriptor": {
-      "odmProperty": {
+      "sdfProperty": {
         "SensorPropertyID": {
-          "odmType": {
-            "$ref": "#/odmData/PropertyIdType"
-          }
+          "sdfRef": "#/sdfData/PropertyIdType"
         }, 
         "SensorPositiveTolerance": {
           "type": "number", 
           "multipleOf": 1, 
           "minimum": 1, 
-          "maximum": 4095, 
-          "widthInBits": 12
+          "maximum": 4095
         }, 
         "SensorNegativeTolerance": {
           "type": "number", 
           "multipleOf": 1, 
           "minimum": 1, 
-          "maximum": 4095, 
-          "widthInBits": 12
+          "maximum": 4095
         }, 
         "SensorSamplingFunciton": {
           "enum": [
-            {
-              "Unspecified": 0
-            }, 
-            {
-              "Instantaneous": 1
-            }, 
-            {
-              "ArithmeticMean": 2
-            }, 
-            {
-              "RMS": 3
-            }, 
-            {
-              "Maximum": 4
-            }, 
-            {
-              "Minimum": 5
-            }, 
-            {
-              "Accumulated": 6
-            }, 
-            {
-              "Count": 7
-            }
-          ], 
-          "widthInBits": 8
+            "Unspecified", 
+            "Instantaneous", 
+            "ArithmeticMean", 
+            "RMS", 
+            "Maximum", 
+            "Minimum", 
+            "Accumulated", 
+            "Count"
+          ]
         }, 
         "SensorMeasurementPeriod": {
           "type": "number", 
           "multipleOf": 1, 
           "minimum": 1, 
-          "maximum": 255, 
-          "widthInBits": 8
+          "maximum": 255
         }, 
         "SensorUpdateInterval": {
           "type": "number", 
           "multipleOf": 1, 
           "minimum": 1, 
-          "maximum": 255, 
-          "widthInBits": 8
-        }
-      }
-    }, 
-    "SensorSetting": { // 0 or more multiple instances of this object
-      "odmProperty": {
-        "SensorPropertyID": {// link to the corresponding sensor descriptor object
-          "odmType": {
-            "$ref": "#/odmData/PropertyIdType"
-          }
-        }, 
-        "SensorSettingPropertyID": {
-          "odmType": {
-            "$ref": "#/odmData/PropertyIdType"
-          }
-        }, 
-        "SensorSettingAccess": {
-          "enum": [
-            {
-              "read": 1
-            }, 
-            {
-              "readwrite": 3
-            }
-          ], 
-          "widthInBits": 8
-        }, 
-        "SensorSettingRaw": {
-          "odmType": {
-            "$ref": "1/odmData/SensorSettingRawValueType"
-          }
-        }
-      }, 
-      "odmData": {
-        "SensorSettingRawValueType": {}
-      }
-    }, 
-    "SensorCadence": {// one for each sensor descriptor, regulates the publication
-      "odmProperty": {
-        "SensorPropertyID": {
-          "odmType": {
-            "$ref": "#/odmData/PropertyIdType"
-          }
-        }, 
-        "FastCadencePeriodDivisor": {
-          "type": "number", 
-          "minimum": 0, 
-          "maximum": 15, 
-          "widthInBits": 7
-        }, 
-        "StatusTriggerType": {
-          "enum": [
-            {
-              "formattype": 0
-            }, 
-            {
-              "unitless": 1
-            }
-          ]
-        }, 
-        "StatusTriggerDeltaDown": {
-          "type": "number"
-        }, 
-        "StatusTriggerDeltaUp": {
-          "type": "number"
-        }, 
-        "StatusMinInterval": {
-          "type": "number", 
-          "multipleOf": 1, 
-          "minumum": 0, 
-          "maximum": 26, 
-          "widthInBits": 8
-        }, 
-        "FastCadenceLow": {
-          "type": "number"
-        }, 
-        "FastCadenceHigh": {
-          "type": "number"
+          "maximum": 255
         }
       }
     }, 
     "SensorData": {
-      "odmProperty": {
+      "sdfProperty": {
         "SensorData": {
-          "odmType": {
-            "$ref": "1/odmData/SensorDataType"
-          }
+          "sdfRef": "#/sdfObject/SensorData/sdfData/SensorDataType"
         }
       }, 
-      "odmData": {
+      "sdfData": {
         "SensorDataType": {
           "type": "array", 
           "items": [
@@ -169,14 +67,10 @@
               "type": "array", 
               "items": [
                 {
-                  "odmType": {
-                    "$ref": "#/odmData/PropertyIdType"
-                  }
+                  "sdfRef": "#/sdfData/PropertyIdType"
                 }, 
                 {
-                  "odmType": {
-                    "$ref": "#/odmData/SensorDataRawValueType"
-                  }
+                  "sdfRef": "#/sdfObject/SensorData/sdfData/SensorDataRawValueType"
                 }
               ]
             }
@@ -186,32 +80,12 @@
       }
     }
   }, 
-  "odmData": {
+  "sdfData": {
     "PropertyIdType": {
       "type": "number", 
       "multipleOf": 1, 
       "minumum": 1, 
-      "maximum": 65535, 
-      "widthInBits": 16
-    }, 
-    "SensorSeriesColumnType": {
-      "type": "Object", 
-      "properties": {
-        "SensorPropertyID": {
-          "odmType": {
-            "$ref": "#/odmData/PropertyIdType"
-          }
-        }, 
-        "SensorRawValueX": {
-          "type": "number"
-        }, 
-        "SensorColumnWidth": {
-          "type": "number"
-        }, 
-        "SensorRawValueY": {
-          "type": "number"
-        }
-      }
+      "maximum": 65535
     }
   }
 }
