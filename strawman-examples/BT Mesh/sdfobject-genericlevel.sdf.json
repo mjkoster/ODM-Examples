@@ -2,7 +2,7 @@
   "info": {
     "title": "Example BT Mesh Generic Level Model", 
     "version": "20200710", 
-    "copyright": "Copyright 2019 Michael J. Koster. All rights reserved.", 
+    "copyright": "Copyright 2020 Michael J. Koster. All rights reserved.", 
     "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
   }, 
   "namespace": {
