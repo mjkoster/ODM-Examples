@@ -17,7 +17,7 @@
         }
       },
       "sdfAction": {
-        "LevelGetStatus": {
+        "LevelGet": {
           "description": "Get the status of the Level server",
           "sdfData": {
             "PresentLevel": {
@@ -33,6 +33,11 @@
         },
         "LevelSet": {
           "description": "Set the level server state with time and delay parameters",
+          "sdfInputData": [
+            "#/sdfObject/GenericLevel/sdfAction/LevelSet/sdfData/Level",
+            "#/sdfObject/GenericLevel/sdfAction/LevelSet/sdfData/TransitionTime",
+            "#/sdfObject/GenericLevel/sdfAction/LevelSet/sdfData/Delay"
+          ],
           "sdfData": {
             "Level": {
                 "sdfRef": "#/sdfObject/GenericLevel/sdfData/GenericLevelData"
@@ -47,6 +52,11 @@
         },
         "DeltaSet": {
           "description": "Set the level server state with time and delay parameters",
+          "sdfInputData": [
+            "#/sdfObject/GenericLevel/sdfAction/DeltaSet/sdfData/DeltaLevel",
+            "#/sdfObject/GenericLevel/sdfAction/DeltaSet/sdfData/TransitionTime",
+            "#/sdfObject/GenericLevel/sdfAction/DeltaSet/sdfData/Delay"
+          ],
           "sdfData": {
             "DeltaLevel": {
               "sdfRef": "#/sdfObject/GenericLevel/sdfData/GenericLevelData"
@@ -61,7 +71,14 @@
         },
         "MoveSet": {
           "description": "Set the level server state with time and delay parameters",
-          "sdfData": {
+          "DeltaSet": {
+            "description": "Set the level server state with time and delay parameters",
+            "sdfInputData": [
+              "#/sdfObject/GenericLevel/sdfAction/MoveSet/sdfData/DeltaLevel",
+              "#/sdfObject/GenericLevel/sdfAction/MoveSet/sdfData/TransitionTime",
+              "#/sdfObject/GenericLevel/sdfAction/MoveSet/sdfData/Delay"
+            ],
+            "sdfData": {
             "Level": {
               "sdfRef": "#/sdfObject/GenericLevel/sdfData/GenericLevelData"
             },
