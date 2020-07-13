@@ -17,7 +17,7 @@
         }
       },
       "sdfAction": {
-        "Get": {
+        "OnOffGet": {
           "description": "Get the status of the On/Off server",
           "sdfData": {
             "PresentOnOff": {
@@ -31,7 +31,7 @@
             }
           }
         },
-        "Set": {
+        "OnOffSet": {
           "description": "Set the On/Off server state with time and delay parameters",
           "sdfData": {
             "OnOff": {
@@ -55,7 +55,7 @@
           ]
         },
         "TransitionTimeData": {
-          "description": "Generic Transition Time",
+          "description": "Generic Transition Time Format",
           "type": "array",
           "items": [
             {

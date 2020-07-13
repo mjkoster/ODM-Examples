@@ -83,7 +83,7 @@
           "multipleOf": 1
         },
         "TransitionTimeData": {
-          "description": "Generic Transition Time",
+          "description": "Generic Transition Time Format",
           "type": "array",
           "items": [
             {
