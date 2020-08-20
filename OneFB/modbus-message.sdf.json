@@ -15,18 +15,18 @@
       "label": "Modbus Message Layer",
 
       "sdfProperty": {
-        "modbusRequestFrame": {
+        "modbusRequestMessage": {
           "anyOf": [
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusRtuFrame" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusAsciiFrame" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusTcpFrame" }
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusRtuRequestMessage" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusAsciiRequestMessage" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusTcpRequestMessage" }
           ]
         },
-        "modbusResponseFrame": {
+        "modbusResponseMessage": {
           "anyOf": [
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusRtuResponseFrame" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusAsciiResponseFrame" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusTcpResponseFrame" }
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusRtuResponseMessage" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusAsciiResponseMessage" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusTcpResponseMessage" }
           ]
         }      
       }, 
@@ -34,88 +34,56 @@
       "sdfAction": {
         "sendRequest": {
           "sdfInputData": [
-            "#/sdfObject/modbusMessage/sdfAction/sendRequest/sdfData/requestFrame"
+            "#/sdfObject/modbusMessage/sdfAction/sendRequest/sdfData/requestMessage"
           ],
           "sdfData": {
-            "requestFrame": {
-              "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusRequestFrame"
+            "requestMessage": {
+              "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusRequestMessage"
             }
           }
          }, 
         "sendResponse": { 
           "sdfInputData": [
-            "#/sdfObject/modbusMessage/sdfAction/sendRequest/sdfData/responseFrame"
+            "#/sdfObject/modbusMessage/sdfAction/sendRequest/sdfData/responseMessage"
           ],
           "sdfData": {
-            "responseFrame": {
-              "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusResponseFrame"
+            "responseMessage": {
+              "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusResponseMessage"
             }
           }
-    
         }
       },
 
       "sdfEvent": {
+        "receiveRequest": {
+          "sdfData": {
+            "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusRequestMessage"
+          }
+        },
+        "receiveResponse": {
+          "sdfData": {
+            "sdfRef": "#/sdfObject/modbusMessage/sdfProperty/modbusReqsponseMessage"
+          }
+        },
         "modbusException": {
           "sdfData": {
-            "modbusExceptionCode": {
-              "enum": [ 1,2,3,4,5,6 ],
-              "sdfEnum": {
-                "illegalFunction": {
-                  "const": 1
-                },
-                "illegalDataAddress": {
-                  "const": 2
-                },
-                "illegalDataValue": {
-                  "const": 3
-                },
-                "responderFailure": {
-                  "const": 4
-                },
-                "acknowledge": {
-                  "const": 5
-                },
-                "responderBusy": {
-                  "const": 6
-                }
-              }
-            }
+             "sdfRef": "#/sdfObject/sdfData/modbusExceptionCode" 
           }
         }
       },
 
       "sdfData": {
-        "modbusRtuFrame": {
+
+        "modbusRequestMessageData": {
           "type": "array",
           "items": [
             { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusAddress" },
             { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionCode" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusData" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusCheckData16" }
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusRequestData" }
           ]
         },
-        "modbusAsciiFrame": {
-          "type": "array",
-          "items": [
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusAddress" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionCode" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusData" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusCheckData8" }
-          ]
-        },
-        "modbusTcpFrame": {
-          "type": "array",
-          "items": [
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusTransactionID" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusProtocolID" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/length" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusAddress" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionCode" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusData" }
-          ]
-        },
-        "modbusRtuResponseFrame": {
+
+        "modbusResponseMessageData": {
           "type": "array",
           "items": [
             { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusAddress" },
@@ -127,53 +95,61 @@
             },
             {
               "anyOf": [
-                { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusData" },
-                { "sdfRef": "#/sdfObject/modbusMessage/sdfEvent/modbusException/sdfData/modbusExceptionCode" }
-              ]
-            },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusCheckData16" }
-          ]
-        },
-        "modbusAsciiResponseFrame": {
-          "type": "array",
-          "items": [
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusAddress" },
-            { 
-              "anyOf":[
-                { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionCode" },
-                { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionExceptionCode" }
-              ]
-            },
-            {
-              "anyOf": [
-                { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusData" },
-                { "sdfRef": "#/sdfObject/modbusMessage/sdfEvent/modbusException/sdfData/modbusExceptionCode" }
-              ]
-            },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusCheckData8" }
-          ]
-        },
-        "modbusTcpResponseFrame": {
-          "type": "array",
-          "items": [
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusTransactionID" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusProtocolID" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/length" },
-            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusAddress" },
-            { 
-              "anyOf":[
-                { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionCode" },
-                { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusFunctionExceptionCode" }
-              ]
-            },
-            {
-              "anyOf": [
-                { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusData" },
-                { "sdfRef": "#/sdfObject/modbusMessage/sdfEvent/modbusException/sdfData/modbusExceptionCode" }
+                { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusResponseData" },
+                { "sdfRef": "#/sdfObject/sdfData/modbusExceptionCode" }
               ]
             }
           ]
         },
+
+        "modbusRtuRequestMessage": {
+          "type": "array",
+          "items": [
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusRequestMessageData" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusCheckData16" }
+          ]
+        },
+        "modbusAsciiRequestMessage": {
+          "type": "array",
+          "items": [
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusRequestMessageData" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusCheckData8" }
+          ]
+        },
+        "modbusTcpRequestMessage": {
+          "type": "array",
+          "items": [
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusTransactionID" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusProtocolID" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/length" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusRequestMessageData" }
+          ]
+        },
+
+        "modbusRtuResponseMessage": {
+          "type": "array",
+          "items": [
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusResponseMessageData" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusCheckData16" }
+          ]
+        },
+        "modbusAsciiResponseMessage": {
+          "type": "array",
+          "items": [
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusResponseMessageData" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusCheckData8" }
+          ]
+        },
+        "modbusTcpResponseMessage": {
+          "type": "array",
+          "items": [
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusTransactionID" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusProtocolID" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/length" },
+            { "sdfRef": "#/sdfObject/modbusMessage/sdfData/modbusResponseMessageData" }
+          ]
+        },
+
         "modbusTransactionID": {
           "type": "number", 
           "minimum": 0,
@@ -194,24 +170,19 @@
           "minimum": 0,
           "maximum": 255
         },      
-        "modbusData": {
-          "type": "string",
-          "subType": "byteString",
-          "minLength": 0
-        },
         "modbusCheckData8": {
           "description": "LRC for ASCII mode",
           "type": "number", 
           "minimum": 0,
           "maximum": 255
-          },
-          "modbusCheckData16": {
+        },
+        "modbusCheckData16": {
             "description": "CRC for RTU mode",
             "type": "number", 
             "minimum": 0,
             "maximum": 65535
-          }
         },
+
         "modbusFunctionCode": {
           "type": "number", 
           "minimum": 0,
@@ -249,6 +220,7 @@
             }         
           }
         },
+
         "modbusFunctionExceptionCode": {
           "type": "number", 
           "minimum": 128,
@@ -285,6 +257,85 @@
               "const": 145
             }         
           }
+        },
+
+        "modbusExceptionCode": {
+          "enum": [ 1,2,3,4,5,6 ],
+          "sdfEnum": {
+            "illegalFunction": {
+              "const": 1
+            },
+            "illegalDataAddress": {
+              "const": 2
+            },
+            "illegalDataValue": {
+              "const": 3
+            },
+            "responderFailure": {
+              "const": 4
+            },
+            "acknowledge": {
+              "const": 5
+            },
+            "responderBusy": {
+              "const": 6
+            }
+          }
+        },
+        "modbusRequestData": {
+          "anyOf": [
+            {
+              "description": "Function Code 01 - readCoilStatus",
+              "type": "array",
+              "items": [
+                {
+                  "description": "Starting Address",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 65535
+                },
+                {
+                  "description": "Number of points",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 65535
+                }
+              ]
+            },
+            {
+              "description": "validate as an opaque payload",
+              "type": "string",
+              "subType": "byteString",
+              "minLength": 0
+            }
+          ]
+        },
+        "modbusResponseData": {
+          "anyOf": [
+            {
+              "description": "Function Code 01 - readCoilStatus",
+              "type": "array",
+              "items": [
+                {
+                  "description": "Byte Count",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 255
+                },
+                {
+                  "description": "Coil Data",
+                  "type": "string",
+                  "subType": "byteString"
+                }
+              ]
+            },
+            {
+              "description": "validate as an opaque payload",
+              "type": "string",
+              "subType": "byteString",
+              "minLength": 0
+            }
+          ]
         }
       }
     }
