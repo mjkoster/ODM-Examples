@@ -1,0 +1,43 @@
+{
+  "info": {
+    "title": "OneFB generic Subscriber", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfObject": {
+    "Subscriber": {
+      "description": "Subscriber Object",
+      "label": "Subscriber",
+      "sdfProperty": {
+        "UpdateObjectLink": {
+          "description": "Link to the object to update from the subscription",
+          "label": "Update Object Link",
+          "sdfRef": "fb:#/sdfData/ObjectLinkType"
+        },
+        "UpdateObjectProperty": {
+          "description": "Pointer to an sdfProperty or sdfEvent to update from the subscription, relative to the Destination Object",
+          "label": "Update Object Property",
+          "type": "string",
+          "format": "json-pointer",
+          "default": "#/sdfObject/Sensor/sdfProperty/CurrentValue"
+        },
+        "SubscribePath": {
+          "description": "URI path for the Subscription",
+          "label": "Subscribe Path",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "SubscribeServer": {
+          "description": "Object link pointing to the server instance for the subscription",
+          "label": "Subscribe Server",
+          "sdfRef": "fb:#/sdfData/ObjectLinkType"
+        }
+      }
+    }
+  }
+}

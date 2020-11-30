@@ -1,0 +1,20 @@
+{
+  "info": {
+    "title": "Logic Block", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfObject": {
+    "LogicBlock": {
+      "description": "Logic definition for a controller or filter, e.g. state machine, ladder logic, conditional notification",
+      "label": "Logic Block",
+      "sdfProperty": {
+      }
+    }
+  }
+}

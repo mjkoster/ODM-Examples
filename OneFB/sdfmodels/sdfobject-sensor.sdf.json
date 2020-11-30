@@ -1,0 +1,99 @@
+{
+  "info": {
+    "title": "OneFB Sensing function", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+
+  "sdfObject": {
+    "Sensor": {
+      "description": "Sensing function",
+      "label": "Sensor",
+      "sdfRequired": [
+        "#/sdfObject/Sensor/sdfProperty/CurrentValue"
+      ],
+      "sdfProperty": {
+        "CurrentValue": {
+          "description": "The most recently measured value",
+          "label": "Current Value",
+          "sdfRef": "fb:#/sdfProperty/CurrentValue"
+        },
+        "MinimumValue": {
+          "description": "The smallest measurable value",
+          "label": "Minimum Value",
+          "sdfRef": "fb:#/sdfProperty/MinimumValue"
+        },
+        "MaximumValue": {
+          "description": "The largest measurable Value",
+          "label": "Maximum Value",
+          "sdfRef": "fb:#/sdfProperty/MaximumValue"
+        },
+        "ValueResolution": {
+          "description": "Decimal resolution constraint for accepted Value",
+          "label": "Value Resolution",
+          "sdfRef": "fb:#/sdfProperty/ValueResolution"
+        },
+        "ScaledUnit": {
+          "description": "Engineering Unit for the scaled value",
+          "label": "Scaled Unit",
+          "sdfRef": "fb:#/sdfProperty/ScaledUnit"
+        },
+        "ScaledMinimum": {
+          "description": "Smallest measurable value in engineering units",
+          "label": "Minimum Scaled Value",
+          "sdfRef": "fb:#/sdfProperty/ScaledMinimum"
+        },
+        "ScaledMaximum": {
+          "description": "Largest measurable value in Engineering units",
+          "label": "Maximum Scaled Value",
+          "sdfRef": "fb:#/sdfProperty/ScaledMaximum"
+        },
+        "ScaledValueResolution": {
+          "description": "The Decimal Resolution of the scaled value",
+          "label": "Scaled Value Resolution",
+          "sdfRef": "fb:#/sdfProperty/ScaledValueResolution"
+        },
+        "CurrentScaledValue": {
+          "description": "The most recently measured value scaled to Engineering Units",
+          "label": "Current Scaled Value",
+          "sdfRef": "fb:#/sdfProperty/CurrentScaledValue"
+        },
+        "CurrentScaledMinimum": {
+          "description": "The smallest measured value sinse the last reset",
+          "label": "Current Minimum Scaled Value",
+          "sdfRef": "fb:#/sdfProperty/CurrentScaledMinimum"
+        },
+        "CurrentScaledMaximum": {
+          "description": "The greatest measured value sinse the last reset",
+          "label": "Current Maximum Scaled Value",
+          "sdfRef": "fb:#/sdfProperty/CurrentScaledMaximum"
+        },
+        "SensorType": {
+          "description": "The type of sensor or process used, for display purposes",
+          "label": "Sensor Type",
+          "sdfRef": "fb:#/sdfProperty/SensorType"
+        },
+        "ApplicationType": {
+          "description": "The application context of the sensor, for display purposes",
+          "label": "Application Type",
+          "sdfRef": "fb:#/sdfProperty/ApplicationType"
+        },
+        "SystemIdentifier": {
+          "description": "The system-unique identifier for this sensor e.g. P&ID Tag",
+          "label": "System Identifier",
+          "sdfRef": "fb:#/sdfProperty/SystemIdentifier"
+        }      },
+      "sdfAction": {
+        "ResetMinMax": {
+          "description": "Reset the minumum and maximum sampled Values",
+          "label": "ResetMinMax"
+        }
+      }
+    }
+  }
+}

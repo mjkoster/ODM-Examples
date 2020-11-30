@@ -1,0 +1,122 @@
+{
+  "info": {
+    "title": "OneFB PID Controller", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+
+  "sdfObject": {
+    "PidController": {
+      "description": "PID Controller",
+      "label": "PID Controller",
+      "sdfProperty": {
+        "InputObjectLink": {
+          "description": "Reference to an object that is the source of input measurement data",
+          "label": "Input Link",
+          "sdfRef": "fb:#/sdfData/ObjectLinkType"
+        },
+        "InputDataLink": {
+          "description": "Location to obtain input measurement data, sensor or subscriber",
+          "label": "Input Data Link",
+          "sdfRef": "fb:#/sdfData/ObjectLinkType"
+        },
+        "CurrentInputValue" : {
+          "description": "Local (mirrored) copy of <InputObjectLink>/sdfProperty/CurrentValue",
+          "label": "Current Input Value",
+          "sdfRef": "fb:#/sdfData/ScalarDataType"
+        },
+        "OutputObjectLink": {
+          "description": "Reference to a control point to actuate",
+          "label": "Output Link",
+          "sdfRef": "fb:#/sdfData/ObjectLinkType"
+        },
+        "OutputDataLink": {
+          "description": "Location to update control output data, actuator or publisher",
+          "label": "Output Data Link",
+          "sdfRef": "fb:#/sdfData/ObjectLinkType"
+        },
+        "CurrentOutputValue" : {
+          "description": "Local copy of most recent control output for <OutputDataLink>/sdfProperty/CurrentState",
+          "label": "Current Output Value",
+          "sdfRef": "fb:#/sdfData/ScalarDataType"
+        },
+        "SetpointObjectLink": {
+          "description": "Reference to an object that is the source of remote setpoint data",
+          "label": "Setpoint Link",
+          "sdfRef": "fb:#/sdfData/ObjectLinkType"
+        },
+        "SetpointDataLink": {
+          "description": "Location to obtain remote setpoint data, from controller or subscriber",
+          "label": "Setpoint Data Link",
+          "sdfRef": "fb:#/sdfData/ObjectLinkType"
+        },
+        "CurrentSetpointValue" : {
+          "description": "Local copy of most recent setpoint data",
+          "label": "Current Setpoint Value",
+          "sdfRef": "fb:#/sdfData/ScalarDataType"
+        },
+        "SetpointMode": {
+          "description": "Remote/local setpoint mode setting",
+          "label": "Setpoint Mode",
+          "sdfChoice": {
+            "LocalMode": {
+              "description": "Local setpoint mode",
+              "label": "Local Mode"
+            },
+            "RemoteMode": {
+              "description": "Remote setpoint mode",
+              "label": "Remote Mode"
+            }
+          }
+        },
+        "ProportionalGain": {
+          "description": "Proportional Gain Setting for Control Loop Tuning",
+          "label": "Proportional Gain",
+          "type": "number"
+        },
+        "IntegralTime": {
+          "description": "Integral (Reset) Time Setting for Control Loop Tuning",
+          "label": "Integral Time",
+          "type": "number"
+        },
+        "DerivativeTime": {
+          "description": "Derivative Time Setting for Control Loop Tuning",
+          "label": "Derivative Time",
+          "type": "number"
+        },
+        "ConfigurationParameters": {
+          "type": "object",
+          "propeties": {
+            "ControlMode": {
+              "description": "PID Control mode",
+              "label": "Control Mode",
+              "sdfChoice": {
+                "PID": {
+                  "description": "Proportional + Integral + Derivative",
+                  "label": "Proportional + Integral + Derivative"
+                },
+                "PI": {
+                  "description": "Proportional + Integral",
+                  "label": "Proportional + Integral"
+                },
+                "PD": {
+                  "description": "Proportional + Derivative",
+                  "label": "Proportional + Derivative"
+                },
+                "P": {
+                  "description": "Proportional Only",
+                  "label": "Proportional"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

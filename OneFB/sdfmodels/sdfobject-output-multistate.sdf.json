@@ -1,0 +1,33 @@
+{
+  "info": {
+    "title": "Multistate Output ", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfObject": {
+    "MultistateOutput": {
+      "description": "Current Multistate Output value",
+      "label": "Multistate Output",
+      "OutputObjectLink": {
+        "description": "Reference to a multistate control point to actuate",
+        "label": "Output Link",
+        "sdfRef": "fb:#/sdfData/ObjectPointerType"
+      },
+      "OutputDataLink": {
+        "description": "Location to update multistate control data, actuator or publisher",
+        "label": "Output Data Link",
+        "sdfRef": "fb:#/sdfData/ObjectPointerType"
+      },
+      "CurrentValue": {
+        "description": "Local (mirrored) copy of <InputObjectLink>/sdfProperty/CurrentValue",
+        "label": "Current Multistate State Value",
+        "sdfRef": "fb:#/sdfProperty/CurrentValue"
+      }
+    }
+  }
+}

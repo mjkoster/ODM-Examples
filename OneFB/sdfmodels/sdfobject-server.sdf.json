@@ -1,0 +1,54 @@
+{
+  "info": {
+    "title": "OneFB Server", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfObject": {
+    "ServerSettings": {
+      "description": "OneFB Server represents a communication endpoint that implements some server, \nsuch as a broker or a gateway",
+      "label": "OneFB Server Settings and Configuration",
+      "sdfProperty": {
+        "ServerAddress": {
+          "description": "DNS or IP address of a server",
+          "label": "Server Address",
+          "sdfRef": "#/sdfData/NetworkAddressType"
+        },
+        "BasePath": {
+          "description": "Base Path used as prefix for all requests",
+          "label": "Server Address",
+          "sdfRef": "#/sdfData/AddressPathType"
+        },
+        "SupportedProtocol": {
+          "description": "Identifiers for the protocols that the server accepts",
+          "sdfChoice": {
+            "mqtt": {
+              "description": "the server supports the MQTT transfer protocol"
+            },
+            "coap": {
+              "description": "the server supports the CoAP transfer protocol"
+            },
+            "http": {
+              "description": "the server supports the HTTP transfer protocol"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sdfData": {
+    "NetworkAddressType": {
+      "type": "string",
+      "format": "uri"
+    },
+    "AddressPathType": {
+      "type": "string",
+      "format": "uri-reference"
+    }
+  }
+}

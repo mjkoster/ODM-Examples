@@ -1,0 +1,69 @@
+{
+  "info": {
+    "title": "Scalar Setpoint", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfObject": {
+    "ScalarSetpoint": {
+      "description": "Setpoint Module for a scalar controller",
+      "label": "Scalar Setpoint",
+      "sdfProperty": {
+        "SetpointObjectLink": {
+          "description": "Reference to an object that is the source of remote setpoint data",
+          "label": "Setpoint Link",
+          "sdfRef": "fb:#/sdfData/ObjectPointerType"
+        },
+        "SetpointDataLink": {
+          "description": "Location to obtain remote setpoint data, from controller or subscriber",
+          "label": "Setpoint Data Link",
+          "sdfRef": "fb:#/sdfData/ObjectPointerType"
+        },
+        "CurrentValue" : {
+          "description": "Local copy of most recent setpoint data",
+          "label": "Current Setpoint Value",
+          "sdfRef": "fb:#/sdfProperty/CurrentValue"
+        },
+        "SetpointMode": {
+          "description": "Remote/local setpoint mode setting",
+          "label": "Setpoint Mode",
+          "sdfChoice": {
+            "LocalMode": {
+              "description": "Local setpoint mode",
+              "label": "Local Mode"
+            },
+            "RemoteMode": {
+              "description": "Remote setpoint mode",
+              "label": "Remote Mode"
+            }
+          }
+        }
+      },
+      "sdfAction": {
+        "MoveToSetpoint": {
+          "InputData": {
+            "type": "object",
+            "required": [ "TargetSetpoint" ],
+            "properties": {
+              "TargetSetpoint": {
+                "description": "Move to a target setpoint",
+                "label": "Target Setpoint",
+                "sdfRef": "fb:#/sdfData/ScalarDataType"
+              },
+              "TransitionTime": {
+                "description": "Move the actuator output smoothly from the current value to the target value",
+                "label": "Transition Time",
+                "sdfRef": "fb:#/sdfData/TransitionTimeType"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

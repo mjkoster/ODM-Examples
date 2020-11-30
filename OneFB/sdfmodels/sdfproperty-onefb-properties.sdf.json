@@ -1,0 +1,142 @@
+{
+  "info": {
+    "title": "OneFB Reusable Property Definitions", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+
+  "sdfProperty": {
+    "CurrentValue": {
+      "description": "The most recent raw measurement value available",
+      "label": "Current Measured Value",
+      "sdfRef": "fb:#/sdfData/FieldbusDataType"
+    },
+    "CurrentScalarValue": {
+      "description": "The most recent raw measurement value available",
+      "label": "Current Measured Value",
+      "sdfRef": "fb:#/sdfData/ScalarDataType"
+    },
+    "CurrentMultistateValue": {
+      "description": "The most recent raw measurement value available",
+      "label": "Current Measured Value",
+      "sdfRef": "fb:#/sdfData/MultistateDataType"
+    },
+    "CurrentContactValue": {
+      "description": "The most recent raw measurement value available",
+      "label": "Current Measured Value",
+      "sdfRef": "fb:#/sdfData/ContactDataType"
+    },
+    "CurrentCoilValue": {
+      "description": "The most recent raw measurement value available",
+      "label": "Current Measured Value",
+      "sdfRef": "fb:#/sdfData/CoilDataType"
+    },
+    "MinimumValue": {
+      "description": "The smallest meaningful raw measurement Value",
+      "label": "Minimum Value",
+      "sdfRef": "fb:#/sdfData/ScalarDataType"
+    },
+    "MaximumValue": {
+      "description": "The largest meaningful raw measurement Value",
+      "label": "Maximum Value",
+      "sdfRef": "fb:#/sdfData/ScalarDataType"
+    },
+    "ValueResolution": {
+      "description": "Decimal resolution of the raw measurement value",
+      "label": "Value Resolution",
+      "sdfRef": "fb:#/sdfData/ValueResolutionType"
+    },
+    "ScaledUnit": {
+      "description": "Engineering Unit for the scaled value",
+      "label": "Scaled Unit",
+      "sdfRef": "fb:#/sdfData/UnitType"
+    },
+    "ScaledMinimum": {
+      "description": "Minimum scaled measurable value in engineering units",
+      "label": "Minimum Scaled Value",
+      "type": "number"
+    },
+    "ScaledMaximum": {
+      "description": "Maximum scaled measurable value in engineering units",
+      "label": "Maximum Scaled Value",
+      "type": "number"
+    },
+    "ScaledValueResolution": {
+      "description": "The Decimal Resolution of the scaled value",
+      "label": "Scaled Value Resolution",
+      "type": "number"
+    },
+    "CurrentScaledValue": {
+      "description": "The most recently measured value scaled to engineering units",
+      "label": "Current Scaled Value",
+      "type": "number"
+    },
+    "CurrentScaledMinimum": {
+      "description": "The current minimum scaled value since reset",
+      "label": "Current Minimum Scaled Value",
+      "type": "number"
+    },
+    "CurrentScaledMaximum": {
+      "description": "The current maximum scaled value since reset",
+      "label": "Current Maximum Scaled Value",
+      "type": "number"
+    },
+    "SensorType": {
+      "description": "The type of sensor or process used",
+      "label": "Sensor Type",
+      "type": "string"
+    },
+    "ActuatorType": {
+      "description": "The type of actuator or process used, for display purposes",
+      "label": "Sensor Type",
+      "type": "string"
+    },
+    "ApplicationType": {
+      "description": "The application context for this point",
+      "label": "Application Type",
+      "type": "string"
+    },
+    "SystemIdentifier": {
+      "description": "The system-unique identifier for this point",
+      "label": "System Identifier",
+      "type": "string"
+    },
+    "OutputMode": {
+      "description": "The mode of the output, analog or PWM",
+      "label": "Output Mode",
+      "sdfRef": "#/sdfData/OutputModeData"
+    },
+    "PwmFrequency": {
+      "description": "PWM Frequency",
+      "label": "PWM Frequency",
+      "sdfRef": "#/sdfData/PwmFrequencyData"
+    }
+  },
+  "sdfData": {
+    "OutputModeData": {
+      "description": "The mode of the output",
+      "label": "Output Mode",
+      "sdfChoice": {
+        "AnalogMode": {
+          "description": "Analog (D/A) Output Mode",
+          "label": "Analog Mode"
+          },
+        "PwmMode": {
+          "description": "PWM Output Mode",
+          "label": "PWM Mode"
+        }
+      }
+    },
+    "PwmFrequency": {
+      "description": "PWM Frequency",
+      "label": "PWM Frequency",
+      "type": "number",
+      "unit": "Hz"
+    }
+  }
+}

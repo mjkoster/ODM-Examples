@@ -1,0 +1,117 @@
+{
+  "info": {
+    "title": "OneFB Actuation function", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+
+  "sdfObject": {
+    "Actuator": {
+      "description": "Actuation function",
+      "label": "Actuator",
+      "sdfProperty": {
+        "CurrentValue": {
+          "description": "The most recently updated output state value",
+          "label": "Current Output Value",
+          "sdfRef": "fb:#/sdfProperty/CurrentValue"
+        },
+        "MinimumValue": {
+          "description": "The smallest accepted Value",
+          "label": "Minimum Value",
+          "sdfRef": "fb:#/sdfProperty/MinimumValue"
+        },
+        "MaximumValue": {
+          "description": "The largest accepted Value",
+          "label": "Maximum Value",
+          "sdfRef": "fb:#/sdfProperty/MaximumValue"
+        },
+        "ValueResolution": {
+          "description": "Decimal resolution constraint for accepted Value",
+          "label": "Value Resolution",
+          "sdfRef": "fb:#/sdfProperty/ValueResolution"
+        },
+        "ScaledUnit": {
+          "description": "Engineering Unit for the scaled value",
+          "label": "Scaled Unit",
+          "sdfRef": "fb:#/sdfProperty/ScaledUnit"
+        },
+        "ScaledMinimum": {
+          "description": "Minimum scaled value in engineering units",
+          "label": "Minimum Scaled Value",
+          "sdfRef": "fb:#/sdfProperty/ScaledMinimum"
+        },
+        "ScaledMaximum": {
+          "description": "Maximum scaled value in Engineering units",
+          "label": "Maximum Scaled Value",
+          "sdfRef": "fb:#/sdfProperty/ScaledMaximum"
+        },
+        "ScaledValueResolution": {
+          "description": "The Decimal Resolution of the scaled value",
+          "label": "Scaled Value Resolution",
+          "sdfRef": "fb:#/sdfProperty/ScaledValueResolution"
+        },
+        "CurrentScaledValue": {
+          "description": "The most recently accepted value scaled to Engineering Units",
+          "label": "Current Scaled Value",
+          "sdfRef": "fb:#/sdfProperty/CurrentScaledValue"
+        },
+        "CurrentScaledMinimum": {
+          "description": "The current minimum scaled value since reset",
+          "label": "Current Minimum Scaled Value",
+          "sdfRef": "fb:#/sdfProperty/CurrentScaledMinimum"
+        },
+        "CurrentScaledMaximum": {
+          "description": "The current maximum scaled value since reset",
+          "label": "Current Miaximum Scaled Value",
+          "sdfRef": "fb:#/sdfProperty/CurrentScaledMaximum"
+        },
+        "ActuatorType": {
+          "description": "The type of actuator or process used, for display purposes",
+          "label": "Sensor Type",
+          "sdfRef": "fb:#/sdfProperty/ActuatorType"
+        },
+        "ApplicationType": {
+          "description": "The application context of the sensor, for display purposes",
+          "label": "Application Type",
+          "sdfRef": "fb:#/sdfProperty/ApplicationType"
+        },
+        "SystemIdentifier": {
+          "description": "The system-unique identifier for this sensor e.g. P&ID Tag",
+          "label": "System Identifier",
+          "sdfRef": "fb:#/sdfProperty/SystemIdentifier"
+        }
+      },
+      "sdfAction": {
+        "MoveToValue": {
+          "description": "Move the actuator to a target value",
+          "label": "Move To Value",
+          "InputData": {
+            "type": "object",
+            "required": [ "TargetValue" ],
+            "properties": {
+              "TargetValue": {
+                "description": "Target Output Value",
+                "label": "Target Output Value",
+                "sdfRef": "fb:#/sdfData/ScalarDataType"
+              },
+              "TransitionTime": {
+                "description": "Move the actuator output smoothly from the current value to the target value",
+                "label": "Transition Time",
+                "sdfRef": "fb:#/sdfData/TransitionTimeType"
+              }
+            }
+          }
+        },
+        "ResetMinMax": {
+          "description": "Reset the minumum and maximum sampled Values",
+          "label": "ResetMinMax"
+        }
+      }
+    }
+  }
+}

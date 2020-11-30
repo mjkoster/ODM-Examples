@@ -1,0 +1,35 @@
+{
+  "info": {
+    "title": "OneFB PID Controller Settings", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfObject": {
+    "PidControllerSettings": {
+      "description": "PID Controller Settings",
+      "label": "PID Controller Settings",
+      "sdfProperty": {
+        "ProportionalGain": {
+          "description": "Proportional Gain Setting for Control Loop Tuning",
+          "label": "Proportional Gain",
+          "type": "number"
+        },
+        "IntegralTime": {
+          "description": "Integral (Reset) Time Setting for Control Loop Tuning",
+          "label": "Integral Time",
+          "type": "number"
+        },
+        "DerivativeTime": {
+          "description": "Derivative Time Setting for Control Loop Tuning",
+          "label": "Derivative Time",
+          "type": "number"
+        }
+      }
+    }
+  }
+}

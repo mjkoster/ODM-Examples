@@ -1,0 +1,66 @@
+{
+  "info": {
+    "title": "OneFB Logic Controller", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfThing": {
+    "Controller": {
+      "description": "OneFB Logic Controller",
+      "label": "Logic Controller",
+      "sdfRequired": [
+        { 
+          "sdfChoice": {
+            "ContactInput": "#/sdfThing/Controller/sdfObject/ContactInput",
+            "MultistateInput": "#/sdfThing/Controller/sdfObject/MultistateInput"
+          }
+        },
+        { 
+          "sdfChoice": {
+            "CoilOutput": "#/sdfThing/Controller/sdfObject/CoilOutput",
+            "MultistateOutput": "#/sdfThing/Controller/sdfObject/MultistateOutput"
+          }
+        },
+        "#/sdfThing/Controller/sdfObject/LogicBlock",
+        "#/sdfThing/Controller/sdfObject/LogicControllerSettings"
+      ],
+      "sdfObject": {
+        "ContactInput": {
+          "description": "Contact Input for Logic Controller",
+          "label": "Contact Input",
+          "sdfRef": "fb:#/sdfObject/ContactInput"
+        },
+        "MultistateInput": {
+            "description": "Multistate Input for Logic Controller",
+            "label": "Multistate Input",
+            "sdfRef": "fb:#/sdfObject/MultistateInput"
+        },
+        "CoilOutput": {
+          "description": "Coil Output for Logic Controller",
+          "label": "Coil Output",
+          "sdfRef": "fb:#/sdfObject/CoilOutput"
+        },
+        "MultistateOutput": {
+          "description": "Multistate Output for Logic Controller",
+          "label": "Multistate Output",
+          "sdfRef": "fb:#/sdfObject/MultistateOutput"
+        },
+        "LogicBlock": {
+          "description": "Logic Block that defines outputs as a function of inputs",
+          "label": "Logic Block",
+          "sdfRef": "fb:#/sdfObject/LogicBlock"
+        },
+        "LogicControllerSettings": {
+          "description": "Settings and Configuration for Logic Controller",
+          "label": "Logic Controller Settings",
+          "sdfRef": "fb:#/sdfObject/LogicControllerSettings"
+        }
+      }
+    }
+  }
+}

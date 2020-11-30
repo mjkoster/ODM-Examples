@@ -1,0 +1,30 @@
+{
+  "info": {
+    "title": "OneFB Transmitter", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfThing": {
+    "Transmitter": {
+      "description": "OneFB Transmitter, consists of a Sensor and a Publisher",
+      "label": "Transmitter",
+      "sdfObject": {
+        "Sensor": {
+          "description": "Sensor Compnent",
+          "label": "Sensor",
+          "sdfRef": "fb:#/sdfObject/Sensor"
+        },
+        "Publisher": {
+          "description": "Publisher Component",
+          "label": "Publisher",
+          "sdfRef": "fb:#/sdfObject/Publisher"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "info": {
+    "title": "Scalar Output", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfObject": {
+    "ScalarOutput": {
+      "description": "Scalar Output Module",
+      "label": "Scalar Output",
+      "sdfProperty": {
+        "OutputObjectLink": {
+          "description": "Reference to a control point to actuate",
+          "label": "Output Link",
+          "sdfRef": "fb:#/sdfData/ObjectPointerType"
+        },
+        "OutputDataLink": {
+          "description": "Location to update control output data, actuator or publisher",
+          "label": "Output Data Link",
+          "sdfRef": "fb:#/sdfData/ObjectPointerType"
+        },
+        "CurrentValue" : {
+          "description": "Local copy of most recent control output for <OutputDataLink>/sdfProperty/CurrentState",
+          "label": "Current Output Value",
+          "sdfRef": "fb:#/sdfProperty/CurrentValue"
+        }
+      }
+    }
+  }
+}

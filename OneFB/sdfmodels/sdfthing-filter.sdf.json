@@ -1,0 +1,78 @@
+{
+  "info": {
+    "title": "OneFB Filter", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfThing": {
+    "Filter": {
+      "description": "Apply a Filter to a Data Sequence",
+      "label": "Filter",
+      "sdfRequired": [
+        { 
+          "sdfChoice": {
+            "FilterInput": "#/sdfThing/Controller/sdfObject/ScalarInput",
+            "ContactInput": "#/sdfThing/Controller/sdfObject/ContactInput",
+            "MultistateInput": "#/sdfThing/Controller/sdfObject/MultistateInput"
+          }
+        },
+        { 
+          "sdfChoice": {
+            "FilterOutput": "#/sdfThing/Controller/sdfObject/ScalarOutput",
+            "CoilOutput": "#/sdfThing/Controller/sdfObject/CoilOutput",
+            "MultistateOutput": "#/sdfThing/Controller/sdfObject/MultistateOutput"
+          }
+        },
+        "#/sdfThing/Controller/sdfObject/FilterLogic",
+        "#/sdfThing/Controller/sdfObject/FilterSettings"
+      ],
+      "sdfObject": {
+        "ScalarInput": {
+          "description": "Input Data for Filter",
+          "label": "Filter Input",
+          "sdfRef": "fb:#/sdfObject/ScalarInput"
+        },
+        "ContactInput": {
+          "description": "Contact Input for Logic Controller",
+          "label": "Contact Input",
+          "sdfRef": "fb:#/sdfObject/ContactInput"
+        },
+        "MultistateInput": {
+          "description": "Multistate Input for Logic Controller",
+          "label": "Multistate Input",
+          "sdfRef": "fb:#/sdfObject/MultistateInput"
+        },
+        "ScalarOutput": {
+          "description": "Output Data from Filter",
+          "label": "Filter Output",
+          "sdfRef": "fb:#/sdfObject/ScalarOutput"
+        },        
+        "CoilOutput": {
+          "description": "Coil Output for Logic Controller",
+          "label": "Coil Output",
+          "sdfRef": "fb:#/sdfObject/CoilOutput"
+        },
+        "MultistateOutput": {
+          "description": "Multistate Output for Logic Controller",
+          "label": "Multistate Output",
+          "sdfRef": "fb:#/sdfObject/MultistateOutput"
+        },
+        "LogicBlock": {
+          "description": "Logic specification for Filter",
+          "label": "Filter Logic Block",
+          "sdfRef": "fb:#/sdfObject/LogicBlock"
+          },
+        "FilterSettings": {
+          "description": "Settings and Configuration for Filter",
+          "label": "Filter Settings",
+          "sdfRef": "fb:#/sdfObject/FilterSettings"
+        }
+      }
+    }
+  }
+}

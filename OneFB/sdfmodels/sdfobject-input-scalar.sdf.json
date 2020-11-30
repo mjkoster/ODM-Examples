@@ -1,0 +1,33 @@
+{
+  "info": {
+    "title": "Scalar Input ", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfObject": {
+    "ScalarInput": {
+      "description": "Scalar Input Module",
+      "label": "Current Scalar Input Value",
+      "InputObjectLink": {
+        "description": "Reference to an object that describes the source of data",
+        "label": "Input Link",
+        "sdfRef": "fb:#/sdfData/ObjectPointerType"
+      },
+      "InputDataLink": {
+        "description": "Location to obtain input data",
+        "label": "Input Data Link",
+        "sdfRef": "fb:#/sdfData/ObjectPointerType"
+      },
+      "CurrentValue": {
+        "description": "Local (mirrored) copy of <InputObjectLink>/sdfProperty/CurrentValue",
+        "label": "Current Input Value",
+        "sdfRef": "fb:#/sdfProperty/CurrentValue"
+      }
+    }
+  }
+}

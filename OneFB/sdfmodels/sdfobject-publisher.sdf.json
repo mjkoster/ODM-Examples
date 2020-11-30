@@ -1,0 +1,43 @@
+{
+  "info": {
+    "title": "OneFB generic Publisher", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfObject": {
+    "Publisher": {
+      "description": "Publisher Object",
+      "label": "Publisher",
+      "sdfProperty": {
+        "SourceObjectLink": {
+          "description": "Link to the object that supplies data to be published",
+          "label": "Source Object Link",
+          "sdfRef": "fb:#/sdfData/ObjectPointerType"
+        },
+        "SourceObjectProperty": {
+          "description": "Pointer to an sdfProperty or sdfEvent to publish, relative to the Source Object",
+          "label": "Source Object Property",
+          "type": "string",
+          "format": "json-pointer",
+          "default": "#/sdfObject/Sensor/sdfProperty/CurrentValue"
+        },
+        "PublishPath": {
+          "description": "URI path for Publication",
+          "label": "Publish Path",
+          "type": "string",
+          "format": "uri"
+        },
+        "PublishServer": {
+          "description": "Object link pointing to the server instance for Publication",
+          "label": "Publish Server",
+          "sdfRef": "fb:#/sdfData/ObjectPointerType"
+        }
+      }
+    }
+  }
+}

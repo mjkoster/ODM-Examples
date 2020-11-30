@@ -1,0 +1,43 @@
+{
+  "info": {
+    "title": "Simple Filter", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfObject": {
+    "SimpleFilter": {
+      "description": "Simple Filter Module, exposes a filtered CurrentValue",
+      "label": "Simple Filter",
+      "InputObjectLink": {
+        "description": "Reference to an object that describes the source of data",
+        "label": "Input Link",
+        "sdfRef": "fb:#/sdfData/ObjectPointerType"
+      },
+      "InputDataLink": {
+        "description": "Location to obtain input data",
+        "label": "Input Data Link",
+        "sdfRef": "fb:#/sdfData/ObjectPointerType"
+      },
+      "CurrentValue": {
+        "description": "Filtered representation of <InputObjectLink>/sdfProperty/CurrentValue",
+        "label": "Current Filter Output State Value",
+        "sdfRef": "fb:#/sdfProperty/CurrentValue"
+      },
+      "LogicBlock": {
+        "description": "Logic specification for Filter",
+        "label": "Filter Logic Block",
+        "sdfRef": "fb:#/sdfObject/LogicBlock"
+        },
+      "FilterSettings": {
+        "description": "Settings and Configuration for Filter",
+        "label": "Filter Settings",
+        "sdfRef": "fb:#/sdfObject/FilterSettings"
+      }
+    }
+  }
+}

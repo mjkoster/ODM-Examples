@@ -1,0 +1,20 @@
+{
+  "info": {
+    "title": "OneFB Logic Controller Settings", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfObject": {
+    "LogicControllerSettings": {
+      "description": "Logic Controller Settings",
+      "label": "Logic Controller Settings",
+      "sdfProperty": {
+      }
+    }
+  }
+}

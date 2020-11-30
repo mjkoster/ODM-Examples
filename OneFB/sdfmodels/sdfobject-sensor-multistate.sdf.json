@@ -1,0 +1,44 @@
+{
+  "info": {
+    "title": "Multistate Sensing function", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+
+  "sdfObject": {
+    "MultistateSensor": {
+      "description": "Multistate Sensor",
+      "label": "Multistate Sensor",
+      "sdfRequired": [
+        "#/sdfObject/Sensor/sdfProperty/CurrentValue"
+      ],
+      "sdfProperty": {
+        "CurrentValue": {
+          "description": "The most recent sensed value available",
+          "label": "Current Sensed Value",
+          "sdfRef": "fb:#/sdfProperty/CurrentValue"
+        },
+        "SensorType": {
+          "description": "The type of sensor or process used",
+          "label": "Sensor Type",
+          "sdfRef": "fb:#/sdfProperty/SensorType"
+        },
+        "ApplicationType": {
+          "description": "The application context of the sensor",
+          "label": "Application Type",
+          "sdfRef": "fb:#/sdfProperty/ApplicationType"
+        },
+        "System Identifier": {
+          "description": "The system-unique identifier for this sensor",
+          "label": "System Identifier",
+          "sdfRef": "fb:#/sdfProperty/SystemIdentifier"
+        }
+      }
+    }
+  }
+}

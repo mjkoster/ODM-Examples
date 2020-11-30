@@ -1,0 +1,492 @@
+{
+  "info": {
+    "title": "OneFB Modbus PID Controller Parameter Settings", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfObject": {
+    "ModbusPidControllerParameters": {
+      "description": "PID Controller Parameters for the Modbus Controller Example",
+      "label": "Modbus PID Controller Parameters",
+      "sdfProperty": {
+        "OpenCloseMode": {
+          "description": "Enable PID Loop Control",
+          "label": "Modbus Register 41000",
+          "sdfChoice": {
+            "OpenMode": {
+              "description": "No loop control",
+              "label": "Open Mode",
+              "default": 0
+            },
+            "ClosedMode": {
+              "description": "Closed loop control",
+              "label": "Closed Mode",
+              "default": 1
+            },
+            "ManualMode": {
+              "description": "Manual Output control",
+              "label": "Manual Mode",
+              "default": 3
+            }
+          }
+        },
+        "PidMode": {
+          "description": "Enable PID Loop Control",
+          "label": "Modbus Register 41002",
+          "sdfChoice": {
+            "StandardMode": {
+              "description": "Standard Mode",
+              "label": "Standard Mode",
+              "default": 0
+            },
+            "DifferentialFirstMode": {
+              "description": "Differential First Mode",
+              "label": "Differential First Mode",
+              "default": 1
+            }
+          }
+        },
+        "ProcessValueRawData": {
+          "description": "Controller Input Value PV",
+          "label": "Modbus Register 41008",
+          "type": "number",
+          "multipleOf": 0.001,
+          "writable": false
+        },
+        "ManipulatorValueRawData": {
+          "description": "Controller Output Value MV",
+          "label": "Modbus Register 41012",
+          "type": "number",
+          "multipleOf": 0.001,
+          "writable": false
+        },
+        "DiOnOff": {
+          "description": "DI for Emergency Loop Shutdown",
+          "label": "Modbus Register 41016",
+          "type": "boolean",
+          "writable": false
+        },
+        "DoOnOff": {
+          "description": "Alarm DO on",
+          "label": "Modbus Register 41018",
+          "type": "boolean",
+          "writable": false
+        },
+        "SetpointValue": {
+          "description": "Controller Setpoint Value SV",
+          "label": "Modbus Register 41020",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "PvRangeHigh": {
+          "description": "Maximum value for PV",
+          "label": "Modbus Register 41024",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "PvRangeLow": {
+          "description": "Minimum value for PV",
+          "label": "Modbus Register 41026",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "MvRangeHigh": {
+          "description": "Maximum value for MV",
+          "label": "Modbus Register 41032",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "MvRangeLow": {
+          "description": "Minimum value for MV",
+          "label": "Modbus Register 41034",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "PVSourceEngineeringData": {
+          "description": "Scaled Controller Input PV in Engineering Units",
+          "label": "Modbus Register 41036",
+          "type": "number",
+          "multipleOf": 0.001,
+          "writable": false
+        },
+        "MVEngineeringData": {
+          "description": "Scaled Controller MV in Engineering Units",
+          "label": "Modbus Register 41040",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "PidPvValue": {
+          "description": "Controller Input PV Value",
+          "label": "Modbus Register 41044",
+          "type": "number",
+          "multipleOf": 0.001,
+          "writable": false
+        },
+        "PidPSvValue": {
+          "description": "Controller Input SV Value",
+          "label": "Modbus Register 41046",
+          "type": "number",
+          "multipleOf": 0.001,
+          "writable": false
+        },
+        "PvFilterValue": {
+          "description": "1st order filter value /1000",
+          "label": "Modbus Register 41048",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "multipleOf": 0.001
+        },
+        "PvRange": {
+          "description": "PV Range Selectionl",
+          "label": "Modbus Register 41054",
+          "sdfRef": "#/sdfData/PvRangeType"
+        },
+        "MvRange": {
+          "description": "PV Range Selectionl",
+          "label": "Modbus Register 41060",
+          "sdfRef": "#/sdfData/MvRangeType"
+        },
+        "PidKpSetting": {
+          "description": "Proportional  Setting for Control Loop Tuning",
+          "label": "Modbus Register 41062",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "PidKiSetting": {
+          "description": "Integral Setting for Control Loop Tuning",
+          "label": "Modbus Register 41064",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "PidKdSetting": {
+          "description": "Derivative Setting for Control Loop Tuning",
+          "label": "Modbus Register 41066",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "PidKpPidInput": {
+          "description": "Proportional Input to PID for Control Loop Tuning",
+          "label": "Modbus Register 410674",
+          "type": "number",
+          "multipleOf": 0.001,
+          "writable": false
+        },
+        "PidKiPidInput": {
+          "description": "Integral Input to PID for Control Loop Tuning",
+          "label": "Modbus Register 41076",
+          "type": "number",
+          "multipleOf": 0.001,
+          "writable": false
+        },
+        "PidKdPidInput": {
+          "description": "Derivative Input to PID for Control Loop Tuning",
+          "label": "Modbus Register 41078",
+          "type": "number",
+          "multipleOf": 0.001,
+          "writable": false
+        },
+        "ControlLoopPeriodSetting": {
+          "description": "Control Loop Period Setting for PV, in mSec, <=0 for loop empty, >0 for loop controlling",
+          "label": "Modbus Register 41080",
+          "type": "number",
+          "multipleOf": 1
+        },
+        "ControlLoopPeriodPidInput": {
+          "description": "Control Loop Period Input to PID, in mSec, <=0 for loop empty, >0 for loop controlling",
+          "label": "Modbus Register 41084",
+          "type": "number",
+          "multipleOf": 1,
+          "writable": false
+        },
+        "ControlLoopCountDown": {
+          "description": "Control Loop Period counter value, <=0 for calculation",
+          "label": "Modbus Register 41086",
+          "type": "number",
+          "multipleOf": 1,
+          "writable": false
+        },
+        "PreviousLoopOpenClose": {
+          "description": "Previous Control Loop Mode for setting initial values",
+          "label": "Modbus Register 41088",
+          "type": "boolean",
+          "writable": false
+        },
+        "ControlLoopNsec": {
+          "description": "Control Loop Newest Loop Interval in nSec",
+          "label": "Modbus Register 41090",
+          "type": "number",
+          "multipleOf": 1,
+          "writable": false
+        },
+        "ControlLoopOldNsec": {
+          "description": "Control Loop Previous Loop Interval in nSec",
+          "label": "Modbus Register 41092",
+          "type": "number",
+          "multipleOf": 1,
+          "writable": false
+        },
+        "PowerRecoveryAction": {
+          "description": "Action to take on recovery from power interruption",
+          "label": "Modbus Register 41094",
+          "sdfChoice": {
+            "PreviousMvLoopOpen": {
+              "description": "Maintain previous MV value and open PID loop",
+              "label": "Previous MV with Loop Open",
+              "default": 0
+            },
+            "PreviousMvLoopClosed": {
+              "description": "Maintain previous MV value and open PID loop",
+              "label": "Previous MV with Loop Closed",
+              "default": 1
+            },
+            "InitialMvLoopOpen": {
+              "description": "Use Initial MV value and open PID loop",
+              "label": "Initial MV Loop Open",
+              "default": 2
+            }
+          }
+        },
+        "MvInitialValue": {
+          "description": "Initial Value for MV Power Recovery Action",
+          "label": "Modbus Register 41096",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "PreviousDiState": {
+          "description": "State of DI from last scan",
+          "label": "Modbus Register 41098",
+          "type": "boolean",
+          "writable": false
+        },
+        "PreviousDoState": {
+          "description": "State of DO from last scan",
+          "label": "Modbus Register 41100",
+          "type": "boolean",
+          "writable": false
+        },
+        "PvAlarmHH": {
+          "description": "PV Alarm High High Limit",
+          "label": "Modbus Register 41102",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "PvAlarmH": {
+          "description": "PV Alarm High Limit",
+          "label": "Modbus Register 41104",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "PvAlarmLL": {
+          "description": "PV Alarm Low Low Limit",
+          "label": "Modbus Register 41106",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "PvAlarmL": {
+          "description": "PV Alarm Low Limit",
+          "label": "Modbus Register 41108",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "PvAlarmDeadBand": {
+          "description": "PV Alarm Dead Band in Percent",
+          "label": "Modbus Register 41110",
+          "type": "number",
+          "multipleOf": 0.001,
+          "maximum": 10
+        },
+        "PvAlarmStatus": {
+          "description": "PV Alarm Status",
+          "label": "Modbus Register 41110",
+          "sdfChoice": {
+            "Normal": {
+              "default": 0
+            },
+            "HighHigh": {
+              "default": 1
+            },
+            "High": {
+              "default": 2
+            },
+            "Low": {
+              "default": 3
+            },
+            "LowLow": {
+              "default": 4
+            }
+          }
+        },
+        "MvOutputHighLimit": {
+          "description": "MV Output High Limit",
+          "label": "Modbus Register 41138",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "MvOutputLowLimit": {
+          "description": "MV Output Low Limit",
+          "label": "Modbus Register 41140",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "MvAlarmStatus": {
+          "description": "MV Alarm Status",
+          "label": "Modbus Register 41142",
+          "sdfChoice": {
+            "Normal": {
+              "default": 0
+            },
+            "High": {
+              "default": 1
+            },
+            "Low": {
+              "default": 2
+            }
+          }
+        },
+        "MvEmergencyValue": {
+          "description": "MV Output Value when Emergency Shutdown DI Active",
+          "label": "Modbus Register 41144",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "PvOpenWireFlag": {
+          "description": "PV Open Wire Status",
+          "label": "Modbus Register 41146",
+          "sdfChoice": {
+            "Normal": {
+              "default": 0
+            },
+            "OpenWire": {
+              "default": 1
+            }
+          }
+        },
+        "PidDirectReverse": {
+          "description": "PID Direct/Reverse",
+          "label": "Modbus Register 41150",
+          "sdfChoice": {
+            "Direct": {
+              "default": 0
+            },
+            "Reverse": {
+              "default": 1
+            }
+          }
+        },
+        "SvHighLimit": {
+          "description": "SV High Limit",
+          "label": "Modbus Register 41152",
+          "type": "number",
+          "multipleOf": 0.001
+        },
+        "SvLowLimit": {
+          "description": "SV Low Limit",
+          "label": "Modbus Register 41154",
+          "type": "number",
+          "multipleOf": 0.001
+        }
+      },
+      "sdfData": {
+        "PvRangeType": {
+          "sdfChoice": {
+            "0-10V": {
+              "description": "0-10 Volt Signal Range",
+              "label": "0-10V",
+              "default": 0
+            },
+            "0-20mA": {
+              "description": "0-20 mA Signal Range",
+              "label": "0-20mA",
+              "default": 1
+            },
+            "4-20mA": {
+              "description": "4-20 mA Signal Range",
+              "label": "4-20mA",
+              "default": 2
+            },
+            "PT100-385-1": {
+              "description": "PT100(385) -100 to +100 C",
+              "label": "PT100(385) -100 to +100 C",
+              "default": 3
+            },
+            "PT100-385-2": {
+              "description": "PT100(385) 0 to +100 C",
+              "label": "PT100(385) 0 to +100 C",
+              "default": 4
+            },
+            "PT100-385-3": {
+              "description": "PT100(385) 0 to +200 C",
+              "label": "PT100(385) 0 to +200 C",
+              "default": 5
+            },
+            "PT100-385-4": {
+              "description": "PT100(385) 0 to +600 C",
+              "label": "PT100(385) 0 to +600 C",
+              "default": 6
+            },
+            "PT100-392-1": {
+              "description": "PT100(392) -100 to +100 C",
+              "label": "PT100(385) -100 to +100 C",
+              "default": 7
+            },
+            "PT100-392-2": {
+              "description": "PT100(392) 0 to +100 C",
+              "label": "PT100(392) 0 to +100 C",
+              "default": 8
+            },
+            "PT100-392-3": {
+              "description": "PT100(392) 0 to +200 C",
+              "label": "PT100(392) 0 to +200 C",
+              "default": 9
+            },
+            "PT100-392-4": {
+              "description": "PT100(392) 0 to +600 C",
+              "label": "PT100(392) 0 to +600 C",
+              "default": 10
+            },
+            "PT1000": {
+              "description": "PT1000 -40 to +160 C",
+              "label": "PT1000 -40 to +160 C",
+              "default": 11
+            },
+            "Thermistor3K": {
+              "description": "3K Thermistor 0 to +100 C",
+              "label": "3K Thermistor 0 to +100 C",
+              "default": 12
+            },
+            "Thermistor10K": {
+              "description": "10K Thermistor 0 to +100 C",
+              "label": "10K Thermistor 0 to +100 C",
+              "default": 13
+            }
+          }
+        },
+        "MvRangeType": {
+          "sdfChoice": {
+            "0-10V": {
+              "description": "0-10 Volt Signal Range",
+              "label": "0-10V",
+              "default": 0
+            },
+            "0-20mA": {
+              "description": "0-20 mA Signal Range",
+              "label": "0-20mA",
+              "default": 1
+            },
+            "4-20mA": {
+              "description": "4-20 mA Signal Range",
+              "label": "4-20mA",
+              "default": 2
+            }        
+          }
+        }
+      }
+    }
+  }
+}

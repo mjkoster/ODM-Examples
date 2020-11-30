@@ -1,0 +1,58 @@
+{
+  "info": {
+    "title": "Coil Actuation", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+
+  "sdfObject": {
+    "MultistateActuator": {
+      "description": "Coil Actuation",
+      "label": "Coil Actuator",
+      "sdfProperty": {
+        "CurrentValue": {
+          "description": "The most recently updated output state value",
+          "label": "Current Output Value",
+          "sdfRef": "fb:#/sdfProperty/CurrentValue"
+        },
+        "SensorType": {
+          "description": "The type of sensor or process used",
+          "label": "Sensor Type",
+          "sdfRef": "fb:#/sdfProperty/SensorType"
+        },
+        "ApplicationType": {
+          "description": "The application context of the sensor",
+          "label": "Application Type",
+          "sdfRef": "fb:#/sdfProperty/ApplicationType"
+        },
+        "System Identifier": {
+          "description": "The system-unique identifier for this sensor",
+          "label": "System Identifier",
+          "sdfRef": "fb:#/sdfProperty/SystemIdentifier"
+        }
+      },
+      "sdfAction": {
+        "SetCurrentValue": {
+          "description": "Set the current output value of the actuator",
+          "label": "Set Current Value",
+          "InputData": {
+            "type": "object",
+            "required": [ "TargetValue" ],
+            "properties": {
+              "TargetValue": {
+                "description": "Target Output Value",
+                "label": "Target Output Value",
+                "sdfRef": "fb:#/sdfData/CoilDataType"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

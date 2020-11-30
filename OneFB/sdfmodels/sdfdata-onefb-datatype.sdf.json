@@ -1,0 +1,144 @@
+{
+  "info": {
+    "title": "OneFB Data Types", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+
+  "sdfData": {
+    "ScalarDataType": {
+      "description": "Data Type for unscaled or raw scalar data",
+      "label": "Scalar Data",
+      "type": "number",
+      "minimum": -1,
+      "maximum": 1,
+      "multipleOf": "0.0001"
+    },
+    "MultistateDataType": {
+      "description": "Multistate Data Type defined using sdfChoice",
+      "label": "Multistate Data"
+    },
+    "ContactDataType": {
+      "description": "Contact Data Type, True = Closed, False = Open",
+      "label": "Contact Data",
+      "type": "boolean"
+    },
+    "CoilDataType": {
+      "description": "Coil Data Type, True = energized",
+      "label": "Coil Data",
+      "type": "boolean"
+    },
+    "FieldbusDataType": {
+      "sdfChoice": {
+        "ScalarDataType": {
+          "sdfRef": "#/sdfData/ScalarDataType"
+        },
+        "MultistateDataType": {
+          "sdfRef": "#/sdfData/MultistateDataType"
+        },
+        "ContactDataType": {
+          "sdfRef": "#/sdfData/ContactDataType"
+        },
+        "CoilDataType": {
+          "sdfRef": "#/sdfData/CoilDataType"
+        }
+      }
+    },
+    "ValueResolutionType": {
+      "description": "Decimal Resolution for values, multipleOf in even decimal fractions",
+      "label": "Value Resolution Type",
+      "sdfChoice": {
+        "10e-4": { "const": 0.0001 }, 
+        "10e-3": { "const": 0.001 }, 
+        "10e-2": { "const": 0.01 }, 
+        "10e-1": { "const": 0.1 }, 
+        "10e0": { "const": 1 }
+      } 
+    },
+    "UnitType": {
+      "description": "Engineering Unit Type, use SenML Unit Formatted String as per RFC8428 and extensions",
+      "label": "Unit Type",
+      "type": "string"
+    },
+    "TypedLink": {
+      "description": "Typed link for use with CoRAL, RDF, or weblinks",
+      "label": "Typed Link",
+      "type": "object",
+      "Properties": {
+        "TargetPointer": { 
+          "sdfRef": "#/sdfData/ObjectPointerType" 
+        },
+        "TargetAttributes": {
+          "type": "array",
+          "items": "#/sdfData/TargetAttributeType"
+        },
+        "RelationType": {
+          "type": "array",
+          "items": "#/sdfData/RelationType"
+        }
+      }
+    },
+    "ObjectPointerType": {
+      "description": "Type for pointing to an instance of an sdfObject",
+      "label": "Object Pointer Type",
+      "sdfChoice": {
+        "JsonPointer": {
+          "sdfRef": "#/sdfData/JsonPointerType"
+        },
+        "UriPointer": {
+          "type": "string",
+          "format": "uri"    
+        },
+        "Lwm2mObjectPointer": {
+          "sdfRef": "#/sdfData/Lwm2mObjectPointerType"
+        }
+      }
+    },
+    "Lwm2mObjectPointerType": {
+      "description": "Type for pointing to an instance of a LWM2M Object",
+      "label": "LWM2M Object Pointer (objlink) Type",
+      "type": "object",
+      "properties": {
+        "ObjectID": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 65535,
+          "multipleOf": 1
+        },
+        "InstanceID": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 65535,
+          "multipleOf": 1
+        }
+      }
+    },
+   "JsonPointerType": {
+      "description": "Type for pointing to an instance of an sdfObject using JSON Pointer",
+      "label": "JSON Pointer Type",
+      "type": "string",
+      "format": "json-pointer"
+    },
+    "TargetAttributeType": {
+      "description": "Target Attribute for use with Typed links",
+      "label": "Target Attribute Type",
+      "type": "String"
+    },
+    "LinkRelationType": {
+      "description": "Link Relation Type for RDF, etc.",
+      "label": "Link Relation Type",
+      "type": "String"
+    },
+     "TransitionTimeType": {
+      "description": "ISO 8601 duration format for transition time, see Appendix A of RFC 3339",
+      "label": "Transition Time Type",
+      "type": "String",
+      "format": "duration"
+    }
+  }
+}
