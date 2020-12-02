@@ -1,0 +1,137 @@
+{
+  "info": {
+    "title": "Example file for Semantic Definition Format", 
+    "version": "20200603", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "ex": "https://onedm.org/exploratory/"
+  }, 
+  "defaultNamespace": "ex", 
+  "sdfObject": {
+    "OnOff": {
+      "label": "OnOff", 
+      "sdfRequired": [
+        "#/sdfObject/OnOff/sdfProperty/OnOff", 
+        "#/sdfObject/OnOff/sdfAction/On",
+        "#/sdfObject/OnOff/sdfAction/Off",
+        "#/sdfObject/OnOff/sdfAction/Toggle"
+      ],
+      "sdfProperty": {
+        "OnOff": {
+          "label": "OnOff", 
+          "type": "boolean",
+          "default": false
+        }, 
+        "GlobalSceneControl": {
+          "label": "GlobalSceneControl", 
+          "type": "boolean",
+          "default": true
+        }, 
+        "OnTime": {
+          "sdfRef": "#/sdfObject/OnOff/sdfData/TransitionTimeData", 
+          "label": "OnTime", 
+          "default": 0
+        }, 
+        "OffWaitTime": {
+          "sdfRef": "#/sdfObject/OnOff/sdfData/TransitionTimeData", 
+          "label": "OffWaitTime", 
+          "default": 0
+        }, 
+        "StartUpOnOff": {
+          "sdfRef": "#/sdfObject/OnOff/sdfData/StartUpOnOffMode", 
+          "label": "StartUpOnOff"
+        }
+      }, 
+      "sdfAction": {
+        "Off": {
+          "label": "Off" 
+        }, 
+        "On": {
+          "label": "On"
+        }, 
+        "Toggle": {
+          "label": "Toggle"
+        }, 
+        "OffWithEffect": {
+          "label": "OffWithEffect",
+          "sdfRequired": [
+          ],
+          "sdfInputData": {
+            "type": "object",
+            "properties": {
+              "EffectIdentifier": {
+                "label": "EffectIdentifier", 
+                "sdfEnum": {
+                  "DelayedAllOff": {
+                    "type": "number",
+                    "const": 0
+                  },
+                  "DyingLight": {
+                    "type": "number",
+                    "const": 1
+                  }
+                } 
+              }, 
+              "EffectVariant": {
+                "label": "EffectVariant", 
+                "type": "number" 
+              }
+            }
+          }
+        },
+        "OnWithRecallGlobalScene": {
+          "label": "OnWithRecallGlobalScene"
+        }, 
+        "OnWithTimedOff": {
+          "label": "OnWithTimedOff", 
+          "sdfInputData": {
+            "type": "object",
+            "properties": {
+              "OnOffControl": {
+                "type": "object",
+                "properties" : {
+                  "AcceptOnlyWhenOn": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }, 
+      "sdfData": {
+        "TransitionTimeData": {
+          "type": "number", 
+          "minimum": 0, 
+          "maximum": 65535, 
+          "multipleOf": 1, 
+          "unit": "seconds", 
+          "scaleMinimum": 0, 
+          "scaleMaximum": 6553.5
+        },
+        "StartUpOnOffMode": {
+          "sdfEnum": {
+            "SetOnOffTo0": {
+              "type": "number",
+              "const": 0
+            },
+            "SetOnOffTo1": {
+              "type": "number",
+              "const": 1
+            },
+            "TogglePreviousOnOff": {
+              "type": "number",
+              "const": 2
+            },
+            "SetPreviousOnOff": {
+              "type": "number",
+              "const": 255
+            }
+          }
+        }
+      }
+    }
+  }
+}

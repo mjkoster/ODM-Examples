@@ -1,0 +1,290 @@
+{
+  "info": {
+    "title": "Example file for SDF dotdot syntax", 
+    "version": "20201202", 
+    "copyright": "Copyright 2020 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "dcl": "https://example.org/dcl/"
+  }, 
+  "defaultNamespace": "dcl", 
+
+  "dclCluster": {
+    "Level": {
+      "label": "Level Cluster", 
+      "dclRequired": [
+        "#/dclCluster/Level/dclAttribute/CurrentLevel", 
+        "#/dclCluster/Level/dclCommand/MoveToLevel", 
+        "#/dclCluster/Level/dclCommand/Move", 
+        "#/dclCluster/Level/dclCommand/Step", 
+        "#/dclCluster/Level/dclCommand/Stop", 
+        "#/dclCluster/Level/dclCommand/MoveToLevelwithOnOff", 
+        "#/dclCluster/Level/dclCommand/MovewithOnOff", 
+        "#/dclCluster/Level/dclCommand/StepwithOnOff", 
+        "#/dclCluster/Level/dclCommand/StopwithOnOff"
+      ],
+      "dclAttribute": {
+        "CurrentLevel": {
+          "label": "CurrentLevel", 
+          "dclRef": "#/dclCluster/Level/dclDataType/LevelData"
+        }, 
+        "RemainingTime": {
+          "label": "RemainingTime", 
+          "dclRef": "#/dclCluster/Level/dclDataType/TransitionTimeData", 
+          "default": 0
+        },
+        "MinLevel": {
+          "label": "MinLevel", 
+          "dclRef": "#/dclCluster/Level/dclDataType/LevelData"
+        },
+        "MaxLevel": {
+          "label": "MaxLevel", 
+          "dclRef": "#/dclCluster/Level/dclDataType/LevelData"
+        },
+        "CurrentFrequency": {
+          "label": "CurrentFrequency", 
+          "dclRef": "#/dclCluster/Level/dclDataType/FrequencyData"
+        },
+        "MinFrequency": {
+          "label": "CurrentFrequency", 
+          "dclRef": "#/dclCluster/Level/dclDataType/FrequencyData"
+        },
+        "MaxFrequency": {
+          "label": "CurrentFrequency", 
+          "dclRef": "#/dclCluster/Level/dclDataType/FrequencyData"
+        },
+        "OnOffTransitionTime": {
+          "label": "OnOffTransitionTime",
+          "dclRef": "#/dclCluster/Level/dclDataType/TransitionTimeData", 
+          "default": 0
+        }, 
+        "OnLevel": {
+          "label": "OnLevel", 
+          "type": "number", 
+          "minimum": 0, 
+          "maximum": 255, 
+          "default": 255
+        }, 
+        "OnTransitionTime": {
+          "label": "OnTransitionTime",
+          "dclRef": "#/dclCluster/Level/dclDataType/TransitionTimeData"
+        }, 
+        "OffTransitionTime": {
+          "label": "OffTransitionTime",
+          "dclRef": "#/dclCluster/Level/dclDataType/TransitionTimeData"
+        }, 
+        "DefaultMoveRate": {
+          "label": "DefaultMoveRate", 
+          "type": "number", 
+          "minimum": 0, 
+          "maximum": 254
+        },
+        "Options": {
+          "label": "Options",
+          "dclRef": "#/dclCluster/Level/dclDataType/LevelOptions",
+          "default": {
+            "ExecuteIfOff": false,
+            "CoupleColorTempToLevel": false
+          }
+        },
+        "StartUpCurrentLevel": {
+          "label": "StartUpCurrentLevel", 
+          "description": "How to set the value of the CurrentLevel Attribute on power cycle or cold restart",
+          "dclChoice": {
+            "MinimumDeviceValuePermitted": {
+              "description": "Set to the minimum allowable value on startup",
+              "type": "number",
+              "const": 0
+            },
+            "PredefinedLevel": {
+              "description": "Set to this predefined level on startup",
+              "type": "number", 
+              "minimum": 1, 
+              "maximum": 254
+            },
+            "SetToPreviousValue": {
+              "description": "Set to the last previously set value on startup",
+              "type": "number",
+              "const": 255
+            }
+          }
+        } 
+      },
+      "dclCommand": {
+        "MoveToLevel": {
+          "label": "MoveToLevel", 
+          "dclInputData": {
+            "type": "object",
+            "required": ["Level", "TransitionTime"],
+            "properties": {
+              "Level": {
+                "label": "Level", 
+                "dclRef": "#/dclCluster/Level/dclDataType/LevelData"            
+              }, 
+              "TransitionTime": {
+                "label": "TransitionTime", 
+                "dclRef": "#/dclCluster/Level/dclDataType/TransitionTimeData"
+              },
+              "OptionsMask": {
+                "label": "OptionsMask",
+                "dclRef": "#/dclCluster/Level/dclDataType/LevelOptions"
+              },
+              "OptionsOverride": {
+                "label": "OptionsMask",
+                "dclRef": "#/dclCluster/Level/dclDataType/LevelOptions"
+              }
+            }
+          }
+        }, 
+        "Move": {
+          "label": "Move", 
+          "dclInputData": {
+            "type": "object",
+            "required": ["MoveMode", "Rate"],
+            "properties": {
+              "MoveMode": {
+                "label": "MoveMode", 
+                "dclRef": "#/dclCluster/Level/dclDataType/MoveStepMode"
+              }, 
+              "Rate": {
+                "label": "Rate", 
+                "type": "number", 
+                "minimum": 0, 
+                "maximum": 255
+              },
+              "OptionsMask": {
+                "label": "OptionsMask",
+                "dclRef": "#/dclCluster/Level/dclDataType/LevelOptions"
+                },
+              "OptionsOverride": {
+                "label": "OptionsMask",
+                "dclRef": "#/dclCluster/Level/dclDataType/LevelOptions"
+              }
+            }
+          }
+        }, 
+        "Step": {
+          "label": "Step", 
+          "dclInputData": {
+            "type": "object",
+            "required": ["StepMode", "StepSize", "TransitionTime"],
+            "properties": {
+              "StepMode": {
+                "label": "Step mode", 
+                "dclRef": "#/dclCluster/Level/dclDataType/MoveStepMode"
+              }, 
+              "StepSize": {
+                "label": "Step size", 
+                "type": "number", 
+                "minimum": 0, 
+                "maximum": 255
+              }, 
+              "TransitionTime": {
+                "label": "Step Transition Time", 
+                "dclRef": "#/dclCluster/Level/dclDataType/TransitionTimeData"
+              },
+              "OptionsMask": {
+                "label": "OptionsMask",
+                "dclRef": "#/dclCluster/Level/dclDataType/LevelOptions"
+              },
+              "OptionsOverride": {
+                "label": "OptionsMask",
+                "dclRef": "#/dclCluster/Level/dclDataType/LevelOptions"
+              }
+            }
+          }
+        }, 
+        "Stop": {
+          "label": "Stop",
+          "dclInputData": {
+            "type": "object",
+            "properties": {
+              "OptionsMask": {
+                "label": "OptionsMask",
+                "dclRef": "#/dclCluster/Level/dclDataType/LevelOptions"
+              },
+              "OptionsOverride": {
+                "label": "OptionsMask",
+                "dclRef": "#/dclCluster/Level/dclDataType/LevelOptions"
+              }
+            }
+          }
+        }, 
+        "MoveToLevelwithOnOff": {
+          "dclRef": "#/dclCluster/Level/dclCommand/MoveToLevel", 
+          "label": "MoveToLevelwithOnOff"
+        }, 
+        "MovewithOnOff": {
+          "dclRef": "#/dclCluster/Level/dclCommand/Move", 
+          "label": "MovewithOnOff"
+        }, 
+        "StepwithOnOff": {
+          "dclRef": "#/dclCluster/Level/dclCommand/Step", 
+          "label": "StepwithOnOff"
+        }, 
+        "StopwithOnOff": {
+          "dclRef": "#/dclCluster/Level/dclCommand/Stop", 
+          "label": "StopwithOnOff"
+        },
+        "MoveToClosestFrequency": {
+          "label": "MoveToClosestFrequency",
+          "dclRequired": [
+            "#/dclCluster/Level/dclCommand/MoveToClosestFrequency/dclInputData/properties/Frequency"
+          ],
+          "dclInputData": {
+            "type": "object",
+            "properties": {
+              "Frequency": {
+                "dclRef": "#/dclCluster/Level/dclDataType/FrequencyData"
+              }
+            }
+          }
+        }
+      }, 
+      "dclDataType": {
+        "TransitionTimeData": {
+          "type": "number", 
+          "minimum": 0, 
+          "maximum": 65535, 
+          "multipleOf": 1, 
+          "unit": "seconds", 
+          "scaleMinimum": 0, 
+          "scaleMaximum": 6553.5
+        },
+        "MoveStepMode": {
+          "dclChoice": {
+            "Up": {
+              "description": "increasing direction"
+            },
+            "Down": {
+              "description": "decreasing direction"
+            }
+          }
+        },
+        "LevelData": {
+          "type": "number", 
+          "minimum": 0, 
+          "maximum": 254
+        },
+        "LevelOptions": {
+          "description": "bitmap in source modeled as object with boolean properties, can Map to bitmap",
+          "type": "object",
+          "properties": {
+            "ExecuteIfOff": {
+              "type": "boolean"
+            }, 
+            "CoupleColorTempToLevel": {
+              "type": "boolean"
+            }
+          }
+        },
+        "FrequencyData": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 65535
+        }
+      }
+    }
+  }
+}
