@@ -1,0 +1,94 @@
+{
+  "info": {
+    "title": "Example file for Semantic Definition Format", 
+    "version": "20201111", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "ex": "https://onedm.org/exploratory/",
+    "pg": "https://onedm.org/playground/"
+  }, 
+  "defaultNamespace": "ex", 
+
+  "sdfObject": {
+    "ovenOperatingState": {
+      "label": "Oven Operating State",
+      "sdfRequired": [
+        "#/sdfObject/ovenOperatingState/sdfProperty/machineState",
+        "#/sdfObject/ovenOperatingState/sdfProperty/supportedMachineStates",
+        "#/sdfObject/ovenOperatingState/sdfAction/setMachineState"
+      ],
+      "sdfProperty": {
+        "machineState": {
+          "sdfChoice": {
+            "ready": {}, 
+            "running": {}, 
+            "paused": {}
+          }
+        },
+        "supportedMachineStates": {
+          "type": "array",
+          "items": {
+            "sdfChoice": {
+              "ready": {}, 
+              "running": {}, 
+              "paused": {}
+            }
+          }
+        },
+        "ovenJobState": {
+          "type": "string",
+          "sdfChoice": {
+            "cleaning": {},
+            "cooking": {},
+            "cooling": {},
+            "draining": {},
+            "preheat": {},
+            "ready": {},
+            "rinsing": {}
+          }
+        },
+        "completionTime": {
+          "sdfRef": "ex:#/sdfData/iso8601date"
+        },
+        "operationTime": {
+          "sdfRef": "ex:#/sdfData/PositiveInteger"
+        },
+        "progress": {
+          "sdfRef": "ex:#/sdfData/IntegerPercent"
+        }
+      }, 
+      "sdfAction": {
+        "setMachineState": {     
+          "sdfInputData": {
+            "type": "object",
+            "required": [ "ovenMode" ],
+            "properties": {
+              "ovenMode": {
+                "sdfRef": "ex:#/sdfData/OvenMode"
+              }
+            }
+          }
+        },
+        "stop": {},
+        "start": {
+          "sdfInputData": {            
+            "type": "object",
+            "required": [ "ovenMode" ],
+            "properties": {
+              "ovenMode": {
+                "sdfRef": "ex:#/sdfData/OvenMode"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "sdfData": {
+    "iso8601date": {"description": "tbd"},
+    "PositiveInteger": {"description": "tbd"},
+    "IntegerPercent": {"description": "tbd"}
+  }
+}

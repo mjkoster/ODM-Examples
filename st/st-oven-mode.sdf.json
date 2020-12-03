@@ -1,0 +1,49 @@
+{
+  "info": {
+    "title": "Example file for Semantic Definition Format", 
+    "version": "20200603", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "ex": "https://onedm.org/exploratory/",
+    "pg": "https://onedm.org/playground/"
+  }, 
+  "defaultNamespace": "ex", 
+  "AlternateVocabulary": "st",
+
+  "Capability": {
+    "ovenMode": {
+      "label": "Oven Mode",
+      "sdfRequired": [
+        "#/Capability/ovenMode/Attribute/ovenMode",
+        "#/Capability/ovenMode/Attribute/supportedOvenModes",
+        "#/Capability/ovenMode/Command/setOvenMode"
+      ],
+      "Attribute": {
+        "ovenMode": {
+          "sdfRef": "ex:#/DataType/OvenMode"
+        },
+        "supportedOvenModes": {
+          "type": "array",
+          "items": {
+            "sdfRef": "ex:#/DataType/OvenMode"
+          }
+        }
+      }, 
+      "Command": {
+        "setOvenMode": { 
+          "sdfInputData": {
+            "type": "object",
+            "required": [ "ovenMoce" ],
+            "properties": {
+              "ovenMode": {
+                "sdfRef": "ex:#/DataType/OvenMode"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

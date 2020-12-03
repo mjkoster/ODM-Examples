@@ -47,11 +47,11 @@
           "dclRef": "#/dclCluster/Level/dclDataType/FrequencyData"
         },
         "MinFrequency": {
-          "label": "CurrentFrequency", 
+          "label": "MinFrequency", 
           "dclRef": "#/dclCluster/Level/dclDataType/FrequencyData"
         },
         "MaxFrequency": {
-          "label": "CurrentFrequency", 
+          "label": "MaxFrequency", 
           "dclRef": "#/dclCluster/Level/dclDataType/FrequencyData"
         },
         "OnOffTransitionTime": {

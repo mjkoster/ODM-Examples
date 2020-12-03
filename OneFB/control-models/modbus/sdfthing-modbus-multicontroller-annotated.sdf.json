@@ -1,0 +1,208 @@
+{
+  "info": {
+    "title": "OneFB Modbus Dual RTU + PID Loop Controller", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  "sdfThing": {
+    "DualLoopController": {
+      "sdfObject": {
+        "ThingInformation": {
+          "sdfProperty": {
+            "VendorName": { "const": "Advantech" },
+            "ModelName": { "const": "ADAM-4022T" },
+            "ProductDescription": { "const": "Dual Loop PID Controller" }
+          }
+        }
+      },
+      "sdfThing": {
+        "LoopController0": {
+          "sdfObject": {
+            "AnalogInput0": {
+              "sdfRef": "#/sdfObject/ControllerInput",
+              "sdfMapping": {
+                "#/sdfThing/DualLoopController/sdfThing/LoopController0/sdfObject/AnalogInput0/sdfProperty/CurrentValue": {
+                  "ModbusAddress": { "const": 0 }
+                }
+              },
+              "sdfMerge": {
+                "0/sdfProperty/CurrentValue": {
+                  "ModbusAddress": { "const": 0 }
+                }
+              }
+            },
+            "AnalogInput1": {
+              "sdfRefWithMerge": "#/sdfObject/ControllerInput",
+              "sdfProperty": {
+                "CurrentValue": {
+                  "ModbusAddress": { "const": 1 }
+                }
+              }
+            },
+            "AnalogOutput": {
+              "sdfRef": "#/sdfObject/ControllerOutput"
+            },
+            "ControllerSetpoint": {
+              "sdfRef": "#/sdfObject/ControllerSetpoint",
+              "sdfProperty": {
+                "CurrentValue": {
+                  "fb:#/sdfQuality/ModbusAddress": { "const": 1020 }
+                }
+              }
+            },
+            "ControllerParameters": {
+              "sdfRef": "#/sdfObject/ControllerParameters",
+              "sdfProperty": {
+                "OpenCloseMode": {
+                  "fb:#/sdfQuality/ModbusAddress": { "const": 1000 }
+                },
+                "PidKpSetting": {
+                  "fb:#/sdfQuality/ModbusAddress": { "const": 1062 }
+                },
+                "PidKiSetting": {
+                  "fb:#/sdfQuality/ModbusAddress": { "const": 1064 }
+                },
+                "PidKdSetting": {
+                  "fb:#/sdfQuality/ModbusAddress": { "const": 1066 }
+                }
+              }
+            },
+            "ContactInput": {
+              "sdfRef": "#/sdfObject/ContactInput"
+            },
+            "CoilOutput": {
+              "sdfRef": "#/sdfObject/CoilOutput"
+            }
+          }
+        },
+        "LoopController1": {
+          "sdfRef": "#/sdfThing/LoopController",
+          "sdfMerge": { 
+            "0/sdfObject/AnalogInput0/sdfProperty/CurrentValue": { 
+              "ModbusAddress": { "const": 2 }
+            },
+            "0/sdfObject/AnalogOutput/sdfProperty/CurrentValue": { 
+              "ModbusAddress": { "const": 11 }
+            },
+            "0/sdfObject/ControllerSetpoint/sdfProperty/CurrentValue": { 
+              "ModbusAddress": { "const": 1276 }
+            }
+          }
+        },
+        "LoopController": {
+          "sdfObject": {
+            "AnalogInput0": {
+              "sdfRef": "#/sdfObject/ControllerInput"
+            },
+            "AnalogInput1": {
+              "sdfRef": "#/sdfObject/ControllerInput"
+            },
+            "AnalogOutput": {
+              "sdfRef": "#/sdfObject/ControllerOutput"
+            },
+            "ControllerSetpoint": {
+              "sdfRef": "#/sdfObject/ControllerSetpoint"
+            },
+            "ControllerParameters": {
+              "sdfRef": "#/sdfObject/ontrollerParameters"
+            },
+            "ContactInput": {
+              "sdfRef": "#/sdfObject/ContactInput"
+            },
+            "CoilOutput": {
+              "sdfRef": "#/sdfObject/CoilOutput"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sdfObject": {
+    "ControllerInput": {
+      "sdfProperty": {
+        "CurrentValue": {
+          "description": "Current Controller Input (PV) Value",
+          "label": "Current Input Value",
+          "type": "number",
+          "writable": false
+        },
+        "CurrentStatusCode": {
+          "sdfRef": "#/sdfData/AnalogInputStatusCode"
+        },
+        "RangeCode": {
+          "sdfRef": "#/sdfObject/ontrollerParameters/sdfData/PvRangeType"
+        }
+      }
+    },
+    "ControllerOutput": {
+      "sdfProperty": {
+        "CurrentValue": {
+          "description": "Current Controller Output (MV) Value",
+          "label": "Current Output Value",
+          "type": "number"
+        },
+        "RangeCode": {
+          "sdfRef": "#/sdfObject/ControllerParameters/sdfData/MvRangeType"
+        }
+      }
+    },
+    "ControllerSetpoint": {
+      "sdfProperty": {
+        "CurrentValue": {
+          "description": "Current Controller Setpoint (SV) Value",
+          "label": "Current Setpoint Value",
+          "sdfRef": "#/sdfObject/ControllerParameters/sdfProperty/SetpointValue"
+        }
+      }
+    },
+    "ControllerParameters": {
+      "sdfRef": "fb:#/sdfObject/ModbusPidControllerParameters"
+    },
+    "ContactInput": {
+      "sdfProperty": {
+        "CurrentValue": {
+          "description": "Current Value",
+          "label": "Current Value",
+          "type": "boolean",
+          "writable": false
+        }
+      }
+    },
+    "CoilOutput": {
+      "sdfProperty": {
+        "CurrentValue": {
+          "description": "Current Value",
+          "label": "Contact Input",
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "sdfData": {
+    "AnalogInputStatusCode": {
+      "sdfChoice": {
+        "Normal": { 
+          "label": "Normal",
+          "const": 0 
+        },
+        "OverHigh": { 
+          "label": "Over High",
+          "const": 1 
+        },
+        "OverLow": { 
+          "label": "Over Low",
+          "const": 2 
+        },
+        "InvalidCalibration": { 
+          "label": "Invalid Calibration",
+          "const": 3 
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "info": {
+    "title": "Conditional Observe Filter logic", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  
+  "stcTypeDef": {
+    "TimeType": "fb:#/sdfData/TimeType",
+    "DurationType": "fb:#/sdfData/DurationType",
+    "ValueType": "fb:#/sdfData/ValueType"
+  },
+  "stcType": {
+    "TimeType": [ "SampleTime", "LastReportTime" ],
+    "DurationType": [ "Pmin", "Pmax" ],
+    "ValueType": [ "Value", "LastReportedValue", "St", "Lt", "Gt" ],
+    "Boolean": [ "Band", "PminEx", "PmaxEx", "LtEx", "GtEx", "StEx" ]
+  },
+  "stcStateTransitionTrigger": {
+    "stcStart": "Init",
+    "stcStop": "Stop",
+    "Stop": "Stop",
+    "Sample": "Sample",
+    "Notify": "Notify",
+    "Wait": "Wait"
+  },
+  "stcSetter": { 
+    "ReportValue": "#/sdfEvent/ReportValue" 
+  },
+  "stcStates": {
+    "Init": [
+      { "Band": "#/sdfProperty/Band" },
+      { "Pmin": "#/sdfProperty/Pmin" },
+      { "Pmax": "#/sdfProperty/Pmax" },
+      { "St": "#/sdfProperty/St" },
+      { "Lt": "#/sdfProperty/Lt" },
+      { "Gt": "#/sdfProperty/Gt" },
+      { "SampleTime": "#/sdfProperty/CurrentTime" },
+      { "LastReportTime": "#/sdfProperty/CurrentTime" },
+      { "Value": "#/sdfProperty/CurrentValue" },
+      { "LastReportedValue": "#/sdfProperty/CurrentValue" },
+      { "Notify": true }
+    ],
+    "Sample": [
+      { "Value": "#/sdfProperty/CurrentValue" },
+      { "SampleTime": "#/sdfProperty/SampleTime" },
+      { "PminEx": "SampleTime - LastReportTime >= Pmin" },
+      { "PmaxEx": "SampleTime - LastReportTime > Pmax " },
+      { "LtEx": "Value < Lt ^ LastReportedValue < Lt" },
+      { "GtEx": "Value > Gt ^ LastReportedValue > Gt" },
+      { "StEx": "abs( Value - LastReportedValue ) >= St" },
+      { "InBand": "( Gt <= Value && Value <= Lt ) || ( Value >= Gt && Gt >= Lt ) || ( Value <= Lt && Lt <= Gt )" },
+      { "Notify": "( PminEx && ( !Band && ( GtEx || LtEx || StEx || PmaxEx )) || ( Band && InBand && ( StEx || PmaxEx )))" },
+      { "Wait": true }
+    ],
+    "Wait": [
+      { "Sample": "#/sdfEvent/CurrentValueSample"}
+    ],
+    "Notify": [
+      { "LastReportTime": "SampleTime" },
+      { "LastReportedValue": "Value" },
+      { "ReportValue": { "CurrentValue": "Value", "SampleTime": "SampleTime" } },
+      { "Wait": true }
+    ],
+    "Stop": [
+    ]
+  }
+}

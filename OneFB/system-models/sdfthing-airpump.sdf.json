@@ -1,0 +1,65 @@
+{
+  "info": {
+    "title": "Air Pump", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  
+  "sdfThing": {
+    "AirPump": {
+      "sdfRef": "#/sdfThing/AirCompressor",
+      "description": "AirPump uses the generic AirCompressor thing model",
+      "label": "Air Pump",
+      "sdfObject": {
+        "SystemDescriptor": {
+          "sdfProperty": {
+            "SystemID": { "const": "P101" },
+            "SystemDescription": { "const": "Air Pump" }  
+          }
+        },
+        "InletPort": {
+          "sdfProperty": {
+            "Cv": { "const": 30 }
+          }
+        },
+        "OutletPort": {
+          "sdfProperty": {
+            "Cv": { "const": 30 }
+          }
+        },
+        "AirCompressorParameter": {
+          "sdfProperty": {
+            "CompressorType": { "sdfChoice": "Reciprocating" },
+            "NumberOfStages": 1,
+            "FlowAtAtmosphericPressure": { "const": 200, "unit": "l/m" },
+            "WorkingDischargePressure": { "const": 0.55, "unit": "kPa" },
+            "FlowAtWorkingPressure": { "const": 216000, "unit": "l/m" }
+          }
+        },
+        "ElectricMotorParameter": {
+          "sdfProperty": {
+            "ShaftPower": { "const": 0.33, "unit": "kW" },
+            "MinimumVoltage": { "const": 105, "unit": "V" },
+            "MaximumVoltage": { "const": 135, "unit": "V" },
+            "LockedRotorAmps": { "const": 7.1, "unit": "A" },
+            "FullLoadAmps": { "const": 2.7, "unit": "A" }
+          }
+        },
+        "ManufacturerData": {
+          "sdfProperty": { 
+            "ManufacturerName": { "const": "Welch-Ilmvac" },
+            "ModelNumber": { "const": "2585B-01" }
+          }
+        },
+        "GraphicSymbol": {
+          "sdfProperty": { "const": "fb:/symbols/Compressor"}
+        }
+      }
+    }
+  }
+}

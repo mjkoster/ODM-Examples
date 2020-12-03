@@ -1,0 +1,56 @@
+{
+  "info": {
+    "title": "Example file for Semantic Definition Format", 
+    "version": "20200603", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "ex": "https://onedm.org/exploratory/"
+  }, 
+  "defaultNamespace": "ex", 
+  "AlternateVocabulary": "st",
+  
+  "Capability": {
+    "motionSensor": {
+      "label": "Motion Sensor",
+      "sdfRequired": [
+        "#/Capability/motionSensor/Attribute/value"
+      ],
+      "Attribute": {
+        "value": {
+          "sdfRef": "#/DataType/activityState"
+        }
+      }, 
+      "Event": {
+        "stateChange": { 
+          "sdfOutputData" : {
+            "type": "object",
+            "required": [ "activityState" ],
+            "properties": {
+              "activityState": { 
+                "sdfRef": "#/DataType/activityState" 
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "DataType": {
+    "activityState": {
+      "sdfChoice": {
+        "active": {
+          "description": "The active state",
+          "type": "string",
+          "default": "active"
+        },
+        "inactive": {
+          "description": "The inactive state",
+          "type": "string",
+          "default": "inactive"  
+        }
+      }
+    }
+  }
+}

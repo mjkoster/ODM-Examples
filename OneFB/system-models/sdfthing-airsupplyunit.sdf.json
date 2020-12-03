@@ -1,0 +1,25 @@
+{
+  "info": {
+    "title": "Air Pump", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  
+  "sdfThing": {
+    "AirSupplyUnit": {
+      "sdfThing": {
+        "AirPump": { "sdfRef": "fb:#/sdfThing/AirPump" },
+        "AirInletFilter": { "sdfRef": "fb:#/sdfThing/AirInletFilter" },
+        "Condenser": { "sdfRef": "fb:#/sdfThing/Condenser" },
+        "Coalescer": { "sdfRef": "fb:#/sdfThing/Coalescer" },
+        "DessicantColumnA": { "sdfRef": "fb:#/sdfThing/DessicantColumnA" },
+        "DessicantColumnB": { "sdfRef": "fb:#/sdfThing/DessicantColumnB" }
+      }
+    }
+  }
+}

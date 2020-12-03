@@ -1,0 +1,48 @@
+{
+  "info": {
+    "title": "Air Pump", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  
+  "sdfThing": {
+    "AirCompressor": {
+      "description": "Generic Air Compressor",
+      "label": "Air Compressor",
+      "sdfObject": {
+        "SystemDescriptor": { "sdfRef": "fb:#/sdfObject/SystemDescriptor" },
+        "InletPort": { "sdfRef": "fb:#/sdfObject/InletPort" },
+        "OutletPort": { "sdfRef": "fb:#/sdfObject/OutletPort" },
+        "AirCompressorParameter": { "sdfRef": "fb:#/sdfObject/AirCompressorParameter" },
+        "ElectricMotorParameter": { "sdfRef": "fb:#/sdfObject/ElectricMotorParameter" },
+        "ManufacturerData": { "sdfRef": "fb:#/sdfObject/ManufacturerData" },
+        "GraphicSymbol": { "sdfRef": "fb:#/sdfObject/GraphicSymbol" }
+      }
+    }
+  },
+  "sdfObject": {
+    "AirCompressorParameter": {
+      "sdfProperty": {
+        "CompressorType": { 
+          "sdfChoice": {
+            "Reciprocating": {},
+            "Centrifugal": {},
+            "Axial": {}
+          } 
+        },
+        "NumberOfStages": {
+          "type": "number",
+          "multipleOf": 1
+        },
+        "FlowAtAtmosphericPressure": { "type": "number" },
+        "WorkingDischargePressure": {"type": "number"},
+        "FlowAtWorkingPressure": {"type": "number"}
+      }
+    }
+  }
+}

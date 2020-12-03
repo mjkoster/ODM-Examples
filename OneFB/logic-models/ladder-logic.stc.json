@@ -1,0 +1,56 @@
+{
+  "info": {
+    "title": "Run Stop Standby momentary button logic state control", 
+    "version": "2020-11-23", 
+    "copyright": "Copyright 2020, Michael J. Koster\n        All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  
+  "stcType": {
+    "Boolean": [ "StandbyButton", "RunButton", "StopButton", "Standby", "Run", "Stop" ]
+  },
+  "stcStateTransitionTrigger": { 
+    "stcStart": "Init",
+    "stcStop": "End",
+    "Scan": "Scan",
+    "Update": "Update" ,
+    "Wait": "Wait"
+  },
+  "stcSetter": { 
+    "Standby": "#/sdfProperty/C104",
+    "Run": "#/sdfProperty/C105",
+    "Stop": "#/sdfProperty/C106" 
+  },
+  "stcStates": {
+    "Init": [
+      { "StandbyButton": "#/sdfProperty/C101" },
+      { "RunButton": "#/sdfProperty/C102" },
+      { "StopButton": "#/sdfProperty/C103" },
+      { "Standby": false },
+      { "Run": false },
+      { "Stop": true },
+      { "Scan": true }
+    ],
+    "Scan": [
+      { "StandbyButton": "#/sdfProperty/C101" },
+      { "RunButton": "#/sdfProperty/C102" },
+      { "StopButton": "#/sdfProperty/C103" },
+      { "Update": true }    
+    ],
+    "Update": [
+      { "Standby": "( StandbyButton && !RunButton && !StopButton ) || ( Standby && !RunButton && !StopButton && !Stop )" },
+      { "Run": "( RunButton && !StandbyButton && !StopButton && Standby ) || ( Run && !StandbyButton && !StopButton && !Stop )" },
+      { "Stop": "( StopButton || ( Stop && !StandbyButton )" },
+      { "Wait": true }
+    ],
+    "Wait": [
+      { "Scan": "#/sdfEvent/ScanSync"}
+    ],
+    "End": [
+    ]
+  }
+}
