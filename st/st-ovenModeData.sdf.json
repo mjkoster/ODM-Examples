@@ -9,7 +9,6 @@
     "ex": "https://onedm.org/exploratory/"
   }, 
   "defaultNamespace": "st", 
-  "AlternateVocabulary": true,
 
   "DataType": {
     "OvenMode": {

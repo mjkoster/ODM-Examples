@@ -39,7 +39,6 @@
           }
         },
         "ovenJobState": {
-          "type": "string",
           "sdfChoice": {
             "cleaning": {},
             "cooking": {},
