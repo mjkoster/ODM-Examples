@@ -1,0 +1,109 @@
+{
+  info {
+    title "Example file for Custom SDF Vocabulary"
+    version "20200603" 
+    copyright "Copyright 2019 Example Corp.
+               All rights reserved."
+    license "http://example.com/license"
+  }
+  namespace {
+    ex https://onedm.org/exploratory/
+    pg https://onedm.org/playground/
+    st https://onedm.org/smartthings/
+  } 
+  defaultNamespace st
+
+  DataType {
+    OvenMode { label Oven Mode
+      Choice {
+        heating         { description "heating"          label "heating"          default "heating" }
+        grill           { description "grill"            label "grill"            default "grill" }
+        warming         { description "warming"          label "warming"          default "warming" }
+        defrosting      { description "defrosting"       label "defrosting"       default "defrosting" }
+        Conventional    { description "Conventional"     label"Conventional"      default "Conventional" }
+        Bake            { description "Bake"             label "Bake"             default "Bake" }
+        BottomHeat      { description "Bottom Heat"      label": "Bottom Heat"    default "BottomHeat" }
+        ConvectionBake  { description "Convection Bake"  label "Convection Bake"  default "ConvectionBake" }
+        ConvectionRoast {description "Convection Roast"  label "Convection Roast" default "ConvectionRoast" }
+        Broil           { description "Broil"            label "Broil"            default "Broil" }
+        ConvectionBroil { description "Convection Broil" label "Convection Broil" default": "ConvectionBroil" }
+        SteamCook       { description": "Steam Cook"     label": "Steam Cook"         default": "SteamCook" }
+        "SteamBake": {
+          "description": "Steam Bake",
+          "label": "Steam Bake",
+          "default": "SteamBake"
+        },
+        "SteamRoast": {
+          "description": "Steam Roast",
+          "label": "Steam Roast",
+          "default": "SteamRoast"
+        },
+        "SteamBottomHeatplusConvection": {
+          "description": "Steam Bottom Heat plus Convection",
+          "label": "Steam Bottom Heat plus Convection",
+          "default": "SteamBottomHeatplusConvection"
+        },
+        "Microwave": {
+          "description": "Microwave",
+          "label": "Microwave",
+          "default": "Microwave"
+        },
+        "MWplusGrill": {
+          "description": "Microwave plus Grill",
+          "label": "Microwave plus Grill",
+          "default": "MWplusGrill"
+        },
+        "MWplusConvection": {
+          "description": "Microwave plus Convection",
+          "label": "Microwave plus Convection",
+          "default": "MWplusConvection"
+        },
+        "MWplusHotBlast": {
+          "description": "MWplusHotBlast",
+          "label": "Microwave plus Hot Blast",
+          "default": "MWplusHotBlast"
+        },
+        "MWplusHotBlast2": {
+          "description": "MWplusHotBlast2",
+          "label": "Microwave plus Hot Blast 2",
+          "default": "MWplusHotBlast2"
+        },
+        "SlimMiddle": {
+          "description": "Slim Middle",
+          "label": "Slim Middle",
+          "default": "SlimMiddle"
+        },
+        "SlimStrong": {
+          "description": "Slim Strong",
+          "label": "Slim Strong",
+          "default": "SlimStrong"
+        },
+        "SlimShady": {
+          "description": "Slim Shady",
+          "label": "Slim Shady",
+          "default": "SlimShady"
+        },        
+        "SlowCook": {
+          "description": "Slow Cook",
+          "label": "Slow Cook",
+          "default": "SlowCook"
+        },
+        "Proof": {
+          "description": "Proof",
+          "label": "Proof",
+          "default": "Proof"
+        },
+        "Dehydrate": {
+          "description": "Dehydrate",
+          "label": "Dehydrate",
+          "default": "Dehydrate"
+        },
+        "Others": {
+          "description": "Others",
+          "label": "Others",
+          "default": "Others"
+        }          
+      }
+    }
+  }
+}

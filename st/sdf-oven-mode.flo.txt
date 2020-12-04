@@ -14,19 +14,19 @@
   sdfObject {
     ovenMode {
       label "Oven Mode"
-      required [
+      sdfRequired [
         sdfProperty/ovenMode
         sdfProperty/supportedOvenModes
         sdfAction/setOvenMode
       ]
       sdfProperty {
         ovenMode {
-          ref ex:#/sdfData/OvenMode
+          sdfRef ex:#/sdfData/OvenMode
         }
         supportedOvenModes {
           type array
           items {
-            ref ex:#/sdfData/OvenMode
+            sdfRef ex:#/sdfData/OvenMode
           }
         }
       } 
@@ -34,12 +34,10 @@
         setOvenMode { 
           description "Action to set the oven mode"
           label "Set Oven Mode"
-          inputData {
-            required [ ovenMode ]
-            fields {
-              ovenMode {
-                ref ex:#/sdfData/OvenMode
-              }
+          sdfRequired [ sdfInputData/ovenMode ]
+          sdfInputData {
+            ovenMode {
+              sdfRef ex:#/sdfData/OvenMode
             }
           }
         }
