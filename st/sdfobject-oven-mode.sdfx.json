@@ -2,7 +2,7 @@
   "info": {
     "title": "Example file for Semantic Definition Format", 
     "version": "20200603", 
-    "copyright": "Copyright 2019 Example Corp.  All rights reserved.", 
+    "copyright": "Copyright 2019 Example Corp. All rights reserved.", 
     "license": "http://example.com/license"
   }, 
   "namespace": {
@@ -14,10 +14,10 @@
   "sdfObject": {
     "ovenMode": {
       "label": "Oven Mode",
-      "sdfRequired": [
-        "#/sdfObject/ovenMode/sdfProperty/ovenMode",
-        "#/sdfObject/ovenMode/sdfProperty/supportedOvenModes",
-        "#/sdfObject/ovenMode/sdfAction/setOvenMode"
+      "required": [
+        "sdfProperty/ovenMode",
+        "sdfProperty/supportedOvenModes",
+        "sdfAction/setOvenMode"
       ],
       "sdfProperty": {
         "ovenMode": {
@@ -31,13 +31,12 @@
         }
       }, 
       "sdfAction": {
-      "setOvenMode": { 
-        "description": "Action to set the oven mode",
-        "label": "Set Oven Mode",
+        "setOvenMode": { 
           "sdfInputData": {
+            "description": "Action to set the oven mode",
+            "label": "Set Oven Mode",
             "required": [ "ovenMode" ],
-            "type": "object",
-            "properties": {
+            "sdfDataFields": {
               "ovenMode": {
                 "sdfRef": "ex:#/sdfData/OvenMode"
               }

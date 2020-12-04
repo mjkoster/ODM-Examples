@@ -8,13 +8,13 @@
   "namespace": {
     "ex": "https://onedm.org/exploratory/"
   }, 
-  "defaultNamespace": "ex", 
-  "AlternateVocabulary": "st",
+  "defaultNamespace": "st", 
+  "AlternateVocabulary": true,
 
   "DataType": {
     "OvenMode": {
       "label": "Oven Mode",
-      "sdfChoice": {
+      "Choice": {
         "heating": {
           "description": "heating",
           "label": "heating",

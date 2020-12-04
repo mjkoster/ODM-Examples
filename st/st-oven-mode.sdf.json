@@ -1,44 +1,47 @@
 {
   "info": {
-    "title": "Example file for Semantic Definition Format", 
+    "title": "Example file for Custom SDF Vocabulary", 
     "version": "20200603", 
     "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
     "license": "http://example.com/license"
   }, 
   "namespace": {
     "ex": "https://onedm.org/exploratory/",
-    "pg": "https://onedm.org/playground/"
+    "pg": "https://onedm.org/playground/",
+    "st": "https://onedm.org/smartthings/"
   }, 
-  "defaultNamespace": "ex", 
-  "AlternateVocabulary": "st",
+  "defaultNamespace": "st", 
+  "AlternateVocabulary": true,
 
   "Capability": {
     "ovenMode": {
       "label": "Oven Mode",
-      "sdfRequired": [
+      "Required": [
         "#/Capability/ovenMode/Attribute/ovenMode",
         "#/Capability/ovenMode/Attribute/supportedOvenModes",
         "#/Capability/ovenMode/Command/setOvenMode"
       ],
       "Attribute": {
         "ovenMode": {
-          "sdfRef": "ex:#/DataType/OvenMode"
+          "Ref": "st:#/DataType/OvenMode"
         },
         "supportedOvenModes": {
           "type": "array",
           "items": {
-            "sdfRef": "ex:#/DataType/OvenMode"
+            "Ref": "st:#/DataType/OvenMode"
           }
         }
       }, 
       "Command": {
         "setOvenMode": { 
-          "sdfInputData": {
+          "description": "Command to set the oven mode",
+          "label": "Set Oven Mode",
+          "InputData": {
             "type": "object",
-            "required": [ "ovenMoce" ],
+            "required": [ "ovenMode" ],
             "properties": {
               "ovenMode": {
-                "sdfRef": "ex:#/DataType/OvenMode"
+                "Ref": "st:#/DataType/OvenMode"
               }
             }
           }
