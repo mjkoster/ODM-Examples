@@ -21,26 +21,24 @@
       ],
       "sdfProperty": {
         "ovenMode": {
-          "sdfRef": "ex:#/sdfData/OvenMode"
+          "ref": "ex:#/sdfData/OvenMode"
         },
         "supportedOvenModes": {
           "type": "array",
           "items": {
-            "sdfRef": "ex:#/sdfData/OvenMode"
+            "ref": "ex:#/sdfData/OvenMode"
           }
         }
       }, 
       "sdfAction": {
         "setOvenMode": { 
-          "sdfInputData": {
-            "description": "Action to set the oven mode",
-            "label": "Set Oven Mode",
-            "required": [ "ovenMode" ],
-            "sdfDataFields": {
-              "ovenMode": {
-                "sdfRef": "ex:#/sdfData/OvenMode"
+          "description": "Action to set the oven mode",
+          "label": "Set Oven Mode",
+          "required": [ "inputData/ovenMode" ],
+          "inputData": {
+            "ovenMode": {
+              "ref": "ex:#/sdfData/OvenMode"
               }
-            }
           }
         }
       }
