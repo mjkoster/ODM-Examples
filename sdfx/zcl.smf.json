@@ -1,0 +1,41 @@
+{
+  "info": {
+  "title": "SDF Mapping File Example", 
+  "version": "20201111", 
+  "copyright": "Copyright 2020 Example Corp.\n        All rights reserved.", 
+  "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "ex": "https://onedm.org/exploratory/"
+  }, 
+  "defaultNamespace": "ex", 
+  
+  "sdfMap": {
+    "ex:#/sdfObject/Level" : {
+      "id": 8
+    },
+    "ex:#/sdfObject/Level/sdfProperty/CurrentLevel" : {
+      "id": 0
+    },
+    "ex:#/sdfObject/Level/sdfProperty/RemainingTime" : {
+      "id": 1
+    },
+    "ex:#/sdfObject/Level/sdfProperty/OnOffTransitionTime" : {
+      "id": 16
+    },
+    "ex:#/sdfObject/Level/sdfAction/MoveToLevel" : {
+      "id": 0
+    },
+    "ex:#/sdfObject/Level/sdfAction/Move" : {
+      "id": 1
+    },
+    "ex:#/sdfObject/Level/sdfData/MoveStepMode/sdfEnum/Up" : {
+      "type": "number",
+      "const": 0
+    },
+    "ex:#/sdfObject/Level/sdfData/MoveStepMode/sdfEnum/Down" : {
+      "type": "number",
+      "const": 1
+    }
+  }
+}

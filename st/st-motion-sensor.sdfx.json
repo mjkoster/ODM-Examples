@@ -9,32 +9,33 @@
     "ex": "https://onedm.org/exploratory/"
   }, 
   "defaultNamespace": "ex", 
-  "sdfObject": {
+  
+  "Capability": {
     "motionSensor": {
       "label": "Motion Sensor",
-      "sdfRequired": [
-        "#/sdfObject/motionSensor/sdfProperty/value"
+      "Required": [
+        "#/Capability/motionSensor/Attribute/value"
       ],
-      "sdfProperty": {
+      "Attribute": {
         "value": {
-          "sdfRef": "#/sdfData/activityState"
+          "sdfRef": "#/DataType/activityState"
         }
       }, 
-      "sdfEvent": {
+      "Event": {
         "stateChange": { 
-          "sdfRequired": [ "sdfOutputData/activityState" ],
-          "sdfOutputData" : {
+          "Required": [ "OutputData/activityState" ],
+          "OutputData" : {
             "activityState": { 
-                "sdfRef": "#/sdfData/activityState" 
+            "Ref": "#/DataType/activityState" 
             }
           }
         }
       }
     }
   },
-  "sdfData": {
+  "DataType": {
     "activityState": {
-      "sdfChoice": {
+      "Choice": {
         "active": {
           "description": "The active state",
           "type": "string",

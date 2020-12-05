@@ -1,0 +1,46 @@
+{
+  "info": {
+    "title": "Example file for Custom SDF Vocabulary", 
+    "version": "20200603", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "st": "https://onedm.org/smartthings/"
+  }, 
+  "defaultNamespace": "st", 
+
+  "Capability": {
+    "ovenMode": {
+      "label": "Oven Mode",
+      "Required": [
+        "#/Capability/ovenMode/Attribute/ovenMode",
+        "#/Capability/ovenMode/Attribute/supportedOvenModes",
+        "#/Capability/ovenMode/Command/setOvenMode"
+      ],
+      "Attribute": {
+        "ovenMode": {
+          "Ref": "st:#/DataType/OvenMode"
+        },
+        "supportedOvenModes": {
+          "type": "array",
+          "items": {
+            "Ref": "st:#/DataType/OvenMode"
+          }
+        }
+      }, 
+      "Command": {
+        "setOvenMode": { 
+          "description": "Command to set the oven mode",
+          "label": "Set Oven Mode",
+          "required": [ "InputData/ovenMode" ],
+          "InputData": {
+            "ovenMode": {
+            "Ref": "st:#/DataType/OvenMode"
+            }
+          }
+        }
+      }
+    }
+  }
+}

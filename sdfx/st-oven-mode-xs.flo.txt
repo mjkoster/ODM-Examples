@@ -7,8 +7,6 @@
     license "http://example.com/license"
   }
   namespace {
-    ex https://onedm.org/exploratory/
-    pg https://onedm.org/playground/
     st https://onedm.org/smartthings/
   } 
   defaultNamespace st
@@ -25,7 +23,7 @@
         supportedOvenModes { type array items { ref st:#/DataType/OvenMode } }
       } 
       Command {
-        setOvenMode { description "Command to set the oven mode" label "Set Oven Mode"
+        setOvenMode { label "Set Oven Mode" description "Command to set the oven mode"
           required [ inputData/ovenMode ] 
           inputData { 
             ovenMode { ref st:#/DataType/OvenMode }

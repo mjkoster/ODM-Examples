@@ -235,7 +235,7 @@
           "scaleMaximum": 6553.5
         },
         "MoveStepMode": {
-          "sdfEnum": {
+          "sdfChoice": {
             "Up": {
               "description": "increasing direction"
             },
