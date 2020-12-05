@@ -20,7 +20,15 @@
         "etc.": {}      
       },
       "sdfAction": { 
-        "MoveToLevel" : { "id": 0 },
+        "MoveToLevel" : { 
+          "id": 0,
+          "sdfInputData": { 
+            "Level": { "id": 0 },
+            "TransitionTIme": { "id": 1 },
+            "OptionsMask": { "id": 2 },          
+            "OptionsOverride": { "id": 3 }         
+          } 
+        },
         "Move" : { "id": 1 },
         "etc.": {}
       },
@@ -29,10 +37,12 @@
           "sdfChoice": {
             "Up" : {
               "id": 0,
+              "type": "number",
               "const": 0
             },
             "Down" : {
               "id": 1,
+              "type": "number",
               "const": 1
             }
           }
