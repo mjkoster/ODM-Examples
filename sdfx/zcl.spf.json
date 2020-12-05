@@ -29,36 +29,42 @@
             "OptionsOverride": { "id": 3 }         
           } 
         },
-        "Move" : { "id": 1 },
+        "Move" : { 
+          "id": 1 ,
+          "sdfInputData": {
+            "MoveMode": { "id": 0 },
+            "Rate": { "id": 1 },
+            "OptionsMask": { "id": 2 },          
+            "OptionsOverride": { "id": 3 }         
+          }
+        },
         "etc.": {}
       },
       "sdfData": { 
         "MoveStepMode": {
           "sdfChoice": {
             "Up" : {
-              "id": 0,
-              "type": "number",
-              "const": 0
+              "id": 0
             },
             "Down" : {
-              "id": 1,
-              "type": "number",
-              "const": 1
+              "id": 1            
             }
           }
         }
       },
       "zclFeature": {
-        "comment": [ "should features be managed by an SDF extension for conditional feature sets? e.g. ifdef?",
-                     "can a feature set be defined by patching definitions and settings? ",
-                     "should each feature be a separate patch on top of the definition (conflicts?)" ],
         "onOffCommand": [
-          "ex:#/sdfObject/Level/sdfAction/MoveToLevelwithOnOff", 
-          "ex:#/sdfObject/Level/sdfAction/MovewithOnOff", 
-          "ex:#/sdfObject/Level/sdfAction/StepwithOnOff", 
-          "ex:#/sdfObject/Level/dfAction/StopwithOnOff"
+          "sdfAction/MoveToLevelwithOnOff", 
+          "sdfAction/MovewithOnOff", 
+          "sdfAction/StepwithOnOff", 
+          "sdfAction/StopwithOnOff"
         ]
       }
     }
-  }
+  },
+  "comment": 
+  [ "should features be managed by an SDF extension for conditional feature sets?",
+    "ifdef? can a feature set be defined by patching definitions and settings? ",
+    "should each feature be a separate patch on top of the definition (conflicts?)" 
+  ]
 }
