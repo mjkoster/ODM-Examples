@@ -1,0 +1,184 @@
+{
+  "info": {
+    "title": "Oven Mode Enum Data Type Definition", 
+    "version": "20200603", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "ex": "https://onedm.org/exploratory/"
+  }, 
+  "defaultNamespace": "ex", 
+
+  "sdfData": {
+    "OvenMode": {
+      "label": "Oven Mode",
+      "enum": [
+        "heating",
+        "grill",
+        "warming",
+        "defrosting",
+        "Conventional",
+        "Bake",
+        "BottomHeat",
+        "ConvectionBake",
+        "ConvectionRoast",
+        "Broil",
+        "ConvectionBroil",
+        "SteamCook",
+        "SteamBake",
+        "SteamRoast",
+        "SteamBottomHeatplusConvection",
+        "Microwave",
+        "MWplusGrill",
+        "MWplusConvection",
+        "MWplusHotBlast",
+        "MWplusHotBlast2",
+        "SlimMiddle",
+        "SlimStrong",
+        "SlimShady",        
+        "SlowCook",
+        "Proof",
+        "Dehydrate",
+        "Others"          
+      ]
+    }
+  },
+  "sdfMap": {
+    "#/sdfData/OvenMode/enum/heating": {
+      "description": "heating",
+      "label": "heating",
+      "default": "heating"
+    },
+    "#/sdfData/OvenMode/enum/grill": {
+      "description": "grill",
+      "label": "grill",
+      "default": "grill"
+    },
+    "#/sdfData/OvenMode/enum/warming": {
+      "description": "warming",
+      "label": "warming",
+      "default": "warming"
+    },
+    "#/sdfData/OvenMode/enum/defrosting": {
+      "description": "defrosting",
+      "label": "defrosting",
+      "default": "defrosting"
+    },
+    "#/sdfData/OvenMode/enum/Conventional": {
+      "description": "Conventional",
+      "label": "Conventional",
+      "default": "Conventional"
+    },
+    "#/sdfData/OvenMode/enum/Bake": {
+      "description": "Bake",
+      "label": "Bake",
+      "default": "Bake"
+    },
+    "#/sdfData/OvenMode/enum/BottomHeat": {
+      "description": "Bottom Heat",
+      "label": "Bottom Heat",
+      "default": "BottomHeat"
+    },
+    "#/sdfData/OvenMode/enum/ConvectionBake": {
+      "description": "Convection Bake",
+      "label": "Convection Bake",
+      "default": "ConvectionBake"
+    },
+    "#/sdfData/OvenMode/enum/ConvectionRoast": {
+      "description": "Convection Roast",
+      "label": "Convection Roast",
+      "default": "ConvectionRoast"
+    },
+    "#/sdfData/OvenMode/enum/Broil": {
+      "description": "Broil",
+      "label": "Broil",
+      "default": "Broil"
+    },
+    "#/sdfData/OvenMode/enum/ConvectionBroil": {
+      "description": "Convection Broil",
+      "label": "Convection Broil",
+      "default": "ConvectionBroil"
+    },
+    "#/sdfData/OvenMode/enum/SteamCook": {
+      "description": "Steam Cook",
+      "label": "Steam Cook",
+      "default": "SteamCook"
+    },
+    "#/sdfData/OvenMode/enum/SteamBake": {
+      "description": "Steam Bake",
+      "label": "Steam Bake",
+      "default": "SteamBake"
+    },
+    "#/sdfData/OvenMode/enum/SteamRoast": {
+      "description": "Steam Roast",
+      "label": "Steam Roast",
+      "default": "SteamRoast"
+    },
+    "#/sdfData/OvenMode/enum/SteamBottomHeatplusConvection": {
+      "description": "Steam Bottom Heat plus Convection",
+      "label": "Steam Bottom Heat plus Convection",
+      "default": "SteamBottomHeatplusConvection"
+    },
+    "#/sdfData/OvenMode/enum/Microwave": {
+      "description": "Microwave",
+      "label": "Microwave",
+      "default": "Microwave"
+    },
+    "#/sdfData/OvenMode/enum/MWplusGrill": {
+      "description": "Microwave plus Grill",
+      "label": "Microwave plus Grill",
+      "default": "MWplusGrill"
+    },
+    "#/sdfData/OvenMode/enum/MWplusConvection": {
+      "description": "Microwave plus Convection",
+      "label": "Microwave plus Convection",
+      "default": "MWplusConvection"
+    },
+    "#/sdfData/OvenMode/enum/MWplusHotBlast": {
+      "description": "MWplusHotBlast",
+      "label": "Microwave plus Hot Blast",
+      "default": "MWplusHotBlast"
+    },
+    "#/sdfData/OvenMode/enum/MWplusHotBlast2": {
+      "description": "MWplusHotBlast2",
+      "label": "Microwave plus Hot Blast 2",
+      "default": "MWplusHotBlast2"
+    },
+    "#/sdfData/OvenMode/enum/SlimMiddle": {
+      "description": "Slim Middle",
+      "label": "Slim Middle",
+      "default": "SlimMiddle"
+    },
+    "#/sdfData/OvenMode/enum/SlimStrong": {
+      "description": "Slim Strong",
+      "label": "Slim Strong",
+      "default": "SlimStrong"
+    },
+    "#/sdfData/OvenMode/enum/SlimShady": {
+      "description": "Slim Shady",
+      "label": "Slim Shady",
+      "default": "SlimShady"
+    },        
+    "#/sdfData/OvenMode/enum/SlowCook": {
+      "description": "Slow Cook",
+      "label": "Slow Cook",
+      "default": "SlowCook"
+    },
+    "#/sdfData/OvenMode/enum/Proof": {
+      "description": "Proof",
+      "label": "Proof",
+      "default": "Proof"
+    },
+    "#/sdfData/OvenMode/enum/Dehydrate": {
+      "description": "Dehydrate",
+      "label": "Dehydrate",
+      "default": "Dehydrate"
+    },
+    "#/sdfData/OvenMode/enum/Others": {
+      "description": "Others",
+      "label": "Others",
+      "default": "Others"
+    }
+  }  
+}

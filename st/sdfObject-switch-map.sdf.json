@@ -1,0 +1,47 @@
+{
+  "info": {
+    "title": "Example file for ODM Simple JSON Definition Format", 
+    "version": "20101207", 
+    "copyright": "Copyright 2020 Example Corp. All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "st": "http://example.com/st"
+  }, 
+  "defaultnamespace": "st", 
+
+  "sdfObject": {
+    "Switch": {
+      "sdfProperty": {
+        "value": {
+          "sdfRef": "st:#/sdfData/SwitchState"
+        }
+      }, 
+      "odmAction": {
+        "on": {}, 
+        "off": {},
+        "toggle": {}
+      }
+    }
+  },
+  "sdfData": {
+    "SwitchState": {
+      "enum": [
+        "on",
+        "off"
+      ]
+    }
+  },
+  "sdfMap": {
+    "#/sdfData/SwitchState/enum/on": {
+      "label": "On",
+      "description": "The powered or functionally active state",
+      "default": "on"
+    },
+    "#/sdfData/SwitchState/enum/off": {
+      "label": "Off",
+      "description": "The un-powered or functionally inactive state",
+      "default": "off"
+    }  
+  }
+}

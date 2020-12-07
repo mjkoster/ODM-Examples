@@ -11,7 +11,7 @@
   "defaultnamespace": "pg", 
   "sdfData": {
     "SensorDescriptor": {
-      "dataFields": {
+      "sdfData": {
         "SensorPropertyID": {
           "sdfRef": "#/sdfData/PropertyIdType"
         }, 
@@ -54,7 +54,7 @@
       }
     }, 
     "SensorSetting": { 
-      "dataFields": {
+      "sdfData": {
         "SensorPropertyID": {
           "sdfRef": "#/sdfData/PropertyIdType"
         }, 
@@ -76,7 +76,7 @@
       }
     }, 
     "SensorCadence": {
-      "dataFields": {
+      "sdfData": {
         "SensorPropertyID": {
           "sdfRef": "#/sdfData/PropertyIdType"
         }, 
@@ -112,7 +112,7 @@
       }
     },
     "SensorData": {
-      "dataFields": {
+      "sdfData": {
         "SensorDataType": {
           "type": "array", 
           "items": [

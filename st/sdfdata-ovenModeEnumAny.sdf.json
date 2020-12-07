@@ -13,6 +13,35 @@
   "sdfData": {
     "OvenMode": {
       "label": "Oven Mode",
+      "enum": [
+        "heating",
+        "grill",
+        "warming",
+        "defrosting",
+        "Conventional",
+        "Bake",
+        "BottomHeat",
+        "ConvectionBake",
+        "ConvectionRoast",
+        "Broil",
+        "ConvectionBroil",
+        "SteamCook",
+        "SteamBake",
+        "SteamRoast",
+        "SteamBottomHeatplusConvection",
+        "Microwave",
+        "MWplusGrill",
+        "MWplusConvection",
+        "MWplusHotBlast",
+        "MWplusHotBlast2",
+        "SlimMiddle",
+        "SlimStrong",
+        "SlimShady",        
+        "SlowCook",
+        "Proof",
+        "Dehydrate",
+        "Others"          
+      ],
       "sdfAny": {
         "heating": {
           "description": "heating",

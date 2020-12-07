@@ -13,7 +13,36 @@
   "sdfData": {
     "OvenMode": {
       "label": "Oven Mode",
-      "sdfAny": {
+      "enum": [
+        "heating",
+        "grill",
+        "warming",
+        "defrosting",
+        "Conventional",
+        "Bake",
+        "BottomHeat",
+        "ConvectionBake",
+        "ConvectionRoast",
+        "Broil",
+        "ConvectionBroil",
+        "SteamCook",
+        "SteamBake",
+        "SteamRoast",
+        "SteamBottomHeatplusConvection",
+        "Microwave",
+        "MWplusGrill",
+        "MWplusConvection",
+        "MWplusHotBlast",
+        "MWplusHotBlast2",
+        "SlimMiddle",
+        "SlimStrong",
+        "SlimShady",        
+        "SlowCook",
+        "Proof",
+        "Dehydrate",
+        "Others"          
+      ],
+      "sdfEnumMap": {
         "heating": {
           "description": "heating",
           "label": "heating",
@@ -59,7 +88,7 @@
           "label": "Convection Roast",
           "default": "ConvectionRoast"
         },
-        "Broil": {
+        "#Broil": {
           "description": "Broil",
           "label": "Broil",
           "default": "Broil"
@@ -104,7 +133,7 @@
           "label": "Microwave plus Convection",
           "default": "MWplusConvection"
         },
-        "MWplusHotBlast": {
+        "#/sdfData/OvenMode/enum/MWplusHotBlast": {
           "description": "MWplusHotBlast",
           "label": "Microwave plus Hot Blast",
           "default": "MWplusHotBlast"
@@ -113,7 +142,7 @@
           "description": "MWplusHotBlast2",
           "label": "Microwave plus Hot Blast 2",
           "default": "MWplusHotBlast2"
-        },
+          },
         "SlimMiddle": {
           "description": "Slim Middle",
           "label": "Slim Middle",
@@ -123,7 +152,7 @@
           "description": "Slim Strong",
           "label": "Slim Strong",
           "default": "SlimStrong"
-        },
+          },
         "SlimShady": {
           "description": "Slim Shady",
           "label": "Slim Shady",
@@ -148,8 +177,8 @@
           "description": "Others",
           "label": "Others",
           "default": "Others"
-        }          
+        }
       }
     }
-  }
+  }  
 }
