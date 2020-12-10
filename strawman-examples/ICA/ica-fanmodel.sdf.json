@@ -1,0 +1,334 @@
+{
+  "info": {
+    "title": "Example file for ICA Fan definition in OneDM SDF format", 
+    "version": "20190820", 
+    "copyright": "Copyright 2019 Example Corp. All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "ica": "http://example.com/ica/"
+  }, 
+  "defaultnamespace": "ica", 
+  "sdfObject": {
+    "Fan": {
+      "id": 152, 
+      "label": "Fan", 
+      "sdfRequired": [
+        "#/sdfObject/Fan/sdfEvent/faultReporting",
+        "#/sdfObject/Fan/sdfProperty/PowerSwitch"
+      ], 
+      "sdfEvent": {
+        "faultReporting": {
+          "sdfOutputData": {
+            "type": "object",
+            "required": [ "faultCode" ],
+            "properties": {
+              "faultCode": {
+                "type": "string", 
+                "id": 743, 
+                "label": "faultCode"
+              }
+            }
+          }
+        }
+      }, 
+      "sdfProperty": {
+        "PowerSwitch": {
+          "id": 409, 
+          "label": "PowerSwitch", 
+          "enum": [
+            {
+              "on": 1
+            }, 
+            {
+              "off": 0
+            }
+          ]
+        }, 
+        "CurrentHumidity": {
+          "id": 410, 
+          "label": "CurrentHumidity", 
+          "type": "integer", 
+          "minimum": 0, 
+          "maximum": 100, 
+          "unit": "%", 
+          "writeable": false
+        }, 
+        "TargetHumidity": {
+          "id": 411, 
+          "label": "TargetHumidity", 
+          "type": "integer", 
+          "minimum": 0, 
+          "maximum": 100, 
+          "unit": "%"
+        }, 
+        "CurrentTemperature": {
+          "id": 412, 
+          "label": "CurrentTemperature", 
+          "type": "number", 
+          "minimum": -20, 
+          "maximum": 55, 
+          "unit": "C", 
+          "writeable": false
+        }, 
+        "TargetTemperature": {
+          "id": 413, 
+          "label": "TargetTemperature", 
+          "type": "number", 
+          "minumum": 16, 
+          "maximum": 32, 
+          "unit": "C"
+        }, 
+        "WaterShortage": {
+          "id": 414, 
+          "label": "WaterShortage", 
+          "enum": [
+            {
+              "notSensed": 0
+            }, 
+            {
+              "sensed": 1
+            }
+          ]
+        }, 
+        "IonSwitch": {
+          "id": 415, 
+          "label": "IonSwitch", 
+          "enum": [
+            {
+              "off": 0
+            }, 
+            {
+              "on": 1
+            }
+          ]
+        }, 
+        "OscillatingSwitch": {
+          "id": 416, 
+          "label": "OscillatingSwitch", 
+          "enum": [
+            {
+              "off": 0
+            }, 
+            {
+              "on": 1
+            }
+          ]
+        }, 
+        "ScreenSwitch": {
+          "id": 417, 
+          "label": "ScreenSwitch", 
+          "enum": [
+            {
+              "off": 0
+            }, 
+            {
+              "on": 1
+            }
+          ]
+        }, 
+        "HumidificationSwitch": {
+          "id": 418, 
+          "label": "HumidificationSwitch", 
+          "enum": [
+            {
+              "off": 0
+            }, 
+            {
+              "on": 1
+            }
+          ]
+        }, 
+        "WindSpeed": {
+          "id": 419, 
+          "label": "WindSpeed", 
+          "enum": [
+            {
+              "off": 0
+            }, 
+            {
+              "speed_1": 1
+            }, 
+            {
+              "speed_2": 2
+            }, 
+            {
+              "speed_3": 3
+            }, 
+            {
+              "speed_4": 4
+            }, 
+            {
+              "speed_5": 5
+            }, 
+            {
+              "speed_6": 6
+            }, 
+            {
+              "speed_7": 7
+            }, 
+            {
+              "speed_8": 8
+            }, 
+            {
+              "speed_9": 9
+            }, 
+            {
+              "violent_wind": 10
+            }
+          ]
+        }, 
+        "WorkMode": {
+          "id": 420, 
+          "label": "WorkMode", 
+          "enum": [
+            {
+              "normal_wind": 1
+            }, 
+            {
+              "natural_wind": 2
+            }, 
+            {
+              "sleep_wind": 3
+            }, 
+            {
+              "silent_wind": 4
+            }
+          ]
+        }, 
+        "CountdownRemainingTime": {
+          "id": 421, 
+          "label": "CountdownRemainingTime", 
+          "type": "number", 
+          "unit": "min", 
+          "minimum": 0, 
+          "maximum": 1440
+        }
+      }, 
+      "sdfAction": {
+        "StopCountdown": {
+          "id": 122, 
+          "label": "StopCountdown"
+        }, 
+        "SetPowerSwitchTImer": {
+          "label": "SetPowerSwitchTimer", 
+          "id": 123, 
+          "sdfInputData": {
+            "type": "object",
+            "required": [ "Timer", "PowerSwitch"],
+            "properties": {
+              "Timer": {
+                "id": 759, 
+                "label": "Timer", 
+                "type": "number", 
+                "minimum": 0, 
+                "maximum": 1440, 
+                "multipleOf": 0.01, 
+                "unit": "min"
+              }, 
+              "PowerSwitch": {
+                "id": 745, 
+                "label": "PowerSwitch", 
+                "enum": [
+                  {
+                    "on": 1
+                  }, 
+                  {
+                    "off": 0
+                  }
+                ]
+              }  
+            }
+          }
+        }
+      }
+    }
+  }, 
+  "unmappedIcaQualities": {
+    "resourceType": {
+      "type": "string", 
+      "enum": [
+        "PROPERTY", 
+        "EVENT", 
+        "SERVICE"
+      ]
+    }, 
+    "id": {
+      "type": "number"
+    }, 
+    "categoryId": {
+      "type": "number"
+    }, 
+    "categoryName": {
+      "type": "string"
+    }, 
+    "contributor": {
+      "type": "string"
+    }, 
+    "contributorID": {
+      "type": "number"
+    }, 
+    "featureState": {
+      "type": "string", 
+      "enum": [
+        "APPROVED"
+      ]
+    }, 
+    "flag": {
+      "type": "string"
+    }, 
+    "identifier": {
+      "type": "string"
+    }, 
+    "thingTemplateId": {
+      "type": "number"
+    }, 
+    "version": {
+      "type": "string"
+    }, 
+    "versionID": {
+      "type": "number"
+    }, 
+    "gmtCreate": {
+      "type": "string", 
+      "format": "datetime"
+    }, 
+    "gmtModified": {
+      "type": "string", 
+      "format": "datetime"
+    }, 
+    "base": {
+      "type": "boolean"
+    }, 
+    "baseFlag": {
+      "type": "boolean"
+    }, 
+    "isDeleted": {
+      "type": "boolean"
+    }, 
+    "baseServiceId": {
+      "type": "number"
+    }, 
+    "basePropertyId": {
+      "type": "number"
+    }, 
+    "baseEventId": {
+      "type": "number"
+    }, 
+    "unitName": {
+      "type": "string"
+    }, 
+    "unitType": {
+      "type": "numnber"
+    }, 
+    "value": {
+      "type": "string"
+    }, 
+    "valueName": {
+      "type": "string"
+    },
+    "paraOrder": {
+      "type": "number"
+    }
+  }
+}
