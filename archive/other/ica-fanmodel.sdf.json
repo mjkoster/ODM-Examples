@@ -6,46 +6,36 @@
     "license": "http://example.com/license"
   }, 
   "namespace": {
-    "ica": "http://ecample.com/ica-example/#"
+    "ica": "http://example.com/ica/"
   }, 
   "defaultnamespace": "ica", 
-  "odmObject": {
+  "sdfObject": {
     "Fan": {
       "id": 152, 
-      "name": "Fan", 
-      "required": [
-        {
-          "$ref": "0/odmEvent/faultReporting"
-        }, 
-        {
-          "$ref": "0/odmProperty/PowerSwitch"
-        }
+      "label": "Fan", 
+      "sdfRequired": [
+        "#/sdfObject/Fan/sdfEvent/faultReporting",
+        "#/sdfObject/Fan/sdfProperty/PowerSwitch"
       ], 
-      "odmEvent": {
+      "sdfEvent": {
         "faultReporting": {
-          "odmData": {
-            "faultCode": {
-              "type": "string", 
-              "id": 743, 
-              "name": "faultCode"
+          "sdfOutputData": {
+            "type": "object",
+            "required": [ "faultCode" ],
+            "properties": {
+              "faultCode": {
+                "type": "string", 
+                "id": 743, 
+                "label": "faultCode"
+              }
             }
-          }, 
-          "outputData": [
-            {
-              "$ref": "0/odmData/faultCode"
-            }
-          ], 
-          "required": [
-            {
-              "$ref": "0/odmData/faultCode"
-            }
-          ]
+          }
         }
       }, 
-      "odmProperty": {
+      "sdfProperty": {
         "PowerSwitch": {
           "id": 409, 
-          "name": "PowerSwitch", 
+          "label": "PowerSwitch", 
           "enum": [
             {
               "on": 1
@@ -57,16 +47,16 @@
         }, 
         "CurrentHumidity": {
           "id": 410, 
-          "name": "CurrentHumidity", 
+          "label": "CurrentHumidity", 
           "type": "integer", 
           "minimum": 0, 
           "maximum": 100, 
           "unit": "%", 
-          "readOnly": true
+          "writeable": false
         }, 
         "TargetHumidity": {
           "id": 411, 
-          "name": "TargetHumidity", 
+          "label": "TargetHumidity", 
           "type": "integer", 
           "minimum": 0, 
           "maximum": 100, 
@@ -74,16 +64,16 @@
         }, 
         "CurrentTemperature": {
           "id": 412, 
-          "name": "CurrentTemperature", 
-          "type": "numnber", 
+          "label": "CurrentTemperature", 
+          "type": "number", 
           "minimum": -20, 
           "maximum": 55, 
           "unit": "C", 
-          "readOnly": true
+          "writeable": false
         }, 
         "TargetTemperature": {
           "id": 413, 
-          "name": "TargetTemperature", 
+          "label": "TargetTemperature", 
           "type": "number", 
           "minumum": 16, 
           "maximum": 32, 
@@ -91,7 +81,7 @@
         }, 
         "WaterShortage": {
           "id": 414, 
-          "name": "WaterShortage", 
+          "label": "WaterShortage", 
           "enum": [
             {
               "notSensed": 0
@@ -103,7 +93,7 @@
         }, 
         "IonSwitch": {
           "id": 415, 
-          "name": "IonSwitch", 
+          "label": "IonSwitch", 
           "enum": [
             {
               "off": 0
@@ -115,7 +105,7 @@
         }, 
         "OscillatingSwitch": {
           "id": 416, 
-          "name": "OscillatingSwitch", 
+          "label": "OscillatingSwitch", 
           "enum": [
             {
               "off": 0
@@ -127,7 +117,7 @@
         }, 
         "ScreenSwitch": {
           "id": 417, 
-          "name": "ScreenSwitch", 
+          "label": "ScreenSwitch", 
           "enum": [
             {
               "off": 0
@@ -139,7 +129,7 @@
         }, 
         "HumidificationSwitch": {
           "id": 418, 
-          "name": "HumidificationSwitch", 
+          "label": "HumidificationSwitch", 
           "enum": [
             {
               "off": 0
@@ -151,7 +141,7 @@
         }, 
         "WindSpeed": {
           "id": 419, 
-          "name": "WindSpeed", 
+          "label": "WindSpeed", 
           "enum": [
             {
               "off": 0
@@ -190,7 +180,7 @@
         }, 
         "WorkMode": {
           "id": 420, 
-          "name": "WorkMode", 
+          "label": "WorkMode", 
           "enum": [
             {
               "normal_wind": 1
@@ -208,65 +198,53 @@
         }, 
         "CountdownRemainingTime": {
           "id": 421, 
-          "name": "CountdownRemainingTime", 
+          "label": "CountdownRemainingTime", 
           "type": "number", 
           "unit": "min", 
           "minimum": 0, 
           "maximum": 1440
         }
       }, 
-      "odmAction": {
+      "sdfAction": {
         "StopCountdown": {
           "id": 122, 
-          "name": "StopCountdown"
+          "label": "StopCountdown"
         }, 
         "SetPowerSwitchTImer": {
-          "name": "SetPowerSwitchTimer", 
+          "label": "SetPowerSwitchTimer", 
           "id": 123, 
-          "odmData": {
-            "Timer": {
-              "id": 759, 
-              "name": "Timer", 
-              "type": "number", 
-              "minimum": 0, 
-              "maximum": 1440, 
-              "multipleOf": 0.01, 
-              "unit": "min"
-            }, 
-            "PowerSwitch": {
-              "id": 745, 
-              "name": "PowerSwitch", 
-              "enum": [
-                {
-                  "on": 1
-                }, 
-                {
-                  "off": 0
-                }
-              ]
+          "sdfInputData": {
+            "type": "object",
+            "required": [ "Timer", "PowerSwitch"],
+            "properties": {
+              "Timer": {
+                "id": 759, 
+                "label": "Timer", 
+                "type": "number", 
+                "minimum": 0, 
+                "maximum": 1440, 
+                "multipleOf": 0.01, 
+                "unit": "min"
+              }, 
+              "PowerSwitch": {
+                "id": 745, 
+                "label": "PowerSwitch", 
+                "enum": [
+                  {
+                    "on": 1
+                  }, 
+                  {
+                    "off": 0
+                  }
+                ]
+              }  
             }
-          }, 
-          "inputData": [
-            {
-              "$ref": "0/odmData/Timer"
-            }, 
-            {
-              "$ref": "0/odmData/PowerSwitch"
-            }
-          ], 
-          "required": [
-            {
-              "$ref": "0/odmData/Timer"
-            }, 
-            {
-              "$ref": "0/odmData/PowerSwitch"
-            }
-          ]
+          }
         }
       }
     }
   }, 
-  "icaQualities": {
+  "unmappedIcaQualities": {
     "resourceType": {
       "type": "string", 
       "enum": [
@@ -277,12 +255,6 @@
     }, 
     "id": {
       "type": "number"
-    }, 
-    "name": {
-      "type": "string"
-    }, 
-    "required": {
-      "type": "boolean"
     }, 
     "categoryId": {
       "type": "number"
@@ -343,33 +315,6 @@
     "baseEventId": {
       "type": "number"
     }, 
-    "dataType": {
-      "type": "string", 
-      "enum": [
-        "INT", 
-        "DOUBLE", 
-        "BOOL"
-      ]
-    }, 
-    "unit": {
-      "type": "string"
-    }, 
-    "min": {
-      "type": "number"
-    }, 
-    "max": {
-      "type": "number"
-    }, 
-    "step": {
-      "type": "number"
-    }, 
-    "accessMode": {
-      "type": "string", 
-      "enum": [
-        "READ_ONLY", 
-        "READ_WRITE"
-      ]
-    }, 
     "unitName": {
       "type": "string"
     }, 
@@ -381,22 +326,9 @@
     }, 
     "valueName": {
       "type": "string"
-    }, 
-    "direction": {
-      "type": "string", 
-      "enum": [
-        "PARAM_INPUT", 
-        "PARAM_OUTPUT"
-      ]
-    }, 
+    },
     "paraOrder": {
       "type": "number"
-    }, 
-    "inputParams": {
-      "type": "array"
-    }, 
-    "outputParams": {
-      "type": "array"
     }
   }
 }
