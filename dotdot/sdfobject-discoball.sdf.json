@@ -129,6 +129,7 @@
               "label": "Duration",
               "Id": 0,
               "type": "number",
+              "unit": "s",
               "minimum": 0,
               "maximum": 65535
             },
