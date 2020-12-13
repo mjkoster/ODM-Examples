@@ -1,7 +1,7 @@
 {
   "info": {
     "title": "Example SDF file for CHIP Disco Ball", 
-    "version": "20201212", 
+    "version": "2020-12-12", 
     "copyright": "Copyright 2020 Example Corp.\n        All rights reserved.", 
     "license": "http://example.com/license"
   }, 
@@ -10,18 +10,31 @@
   }, 
   "defaultNamespace": "ex", 
 
+  "ClusterInfo": {
+    "Role": "Application",
+    "PicsCode": "DISCO",
+    "Revision": {
+      "1": "Initial Release",
+      "2": "Removed Off enum value in Rotate attribute",
+      "3": "Added pattern list feature",
+      "4": " Added Name attribute" 
+    }
+  },
+
   "FeatureMap": {
     "AX" : {
       "description": "THe Disco Ball can change the orientation of it's axis of rotation",
       "label": "Axis",
+      "Id": 0,
       "sdfRequired": [
         "#/sdfObject/DiscoBall/sdfProperty/Axis",
         "#/sdfObject/DiscoBall/sdfProperty/Pattern/items/Axis"
       ]
     },
     "WBL" : {
-      "description": "Make the Disco Ball Wobble on its axis",
+      "description": "The Disco Ball can Wobble on its axis",
       "label": "Wobble",
+      "Id": 1,
       "sdfRequired": [
         "#/sdfObject/DiscoBall/sdfProperty/Axis",
         "#/sdfObject/DiscoBall/sdfProperty/Wobble Speed",
@@ -32,8 +45,9 @@
       ]
     },
     "PAT" : {
-      "description": "Ability to store and perform predefined paterns",
+      "description": "Ability to store and perform predefined patterns",
       "label": "Pattern",
+      "Id": 2,
       "sdfRequired": [
         "#/sdfObject/DiscoBall/sdfProperty/Pattern",
         "#/sdfObject/DiscoBall/sdfAction/Pattern Request"
@@ -42,6 +56,7 @@
     "STA" : {
       "description": "Report Status",
       "label": "Status",
+      "Id": 3,
       "sdfRequired": [
         "#/sdfObject/DiscoBall/sdfAction/Status Request"
       ]
@@ -50,6 +65,7 @@
 
   "sdfObject": {
     "DiscoBall": {
+      "Id": "0xABCD",
       "label": "Disco Ball",
       "sdfRequired": [
         "#/sdfObject/DiscoBall/sdfProperty/Run",
@@ -63,12 +79,14 @@
         "Run": {
           "description": "Run Indicator",
           "label": "Run",
+          "Id": 0,
           "type": "boolean",
           "default": false
         },
         "Rotate": {
           "description": "Rotation Direction Indicator",
           "label": "Rotate",
+          "Id": 1,
           "sdfRef": "#/sdfObject/DiscoBall/sdfData/Rotate",
           "writable": false,
           "default": 1
@@ -76,6 +94,7 @@
         "Speed": {
           "description": "Speed Indicator",
           "label": "Speed",
+          "Id": 2,
           "type": "number",
           "unit": "rpm",
           "minimum": 0,
@@ -86,6 +105,7 @@
         "Axis": {
           "description": "Axis Tilt Setting",
           "label": "Axis",
+          "Id": 3,
           "type": "number",
           "unit": "deg",
           "minimum": 0,
@@ -96,6 +116,7 @@
         "Wobble Speed": {
           "description": "Wobble Speed Setting",
           "label": "Wobble",
+          "Id": 4,
           "type": "number",
           "unit": "rpm",
           "minimum": 0,
@@ -106,6 +127,7 @@
         "Pattern": {
           "description": "Pattern list",
           "label": "Pattern",
+          "Id": 5,
           "type": "array",
           "maxItems": 16,
           "writable": true,
@@ -117,6 +139,7 @@
         "Name": {
           "description": "Name",
           "label": "Name",
+          "Id": 6,
           "type": "string",
           "maxLength": 16,
           "writable": true
@@ -126,16 +149,23 @@
         "Start Request": {
           "description": "Name",
           "label": "Name",
+          "Id": 0,
           "sdfInputData": {
             "type": "object",
             "required": [ "Speed" ],
             "properties": {
               "Speed": {
+                "description": "Speed setting",
+                "label": "Speed",
                 "type": "number",
+                "Id": 0,
                 "minimum": 0,
                 "maximum": 200
               },
               "Rotate": {
+                "description": "Rotate (direction) setting",
+                "label": "Rotate",
+                "Id": 1,
                 "sdfRef": "#/sdfObject/DiscoBall/sdfData/Rotate"
               }
             }
@@ -143,23 +173,28 @@
         },
         "Stop Request": {
           "description": "Stop",
-          "label": "Stop"
+          "label": "Stop",
+          "Id": 1
         },
         "Reverse Request": {
           "description": "Reverse",
-          "label": "Reverse"
+          "label": "Reverse",
+          "Id": 2
         },
         "Wobble Request": {
           "description": "Wobble",
-          "label": "Wobble"
+          "label": "Wobble",
+          "Id": 3
         },
         "Pattern Request": {
           "description": "Pattern",
-          "label": "Pattern"
+          "label": "Pattern",
+          "Id": 4
         },
         "Stats Request": {
           "description": "Stats",
           "label": "Stats",
+          "Id": 5,
           "sdfOutputData": {
             "type": "object",
             "required": [ "Last Run", "Patterns" ],
@@ -167,11 +202,13 @@
               "Last Run": {
                 "description": "Seconds since last Run Command",
                 "Label": "Last Run",
+                "Id": 0,
                 "type": "number"
               },
               "Patterns": {
                 "description": "Number of Pattern changes in the last hour",
                 "Label": "Patterns",
+                "Id": 1,
                 "type": "number"
               }
             }
@@ -181,15 +218,18 @@
       "sdfEvent": {
         "Start": { 
           "description": "The Disco Ball was Started",
-          "label": "Start"
+          "label": "Start",
+          "Id": 0
         },
         "Stop": { 
           "description": "The Disco Ball was Stopped",
-          "label": "Stop"
+          "label": "Stop",
+          "Id": 1
         },
         "Pattern Change": { 
           "description": "The Pattern was changed",
-          "label": "Pattern Change"
+          "label": "Pattern Change",
+          "Id": 2
         }
       },
       "sdfData": {
@@ -198,10 +238,12 @@
           "sdfAny": {
             "Clockwise": {
               "description": "Rotate Clockwise",
+              "Id": 0,
               "default": 1
             },
             "Counterclockwise": {
                 "description": "Rotate Counterclockwise",
+                "Id": 1,
                 "default": 2  
             }
           }
@@ -212,6 +254,7 @@
             "Duration": {
               "description": "The Duration in seconds to perform this pattern",
               "label": "Duration",
+              "Id": 0,
               "type": "number",
               "minimum": 0,
               "maximum": 65535
@@ -219,11 +262,13 @@
             "Rotate": {
               "description": "Rotation Direction",
               "label": "Rotate",
+              "Id": 1,
               "sdfRef": "#/sdfObject/DiscoBall/sdfData/Rotate"
             },
             "Speed": {
               "description": "Speed Setting",
               "label": "Speed",
+              "Id": 2,
               "type": "number",
               "unit": "rpm",
               "minimum": 0,
@@ -232,6 +277,7 @@
             "Axis": {
               "description": "Axis Tilt Setting",
               "label": "Axis",
+              "Id": 3,
               "type": "number",
               "unit": "deg",
               "minimum": 0,
@@ -240,6 +286,7 @@
             "WobbleSpeed": {
               "description": "Wobble Speed Setting",
               "label": "Wobble",
+              "Id": 4,
               "type": "number",
               "unit": "rpm",
               "minimum": 0,
