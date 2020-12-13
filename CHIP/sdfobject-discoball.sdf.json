@@ -1,14 +1,20 @@
 {
   "info": {
-    "title": "Example SDF file for ZCL/CHIP Disco Ball", 
+    "title": "Example SDF file for a dotdot Disco Ball cluster", 
     "version": "2020-12-12", 
-    "copyright": "Copyright 2020 Example Corp.\n        All rights reserved.", 
-    "license": "http://example.com/license"
+    "copyright": "Copyright 2020 Zigbee Alliance.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
   }, 
   "namespace": {
-    "ex": "https://onedm.org/exploratory/#"
+    "dd": "https://onedm.org/dotdot/#"
   }, 
-  "defaultNamespace": "ex", 
+  "defaultNamespace": "dd", 
+
+  "sdfExtension": {
+    "dotClusterInfo": "dd:#/sdfExtension/dotClusterInfo",
+    "dotFeature": "dd:#/sdfExtension/dotFeature",
+    "Id": "dd:#/sdfExtension/Id"
+  },
 
   "sdfObject": {
     "DiscoBall": {
@@ -16,13 +22,17 @@
       "label": "0xABCD Disco Ball",
 
       "dotClusterInfo": {
-        "Role": "Application",
-        "PicsCode": "DISCO",
-        "Revision": {
+        "description": "This cluster controls a mirrored disco ball, for the express purpose of disco dancing.",
+        "RevisionHistory": {
           "1": "Initial Release",
           "2": "Removed Off enum value in Rotate attribute",
           "3": "Added pattern list feature",
           "4": " Added Name attribute" 
+        },
+        "Classification": {
+          "Hierarchy": "dd:#/sdfObject/Ball",
+          "Role": "Application",
+          "PicsCode": "DISCO"
         }
       },
 
