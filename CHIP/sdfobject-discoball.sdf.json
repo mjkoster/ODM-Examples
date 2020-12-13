@@ -18,8 +18,9 @@
 
   "sdfObject": {
     "DiscoBall": {
-      "Id": 43981,
+      "description": "Control of a mirrored disco ball",
       "label": "0xABCD Disco Ball",
+      "Id": 43981,
 
       "dotClusterInfo": {
         "description": "This cluster controls a mirrored disco ball, for the express purpose of disco dancing.",
