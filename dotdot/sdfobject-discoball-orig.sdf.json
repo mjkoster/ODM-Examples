@@ -41,9 +41,9 @@
         "#/sdfObject/DiscoBall/sdfProperty/Run",
         "#/sdfObject/DiscoBall/sdfProperty/Rotate",
         "#/sdfObject/DiscoBall/sdfProperty/Speed",
-        "#/sdfObject/DiscoBall/sdfAction/Start",
-        "#/sdfObject/DiscoBall/sdfAction/Stop",
-        "#/sdfObject/DiscoBall/sdfAction/Reverse"
+        "#/sdfObject/DiscoBall/sdfAction/Start Request",
+        "#/sdfObject/DiscoBall/sdfAction/Stop Request",
+        "#/sdfObject/DiscoBall/sdfAction/Reverse Request"
       ],
       "dotFeature": {
         "AX" : {
@@ -63,9 +63,9 @@
             "#/sdfObject/DiscoBall/sdfProperty/Axis",
             "#/sdfObject/DiscoBall/sdfProperty/Wobble Speed",
             "#/sdfObject/DiscoBall/sdfProperty/Pattern/items/Axis",
-            "#/sdfObject/DiscoBall/sdfProperty/Pattern/items/WobbleSpeed",
-            "#/sdfObject/DiscoBall/sdfAction/Wobble",
-            "#/sdfObject/DiscoBall/sdfAction/Pattern"
+            "#/sdfObject/DiscoBall/sdfProperty/Pattern/items/Wobble Speed",
+            "#/sdfObject/DiscoBall/sdfAction/Wobble Request",
+            "#/sdfObject/DiscoBall/sdfAction/Pattern Request"
           ]
         },
         "PAT" : {
@@ -74,7 +74,7 @@
           "Id": 2,
           "sdfRequired": [
             "#/sdfObject/DiscoBall/sdfProperty/Pattern",
-            "#/sdfObject/DiscoBall/sdfAction/Pattern"
+            "#/sdfObject/DiscoBall/sdfAction/Pattern Request"
           ]
         },
         "STA" : {
@@ -82,15 +82,13 @@
           "label": "Status",
           "Id": 3,
           "sdfRequired": [
-            "#/sdfObject/DiscoBall/sdfAction/Status"
+            "#/sdfObject/DiscoBall/sdfAction/Status Request"
           ]
         }
       },
 
       "sdfData": {
         "Rotate": {
-          "description": "Rotation Direction",
-          "label": "Rotate",
           "enum": [ "Clockwise", "Counterclockwise"],
           "sdfAny": {
             "Clockwise": {
@@ -105,22 +103,6 @@
             }
           }
         },
-        "SpeedData": {
-          "description": "Speed Setting",
-          "label": "Speed",
-          "type": "number",
-          "unit": "rpm",
-          "minimum": 0,
-          "maximum": 200    
-        },
-        "AxisData": {
-          "description": "Axis Tilt Setting",
-          "label": "Axis",
-          "type": "number",
-          "unit": "deg",
-          "minimum": 0,
-          "maximum": 90
-        },
         "PatternStruct": {
           "type": "object",
           "properties": {
@@ -133,22 +115,37 @@
               "maximum": 65535
             },
             "Rotate": {
+              "description": "Rotation Direction",
+              "label": "Rotate",
               "Id": 1,
               "sdfRef": "#/sdfObject/DiscoBall/sdfData/Rotate"
             },
             "Speed": {
+              "description": "Speed Setting",
+              "label": "Speed",
               "Id": 2,
-              "sdfRef": "#/sdfObject/DiscoBall/sdfData/SpeedData"
+              "type": "number",
+              "unit": "rpm",
+              "minimum": 0,
+              "maximum": 200    
             },
             "Axis": {
+              "description": "Axis Tilt Setting",
+              "label": "Axis",
               "Id": 3,
-              "sdfRef": "#/sdfObject/DiscoBall/sdfData/AxisData"
+              "type": "number",
+              "unit": "deg",
+              "minimum": 0,
+              "maximum": 90
             },
             "WobbleSpeed": {
               "description": "Wobble Speed Setting",
               "label": "Wobble",
               "Id": 4,
-              "sdfRef": "#/sdfObject/DiscoBall/sdfData/SpeedData"
+              "type": "number",
+              "unit": "rpm",
+              "minimum": 0,
+              "maximum": 200    
             }
           }
         }
@@ -174,7 +171,10 @@
           "description": "Speed Indicator",
           "label": "Speed",
           "Id": 2,
-          "sdfRef": "#/sdfObject/DiscoBall/sdfData/SpeedData",
+          "type": "number",
+          "unit": "rpm",
+          "minimum": 0,
+          "maximum": 200,
           "writable": false,
           "default": 0
         },
@@ -182,19 +182,25 @@
           "description": "Axis Tilt Setting",
           "label": "Axis",
           "Id": 3,
-          "sdfRef": "#/sdfObject/DiscoBall/sdfData/AxisData",
+          "type": "number",
+          "unit": "deg",
+          "minimum": 0,
+          "maximum": 90,
           "writable": true,
           "default": 0
         },
-        "WobbleSpeed": {
+        "Wobble Speed": {
           "description": "Wobble Speed Setting",
           "label": "Wobble",
           "Id": 4,
-          "sdfRef": "#/sdfObject/DiscoBall/sdfData/SpeedData",
+          "type": "number",
+          "unit": "rpm",
+          "minimum": 0,
+          "maximum": 200,
           "writable": true,
           "default": 0
         },
-        "PatternList": {
+        "Pattern": {
           "description": "Pattern list",
           "label": "Pattern",
           "Id": 5,
@@ -217,7 +223,7 @@
       }, 
 
       "sdfAction": {
-        "Start": {
+        "Start Request": {
           "description": "Name",
           "label": "Name",
           "Id": 0,
@@ -242,35 +248,35 @@
             }
           }
         },
-        "Stop": {
+        "Stop Request": {
           "description": "Stop",
           "label": "Stop",
           "Id": 1
         },
-        "Reverse": {
+        "Reverse Request": {
           "description": "Reverse",
           "label": "Reverse",
           "Id": 2
         },
-        "Wobble": {
+        "Wobble Request": {
           "description": "Wobble",
           "label": "Wobble",
           "Id": 3
         },
-        "Pattern": {
+        "Pattern Request": {
           "description": "Pattern",
           "label": "Pattern",
           "Id": 4
         },
-        "Status": {
-          "description": "Report Status",
+        "Stats Request": {
+          "description": "Stats",
           "label": "Stats",
           "Id": 5,
           "sdfOutputData": {
             "type": "object",
-            "required": [ "LastRun", "Patterns" ],
+            "required": [ "Last Run", "Patterns" ],
             "properties": {
-              "LastRun": {
+              "Last Run": {
                 "description": "Seconds since last Run Command",
                 "Label": "Last Run",
                 "Id": 0,
@@ -281,8 +287,7 @@
                 "description": "Number of Pattern changes in the last hour",
                 "Label": "Patterns",
                 "Id": 1,
-                "type": "number",
-                "unit": "count"
+                "type": "number"
               }
             }
           }
@@ -300,7 +305,7 @@
           "label": "Stop",
           "Id": 1
         },
-        "PatternChange": { 
+        "Pattern Change": { 
           "description": "The Pattern was changed",
           "label": "Pattern Change",
           "Id": 2
