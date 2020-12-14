@@ -19,8 +19,8 @@
   "sdfObject": {
     "DiscoBall": {
       "description": "Control of a mirrored disco ball",
-      "label": "0xABCD Disco Ball",
-      "Id": 43981,
+      "label": "Disco Ball",
+      "Id": "ABCD",
 
       "dotClusterInfo": {
         "description": "This cluster controls a mirrored disco ball, for the express purpose of disco dancing.",
@@ -49,7 +49,7 @@
         "AX" : {
           "description": "The Disco Ball can change the orientation of it's axis of rotation",
           "label": "Axis",
-          "Id": 0,
+          "Id": "00",
           "sdfRequired": [
             "#/sdfObject/DiscoBall/sdfProperty/Axis",
             "#/sdfObject/DiscoBall/sdfProperty/Pattern/items/Axis"
@@ -58,7 +58,7 @@
         "WBL" : {
           "description": "The Disco Ball can Wobble on its axis",
           "label": "Wobble",
-          "Id": 1,
+          "Id": "01",
           "sdfRequired": [
             "#/sdfObject/DiscoBall/sdfProperty/Axis",
             "#/sdfObject/DiscoBall/sdfProperty/Wobble Speed",
@@ -71,7 +71,7 @@
         "PAT" : {
           "description": "Ability to store and perform predefined patterns",
           "label": "Pattern",
-          "Id": 2,
+          "Id": "02",
           "sdfRequired": [
             "#/sdfObject/DiscoBall/sdfProperty/Pattern",
             "#/sdfObject/DiscoBall/sdfAction/Pattern"
@@ -80,7 +80,7 @@
         "STA" : {
           "description": "Report Status",
           "label": "Status",
-          "Id": 3,
+          "Id": "03",
           "sdfRequired": [
             "#/sdfObject/DiscoBall/sdfAction/Status"
           ]
@@ -95,12 +95,12 @@
           "sdfAny": {
             "Clockwise": {
               "description": "Rotate Clockwise",
-              "Id": 0,
+              "Id": "00",
               "default": 1
             },
             "Counterclockwise": {
                 "description": "Rotate Counterclockwise",
-                "Id": 1,
+                "Id": "01",
                 "default": 2  
             }
           }
@@ -134,21 +134,21 @@
               "maximum": 65535
             },
             "Rotate": {
-              "Id": 1,
+              "Id": "01",
               "sdfRef": "#/sdfObject/DiscoBall/sdfData/Rotate"
             },
             "Speed": {
-              "Id": 2,
+              "Id": "02",
               "sdfRef": "#/sdfObject/DiscoBall/sdfData/SpeedData"
             },
             "Axis": {
-              "Id": 3,
+              "Id": "03",
               "sdfRef": "#/sdfObject/DiscoBall/sdfData/AxisData"
             },
             "WobbleSpeed": {
               "description": "Wobble Speed Setting",
               "label": "Wobble",
-              "Id": 4,
+              "Id": "04",
               "sdfRef": "#/sdfObject/DiscoBall/sdfData/SpeedData"
             }
           }
@@ -159,14 +159,14 @@
         "Run": {
           "description": "Run Indicator",
           "label": "Run",
-          "Id": 0,
+          "Id": "0000",
           "type": "boolean",
           "default": false
         },
         "Rotate": {
           "description": "Rotation Direction Indicator",
           "label": "Rotate",
-          "Id": 1,
+          "Id": "0001",
           "sdfRef": "#/sdfObject/DiscoBall/sdfData/Rotate",
           "writable": false,
           "default": 1
@@ -174,7 +174,7 @@
         "Speed": {
           "description": "Speed Indicator",
           "label": "Speed",
-          "Id": 2,
+          "Id": "0002",
           "sdfRef": "#/sdfObject/DiscoBall/sdfData/SpeedData",
           "writable": false,
           "default": 0
@@ -182,7 +182,7 @@
         "Axis": {
           "description": "Axis Tilt Setting",
           "label": "Axis",
-          "Id": 3,
+          "Id": "0003",
           "sdfRef": "#/sdfObject/DiscoBall/sdfData/AxisData",
           "writable": true,
           "default": 0
@@ -190,7 +190,7 @@
         "WobbleSpeed": {
           "description": "Wobble Speed Setting",
           "label": "Wobble",
-          "Id": 4,
+          "Id": "0004",
           "sdfRef": "#/sdfObject/DiscoBall/sdfData/SpeedData",
           "writable": true,
           "default": 0
@@ -198,7 +198,7 @@
         "PatternList": {
           "description": "Pattern list",
           "label": "Pattern",
-          "Id": 5,
+          "Id": "0005",
           "type": "array",
           "maxItems": 16,
           "writable": true,
@@ -210,7 +210,7 @@
         "Name": {
           "description": "Name",
           "label": "Name",
-          "Id": 6,
+          "Id": "0006",
           "type": "string",
           "maxLength": 16,
           "writable": true
@@ -221,7 +221,7 @@
         "Start": {
           "description": "Name",
           "label": "Name",
-          "Id": 0,
+          "Id": "00",
           "sdfInputData": {
             "type": "object",
             "required": [ "Speed" ],
@@ -230,14 +230,14 @@
                 "description": "Speed setting",
                 "label": "Speed",
                 "type": "number",
-                "Id": 0,
+                "Id": "00",
                 "minimum": 0,
                 "maximum": 200
               },
               "Rotate": {
                 "description": "Rotate (direction) setting",
                 "label": "Rotate",
-                "Id": 1,
+                "Id": "01",
                 "sdfRef": "#/sdfObject/DiscoBall/sdfData/Rotate"
               }
             }
@@ -246,27 +246,27 @@
         "Stop": {
           "description": "Stop",
           "label": "Stop",
-          "Id": 1
+          "Id": "01"
         },
         "Reverse": {
           "description": "Reverse",
           "label": "Reverse",
-          "Id": 2
+          "Id": "02"
         },
         "Wobble": {
           "description": "Wobble",
           "label": "Wobble",
-          "Id": 3
+          "Id": "03"
         },
         "Pattern": {
           "description": "Pattern",
           "label": "Pattern",
-          "Id": 4
+          "Id": "04"
         },
         "Status": {
           "description": "Report Status",
           "label": "Stats",
-          "Id": 5,
+          "Id": "05",
           "sdfOutputData": {
             "type": "object",
             "required": [ "LastRun", "Patterns" ],
@@ -274,14 +274,14 @@
               "LastRun": {
                 "description": "Seconds since last Run Command",
                 "Label": "Last Run",
-                "Id": 0,
+                "Id": "00",
                 "type": "number",
                 "unit": "s"
               },
               "Patterns": {
                 "description": "Number of Pattern changes in the last hour",
                 "Label": "Patterns",
-                "Id": 1,
+                "Id": "01",
                 "type": "number",
                 "unit": "count"
               }
@@ -294,17 +294,17 @@
         "Start": { 
           "description": "The Disco Ball was Started",
           "label": "Start",
-          "Id": 0
+          "Id": "00"
         },
         "Stop": { 
           "description": "The Disco Ball was Stopped",
           "label": "Stop",
-          "Id": 1
+          "Id": "01"
         },
         "PatternChange": { 
           "description": "The Pattern was changed",
           "label": "Pattern Change",
-          "Id": 2
+          "Id": "02"
         }
       }
     }
