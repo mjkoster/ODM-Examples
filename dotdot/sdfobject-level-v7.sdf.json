@@ -1,7 +1,7 @@
 {
   "info": {
     "title": "Example file for Semantic Definition Format", 
-    "version": "20200603", 
+    "version": "202001212", 
     "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
     "license": "http://example.com/license"
   }, 
@@ -9,9 +9,30 @@
     "ex": "https://onedm.org/exploratory/"
   }, 
   "defaultNamespace": "ex", 
+
+  "sdfExtension": {
+    "dotClusterInfo": "dd:#/sdfExtension/dotClusterInfo",
+    "dotFeature": "dd:#/sdfExtension/dotFeature",
+    "Id": "dd:#/sdfExtension/Id"
+  },
+
   "sdfObject": {
     "Level": {
       "label": "Level", 
+      "Id": "0008",
+
+      "dotClusterInfo": {
+        "description": "Level Cluster",
+        "RevisionHistory": {
+          "2": "Current Version"
+        },
+        "Classification": {
+          "Hierarchy": "dd:#/sdfObject/Base",
+          "Role": "Application",
+          "PicsCode": "LVL"
+        }
+      },
+
       "sdfRequired": [
         "#/sdfObject/Level/sdfProperty/CurrentLevel", 
         "#/sdfObject/Level/sdfAction/MoveToLevel", 
@@ -23,64 +44,123 @@
         "#/sdfObject/Level/sdfAction/StepwithOnOff", 
         "#/sdfObject/Level/sdfAction/StopwithOnOff"
       ],
+
+      "sdfData": {
+        "TransitionTimeData": {
+          "type": "number", 
+          "minimum": 0, 
+          "maximum": 65535, 
+          "multipleOf": 1, 
+          "unit": "s/10"
+        },
+        "MoveStepMode": {
+          "Id": "0030",
+          "enum": [ "Up", "Down" ],
+          "sdfAny": {
+            "Up": {
+              "description": "increasing direction"
+            },
+            "Down": {
+              "description": "decreasing direction"
+            }
+          }
+        },
+        "LevelData": {
+          "type": "number", 
+          "minimum": 0, 
+          "maximum": 254
+        },
+        "LevelOptions": {
+          "description": "bitmap in source modeled as object with boolean properties, can sdfMap back to bitmap",
+          "Id": "0018",
+          "type": "object",
+          "properties": {
+            "ExecuteIfOff": {
+              "type": "boolean"
+            }, 
+            "CoupleColorTempToLevel": {
+              "type": "boolean"
+            }
+          }
+        },
+        "FrequencyData": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 65535
+        }
+      },
+
       "sdfProperty": {
         "CurrentLevel": {
           "label": "CurrentLevel", 
+          "Id": "0000",
           "sdfRef": "#/sdfObject/Level/sdfData/LevelData"
         }, 
         "RemainingTime": {
-          "sdfRef": "#/sdfObject/Level/sdfData/TransitionTimeData", 
           "label": "RemainingTime", 
+          "Id": "0001",
+          "sdfRef": "#/sdfObject/Level/sdfData/TransitionTimeData", 
           "default": 0
         },
         "MinLevel": {
           "label": "MinLevel", 
+          "Id": "0002",
           "sdfRef": "#/sdfObject/Level/sdfData/LevelData"
         },
         "MaxLevel": {
           "label": "MaxLevel", 
+          "Id": "0003",
           "sdfRef": "#/sdfObject/Level/sdfData/LevelData"
         },
         "CurrentFrequency": {
           "label": "CurrentFrequency", 
+          "Id": "0004",
           "sdfRef": "#/sdfObject/Level/sdfData/FrequencyData"
         },
         "MinFrequency": {
-          "label": "CurrentFrequency", 
+          "label": "MinFrequency", 
+          "Id": "0005",
           "sdfRef": "#/sdfObject/Level/sdfData/FrequencyData"
         },
         "MaxFrequency": {
-          "label": "CurrentFrequency", 
+          "label": "MaxFrequency", 
+          "Id": "0006",
           "sdfRef": "#/sdfObject/Level/sdfData/FrequencyData"
         },
         "OnOffTransitionTime": {
-          "sdfRef": "#/sdfObject/Level/sdfData/TransitionTimeData", 
           "label": "OnOffTransitionTime", 
+          "Id": "0010",
+          "sdfRef": "#/sdfObject/Level/sdfData/TransitionTimeData", 
           "default": 0
         }, 
         "OnLevel": {
           "label": "OnLevel", 
+          "Id": "0011",
           "type": "number", 
           "minimum": 0, 
           "maximum": 255, 
           "default": 255
         }, 
         "OnTransitionTime": {
-          "sdfRef": "#/sdfObject/Level/sdfData/TransitionTimeData", 
-          "label": "OnTransitionTime"
+          "label": "OnTransitionTime",
+          "Id": "0012",
+          "sdfRef": "#/sdfObject/Level/sdfData/TransitionTimeData"
         }, 
         "OffTransitionTime": {
-          "sdfRef": "#/sdfObject/Level/sdfData/TransitionTimeData", 
-          "label": "OffTransitionTime"
+          "label": "OffTransitionTime",
+          "Id": "0013",
+          "sdfRef": "#/sdfObject/Level/sdfData/TransitionTimeData"
         }, 
         "DefaultMoveRate": {
           "label": "DefaultMoveRate", 
+          "Id": "0014",
           "type": "number", 
           "minimum": 0, 
           "maximum": 254
         },
         "Options": {
           "label": "Options",
+          "Id": "000F",
           "sdfRef": "#/sdfObject/Level/sdfData/LevelOptions",
           "default": {
             "ExecuteIfOff": false,
@@ -88,9 +168,10 @@
           }
         },
         "StartUpCurrentLevel": {
-          "label": "StartUpCurrentLevel", 
           "description": "How to set the value of the CurrentLevel Attribute on power cycle or cold restart",
-          "sdfChoice": {
+          "label": "StartUpCurrentLevel", 
+          "Id": "4000",
+          "sdfAny": {
             "MinimumDeviceValuePermitted": {
               "description": "Set to the minimum allowable value on startup",
               "type": "number",
@@ -110,27 +191,33 @@
           }
         } 
       },
+
       "sdfAction": {
         "MoveToLevel": {
           "label": "MoveToLevel", 
+          "Id": "00",
           "sdfInputData": {
             "type": "object",
             "required": ["Level", "TransitionTime"],
             "properties": {
               "Level": {
                 "label": "Level", 
+                "Id": "00",
                 "sdfRef": "#/sdfObject/Level/sdfData/LevelData"            
               }, 
               "TransitionTime": {
                 "label": "TransitionTime", 
+                "Id": "01",
                 "sdfRef": "#/sdfObject/Level/sdfData/TransitionTimeData"
               },
               "OptionsMask": {
                 "label": "OptionsMask",
+                "Id": "02",
                 "sdfRef": "#/sdfObject/Level/sdfData/LevelOptions"
               },
               "OptionsOverride": {
                 "label": "OptionsMask",
+                "Id": "03",
                 "sdfRef": "#/sdfObject/Level/sdfData/LevelOptions"
               }
             }
@@ -138,26 +225,31 @@
         }, 
         "Move": {
           "label": "Move", 
+          "Id": "01",
           "sdfInputData": {
             "type": "object",
             "required": ["MoveMode", "Rate"],
             "properties": {
               "MoveMode": {
                 "label": "MoveMode", 
+                "Id": "00",
                 "sdfRef": "#/sdfObject/Level/sdfData/MoveStepMode"
               }, 
               "Rate": {
                 "label": "Rate", 
+                "Id": "01",
                 "type": "number", 
                 "minimum": 0, 
                 "maximum": 255
               },
               "OptionsMask": {
                 "label": "OptionsMask",
+                "Id": "02",
                 "sdfRef": "#/sdfObject/Level/sdfData/LevelOptions"
                 },
               "OptionsOverride": {
                 "label": "OptionsMask",
+                "Id": "03",
                 "sdfRef": "#/sdfObject/Level/sdfData/LevelOptions"
               }
             }
@@ -165,6 +257,7 @@
         }, 
         "Step": {
           "label": "Step", 
+          "Id": "02",
           "sdfInputData": {
             "type": "object",
             "required": ["StepMode", "StepSize", "TransitionTime"],
@@ -175,20 +268,24 @@
               }, 
               "StepSize": {
                 "label": "Step size", 
+                "Id": "00",
                 "type": "number", 
                 "minimum": 0, 
                 "maximum": 255
               }, 
               "TransitionTime": {
                 "label": "Step Transition Time", 
+                "Id": "01",
                 "sdfRef": "#/sdfObject/Level/sdfData/TransitionTimeData"
               },
               "OptionsMask": {
                 "label": "OptionsMask",
+                "Id": "02",
                 "sdfRef": "#/sdfObject/Level/sdfData/LevelOptions"
               },
               "OptionsOverride": {
                 "label": "OptionsMask",
+                "Id": "03",
                 "sdfRef": "#/sdfObject/Level/sdfData/LevelOptions"
               }
             }
@@ -196,38 +293,46 @@
         }, 
         "Stop": {
           "label": "Stop",
+          "Id": "03",
           "sdfInputData": {
             "type": "object",
             "properties": {
               "OptionsMask": {
                 "label": "OptionsMask",
+                "Id": "00",
                 "sdfRef": "#/sdfObject/Level/sdfData/LevelOptions"
               },
               "OptionsOverride": {
                 "label": "OptionsMask",
+                "Id": "01",
                 "sdfRef": "#/sdfObject/Level/sdfData/LevelOptions"
               }
             }
           }
         }, 
         "MoveToLevelwithOnOff": {
-          "sdfRef": "#/sdfObject/Level/sdfAction/MoveToLevel", 
-          "label": "MoveToLevelwithOnOff"
+          "label": "MoveToLevelwithOnOff",
+          "Id": "04",
+          "sdfRef": "#/sdfObject/Level/sdfAction/MoveToLevel"
         }, 
         "MovewithOnOff": {
-          "sdfRef": "#/sdfObject/Level/sdfAction/Move", 
-          "label": "MovewithOnOff"
+          "label": "MovewithOnOff",
+          "Id": "05",
+          "sdfRef": "#/sdfObject/Level/sdfAction/Move"
         }, 
         "StepwithOnOff": {
-          "sdfRef": "#/sdfObject/Level/sdfAction/Step", 
-          "label": "StepwithOnOff"
+          "label": "StepwithOnOff",
+          "Id": "06",
+          "sdfRef": "#/sdfObject/Level/sdfAction/Step"
         }, 
         "StopwithOnOff": {
-          "sdfRef": "#/sdfObject/Level/sdfAction/Stop", 
-          "label": "StopwithOnOff"
+          "label": "StopwithOnOff",
+          "Id": "07",
+          "sdfRef": "#/sdfObject/Level/sdfAction/Stop"
         },
         "MoveToClosestFrequency": {
           "label": "MoveToClosestFrequency",
+          "Id": "08",
           "sdfRequired": [
             "#/sdfObject/Level/sdfAction/MoveToClosestFrequency/sdfInputData/properties/Frequency"
           ],
@@ -235,53 +340,11 @@
             "type": "object",
             "properties": {
               "Frequency": {
+                "Id": "00",
                 "sdfRef": "#/sdfObject/Level/sdfData/FrequencyData"
               }
             }
           }
-        }
-      }, 
-      "sdfData": {
-        "TransitionTimeData": {
-          "type": "number", 
-          "minimum": 0, 
-          "maximum": 65535, 
-          "multipleOf": 1, 
-          "unit": "seconds", 
-          "scaleMinimum": 0, 
-          "scaleMaximum": 6553.5
-        },
-        "MoveStepMode": {
-          "sdfEnum": {
-            "Up": {
-              "description": "increasing direction"
-            },
-            "Down": {
-              "description": "decreasing direction"
-            }
-          }
-        },
-        "LevelData": {
-          "type": "number", 
-          "minimum": 0, 
-          "maximum": 254
-        },
-        "LevelOptions": {
-          "description": "bitmap in source modeled as object with boolean properties, can sdfMap back to bitmap",
-          "type": "object",
-          "properties": {
-            "ExecuteIfOff": {
-              "type": "boolean"
-            }, 
-            "CoupleColorTempToLevel": {
-              "type": "boolean"
-            }
-          }
-        },
-        "FrequencyData": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 65535
         }
       }
     }
