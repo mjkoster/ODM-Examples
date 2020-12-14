@@ -1,14 +1,14 @@
 {
   "info": {
     "title": "Example SDF file for the dotdot Level Cluster", 
-    "version": "202001212", 
-    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
-    "license": "http://example.com/license"
+    "version": "2020-12-12", 
+    "copyright": "Copyright 2020 Zigbee Alliance.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
   }, 
   "namespace": {
-    "ex": "https://onedm.org/exploratory/"
+    "dd": "https://onedm.org/dotdot/"
   }, 
-  "defaultNamespace": "ex", 
+  "defaultNamespace": "dd", 
 
   "sdfExtension": {
     "dotClusterInfo": "dd:#/sdfExtension/dotClusterInfo",
