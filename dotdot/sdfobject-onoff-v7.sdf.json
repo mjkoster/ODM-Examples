@@ -1,0 +1,163 @@
+{
+  "info": {
+    "title": "Example SDF file for the dotdot On/Off Cluster", 
+    "version": "2020-12-12", 
+    "copyright": "Copyright 2020 Zigbee Alliance.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "dd": "https://onedm.org/dotdot/"
+  }, 
+  "defaultNamespace": "dd", 
+
+  "sdfExtension": {
+    "dotClusterInfo": "dd:#/sdfExtension/dotClusterInfo",
+    "dotFeature": "dd:#/sdfExtension/dotFeature",
+    "Id": "dd:#/sdfExtension/Id"
+  },
+
+  "sdfObject": {
+    "OnOff": {
+      "label": "OnOff", 
+      "Id": "0006",
+
+      "dotClusterInfo": {
+        "description": "OnOff Cluster",
+        "RevisionHistory": {
+          "2": "Current Version"
+        },
+        "Classification": {
+          "Hierarchy": "dd:#/sdfObject/Base",
+          "Role": "Application",
+          "PicsCode": "OO"
+        }
+      },
+
+      "sdfRequired": [
+        "#/sdfObject/OnOff/sdfProperty/OnOff", 
+        "#/sdfObject/OnOff/sdfAction/On",
+        "#/sdfObject/OnOff/sdfAction/Off",
+        "#/sdfObject/OnOff/sdfAction/Toggle"
+      ], 
+      "sdfData": {
+        "TransitionTimeData": {
+          "type": "number", 
+          "minimum": 0, 
+          "maximum": 65535, 
+          "multipleOf": 1, 
+          "unit": "seconds", 
+          "scaleMinimum": 0, 
+          "scaleMaximum": 6553.5
+        }
+      },
+      "sdfProperty": {
+        "OnOff": {
+          "label": "OnOff", 
+          "Id": "0000",
+          "type": "boolean",
+          "default": false
+        }, 
+        "GlobalSceneControl": {
+          "label": "GlobalSceneControl", 
+          "Id": "4000",
+          "type": "boolean",
+          "default": true
+        }, 
+        "OnTime": {
+          "sdfRef": "#/sdfObject/OnOff/sdfData/TransitionTimeData", 
+          "label": "OnTime", 
+          "Id": "4001",
+          "default": 0
+        }, 
+        "OffWaitTime": {
+          "sdfRef": "#/sdfObject/OnOff/sdfData/TransitionTimeData", 
+          "label": "OffWaitTime", 
+          "Id": "4002",
+          "default": 0
+        }, 
+        "StartUpOnOff": {
+          "sdfRef": "#/sdfObject/OnOff/sdfData/StartUpOnOffMode", 
+          "label": "StartUpOnOff",
+          "Id": "4003",
+          "sdfChoice": {
+            "SetOnOffTo0": {
+              "default": "00"
+            },
+            "SetOnOffTo1": {
+              "default": "01"
+            },
+            "TogglePreviousOnOff": {
+              "default": "02"
+            },
+            "SetPreviousOnOff": {
+              "default": "FF"
+            }
+          }
+        }
+      }, 
+      "sdfAction": {
+        "Off": {
+          "label": "Off" ,
+          "Id": "00"
+        }, 
+        "On": {
+          "label": "On",
+          "Id": "01"
+        }, 
+        "Toggle": {
+          "label": "Toggle",
+          "Id": "02"
+        }, 
+        "OffWithEffect": {
+          "label": "OffWithEffect",
+          "Id": "40",
+          "sdfInputData": {
+            "type": "object",
+            "properties": {
+              "EffectIdentifier": {
+                "label": "EffectIdentifier", 
+                "sdfChoice": {
+                  "DelayedAllOff": {
+                    "default": "00"
+                  },
+                  "DyingLight": {
+                    "default": "01"
+                  }
+                } 
+              }, 
+              "EffectVariant": {
+                "label": "EffectVariant", 
+                "type": "number" 
+              }
+            }
+          }
+        },
+        "OnWithRecallGlobalScene": {
+          "label": "OnWithRecallGlobalScene"
+        }, 
+        "OnWithTimedOff": {
+          "label": "OnWithTimedOff", 
+          "sdfInputData": {
+            "type": "object",
+            "properties": {
+              "OnOffControl": {
+                "type": "object",
+                "properties" : {
+                  "AcceptOnlyWhenOn": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "OnTime": {
+                "sdfRef": "#/sdfObject/OnOff/sdfData/TransitionTImeData"
+              },
+              "OffWaitTime": {
+                "sdfRef": "#/sdfObject/OnOff/sdfData/TransitionTImeData"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

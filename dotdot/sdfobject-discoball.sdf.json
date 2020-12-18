@@ -10,12 +10,6 @@
   }, 
   "defaultNamespace": "dd", 
 
-  "sdfExtension": {
-    "dotClusterInfo": "dd:#/sdfExtension/dotClusterInfo",
-    "dotFeature": "dd:#/sdfExtension/dotFeature",
-    "Id": "dd:#/sdfExtension/Id"
-  },
-
   "sdfObject": {
     "DiscoBall": {
       "description": "Control of a mirrored disco ball",
@@ -307,6 +301,70 @@
           "Id": "02"
         }
       }
+    }
+  },
+  "sdfExtension": {
+    "dotClusterInfo": {
+      "sdfExtendsType": [ "sdfObject" ],
+      "type": "object",
+      "properties": {
+        "description": { "type": "string" },
+        "RevisionHistory": { 
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "Classification": {
+          "type": "object",
+          "properties": {
+            "Hierarchy": { 
+              "label": "Hierarchy",
+              "description": "Points to an SDF definition to use as the dotdot base class",
+              "sdfRef": "dd:#/sdfData/sdfReferenceType"
+            },
+            "Role": {
+              "sdfChoice":{
+                "Utility": { "const": "Utility" },
+                "Application": { "const": "Application" }
+              }
+            },
+            "PicsCode": {
+              "type": "string",
+              "maxLength": 16,
+              "pattern:": "[A-Z]+"
+            }
+          }
+        }
+      }
+    },
+    "dotFeature": {
+      "sdfExtendsType": [ "sdfObject" ],
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "Id": {
+            "type": "string",
+            "maxLength": 2,
+            "pattern": "[0-9a-fA-F]+"
+          },
+          "sdfRequired": {
+            "type": "array",
+            "items": {
+              "sdfRef": "dd:#/sdfData/sdfReferenceType"
+            }
+          }
+        }
+      }
+    },
+    "Id": {
+      "type": "string",
+      "maxLength": 16,
+      "pattern": "[0-9a-fA-F]+"
     }
   }
 }

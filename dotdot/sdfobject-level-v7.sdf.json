@@ -162,16 +162,16 @@
           "label": "Options",
           "Id": "000F",
           "sdfRef": "#/sdfObject/Level/sdfData/LevelOptions",
-          "default": {
-            "ExecuteIfOff": false,
-            "CoupleColorTempToLevel": false
+          "properties": {
+            "ExecuteIfOff": { "Default": false },
+            "CoupleColorTempToLevel": { "Default": false }
           }
         },
         "StartUpCurrentLevel": {
           "description": "How to set the value of the CurrentLevel Attribute on power cycle or cold restart",
           "label": "StartUpCurrentLevel", 
           "Id": "4000",
-          "sdfAny": {
+          "sdfChoice": {
             "MinimumDeviceValuePermitted": {
               "description": "Set to the minimum allowable value on startup",
               "type": "number",
