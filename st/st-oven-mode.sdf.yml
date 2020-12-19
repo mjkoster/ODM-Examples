@@ -28,5 +28,8 @@ Capability:
         label: "Set Oven Mode"
         Required: [ InputData/ovenMode ]
         InputData:
-          ovenMode:
-            Ref: st:#/DataType/OvenMode
+          type: object
+          required: ovenMode
+          properties:
+            ovenMode:
+              Ref: st:#/DataType/OvenMode

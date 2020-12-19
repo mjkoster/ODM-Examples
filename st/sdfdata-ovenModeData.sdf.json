@@ -13,7 +13,7 @@
   "sdfData": {
     "OvenMode": {
       "label": "Oven Mode",
-      "sdfAny": {
+      "sdfChoice": {
         "heating": {
           "description": "heating",
           "label": "heating",

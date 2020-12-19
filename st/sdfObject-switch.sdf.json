@@ -26,10 +26,14 @@
   },
   "sdfData": {
     "SwitchState": {
-      "enum": [
-        "on",
-        "off"
-      ]
+      "sdfChoice": {
+        "on": {
+          "default": "on"
+        },
+        "off": {
+          "default": "off"
+        }
+      }
     }
   }
 }

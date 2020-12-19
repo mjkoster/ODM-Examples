@@ -1,0 +1,66 @@
+{
+  "info": {
+    "title": "Oven Mode Enum Data Type Definition", 
+    "version": "20200603", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "ex": "https://onedm.org/exploratory/"
+  }, 
+  "defaultNamespace": "ex", 
+
+  "sdfData": {
+    "OvenMode": {
+      "label": "Oven Mode",
+      "enum": [ "heating", "grill", "warming", "defrosting" ],
+      "eenum": [ { "heating": {} }, { "grill": {} }, { "warming": {} }, { "defrosting": {} } ],
+      "eeenum": [
+        {
+          "heating": {        
+          "description": "heating",
+          "label": "heating",
+          "default": "heating"
+          } ,
+          "grill": {
+            "description": "grill",
+            "label": "grill",
+            "default": "grill"
+          },
+          "warming": {
+            "description": "warming",
+            "label": "warming",
+            "default": "warming"
+          },
+          "defrosting": {
+            "description": "defrosting",
+            "label": "defrosting",
+            "default": "defrosting"
+          }
+        }  
+      ],
+      "sdfChoice": {
+        "heating": {
+          "description": "heating",
+          "label": "heating",
+          "default": "heating"
+        },
+        "grill": {
+          "description": "grill",
+          "label": "grill",
+          "default": "grill"
+        },
+        "warming": {
+          "description": "warming",
+          "label": "warming",
+          "default": "warming"
+        },
+        "defrosting": {
+          "description": "defrosting",
+          "label": "defrosting",
+          "default": "defrosting"
+        }
+      }
+    }
+  }
+}

@@ -223,8 +223,8 @@
               "Speed": {
                 "description": "Speed setting",
                 "label": "Speed",
-                "type": "number",
                 "Id": "00",
+                "type": "number",
                 "minimum": 0,
                 "maximum": 200
               },
@@ -267,14 +267,14 @@
             "properties": {
               "LastRun": {
                 "description": "Seconds since last Run Command",
-                "Label": "Last Run",
+                "label": "Last Run",
                 "Id": "00",
                 "type": "number",
                 "unit": "s"
               },
               "Patterns": {
                 "description": "Number of Pattern changes in the last hour",
-                "Label": "Patterns",
+                "label": "Patterns",
                 "Id": "01",
                 "type": "number",
                 "unit": "count"
