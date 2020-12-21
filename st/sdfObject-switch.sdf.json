@@ -1,12 +1,12 @@
 {
   "info": {
     "title": "Example file for ODM Simple JSON Definition Format", 
-    "version": "20101207", 
-    "copyright": "Copyright 2020 Example Corp. All rights reserved.", 
-    "license": "http://example.com/license"
+    "version": "2020-12-07", 
+    "copyright": "Copyright 2020 SmartThings Inc. All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
   }, 
   "namespace": {
-    "st": "http://example.com/st"
+    "st": "https://onedm.org/smartthings/"
   }, 
   "defaultnamespace": "st", 
 
