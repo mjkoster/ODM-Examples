@@ -1,0 +1,48 @@
+{
+  "info": {
+    "title": "Example file for H-O-A industrial control switch", 
+    "version": "2020-12-24", 
+    "copyright": "Copyright 2020 Michael J. Koster. All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "ex": "https://onedm.org/exploratory/"
+  }, 
+  "defaultnamespace": "ex", 
+
+  "sdfObject": {
+    "HoaSwitch": {
+      "sdfProperty": {
+        "State": {
+          "sdfRef": "ex:#/sdfData/HoaSwitchState"
+        }
+      }, 
+      "odmAction": {
+        "on": {}, 
+        "off": {},
+        "auto": {}
+      }
+    }
+  },
+  "sdfData": {
+    "HoaSwitchState": {
+      "sdfChoice": {
+        "on": {
+          "description": "Manually override the automatic control and place the device in the powered state",
+          "label": "on",
+          "default": "on"
+        },
+        "off": {
+          "description": "Manually override the automatic control and place the device in the un-powered state",
+          "label": "off",
+          "default": "off"
+        },
+        "auto": {
+          "description": "Apply the automatic control to the device state",
+          "label": "auto",
+          "default": "auto"
+        }
+      }
+    }
+  }
+}
