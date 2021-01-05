@@ -86,12 +86,12 @@ void loop() {
   
   //color = strip.Color(0, 255, 0);
   //strip.fill(color);
-  strip.setPixelColor(0, 255, 100, 255);
-  strip.setPixelColor(1, 100, 255, 100);
-  strip.setPixelColor(2, 100, 100, 255);
+  //strip.setPixelColor(0, 255, 100, 255);
+  strip.setPixelColor(1, 255, 0, 0);
+  //strip.setPixelColor(2, 100, 100, 255);
   strip.show(); 
 
-  tilt_angle = float(1023-analogRead(TILT_SLIDER)) / 1023 * 180;
+  tilt_angle = (float(1023-analogRead(TILT_SLIDER)) / 1023 * 90) + 45;
   //Serial.print("tilt=");
   //Serial.println(tilt_angle);
 
@@ -122,7 +122,7 @@ void loop() {
     }
   }
   else {
-    wobble_offset = 0;
+    //wobble_offset = 0;
   }
   tilt.write(tilt_angle + wobble_offset);
 } 
