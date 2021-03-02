@@ -1,0 +1,33 @@
+{
+  "info": {
+    "title": "Example file for ODM Simple JSON Definition Format", 
+    "version": "20190424", 
+    "copyright": "Copyright 2019 Example Corp.\n        All rights reserved.", 
+    "license": "http://example.com/license"
+  }, 
+  "namespace": {
+    "st": "http://example.com/capability/smartthings"
+  }, 
+  "defaultnamespace": "st", 
+  "odmObject": {
+    "switch": {
+      "name": "switch",
+      "label": "Switch",
+      "odmRequired": [
+        "#/odmObject/switch/odmProperty/value",
+        "#/odmObject/switch/odmAction/on",
+        "#/odmObject/switch/odmAction/off"
+      ],
+      "odmProperty": {
+        "value": {
+          "type": "string", 
+          "enum": [ "on", "off" ]
+        }
+      }, 
+      "odmAction": {
+        "on": { }, 
+        "off": { }
+      }
+    }
+  }
+}
