@@ -1,0 +1,56 @@
+
+
+{
+    "namespace": {
+        "pg": "https://onedm.org/playground"
+    },
+    "sdfThing": {
+        "OutletStripSKU126442775": {
+            "sdfRef": "#/sdfThing/GenericOutletStrip",
+            "sdfThing": {
+                "outletArray": {
+                    "minItems": 6,
+                    "maxItems": 6    
+                }
+            }
+        },
+        "GenericOutletStrip": {
+            "sdfThing": {
+                "outletArray": {
+                    "items":  "#/sdfThing/OutletUnit",
+                    "minItems": 1,
+                    "maxItems": 20    
+                },
+                "outletStripCommon": {
+                    "sdfObject": {
+                        "PowerSwitch": {
+                            "sdfRef": "pg:/#/sdfObject/On_Off_switch" 
+                        },
+                        "OvercurrentTrip": {
+                            "sdfRef": "pg:/#/sdfObject/energy.overload" 
+                        },
+                        "EnergyUsage": {
+                            "sdfRef": "pg:/#/sdfObject/energy.consumption" 
+                        },
+                        "Voltage": {
+                            "sdfRef": "pg:/#/sdfObject/Voltage" 
+                        }        
+                    }
+                }
+            }
+        },
+        "OutletUnit": {
+            "sdfObject": {
+                "PowerSwitch": {
+                    "sdfRef": "pg:/#/sdfObject/On_Off_switch" 
+                },
+                "OvercurrentTrip": {
+                    "sdfRef": "pg:/#/sdfObject/energy.overload" 
+                },
+                "EnergyUsage": {
+                    "sdfRef": "pg:/#/sdfObject/energy.consumption" 
+                }
+            }
+        }
+    }
+}
