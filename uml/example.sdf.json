@@ -1,0 +1,105 @@
+{
+  "info": {
+    "title": "BACnet Example", 
+    "version": "2021-06-28", 
+    "copyright": "Copyright 2021, Michael J. Koster. All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "bn": "https://onedm.org/org/bacnet/"
+  }, 
+  "defaultNamespace": "bn", 
+  "sdfObject": {
+    "BacnetObject": {
+      "sdfRequired": [
+        "#/sdfObejct/BacnetObject/sdfProperty/ObjectIdentifier",
+        "#/sdfObejct/BacnetObject/sdfProperty/ObjectName",
+        "#/sdfObejct/BacnetObject/sdfProperty/ObjectType",
+        "#/sdfObejct/BacnetObject/sdfProperty/PresentValue",
+        "#/sdfObejct/BacnetObject/sdfProperty/Units"
+      ],
+      "sdfProperty": {
+        "ObjectIdentifier": {},
+        "ObjectName": {},
+        "ObjectType": {
+          "sdfRef": "#/sdfData/ObjectType"
+        },
+        "PresentValue": {},
+        "Units": {}
+      }
+    },
+    "AnalogInput": {
+      "sdfRef": "#/sdfObject/BacnetObject",
+      "sdfProperty": {
+        "ObjectType": {
+          "sdfRef": "#/sdfData/ObjectType/sdfChoice/AnalogInput"
+        },
+        "PresentValue": {
+          "type": "number"
+        },
+        "MinPresValue": { 
+          "type": "number"
+        },
+        "MaxPresValue": { 
+          "type": "number"
+        }
+      }
+    },
+    "TemperatureObject": {
+      "sdfRef": "#/sdfObject/AnalogInput",
+      "sdfProperty": {
+        "ObjectIdentifier": {
+          "const": "Analog Input #0"
+        },
+        "ObjectName": {
+          "const": "AI0"
+        },
+        "Description": {
+          "const": "2nd Stage Condensate Return Temperature"
+        },
+        "DeviceType": {
+          "const": "IFM TD2807 RTD 4-20"
+        },
+        "PresentValue": {
+          "sdfRef": "#/sdfProperty/PresentValue",
+          "minimum": 0,
+          "maximum": 100,
+          "multipleOf": 0.1,
+          "units": "C"
+        },
+        "Units": {
+          "const": "DegreesCelsius"
+        },
+        "MinPresValue": { 
+          "const": 0
+        },
+        "MaxPresValue": { 
+          "const": 100
+        },
+        "Resolution": 0.1
+      }
+    }
+  },
+  "sdfProperty": {
+    "BacnetProperty": {
+    },
+    "PresentValue": {
+      "sdfRef": "#/sdfProperty/BacnetProperty",
+      "type": "number"
+    }
+  },
+  "sdfData": {
+    "ObjectType":{
+      "sdfChoice": {
+        "AnalogInput": { "const": "Analog Input" },
+        "AnalogOutput": { "const": "Analog Output" },
+        "AnalogValue": { "const": "Analog Value" },
+        "BinaryInput": { "const": "Binary Input" },
+        "BinaryOutput": { "const": "Binary Output" },
+        "BinaryValue": { "const": "Binary Value" },
+        "MultistateInput": { "const": "Multistate Input" },
+        "MultistateOutput": { "const": "Multistate Output" }
+      }
+    }
+  }
+}

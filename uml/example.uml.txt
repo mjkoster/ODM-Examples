@@ -1,0 +1,55 @@
+@startuml
+class AnalogInput <<sdfObject>> {
+    sdfRef: bn:/#/sdfObject/BacnetObject
+    ==
+    ObjectType: AnalogInput
+    --
+    PresentValue: { type: number }
+    --
+    MinPresValue: { type: number }
+    --
+    MaxPresValue: { type: number }
+}
+
+
+class PresentValue <<sdfProperty>> {
+    sdfRef: bn:/#/sdfProperty/BacnetProperty
+    ==
+    type: number
+}
+
+entity TemperatureInput {
+    sdfRef: bn:/#/sdfObject/AnalogInput
+    ==
+    ObjectName: AI0
+    --
+    Description: "2nd Stage Condensate 
+    Return Temperature"
+    --
+    Units: DegreesCelsius 
+    --
+    Resolution: 0.1
+    --
+    PresentValue: 67.7
+    --
+    MinPresValue: 0
+    --
+    MaxPresValue: 100
+}
+
+entity TemperaturePresentValue {
+    sdfRef: bn:/#/sdfProperty/PresentValue
+    ==
+    minimum: 0
+    --
+    maximum: 100
+    --
+    units: C
+}
+
+AnalogInput::PresentValue o-- PresentValue
+AnalogInput <|-- TemperatureInput
+TemperatureInput::PresentValue *-- TemperaturePresentValue
+PresentValue <|-- TemperaturePresentValue
+
+@enduml
