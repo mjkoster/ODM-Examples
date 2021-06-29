@@ -22,23 +22,27 @@
         "RangeMinimum": {
           "type": "integer",
           "minimum": 0,
-          "maximum": "1023"
+          "maximum": 1023,
+          "defaut": 0
         },
         "RangeMaximum": {
           "type": "integer",
           "minimum": 0,
-          "maximum": "1023"
+          "maximum": 1023,
+          "default": 1023
         },
         "CurrentRangeValue": {
           "type": "integer",
           "minimum": 0,
-          "maximum": "1023"
+          "maximum": 1023
         },
         "ScaleMinimum": {
-          "type": "number"
+          "type": "number",
+          "default": 0
         },
         "ScaleMaximum": {
-          "type": "number"
+          "type": "number",
+          "default": 100
         },
         "CurrentValue": {
           "sdfChoice": {
@@ -53,8 +57,20 @@
             }
           }
         },
-        "SampleTicks": {
-          "type": "integer"
+        "ValueType": {
+          "sdfRef": "/#/sdfData/ValueType"
+        },
+        "SampleIntervalCounts": {
+          "type": "integer",
+          "default": 10000
+        },
+        "CurrentCounts": {
+          "type": "integer",
+          "default": 0
+        },
+        "LastSampleCounts": {
+          "type": "integer",
+          "default": 0
         },
         "OutputLink": {
           "sdfRef": "/#/sdfData/ObjectLink",
@@ -72,6 +88,22 @@
         "DigitalOutput": {},
         "PWM": {},
         "SwDriver": {}
+      }
+    },
+    "ValueType": {
+      "sdfChoice": {
+        "BooeanValue": {
+          "const": 0
+        },
+        "IntegerValue": {
+          "const": 1
+        },
+        "FloatValue": {
+          "const": 2
+        },
+        "StringValue": {
+          "const": 3
+        }
       }
     }
   }

@@ -1,6 +1,6 @@
 {
   "info": {
-    "title": "Simple RTU Time Queue Object", 
+    "title": "Simple RTU Analog Output Object", 
     "version": "2021-06-28", 
     "copyright": "Copyright 2021, Michael J. Koster. All rights reserved.", 
     "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
@@ -11,21 +11,30 @@
   "defaultNamespace": "fb", 
   
   "sdfObject": {
-    "timequeue": {
+    "AnalogOutput": {
       "sdfProperty": {
-        "CountsPerTick": {
-          "type": "integer",
-          "default": "1000"
-        },
-        "CurrentCounts": {
-          "type": "integer",
-          "default": 0
-        },
-        "LastTickCounts": {
+        "ScaleMinimum": {
           "type": "number",
           "default": 0
         },
-        "SampleLink": {
+        "ScaleMaximum": {
+          "type": "number",
+          "default": 100
+        },
+        "Units": {
+          "type": "string",
+          "default": "%"
+        },
+        "CurrentValue": {
+          "type": "float"
+        },
+        "ValueType": {
+          "sdfRef": "/#/sdfData/ValueType/sdfChoice/FloatValue"
+        },
+        "SampleIntervalTicks": {
+          "type": "integer"
+        },
+        "OutputLink": {
           "sdfRef": "/#/sdfData/ObjectLink",
           "minItems": 0
         }

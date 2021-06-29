@@ -1,0 +1,40 @@
+{
+  "info": {
+    "title": "Simple RTU Analog INput Object", 
+    "version": "2021-06-28", 
+    "copyright": "Copyright 2021, Michael J. Koster. All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  
+  "sdfObject": {
+    "AnalogInput": {
+      "sdfProperty": {
+        "ScaleMinimum": {
+          "type": "number",
+          "default": 0
+        },
+        "ScaleMaximum": {
+          "type": "number",
+          "default": 100
+        },
+        "Units": {
+          "type": "string",
+          "default": "%"
+        },
+        "CurrentValue": {
+          "type": "float"
+        },
+        "ValueType": {
+          "sdfRef": "/#/sdfData/ValueType/sdfChoice/FloatValue"
+        },
+        "SampleIntervalTicks": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}  
