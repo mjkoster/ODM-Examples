@@ -1,36 +1,48 @@
 @startuml
 
+abstract class sdf {
+    qualities
+}
+
 class sdfThing <<sdf>> {
     thingqualities
 }
 
-class sdfObject {
+class sdfObject <<sdf>> {
     objectqualities
 }
 
-class sdfProperty {
+class sdfProperty <<sdf>> {
     propertyqualities
 }
 
-class sdfAction {
+class sdfAction <<sdf>> {
     actionqualities
 }
 
-class sdfEvent {
+class sdfEvent <<sdf>> {
     eventqualities
 }
 
-class sdfData {
+class sdfData <<sdf>> {
     dataqualities
 }
 
-sdfThing --> "0+" sdfObject : hasObject
-sdfThing --> "0+" sdfThing : hasThing
+class sdfChoice <<sdf>> {
+    dataqualities
+}
 
-sdfObject --> "0+" sdfObject : hasObject
-sdfObject --> "0+" sdfProperty : hasProperty
+sdf <-left[hidden]- sdfThing
+
+sdf <-- "0+" sdf : hasSdfEntity
+
+sdfThing --> "0+" sdfObject : hasObject
+sdfThing <-- "0+" sdfThing : hasThing
+
+sdfObject <-- "0+" sdfObject : hasObject
 sdfObject --> "0+" sdfAction : hasAction
 sdfObject --> "0+" sdfEvent : hasEvent
+sdfObject --> "0+" sdfProperty : hasProperty
 
 sdfAction --> "1+" sdfData : hasInputData
 sdfAction --> "0+" sdfData : hasOutputData
@@ -39,6 +51,7 @@ sdfEvent --> "1+" sdfData : hasOutputData
 
 sdfProperty --> "1" sdfData : isInstanceOf
 
-
+sdfChoice -right-> "1" sdfData : isTypeOf
+sdfChoice -up-> "1" sdfProperty : isTypeOf
 
 @enduml
