@@ -65,13 +65,22 @@
           "default": 1000
         },
         "CurrentCounts": {
-          "description": "Sample: CurrentCounts > (LastSampleCounts + SampleIntervalCounts)",
+          "description": "Sample: CurrentCounts >= (LastSampleCounts + SampleIntervalCounts)",
           "type": "integer",
           "default": 0
         },
         "LastSampleCounts": {
           "type": "integer",
           "default": 0
+        },
+        "Description": {
+          "type": "string"
+        },
+        "ObjectTypeID": {
+          "const": "4901"
+        },
+        "ObjectInstanceID": {
+          "sdfRef": "/#/sdfData/ObjectResourceID"
         },
         "OutputLink": {
           "sdfRef": "/#/sdfData/ObjectLink",
@@ -105,6 +114,19 @@
         "StringValue": {
           "const": 3
         }
+      }
+    },
+    "ObjectResourceID": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "ObjectLink": {
+      "ObjectTypeID": {
+        "sdfRef": "/#/sdfData/ObjectResourceID"
+      },
+      "ObjectInstanceID": {
+        "sdfRef": "/#/sdfData/ObjectResourceID"
       }
     }
   }

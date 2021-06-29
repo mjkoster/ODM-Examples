@@ -16,6 +16,15 @@
         "ValueType": {
           "sdfRef": "/#/sdfData/ValueType/sdfChoice/BooleanValue"
         },
+        "Description": {
+          "type": "string"
+        },
+        "ObjectTypeID": {
+          "const": "4903"
+        },
+        "ObjectInstanceID": {
+          "sdfRef": "/#/sdfData/ObjectResourceID"
+        },
         "OutputLink": {
           "sdfRef": "/#/sdfData/ObjectLink",
           "minItems": 0

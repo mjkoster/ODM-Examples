@@ -30,6 +30,15 @@
         },
         "ValueType": {
           "sdfRef": "/#/sdfData/ValueType/sdfChoice/FloatValue"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "ObjectTypeID": {
+          "const": "4904"
+        },
+        "ObjectInstanceID": {
+          "sdfRef": "/#/sdfData/ObjectResourceID"
         }
       }
     }

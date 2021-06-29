@@ -18,6 +18,7 @@
           "default": "10"
         },
         "CurrentCounts": {
+          "description": "Handle granular CurrentCounts update from some source",
           "type": "integer",
           "default": 0
         },
@@ -29,6 +30,15 @@
           "description": "Update CurrentCounts for each linked Object on each tick",
           "sdfRef": "/#/sdfData/ObjectLink",
           "minItems": 0
+        },
+        "Description": {
+          "type": "string"
+        },
+        "ObjectTypeID": {
+          "const": "4900"
+        },
+        "ObjectInstanceID": {
+          "sdfRef": "/#/sdfData/ObjectResourceID"
         }
       }
     }

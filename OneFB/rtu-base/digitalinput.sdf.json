@@ -15,6 +15,15 @@
       "sdfProperty": {
         "ValueType": {
           "sdfRef": "/#/sdfData/ValueType/sdfChoice/BooleanValue"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "ObjectTypeID": {
+          "const": "4902"
+        },
+        "ObjectInstanceID": {
+          "sdfRef": "/#/sdfData/ObjectResourceID"
         }
       }
     }
