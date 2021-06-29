@@ -1,0 +1,22 @@
+{
+  "info": {
+    "title": "Simple RTU Digital Input Object", 
+    "version": "2021-06-28", 
+    "copyright": "Copyright 2021, Michael J. Koster. All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  
+  "sdfObject": {
+    "DigitalInput": {
+      "sdfProperty": {
+        "ValueType": {
+          "sdfRef": "/#/sdfData/ValueType/sdfChoice/BooleanValue"
+        }
+      }
+    }
+  }
+}  

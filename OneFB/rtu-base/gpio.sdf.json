@@ -92,7 +92,7 @@
     },
     "ValueType": {
       "sdfChoice": {
-        "BooeanValue": {
+        "BooleanValue": {
           "const": 0
         },
         "IntegerValue": {

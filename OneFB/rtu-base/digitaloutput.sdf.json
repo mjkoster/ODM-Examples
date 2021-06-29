@@ -1,6 +1,6 @@
 {
   "info": {
-    "title": "Simple RTU Analog Output Object", 
+    "title": "Simple RTU Digital Output Object", 
     "version": "2021-06-28", 
     "copyright": "Copyright 2021, Michael J. Koster. All rights reserved.", 
     "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
@@ -11,27 +11,12 @@
   "defaultNamespace": "fb", 
   
   "sdfObject": {
-    "AnalogOutput": {
+    "DigitalOutput": {
       "sdfProperty": {
-        "ScaleMinimum": {
-          "type": "number",
-          "default": 0
-        },
-        "ScaleMaximum": {
-          "type": "number",
-          "default": 100
-        },
-        "Units": {
-          "type": "string",
-          "default": "%"
-        },
-        "CurrentValue": {
-          "type": "float"
-        },
         "ValueType": {
-          "sdfRef": "/#/sdfData/ValueType/sdfChoice/FloatValue"
+          "sdfRef": "/#/sdfData/ValueType/sdfChoice/BooleanValue"
         },
-       "OutputLink": {
+        "OutputLink": {
           "sdfRef": "/#/sdfData/ObjectLink",
           "minItems": 0
         }

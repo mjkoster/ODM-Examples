@@ -1,6 +1,6 @@
 {
   "info": {
-    "title": "Simple RTU Analog INput Object", 
+    "title": "Simple RTU Analog Input Object", 
     "version": "2021-06-28", 
     "copyright": "Copyright 2021, Michael J. Koster. All rights reserved.", 
     "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
@@ -30,9 +30,6 @@
         },
         "ValueType": {
           "sdfRef": "/#/sdfData/ValueType/sdfChoice/FloatValue"
-        },
-        "SampleIntervalTicks": {
-          "type": "integer"
         }
       }
     }
