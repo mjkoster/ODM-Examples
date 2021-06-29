@@ -1,0 +1,78 @@
+{
+  "info": {
+    "title": "Simple RTU GPIO Object", 
+    "version": "2021-06-28", 
+    "copyright": "Copyright 2021, Michael J. Koster. All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  
+  "sdfObject": {
+    "gpio": {
+      "sdfProperty": {
+        "GpioPin": {
+          "type": "string"
+        },
+        "GpioType": {
+          "sdfRef": "/#/sdfData/GpioType"
+        },
+        "RangeMinimum": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": "1023"
+        },
+        "RangeMaximum": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": "1023"
+        },
+        "CurrentRangeValue": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": "1023"
+        },
+        "ScaleMinimum": {
+          "type": "number"
+        },
+        "ScaleMaximum": {
+          "type": "number"
+        },
+        "CurrentValue": {
+          "sdfChoice": {
+            "IntegerValue": {
+              "type": "integer"
+            },
+            "FloatValue": {
+              "type": "float"
+            },
+            "BooleanValue": {
+              "type": "boolean"
+            }
+          }
+        },
+        "SampleTicks": {
+          "type": "integer"
+        },
+        "OutputLink": {
+          "sdfRef": "/#/sdfData/ObjectLink",
+          "minItems": 0
+        }
+      }
+    }
+  },
+  "sdfData": {
+    "GpioType": {
+      "sdfChoice": {
+        "AnalogInput": {},
+        "AnalogOutput": {},
+        "DigitalInput": {},
+        "DigitalOutput": {},
+        "PWM": {},
+        "SwDriver": {}
+      }
+    }
+  }
+}  

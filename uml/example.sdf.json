@@ -76,7 +76,9 @@
         "MaxPresValue": { 
           "const": 100
         },
-        "Resolution": 0.1
+        "Resolution": {
+          "const": 0.1
+        }
       }
     }
   },

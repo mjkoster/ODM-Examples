@@ -92,7 +92,7 @@
         },
         "UriPointer": {
           "type": "string",
-          "format": "uri"    
+          "format": "uri-reference"    
         },
         "Lwm2mObjectPointer": {
           "sdfRef": "#/sdfData/Lwm2mObjectPointerType"

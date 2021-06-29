@@ -1,0 +1,24 @@
+{
+  "info": {
+    "title": "Simple RTU Time Queue Object", 
+    "version": "2021-06-28", 
+    "copyright": "Copyright 2021, Michael J. Koster. All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  
+  "sdfObject": {
+    "timequeue": {
+      "sdfProperty": {
+        "TickInterval": {},
+        "Job": {
+          "sdfRef": "/#/sdfData/ObjectLink",
+          "minItems": 0
+        }
+      }
+    }
+  }
+}  
