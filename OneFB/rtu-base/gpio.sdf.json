@@ -70,13 +70,14 @@
           "default": 0
         },
         "LastSampleCounts": {
-          "type": "integer",
+          "type": "integer",          "sdfRef": "/#/sdfData/ObjectResourceID",
           "default": 0
         },
         "Description": {
           "type": "string"
         },
         "ObjectTypeID": {
+          "sdfRef": "/#/sdfData/ObjectResourceID",
           "const": "4901"
         },
         "ObjectInstanceID": {

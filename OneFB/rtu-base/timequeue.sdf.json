@@ -35,6 +35,7 @@
           "type": "string"
         },
         "ObjectTypeID": {
+          "sdfRef": "/#/sdfData/ObjectResourceID",
           "const": "4900"
         },
         "ObjectInstanceID": {
