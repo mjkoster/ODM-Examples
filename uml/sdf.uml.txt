@@ -1,0 +1,44 @@
+@startuml
+
+class sdfThing <<sdf>> {
+    thingqualities
+}
+
+class sdfObject {
+    objectqualities
+}
+
+class sdfProperty {
+    propertyqualities
+}
+
+class sdfAction {
+    actionqualities
+}
+
+class sdfEvent {
+    eventqualities
+}
+
+class sdfData {
+    dataqualities
+}
+
+sdfThing --> "0+" sdfObject : hasObject
+sdfThing --> "0+" sdfThing : hasThing
+
+sdfObject --> "0+" sdfObject : hasObject
+sdfObject --> "0+" sdfProperty : hasProperty
+sdfObject --> "0+" sdfAction : hasAction
+sdfObject --> "0+" sdfEvent : hasEvent
+
+sdfAction --> "1+" sdfData : hasInputData
+sdfAction --> "0+" sdfData : hasOutputData
+
+sdfEvent --> "1+" sdfData : hasOutputData
+
+sdfProperty --> "1" sdfData : isInstanceOf
+
+
+
+@enduml
