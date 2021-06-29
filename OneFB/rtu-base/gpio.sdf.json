@@ -62,9 +62,10 @@
         },
         "SampleIntervalCounts": {
           "type": "integer",
-          "default": 10000
+          "default": 1000
         },
         "CurrentCounts": {
+          "description": "Sample: CurrentCounts > (LastSampleCounts + SampleIntervalCounts)",
           "type": "integer",
           "default": 0
         },
@@ -87,7 +88,7 @@
         "DigitalInput": {},
         "DigitalOutput": {},
         "PWM": {},
-        "SwDriver": {}
+        "Serial": {}
       }
     },
     "ValueType": {

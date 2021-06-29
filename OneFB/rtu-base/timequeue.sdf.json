@@ -15,7 +15,7 @@
       "sdfProperty": {
         "CountsPerTick": {
           "type": "integer",
-          "default": "1000"
+          "default": "10"
         },
         "CurrentCounts": {
           "type": "integer",
@@ -26,6 +26,7 @@
           "default": 0
         },
         "SampleLink": {
+          "description": "Update CurrentCounts for each linked Object on each tick",
           "sdfRef": "/#/sdfData/ObjectLink",
           "minItems": 0
         }
