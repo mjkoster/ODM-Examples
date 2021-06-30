@@ -12,34 +12,25 @@
   
   "sdfObject": {
     "timequeue": {
+      "sdfRef": "/#/sdfObject/RtuBase",
       "sdfProperty": {
-        "CountsPerTick": {
+        "TimerCountsPerTick": {
           "type": "integer",
           "default": "10"
         },
-        "CurrentCounts": {
-          "description": "Handle granular CurrentCounts update from some source",
+        "CurrentTimer": {
+          "description": "Handle granular CurrentTimer update from some source",
           "type": "integer",
           "default": 0
         },
-        "LastTickCounts": {
+        "LastTickTimer": {
           "type": "number",
           "default": 0
         },
         "SampleLink": {
-          "description": "Update CurrentCounts for each linked Object on each tick",
+          "description": "Update CurrentTimer for each linked Object on each tick",
           "sdfRef": "/#/sdfData/ObjectLink",
           "minItems": 0
-        },
-        "Description": {
-          "type": "string"
-        },
-        "ObjectTypeID": {
-          "sdfRef": "/#/sdfData/ObjectResourceID",
-          "const": "4900"
-        },
-        "ObjectInstanceID": {
-          "sdfRef": "/#/sdfData/ObjectResourceID"
         }
       }
     }

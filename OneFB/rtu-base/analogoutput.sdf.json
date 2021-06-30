@@ -12,6 +12,7 @@
   
   "sdfObject": {
     "AnalogOutput": {
+      "sdfRef": "/#/sdfObject/RtuBase",
       "sdfProperty": {
         "ScaleMinimum": {
           "type": "number",
@@ -20,6 +21,10 @@
         "ScaleMaximum": {
           "type": "number",
           "default": 100
+        },
+        "ScaleResolution": {
+          "type": "number",
+          "default": 1
         },
         "Units": {
           "type": "string",
@@ -30,16 +35,6 @@
         },
         "ValueType": {
           "sdfRef": "/#/sdfData/ValueType/sdfChoice/FloatValue"
-        },
-        "Description": {
-          "type": "string"
-        },
-        "ObjectTypeID": {
-          "sdfRef": "/#/sdfData/ObjectResourceID",
-          "const": "4905"
-        },
-        "ObjectInstanceID": {
-          "sdfRef": "/#/sdfData/ObjectResourceID"
         },
        "OutputLink": {
           "sdfRef": "/#/sdfData/ObjectLink",

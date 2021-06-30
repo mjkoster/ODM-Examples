@@ -12,18 +12,16 @@
   
   "sdfObject": {
     "DigitalInput": {
+      "sdfRef": "/#/sdfObject/RtuBase",
       "sdfProperty": {
         "ValueType": {
           "sdfRef": "/#/sdfData/ValueType/sdfChoice/BooleanValue"
         },
-        "Description": {
-          "type": "string"
+        "OutputLink": {
+          "sdfRef": "/#/sdfData/ObjectLink",
+          "minItems": 0
         },
-        "ObjectTypeID": {
-          "sdfRef": "/#/sdfData/ObjectResourceID",
-          "const": "4902"
-        },
-        "ObjectInstanceID": {
+        "OutputResource": {
           "sdfRef": "/#/sdfData/ObjectResourceID"
         }
       }

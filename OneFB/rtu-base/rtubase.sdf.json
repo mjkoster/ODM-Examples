@@ -1,0 +1,70 @@
+{
+  "info": {
+    "title": "Simple RTU Object Template", 
+    "version": "2021-06-28", 
+    "copyright": "Copyright 2021, Michael J. Koster. All rights reserved.", 
+    "license": "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+  }, 
+  "namespace": {
+    "fb": "https://onedm.org/exploratory/onefb/"
+  }, 
+  "defaultNamespace": "fb", 
+  
+  "sdfObject": {
+    "RtuBase": {
+      "sdfProperty": {
+        "Description": {
+          "type": "string"
+        },
+        "ObjectTypeID": {
+          "sdfRef": "/#/sdfData/ObjectResourceID",
+          "const": "4901"
+        },
+        "ObjectInstanceID": {
+          "sdfRef": "/#/sdfData/ObjectResourceID"
+        }
+      }
+    }
+  },
+  "sdfData": {
+    "GpioType": {
+      "sdfChoice": {
+        "AnalogInput": {},
+        "AnalogOutput": {},
+        "DigitalInput": {},
+        "DigitalOutput": {},
+        "PWM": {},
+        "Serial": {}
+      }
+    },
+    "ValueType": {
+      "sdfChoice": {
+        "BooleanValue": {
+          "const": 0
+        },
+        "IntegerValue": {
+          "const": 1
+        },
+        "FloatValue": {
+          "const": 2
+        },
+        "StringValue": {
+          "const": 3
+        }
+      }
+    },
+    "ObjectResourceID": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "ObjectLink": {
+      "ObjectTypeID": {
+        "sdfRef": "/#/sdfData/ObjectResourceID"
+      },
+      "ObjectInstanceID": {
+        "sdfRef": "/#/sdfData/ObjectResourceID"
+      }
+    }
+  }
+}  

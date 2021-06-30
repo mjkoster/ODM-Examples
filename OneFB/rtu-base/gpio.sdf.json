@@ -11,6 +11,7 @@
   "defaultNamespace": "fb", 
   
   "sdfObject": {
+    "sdfRef": "/#/sdfObject/RtuBase",
     "gpio": {
       "sdfProperty": {
         "GpioPin": {
@@ -44,6 +45,10 @@
           "type": "number",
           "default": 100
         },
+        "ScaleResolution": {
+          "type": "number",
+          "default": 1
+        },
         "CurrentValue": {
           "sdfChoice": {
             "IntegerValue": {
@@ -60,74 +65,23 @@
         "ValueType": {
           "sdfRef": "/#/sdfData/ValueType"
         },
-        "SampleIntervalCounts": {
+        "SampleIntervalTimer": {
           "type": "integer",
           "default": 1000
         },
-        "CurrentCounts": {
-          "description": "Sample: CurrentCounts >= (LastSampleCounts + SampleIntervalCounts)",
+        "CurrentTimer": {
+          "description": "Sample when: CurrentTimer >= (LastSampleTimer + SampleIntervalTimer)",
           "type": "integer",
           "default": 0
         },
-        "LastSampleCounts": {
-          "type": "integer",          "sdfRef": "/#/sdfData/ObjectResourceID",
+        "LastSampleTimer": {
+          "type": "integer",
           "default": 0
-        },
-        "Description": {
-          "type": "string"
-        },
-        "ObjectTypeID": {
-          "sdfRef": "/#/sdfData/ObjectResourceID",
-          "const": "4901"
-        },
-        "ObjectInstanceID": {
-          "sdfRef": "/#/sdfData/ObjectResourceID"
         },
         "OutputLink": {
           "sdfRef": "/#/sdfData/ObjectLink",
           "minItems": 0
         }
-      }
-    }
-  },
-  "sdfData": {
-    "GpioType": {
-      "sdfChoice": {
-        "AnalogInput": {},
-        "AnalogOutput": {},
-        "DigitalInput": {},
-        "DigitalOutput": {},
-        "PWM": {},
-        "Serial": {}
-      }
-    },
-    "ValueType": {
-      "sdfChoice": {
-        "BooleanValue": {
-          "const": 0
-        },
-        "IntegerValue": {
-          "const": 1
-        },
-        "FloatValue": {
-          "const": 2
-        },
-        "StringValue": {
-          "const": 3
-        }
-      }
-    },
-    "ObjectResourceID": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 65535
-    },
-    "ObjectLink": {
-      "ObjectTypeID": {
-        "sdfRef": "/#/sdfData/ObjectResourceID"
-      },
-      "ObjectInstanceID": {
-        "sdfRef": "/#/sdfData/ObjectResourceID"
       }
     }
   }
