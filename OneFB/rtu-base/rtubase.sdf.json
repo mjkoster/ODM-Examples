@@ -65,6 +65,28 @@
       "ObjectInstanceID": {
         "sdfRef": "/#/sdfData/ObjectResourceID"
       }
+    },
+    "ResourceLink": {
+      "ResourceTypeID": {
+        "sdfRef": "/#/sdfData/ObjectResourceID"
+      },
+      "ResourceInstanceID": {
+        "sdfRef": "/#/sdfData/ObjectResourceID"
+      }
+    },
+    "ObjectResourceLink": {
+      "ObjectTypeID": {
+        "sdfRef": "/#/sdfData/ObjectResourceID"
+      },
+      "ObjectInstanceID": {
+        "sdfRef": "/#/sdfData/ObjectResourceID"
+      },
+      "ResourceTypeID": {
+        "sdfRef": "/#/sdfData/ObjectResourceID"
+      },
+      "ResourceInstanceID": {
+        "sdfRef": "/#/sdfData/ObjectResourceID"
+      }
     }
   }
 }  

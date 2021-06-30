@@ -17,6 +17,9 @@
         "ValueType": {
           "sdfRef": "/#/sdfData/ValueType/sdfChoice/BooleanValue"
         },
+        "CurrentValue": {
+          "type": "boolean"
+        },
         "OutputLink": {
           "sdfRef": "/#/sdfData/ObjectLink",
           "minItems": 0
