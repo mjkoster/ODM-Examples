@@ -1,0 +1,36 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/td",
+    { "bacnetp": "https://example.org/protocol-vocabulary/bacnet" },
+    { "bacnetv": "https://data.ashrae.org/bacnet/2020#" },
+    { "223p": "https://data.ashrae.org/223p#" }
+  ],
+  "name": "Actuatable Property Affordance for ASHRAE 223p",
+  "id": "https://example.org/device-protocol-descriptor",
+  "@type": [
+    "ashrae.org/bacnet/AnalogOutputObject"
+  ],
+  "properties": {
+    "PresentValue": {
+      "@type": [
+        "bacnetv:Present_Value",
+        "223p:ActuatableProperty"
+      ],
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "writable": true,
+      "observable": false,
+      "forms": [
+        {
+          "href": "bacnet://192.168.1.1:47808",
+          "bacnetp:deviceid": 1,
+          "bacnetp:objecttype": "bacnetv:AnalogOutputObject",
+          "bacnetp:objectid": 1,
+          "bacnet:Property": "bacnetv:Present_Value",
+          "bacnetp:servicetype": "bacnetp:writeproperty"
+        }
+      ]
+    }
+  }
+}

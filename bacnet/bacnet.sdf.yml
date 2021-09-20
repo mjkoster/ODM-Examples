@@ -1,0 +1,33 @@
+---
+info: 
+  title: example bacnet definitions 
+  version: 2021-09-16
+  copyright: "Copyright 2021, Michael J. Koster. All rights reserved."
+  license: "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+
+namespace: bacnet: https://0dm.org/bacnet
+
+defaultnamespace: bacnet
+
+sdfObject:
+  AnalogInput:
+    description: Analog Input Object
+    sdfProperty:
+      sdfRef: "#/sdfProperty/PresentValue"
+      
+  AnalogOutput: 
+    description: Analog Output Object
+    sdfProperty:
+      sdfRef: "#/sdfProperty/PresentValue"
+
+sdfProperty:
+  PresentValue:
+    description: Most recently updated value
+    type: number
+
+sdfData: 
+  BacnetInstanceNumber:
+    type: integer
+    minimum: 0
+    maximum: 4194302
+    

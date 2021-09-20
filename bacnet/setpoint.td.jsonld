@@ -1,0 +1,42 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/td",
+    { "bacnetv": "https://example.org/protocol-vocabulary/bacnet" }
+  ],
+  "name": "Energy Controller Setpoint Example",
+  "id": "https://example.org/bacnet-object/setpoint",
+  "@type": [
+    "https://ashrae.org/bacnet/AnalogOutputObject", //correct these references to ASHRAE ontology
+    "https://onedm.org/playground/sdfObject/AnalogOutput"
+  ],
+  "version": {
+    "instance": "1.1.0"
+  },
+  "properties": {
+    "PresentValue": {
+      "@type": [
+        "https://ashrae.org/bacnet/PresentValueProperty",
+        "https://onedm.org/playground/sdfObject/AnalogOutput/sdfProperty/CurrentValue",
+        "https://ashrae.org/223p/ActuatableProperty",
+        "https://example.org/ontology/ControllableProperty/CurrentValue"
+      ],
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "multipleOf": 0.01,
+      "writable": true,
+      "observable": false,
+      "forms": [
+        {
+          "href": "bacnet://192.168.1.1:47808",
+          "contenttype": "application/json",
+          "bacnetv:DeviceID": 11,
+          "bacnetv:ObjectType": "AnalogOutput",
+          "bacnetv:ObjectID": 41,
+          "bacnetv:PropertyType": "PresentValue",
+          "bacnetv:service": "WriteProperty"
+        }
+      ]
+    }
+  }
+}
