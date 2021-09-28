@@ -1,0 +1,38 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/td",
+    { "bacnetp": "https://example.org/protocol-vocabulary/bacnet" },
+    { "bacnet": "https://data.ashrae.org/bacnet/2020#" },
+    { "pl": "https://passivelogic.com/ontology" }
+  ],
+  "name": "Sensor Example",
+  "id": "https://example.org/device-protocol-descriptor",
+  "@type": [
+    "bacnet:AnalogInputObject"
+  ],
+  "pl:isProxyFor": "pl:/ObservableProperty",
+  "properties": {
+    "PresentValue": {
+      "@type": [
+        "bacnet:/PresentValueProperty"
+      ],
+      "pl:valueOf": "pl:/ObservableProperty/CurrentValue",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "writable": false,
+      "observable": true,
+      "forms": [
+        {
+          "href": "bacnet://192.168.1.1:47808",
+          "bacnetp:deviceid": 1,
+          "bacnetp:objecttype": "bacnet:AnalogInputObject",
+          "bacnetp:objectid": 1,
+          "bacnet:objectname": "RelPos",
+          "bacnet:Property": "bacnet:Present_Value",
+          "bacnetp:servicetype": "bacnetp:readproperty"
+        }
+      ]
+    }
+  }
+}

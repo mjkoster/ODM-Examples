@@ -1,0 +1,35 @@
+{
+  "description": "Example energy controller, flow measurement in l/s",
+  "@context": [
+    "http://www.w3.org/ns/td",
+    { "modbus": "https://example.org/modbus#" },
+    { "s223": "https://data.ashrae.org/standard223#" }
+  ],
+  "name": "Energy Controller Flow l/s",
+  "id": "https://example.org/protocol-descriptor-example-flow",
+  
+  "properties": {
+    "PresentValue": {
+      "@type": [
+        "s223:ObservableProperty"
+      ],
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100000,
+      "multipleOf": 0.001,
+      "units": "l/s",
+      "writable": false,
+      "observable": true,
+      "modbus:datasize": 2,
+      "forms": [
+        {
+          "href": "modbus+tcp://192.168.1.1:502/",
+          "modbus:unit-id": 1,
+          "modbus:starting-address": 9,
+          "modbus:quantity-of-registers": 2,
+          "modbus:function": "read-holding-registers"
+        }
+      ]
+    }
+  }
+}

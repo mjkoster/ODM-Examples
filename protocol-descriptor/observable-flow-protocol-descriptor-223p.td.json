@@ -1,0 +1,38 @@
+{
+  "description": "Example energy controller, flow measurement in l/s",
+  "@context": [
+    "http://www.w3.org/ns/td",
+    { "bacnet": "https://data.ashrae.org/bacnet/2020#" },
+    { "s223": "https://data.ashrae.org/standard223#" }
+  ],
+  "name": "Energy Controller Flow l/s",
+  "id": "https://example.org/protocol-descriptor-example-flow",
+  "@type": [
+    "bacnet:AnalogInputObject"
+  ],
+  "properties": {
+    "PresentValue": {
+      "@type": [
+        "bacnet:PresentValueProperty","s223:ObservableProperty"
+      ],
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100000,
+      "multipleOf": 0.001,
+      "units": "l/s",
+      "writable": false,
+      "observable": true,
+      "forms": [
+        {
+          "href": "bacnet+udp://192.168.1.1:47808",
+          "bacnet:device-instance": 1,
+          "bacnet:object-type": "bacnet:analog-input",
+          "bacnet:object-instance": 14,
+          "bacnet:object-name": "AbsFlow_SI3",
+          "bacnet:property-identifier": "bacnet:present-value",
+          "bacnet:service-type": "bacnetp:read-property"
+        }
+      ]
+    }
+  }
+}

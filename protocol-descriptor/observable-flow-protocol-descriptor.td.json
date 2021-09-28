@@ -1,0 +1,39 @@
+{
+  "description": "Belimo Energy Valve, flow measurement in l/s",
+  "@context": [
+    "http://www.w3.org/ns/td",
+    { "bacnet": "https://data.ashrae.org/bacnet/2020#" },
+    { "pl": "https://passivelogic.com/ontology" }
+  ],
+  "name": "Sensor Example",
+  "id": "https://example.org/device-protocol-descriptor",
+  "@type": [
+    "bacnet:AnalogInputObject"
+  ],
+  "pl:isProxyFor": "pl:/ObservableProperty",
+  "properties": {
+    "PresentValue": {
+      "@type": [
+        "bacnet:/PresentValueProperty"
+      ],
+      "pl:valueOf": "pl:/ObservableProperty/CurrentValue",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100000,
+      "units": "l/s",
+      "writable": false,
+      "observable": true,
+      "forms": [
+        {
+          "href": "bacnet://192.168.1.1:47808",
+          "bacnet:device-instance": 1,
+          "bacnet:object-type": "bacnet:AnalogInputObject",
+          "bacnet:object-instance": 14,
+          "bacnet:object-name": "AbsFlow_SI3",
+          "bacnet:property-identifier": "bacnet:present-value",
+          "bacnet:service-type": "bacnetp:read-property"
+        }
+      ]
+    }
+  }
+}

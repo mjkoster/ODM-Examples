@@ -1,0 +1,39 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/td",
+    { "bacnetp": "https://example.org/protocol-vocabulary/bacnet" },
+    { "bacnet": "https://data.ashrae.org/bacnet/2020#" },
+    { "pl": "https://passivelogic.com/ontology" }
+  ],
+  "name": "Energy Controller Valve Control Example",
+  "id": "https://example.org/device-protocol-descriptor",
+  "@type": [
+    "bacnet:AnalogOutputObject"
+  ],
+  "pl:isProxyFor": "pl:/ControllableProperty",
+  "properties": {
+    "PresentValue": {
+      "@type": [
+        "bacnet:/PresentValueProperty",
+        "pl:/ControllableProperty/CurrentValue"
+      ],
+      "pl:valueOf": "pl:/ControllableProperty/CurrentValue",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "writable": true,
+      "observable": false,
+      "forms": [
+        {
+          "href": "bacnet://192.168.1.1:47808",
+          "bacnetp:deviceid": 1,
+          "bacnetp:objecttype": "bacnet:AnalogOutputObject",
+          "bacnetp:objectid": 1,
+          "bacnet:objectname": "SpRel",
+          "bacnet:Property": "bacnet:Present_Value",
+          "bacnetp:servicetype": "bacnetp:writeproperty"
+        }
+      ]
+    }
+  }
+}

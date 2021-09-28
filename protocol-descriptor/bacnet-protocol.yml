@@ -1,0 +1,4 @@
+bacnet:device-identifier: 123
+bacnet:object-type: analog-value
+bacnet:object-instance: 1
+bacnet:property-identifier: present-value
