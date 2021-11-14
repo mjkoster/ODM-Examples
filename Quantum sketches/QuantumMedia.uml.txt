@@ -1,0 +1,78 @@
+@startuml
+
+
+class Quanta {
+    QuantaType
+    Media
+}
+Quanta::Media "1" -->  Media
+Quanta::QuantaType --> QuantaType
+QuantaType --> QuantaSuperClass: isMemberOf
+
+enum QuantaType {
+    Liquid
+    Gas
+    Multiphase
+    Conduction
+    Convection
+    Radiation
+    Linear
+    Rotation
+    Conveyor
+    Vehicle
+    Electrical
+    Steam
+    Combustion
+    Solar
+    Nuclear
+}
+
+enum QuantaSuperClass {
+    Fluid
+    Thermal
+    Mechanical
+    Fuels
+    Control
+    Data
+}
+
+class Media {
+    MediaKind
+    MediaProperty
+    HasMediaFraction
+}
+
+entity MediaFraction {
+  MediaKind
+  Fraction
+}
+
+MediaFraction <-- "0+" Media::HasMediaFraction
+MediaKind <-- MediaFraction::MediaKind
+
+enum MediaKind {
+    Water
+    Air
+    R134a
+    NaturalGas
+    Ice
+    ...
+}
+
+enum MediaPropertyKind {
+    SpecificEnthalpy
+    Temperature
+    FlowRate
+    Pressure
+    ...
+}
+Media::MediaProperty --> MediaPropertyKind: isAProperty
+Media::MediaKind --> MediaKind: isAMedia
+
+entity QuantaSuperClassConformance {
+    isEnergy
+    isMaterial
+    isInformation
+}
+QuantaSuperClass --> QuantaSuperClassConformance: hasConformance
+@enduml

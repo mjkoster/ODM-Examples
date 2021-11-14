@@ -1,0 +1,46 @@
+{
+  "@context" : [
+    "http://www.w3.org/ns/td",
+    { "odm": "https://onedm.org/onedm" }
+  ],
+
+  "properties": {
+    "rgb": {
+      "type": "object",
+      "properties": {
+        "BlueChannel": {"type": "number", "@type": "odm:/#/sdfObject/RGBColorControl/sdfProperty/BlueChannelData" },
+        "GreenChannel": {"type": "number", "@type": "odm:/#/sdfObject/RGBColorControl/sdfProperty/GreenChannelData" },
+        "RedChannel": {"type": "number", "@type": "odm:/#/sdfObject/RGBColorControl/sdfProperty/RedChannelData" }
+      },
+
+      "forms": {
+        "href": "https://example.com/testdevice/rgb",
+        "readable": true,
+        "writable": true,
+        "payloadschema": {
+          "type": "array",
+          "items": [
+            {
+              "@type": "#/properties/rgb/properties/RedChannel",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255
+            },
+            {
+              "@type": "#/properties/rgb/properties/BlueChannel",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255
+            },
+            {
+              "@type": "#/properties/rgb/properties/GreenChannel",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255
+            }
+          ]
+        }
+      }    
+    }
+  }
+}
