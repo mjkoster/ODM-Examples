@@ -25,11 +25,11 @@
       "forms": [
         {
           "bacv:device-instance": 1,
-          "bacv:object-type": "bacnet:analog-input",
+          "bacv:object-type": "bacv:AnalogInputObject",
           "bacv:object-instance": 14,
           "bacv:object-name": "AbsFlow_SI3",
-          "bacv:property-identifier": "bacnet:present-value",
-          "bacv:service-type": "bacnetp:read-property"
+          "bacv:property-identifier": "bacv:PresentValueProperty",
+          "bacv:service-type": "bacv:ReadPropertyService"
         }
       ]
     }

@@ -24,12 +24,7 @@
       "observable": true,
       "forms": [
         {
-          "bacv:device-instance": 1,
-          "bacv:object-type": "bacnet:analog-input",
-          "bacv:object-instance": 14,
-          "bacv:object-name": "AbsFlow_SI3",
-          "bacv:property-identifier": "bacnet:present-value",
-          "bacv:service-type": "bacnetp:read-property"
+          "href": "bacnet://1/analog-input,14/present-value"
         }
       ]
     }
