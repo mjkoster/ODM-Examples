@@ -1,0 +1,56 @@
+---
+info: 
+  title: Serial PubSub agent
+  version: 2021-09-05
+  copyright: "Copyright 2021, Michael J. Koster. All rights reserved."
+  license: "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+
+namespace: onefb: https://onedm.org/village/onefb
+
+defaultnamespace: onefb
+sdfObject:
+  SerialPubSub:
+    description: Serial port pubsub agent
+    sdfRef: "/#/sdfObject/BaseObject"
+    sdfProperty:
+      OutputLink:
+        description: point to subscribers
+      TxPin:
+        type: number
+      RxPin: 
+        type: number
+
+    sdfAction:
+      Publish:
+        sdfInputData:
+          ObjectPropertySelector:
+            type: array
+            minItems: 4
+            maxItems: 4
+            items:
+              type: integer
+              minimum: 0
+              maximum: 65535
+          PublishData:
+            sdfChoice:
+              NumberData:
+                type: number
+              BooleanData:
+                type: boolean
+    sdfEvent:
+      Notification:
+        sdfOutputData: 
+          ObjectPropertySelector:
+            type: array
+            minItems: 4
+            maxItems: 4
+            items:
+              type: integer
+              minimum: 0
+              maximum: 65535
+          NotificationData:
+            sdfChoice:
+              NumberData:
+                type: number
+              BooleanData:
+                type: boolean

@@ -1,0 +1,62 @@
+---
+info: 
+  title: onefb fetcher object
+  version: 2021-09-05
+  copyright: "Copyright 2021, Michael J. Koster. All rights reserved."
+  license: "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+
+namespace: onefb: https://onedm.org/village/onefb
+
+defaultnamespace: onefb
+
+sdfObject: 
+  Fetcher: 
+    sdfRef: /#/sdfObject/BaseObject
+    description: Module for a fetcher to emulate GET for simple values in a pubsub protocol
+
+    sdfProperty:
+      PresentValue:
+        description: type based on returned content
+        sdfChoice:
+          AnalogType:
+            type: number
+          DigitalType:
+            type: boolean
+      Subscription:
+        description: The topic to subscribe to for fetch requests
+        type: string
+      InputValue:
+        description: Integer ObjectID+Instance and Property ID+Instance selector
+        type: array
+        minItems: 4
+        maxItems: 4
+        items:
+          type: integer
+          minimum: 0
+          maximum: 65535
+      OutputLink:
+        description: Object to set PresentValue or InputValue property
+        sdfRef: /#/sdfData/ObjectLink
+
+    sdfAction:
+      UpdateInputValue:
+        description:  Trigger on updates of InputValue from the pubsub agent
+        sdfInputData: 
+          InputValue: 
+            sdfLink: "#/sdfObject/Subscriber/sdfProperty/InputValue"
+        sdfOutputData:
+          PresentValue:
+            sdfLink: "#/sdfObject/Subscriber/sdfProperty/PresentValue"
+
+    sdfEvent:
+      LinkedObjectUpdate:
+        description: Emitted on update. Transfer the OutputValue or PresentValue contents to the InputValue property 
+                     or to the PresentValue property of the objects pointed to by the OutputLink
+        sdfOutputData:
+          TransmittedValue:
+            sdfPreferredChoice: "#/sdfObject/Subscriber/sdfEvent/LinkedObjectUpdate/sdfOutputData/TransmittedValue/sdfChoice/OutputValue"
+            sdfChoice:
+              OutputValue:
+                sdfLink: "#/sdfObject/Subscriber/sdfProperty/OutputValue"
+              PresentValue:
+                sdfLink: "#/sdfObject/Subscriber/sdfProperty/PresentValue"

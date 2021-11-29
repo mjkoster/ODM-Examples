@@ -1,0 +1,69 @@
+---
+info: 
+  title: onefb digital input object
+  version: 2021-09-05
+  copyright: "Copyright 2021, Michael J. Koster. All rights reserved."
+  license: "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+
+namespace: onefb: https://onedm.org/village/onefb
+
+defaultnamespace: onefb
+
+sdfObject: 
+  DigitalInput: 
+    sdfRef: /#/sdfObject/BaseObject
+    description: "Module for diigtal input, does polarity correction for the PresentValue property"
+
+    sdfProperty:
+      PresentValue:
+        type: boolean
+      OutputLink:
+        sdfRef: /#/sdfData/ObjectLink
+      InputValue:
+        type: boolean
+      InvertPolarity:
+        type: boolean
+        default: false
+      CurrentMS:
+        type: number
+      LastExecuteMS:
+        type: number
+      ExecuteInterval:
+        type: number
+      InputLink:
+        sdfRef: /#/sdfData/ObjectLink
+
+    sdfAction:
+      UpdateInputValue:
+        description:  Trigger on updates of InputValue
+                      Correct polarity -> PresentValue = PolarityInvert XOR InputValue
+        sdfInputData: 
+          InputValue: 
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/InputValue"
+        sdfOutputData:
+          PresentValue:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/PresentValue"
+
+      FetchInput:
+        description: Execute when LastExecuteMS + ExecuteInterval > CurrentMS (single wrap-around tolerant)
+                     Fetch the value of the PresentValue property of the object pointed to by the Input Link and
+                     update the InputValue, resulting in conversion, PresentValue update, and output link processing
+        sdfInputData:
+          InputLink:
+            sdfLink: "#/sdfObject/DigitalInput/sdfProperty/InputLink"
+        sdfOutputData:
+          InputValue:
+            sdfLink: "#/sdfObject/DigitalInput/sdfProperty/InputValue"
+
+    sdfEvent:
+      LinkedObjectUpdate:
+        description: Emitted on update. Transfer the OutputValue or PresentValue contents to the InputValue property 
+                     or to the PresentValue property of the objects pointed to by the OutputLink
+        sdfOutputData:
+          TransmittedValue:
+            sdfPreferredChoice: "#/sdfObject/DigitalInput/sdfEvent/LinkedObjectUpdate/sdfOutputData/TransmittedValue/sdfChoice/OutputValue"
+            sdfChoice:
+              OutputValue:
+                sdfLink: "#/sdfObject/DigitalInput/sdfProperty/OutputValue"
+              PresentValue:
+                sdfLink: "#/sdfObject/DigitalInput/sdfProperty/PresentValue"

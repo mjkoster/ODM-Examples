@@ -1,0 +1,76 @@
+---
+info: 
+  title: onefb analog output object
+  version: 2021-09-05
+  copyright: "Copyright 2021, Michael J. Koster. All rights reserved."
+  license: "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+
+namespace: onefb: https://onedm.org/village/onefb
+
+defaultnamespace: onefb
+
+sdfObject: 
+  AnalogOutput: 
+    sdfRef: /#/sdfObject/BaseObject
+    description: "Module for analog output, does value scaling and unit binding of an incoming PresentValue property"
+
+    sdfProperty:
+      PresentValue:
+        type: number
+      Unit: 
+        type: string
+        default: %
+      UnitMinimum:
+        type: number
+        default: 0
+      UnitMaximum:
+        type: number
+        default: 100
+      OutputLink:
+        sdfRef: /#/sdfData/ObjectLink
+      OutputValue:
+        type: number
+      OutputMinimum:
+        type: number
+        default: 0
+      OutputMaximum:
+        type: number
+        default: 1023
+      OutputResolution:
+        type: number
+        default: 1
+
+    sdfAction:
+      UpdateOutputValue:
+        description: Convert Unit range to output range ->
+                       OutputValue = ( ( PresentValue-UnitMinimum * 
+                       OutputMaximum-OutputMinimum / UnitMaximum-UnitMinimum )
+                       + OutputMinimum ) % OutputResolution
+        sdfInputData: 
+          PresentValue: 
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/PresentValue"
+          OutputMinimum:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/OutputMinimum"
+          OutputMaximum:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/OutputMaximum"
+          OutputResolution:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/OutputResolution"
+          UnitMinimum:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/UnitMinimum"
+          UnitMaximum:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/UnitMaximum"
+        sdfOutputData:
+          OutputValue:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/OutputValue"
+    sdfEvent:
+      LinkedObjectUpdate:
+        description: Emitted on update. Transfer the OutputValue or PresentValue contents to the InputValue property 
+                     or to the PresentValue property of the objects pointed to by the OutputLink
+        sdfOutputData:
+          TransmittedValue:
+            sdfPreferredChoice: "#/sdfObject/AnalogOutput/sdfEvent/LinkedObjectUpdate/sdfOutputData/TransmittedValue/sdfChoice/OutputValue"
+            sdfChoice:
+              OutputValue:
+                sdfLink: "#/sdfObject/AnalogOutput/sdfProperty/OutputValue"
+              PresentValue:
+                sdfLink: "#/sdfObject/AnalogInput/sdfProperty/PresentValue"

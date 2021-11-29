@@ -1,0 +1,75 @@
+---
+info: 
+  title: onefb publisher object
+  version: 2021-09-05
+  copyright: "Copyright 2021, Michael J. Koster. All rights reserved."
+  license: "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+
+namespace: onefb: https://onedm.org/village/onefb
+
+defaultnamespace: onefb
+
+sdfObject: 
+  Publisher: 
+    sdfRef: /#/sdfObject/BaseObject
+    description: Module for publishing a simple value to an agent of a pubsub service
+
+    sdfProperty:
+      PresentValue:
+        description: type based on expected content from the subscription
+        sdfChoice:
+          AnalogType:
+            type: number
+          DigitalType:
+            type: boolean
+      PublishAgentLink:
+        description: link to an agent object for subscriptions
+      InputLink:
+        description: Optional object to periodically fetch, or poll, from based on the timer interval
+        sdfRef: /#/sdfData/ObjectLink
+      CurrentMS:
+        type: number
+      LastPollMS:
+        type: number
+      PollInterval:
+        type: number
+      PublishTopicPrefix:
+        description: The topic to publish to
+        type: string
+      ObjectPropertySelector:
+        description: Integer ObjectID+Instance and Property ID+Instance for compact binary serializations
+        type: array
+        minItems: 3
+        maxItems: 4
+        items:
+          type: integer
+          minimum: 0
+          maximum: 65535
+
+    sdfAction:
+      UpdatePresentValue:
+        description:  Trigger on updates of PresentValue, generate the LinkedObjectUpdate Event
+        sdfInputData: 
+          PresentValue: 
+            sdfLink: "#/sdfObject/Publisher/sdfProperty/PresentValue"
+        sdfOutputData:
+          OutputValue:
+            sdfLink: "#/sdfObject/Publisher/sdfProperty/OutputValue"
+      FetchInput:
+        description: Trigger on update of CurrentMS, Execute when LastPollMS + PollInterval > CurrentMS 
+                    (single wrap-around tolerant) Read the state of the I/O pin and update the PresentaValue property
+        sdfOutputData:
+          PresentValue:
+            sdfLink: "#/sdfObject/Publisher/sdfProperty/PresentValue"
+    sdfEvent:
+      LinkedObjectUpdate:
+        description: Emitted on update. Transfer the OutputValue or PresentValue contents to the InputValue property 
+                     or to the PresentValue property of the objects pointed to by the OutputLink
+        sdfOutputData:
+          TransmittedValue:
+            sdfPreferredChoice: "#/sdfObject/Publisher/sdfEvent/LinkedObjectUpdate/sdfOutputData/TransmittedValue/sdfChoice/OutputValue"
+            sdfChoice:
+              OutputValue:
+                sdfLink: "#/sdfObject/Publisher/sdfProperty/OutputValue"
+              PresentValue:
+                sdfLink: "#/sdfObject/Publisher/sdfProperty/PresentValue"

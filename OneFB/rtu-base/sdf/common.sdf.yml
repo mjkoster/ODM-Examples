@@ -1,0 +1,55 @@
+---
+info: 
+  title: onefb common definitions 
+  version: 2021-09-05
+  copyright: "Copyright 2021, Michael J. Koster. All rights reserved."
+  license: "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+
+namespace: onefb: https://onedm.org/village/onefb
+
+defaultnamespace: onefb
+
+sdfObject:
+  BaseObject:
+    description: properties common to all objects in the OneFB framework
+    sdfProperty:
+      Description: 
+        type: string
+        default: OneFB Base Object Template
+      ObjectTypeID:
+        type: Integer
+        minimum: 0
+        maximum: 65535
+      ObjectInstanceID:
+        type: Integer
+        minimum: 0
+        maximum: 65535
+      PresentValue:
+        description: Primary internal state value of the enclosing object
+      InputValue:
+        description: Value to derive PresentValue, incoming from another object 
+      OutputValue:
+        description: Value derived from PresentValue, outgoing to another object 
+      InputLink:
+        description: Link to another object for obtaining an input or present value from an output or present value
+      OutputLink:
+        description: Link to another object for updating an input or present value from an output or present value
+    
+sdfAction:
+  UpdatelnkedObject:
+    Description: Transfer OutputValue or PresentValue of this object to InputValue or PresentValue of the linked object
+                 OutputValue and InputValue, if present, ahave priority over PresentValue in the value selected for transfer
+    sdfInput: 
+      PresentValue:
+      OutputValue:
+      OutputLink:
+  ConvertPresentValue:
+    Description: convert InputValue to PresentValue, or PresentValue to OutputValue
+
+sdfData:
+  ObjectLink:
+    description: Data type to represent a pointer to an SDF object, for application use
+    sdfRef: /#/sdfData/SdfPointerType
+    sdfTypedLink:
+      - rel: AllowedType
+        target: /#/sdfObject

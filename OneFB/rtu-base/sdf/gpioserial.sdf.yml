@@ -1,0 +1,76 @@
+---
+info: 
+  title: gpio serial protocol object
+  version: 2021-09-05
+  copyright: "Copyright 2021, Michael J. Koster. All rights reserved."
+  license: "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+
+namespace: onefb: https://onedm.org/village/onefb
+
+defaultnamespace: onefb
+
+sdfObject: 
+  GpioSerial: 
+    sdfRef: /#/sdfObject/BaseObject
+    description: "Module for a simple serial GPIO device"
+    sdfProperty:
+      ClockPin:
+        type: number
+      DataInPin:
+        type: number
+      DataOutPin:
+        type: number
+      SelectPin:
+        type: number
+      BusAddress:
+        description: Address to use for this device on a shared bus e.g. I2C
+        type: number
+      GpioType: 
+        sdfChoice:
+          AnalogInput:
+          AnalogOutput:
+          DigitalInput:
+          DigitalOutput:
+      PresentValue:
+        sdfChoice:
+          AnalogType:
+            type: integer
+            minimum: 0
+            maximum: 65535
+          DigitalType:
+            type: boolean
+      OutputLink:
+        sdfRef: /#/sdfData/ObjectLink
+      CurrentMS:
+        type: number
+      LastSampleMS:
+        type: number
+      SampleInterval:
+        type: number
+
+    sdfAction:
+      InitializeDevice:
+        description: Operate the initialization state machine on the serial device
+      SampleInput:
+        description: Trigger on update of CurrentMS, Execute when LastSampleMS + SampleInterval > CurrentMS 
+                    (single wrap-around tolerant) Read the state of the I/O pin and update the PresentaValue property
+        sdfOutputData:
+          PresentValue:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/PresentValue"
+      SetOutput:
+        description: Set the state of a Digital Output or Analog Output from the PresentValue property
+        sdfInputData:
+          PresentValue:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/PresentValue"
+    sdfEvent:
+      LinkedObjectUpdate:
+        description: Emitted on update. Transfer the OutputValue or PresentValue contents to the InputValue property 
+                     or to the PresentValue property of the objects pointed to by the OutputLink
+        sdfOutputData:
+          TransmittedValue:
+            sdfPreferredChoice: "#/sdfObject/AnalogInput/sdfEvent/LinkedObjectUpdate/sdfOutputData/TransmittedValue/sdfChoice/OutputValue"
+            sdfChoice:
+              OutputValue:
+                sdfLink: "#/sdfObject/AnalogInput/sdfProperty/OutputValue"
+              PresentValue:
+                sdfLink: "#/sdfObject/AnalogInput/sdfProperty/PresentValue"

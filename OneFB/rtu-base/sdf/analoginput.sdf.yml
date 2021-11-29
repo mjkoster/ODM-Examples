@@ -1,0 +1,95 @@
+---
+info: 
+  title: onefb analog input object
+  version: 2021-09-05
+  copyright: "Copyright 2021, Michael J. Koster. All rights reserved."
+  license: "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+
+namespace: onefb: https://onedm.org/village/onefb
+
+defaultnamespace: onefb
+
+sdfObject: 
+  AnalogInput: 
+    sdfRef: /#/sdfObject/BaseObject
+    description: "Module for analog input, does value scaling and unit binding to a PresentValue property"
+
+    sdfProperty:
+      PresentValue:
+        type: number
+      Unit: 
+        type: string
+        default: %
+      UnitMinimum:
+        type: number
+        default: 0
+      UnitMaximum:
+        type: number
+        default: 100
+      UnitResolution:
+        type: number
+        default: .1
+      OutputLink:
+        sdfRef: /#/sdfData/ObjectLink
+      InputValue:
+        type: number
+      InputMinimum:
+        type: number
+        default: 0
+      InputMaximum:
+        type: number
+        default: 1023
+      CurrentMS:
+        type: number
+      LastExecuteMS:
+        type: number
+      ExecuteInterval:
+        type: number
+      InputLink:
+        sdfRef: /#/sdfData/ObjectLink
+
+    sdfAction:
+      UpdateInputValue:
+        description:  Trigger on updates of InputValue
+                      Convert input range to Unit range ->
+                      PresentValue = ( ( InputValue-InputMinimum * 
+                      UnitMaximum-UnitMinimum / InputMaximum-InputMinimum )
+                      + UnitMinimum ) % UnitResolution
+        sdfInputData: 
+          InputValue: 
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/InputValue"
+          InputMinimum:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/InputMinimum"
+          InputMaximum:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/InputMaximum"
+          UnitMinimum:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/UnitMinimum"
+          UnitMaximum:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/UnitMaximum"
+        sdfOutputData:
+          PresentValue:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/PresentValue"
+
+      FetchInput:
+        description: Execute when LastExecuteMS + ExecuteInterval > CurrentMS (single wrap-around tolerant)
+                     Fetch the value of the PresentValue property of the object pointed to by the Input Link and
+                     update the InputValue, resulting in conversion, PresentValue update, and output link processing
+        sdfInputData:
+          InputLink:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/InputLink"
+        sdfOutputData:
+          InputValue:
+            sdfLink: "#/sdfObject/AnalogInput/sdfProperty/InputValue"
+
+    sdfEvent:
+      LinkedObjectUpdate:
+        description: Emitted on update. Transfer the OutputValue or PresentValue contents to the InputValue property 
+                     or to the PresentValue property of the objects pointed to by the OutputLink
+        sdfOutputData:
+          TransmittedValue:
+            sdfPreferredChoice: "#/sdfObject/AnalogInput/sdfEvent/LinkedObjectUpdate/sdfOutputData/TransmittedValue/sdfChoice/OutputValue"
+            sdfChoice:
+              OutputValue:
+                sdfLink: "#/sdfObject/AnalogInput/sdfProperty/OutputValue"
+              PresentValue:
+                sdfLink: "#/sdfObject/AnalogInput/sdfProperty/PresentValue"

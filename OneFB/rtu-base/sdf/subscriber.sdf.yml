@@ -1,0 +1,65 @@
+---
+info: 
+  title: onefb subscriber input object
+  version: 2021-09-05
+  copyright: "Copyright 2021, Michael J. Koster. All rights reserved."
+  license: "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+
+namespace: onefb: https://onedm.org/village/onefb
+
+defaultnamespace: onefb
+
+sdfObject: 
+  Subscriber: 
+    sdfRef: /#/sdfObject/BaseObject
+    description: "Module for a subscriber in a pubsub protocol, configured with a common agent for the service"
+
+    sdfProperty:
+      PresentValue:
+        description: type based on expected content from the subscription
+        sdfChoice:
+          AnalogType:
+            type: number
+          DigitalType:
+            type: boolean
+      SubscribeAgentLink:
+        description: link to an agent object for subscriptions
+        sdfRef: /#/sdfData/ObjectLink
+      Subscription:
+        description: The topic filter to pass to the pubsub service
+        type: string
+      ObjectPropertySelector:
+        description: Integer ObjectID+Instance and Property ID+Instance for compact binary serializations
+        type: array
+        minItems: 3
+        maxItems: 4
+        items:
+          type: integer
+          minimum: 0
+          maximum: 65535
+      OutputLink:
+        description: Object to set PresentValue or InputValue property
+        sdfRef: /#/sdfData/ObjectLink
+
+    sdfAction:
+      UpdateInputValue:
+        description:  Trigger on updates of InputValue from the pubsub agent
+        sdfInputData: 
+          InputValue: 
+            sdfLink: "#/sdfObject/Subscriber/sdfProperty/InputValue"
+        sdfOutputData:
+          PresentValue:
+            sdfLink: "#/sdfObject/Subscriber/sdfProperty/PresentValue"
+
+    sdfEvent:
+      LinkedObjectUpdate:
+        description: Emitted on update. Transfer the OutputValue or PresentValue contents to the InputValue property 
+                     or to the PresentValue property of the objects pointed to by the OutputLink
+        sdfOutputData:
+          TransmittedValue:
+            sdfPreferredChoice: "#/sdfObject/Subscriber/sdfEvent/LinkedObjectUpdate/sdfOutputData/TransmittedValue/sdfChoice/OutputValue"
+            sdfChoice:
+              OutputValue:
+                sdfLink: "#/sdfObject/Subscriber/sdfProperty/OutputValue"
+              PresentValue:
+                sdfLink: "#/sdfObject/Subscriber/sdfProperty/PresentValue"

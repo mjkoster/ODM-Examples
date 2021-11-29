@@ -1,0 +1,42 @@
+---
+info: 
+  title: timer object to trigger the distributed work queue
+  version: 2021-09-05
+  copyright: "Copyright 2021, Michael J. Koster. All rights reserved."
+  license: "https://github.com/one-data-model/oneDM/blob/master/LICENSE"
+
+namespace: onefb: https://onedm.org/village/onefb
+
+defaultnamespace: onefb
+sdfObject:
+  SchedulerTimer:
+      sdfRef: "/#/sdfObject/BaseObject",
+    sdfProperty:
+      MSPerTick: 
+        type: integer
+        default: 100
+      CurrentMS: 
+        description: "CurrentMS is updated from some external source, e.g. millis() loop",
+        type: integer
+        default: 0
+      MSAtLastTick:
+        description: "Updated to the CurrentMS value when CurrentMS is emitted"
+        type: integer
+        default: 0
+      CurrentMSLink:
+        description: "Update CurrentTime for each linked Object on each tick"
+        sdfRef: "/#/sdfData/ObjectLink"
+        minItems: 0
+    sdfAction:
+      UpdateCurrentMS:
+        description: "An external time counter periodically updates the CurrentMS and calls this handler"
+        sdfInputData:
+          CurrentMS: 
+            sdfLink: "#/sdfObject/SchedulerTimer/sdfProperty/CurrentMS"
+    sdfEvent:
+      TimerTickUpdate: 
+        description: "Emitted when CurrentMS > MSAtLastTick + MSPerTick, carries the CurrentMS
+                      Value, and is used to update the CurrentMS property of linked objects"
+        sdfOutputData: 
+          CurrentCount:
+            sdfLink: "#/sdfObject/SchedulerTimer/sdfProperty/CurrentMS"
