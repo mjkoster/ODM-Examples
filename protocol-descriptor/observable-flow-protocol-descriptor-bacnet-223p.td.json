@@ -8,12 +8,12 @@
   "name": "Energy Controller Flow l/s",
   "id": "https://example.org/protocol-descriptor-example-flow",
   "@type": [
-    "bacnet:AnalogInputObject"
+    "bacv:AnalogInputObject"
   ],
   "properties": {
     "PresentValue": {
       "@type": [
-        "bacnet:PresentValueProperty","s223:ObservableProperty"
+        "bacv:PresentValueProperty","s223:ObservableProperty"
       ],
       "type": "number",
       "minimum": 0,
