@@ -1,2 +1,2 @@
 # ODM-Examples
-Examples of Definition Formats for use in One Data Model
+Examples of models to explore SDF patterns and application range
