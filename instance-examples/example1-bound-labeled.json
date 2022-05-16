@@ -1,0 +1,142 @@
+{
+  "info": {
+  "title": "SmartThing",
+  "version": "2022-05-13",
+  "copyright": "Copyright 2019 Open Mobile Alliance.",
+  "license": "BSD-3-Clause"
+  },
+  "namespace": {
+    "my": "https://example.com/mynamespace",
+    "oma": "https://onedm.org/ecosystem/oma",
+    "pro": "https://example.com/sdf-protocols"
+
+  },
+  "defaultNamespace": "my",
+
+  "sdfThing": {
+    "SmartThing": {
+      "pro:ref": "#/sdfThing/SmartThing",
+      "sdfObject": {
+        "SmartThing_Accelerometer": {
+          "pro:ref": "oma:/#/sdfObject/Accelerometer",
+          "label": "Accelerometer",
+          "description": "This IPSO object can be used to represent a 1-3 axis accelerometer.",
+          "sdfProperty": {
+            "X_Value": {
+              "pro:ref": "oma:/#/sdfObject/Accelerometer/sdfProperty/X_Value",              
+              "label": "X Value",
+              "description": "The measured value along the X axis.",
+              "observable": true,
+              "writable": false,
+              "type": "number",
+              "unit": "m/s2"
+            },
+            "Y_Value": {
+              "pro:ref": "oma:/#/sdfObject/Accelerometer/sdfProperty/X_Value",              
+              "label": "X Value",
+              "description": "The measured value along the X axis.",
+              "observable": true,
+              "writable": false,
+              "type": "number",
+              "unit": "m/s2"
+            },
+            "Z_Value": {
+              "pro:ref": "oma:/#/sdfObject/Accelerometer/sdfProperty/X_Value",              
+              "label": "X Value",
+              "description": "The measured value along the X axis.",
+              "observable": true,
+              "writable": false,
+              "type": "number",
+              "unit": "m/s2"
+            }
+          }
+        },
+        "SmartThing_Accelerometer2": {
+          "pro:ref": "oma:/#/sdfObject/Accelerometer",
+          "label": "Accelerometer",
+          "description": "This IPSO object can be used to represent a 1-3 axis accelerometer.",
+          "sdfProperty": {
+            "X_Value": {
+              "pro:ref": "oma:/#/sdfObject/Accelerometer/sdfProperty/X_Value",              
+              "label": "X Value",
+              "description": "The measured value along the X axis.",
+              "observable": true,
+              "writable": false,
+              "type": "number",
+              "unit": "m/s2"
+            },
+            "Y_Value": {
+              "pro:ref": "oma:/#/sdfObject/Accelerometer/sdfProperty/X_Value",              
+              "label": "X Value",
+              "description": "The measured value along the X axis.",
+              "observable": true,
+              "writable": false,
+              "type": "number",
+              "unit": "m/s2"
+            },
+            "Z_Value": {
+              "pro:ref": "oma:/#/sdfObject/Accelerometer/sdfProperty/X_Value",              
+              "label": "X Value",
+              "description": "The measured value along the X axis.",
+              "observable": true,
+              "writable": false,
+              "type": "number",
+              "unit": "m/s2"
+            }
+          }
+        }
+      },
+      "pro:dataschema": {
+        "type": "object",
+        "properties": {
+          "SmartThing":{
+            "pro:ref": "#/sdfThing/SmartThing",
+            "type": "object",
+            "properties": {
+              "SmartThing_Accelerometer": {
+                "pro:ref": "#/sdfThing/SmartThing/sdfObject/Accelerometer",
+                "type": "object",
+                "properties": {
+                  "x_value": { 
+                    "pro:ref": "#/sdfThing/SmartThing/sdfObject//sdfProperty/X_Value",
+                    "type": "number" 
+                  },
+                  "y_value": { 
+                    "pro:ref": "#/sdfThing/SmartThing/sdfObject//sdfProperty/Y_Value",
+                    "type": "number" 
+                  },
+                  "z_value": { 
+                    "pro:ref": "#/sdfThing/SmartThing/sdfObject//sdfProperty/Z_Value",
+                    "type": "number" 
+                  }
+                }
+              },
+              "SmartThing_Accelerometer2": {
+                "pro:ref": "#/sdfThing/SmartThing/sdfObject/Accelerometer2",
+                "type": "object",
+                "properties": {
+                  "x_value": { 
+                    "pro:ref": "#/sdfThing/SmartThing/sdfObject//sdfProperty/X_Value",
+                    "type": "number" 
+                  },
+                  "y_value": { 
+                    "pro:ref": "#/sdfThing/SmartThing/sdfObject//sdfProperty/Y_Value",
+                    "type": "number" 
+                  },
+                  "z_value": { 
+                    "pro:ref": "#/sdfThing/SmartThing/sdfObject//sdfProperty/Z_Value",
+                    "type": "number" 
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "pro:form": {
+        "href": "mqtt://example.net:1883/smartthing",
+        "contentType": "application/json"
+      }
+    }
+  }
+}

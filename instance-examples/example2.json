@@ -1,0 +1,14 @@
+{
+  "SmartThing":{
+    "SmartThing_Accelerometer": {
+      "X_Value": 123,
+      "Y_Value": 987,
+      "Z_Value": 432
+    },
+    "SmartThing_Accelerometer2": {
+      "X_Value": 1234,
+      "Y_Value": 6534,
+      "Z_Value": 3445
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "info": {
+  "title": "SmartThing",
+  "version": "2022-05-13",
+  "copyright": "Copyright 2019 Open Mobile Alliance.",
+  "license": "BSD-3-Clause"
+  },
+  "namespace": {
+    "oma": "https://onedm.org/ecosystem/oma"
+  },
+  "defaultNamespace": "oma",
+  "sdfThing": {
+    "SmartThing": {
+      "sdfObject": {
+        "SmartThing_Accelerometer": {
+          "sdfRef": "#/sdfObject/Accelerometer"
+        },
+        "SmartThing_Accelerometer2": {
+          "sdfRef": "#/sdfObject/Accelerometer"
+        }
+      }
+    }
+  }
+}
