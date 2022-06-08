@@ -1,0 +1,34 @@
+
+sdfObject:
+
+  Equipment:
+    sdfProperty:
+      Manufacturer: { sdfRef: "#/sdfProperty/Manufacturer" }
+      Model: { sdfRef: "#/sdfProperty/Model" }
+    sdfRelaton:
+      Component:
+        relType: contains
+        target: "#/sdfObject/Component"
+        minItems: 1
+        relValue:
+          relSubType: Component
+      Characteristic:
+        relType: contains
+        target: "#/sdfObject/Component"
+        minItems: 1
+        maxItems: 1
+        relValue:
+          relSubType: Characteristic  
+
+  Component:
+    sdfProperty:
+      Manufacturer: { sdfRef: "#/sdfProperty/Manufacturer" }
+      Model: { sdfRef: "#/sdfProperty/Model" }
+    sdfRelaton:
+      Equipment:
+        relType: partOf
+        target: "#/sdfObject/Equipment"
+        minItems: 1
+        maxItems: 1
+        relValue:
+          relSubType: Equipment
