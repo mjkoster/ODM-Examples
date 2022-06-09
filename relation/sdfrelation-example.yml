@@ -5,7 +5,7 @@ sdfObject:
     sdfProperty:
       Manufacturer: { sdfRef: "#/sdfProperty/Manufacturer" }
       Model: { sdfRef: "#/sdfProperty/Model" }
-    sdfRelaton:
+    sdfRelation:
       Component:
         relType: contains
         target: "#/sdfObject/Component"
@@ -24,7 +24,7 @@ sdfObject:
     sdfProperty:
       Manufacturer: { sdfRef: "#/sdfProperty/Manufacturer" }
       Model: { sdfRef: "#/sdfProperty/Model" }
-    sdfRelaton:
+    sdfRelation:
       Equipment:
         relType: partOf
         target: "#/sdfObject/Equipment"
