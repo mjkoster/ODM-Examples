@@ -6,29 +6,30 @@ sdfObject:
       Manufacturer: { sdfRef: "#/sdfProperty/Manufacturer" }
       Model: { sdfRef: "#/sdfProperty/Model" }
     sdfRelation:
-      Component:
-        relType: contains
+      HasComponent:
+        relType: has
         target: "#/sdfObject/Component"
         minItems: 1
         relValue:
-          relSubType: Component
-      Characteristic:
-        relType: contains
+          targetType: Component
+      HasCharacteristicComponent:
+        relType: has
         target: "#/sdfObject/Component"
         minItems: 1
         maxItems: 1
         relValue:
-          relSubType: Characteristic  
+          relSubType: characteristic  
+          targetType: Component
 
   Component:
     sdfProperty:
       Manufacturer: { sdfRef: "#/sdfProperty/Manufacturer" }
       Model: { sdfRef: "#/sdfProperty/Model" }
     sdfRelation:
-      Equipment:
-        relType: partOf
+      OfEquipment:
+        relType: of
         target: "#/sdfObject/Equipment"
         minItems: 1
         maxItems: 1
         relValue:
-          relSubType: Equipment
+          targetType: Equipment
