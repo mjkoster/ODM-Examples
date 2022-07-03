@@ -1,0 +1,136 @@
+---
+# Application meta-definition
+sdfThing:
+  <QuantumObject>:
+    sdfProperty:
+      <QuantumAttribute>:
+        sdfRef: "#/sdfData/attributeType"
+        minItems: 0
+    sdfObject:
+      <QuantumRelation>: 
+        sdfProperty:
+          relationType:
+            sdfRef: "#/sdfData/relationType"
+          relatedClass:
+            type: string
+          relationSubType:
+            type: string
+          minItems:
+            type: integer
+          maxItems: 
+            type: integer
+        minItems: 0
+sdfData:
+  attributeType:
+    type: string
+    sdfChoice:
+      uuid: { const: uuid }
+      String: { const: String }
+      Integer:  { const: Integer }
+      Float: { const: Float }
+      Boolean: { const: Boolean }
+      Enum: { type: string }
+  relationType:
+    type: string
+    sdfChoice:
+      has: { const: has }
+      of: { const: of }
+      connectedTo: { const: connectedTo }
+      connectedFron: { const: connectedFron }
+
+---
+# Application definition
+QuantumObject:
+  Equipment:
+    QuantumAttribute:
+      ManufacturerName: String
+    QuantumRelation:
+      has.Component: 
+        relationType: has
+        relatedClass: Component
+        minItems: 1
+      has.Component.alias: 
+        relationType: has
+        relatedClass: Component
+        relationSubType: alias
+        minItems: 1
+        maxItems: 1
+
+  Component:
+    QuantumAttribute:
+      ManufacturerName: String
+    QuantumRelation:
+      of.Equipment: 
+        relationType: of
+        relatedClass: Equipment
+        minItems: 1
+        maxItems: 1
+      of.Equipment.alias: 
+        relationType: of
+        relatedClass: Equipment
+        relationSubType: alias
+        minItems: 1
+        maxItems: 1
+
+---
+# resolved SDF DEfinition from the JSON definition file and the meta-definition
+sdfThing:
+  Equipment:
+    sdfRef: "#/sdfThing/<QuantumObject>"
+    sdfProperty:
+      sdfRef: "#/sdfProperty/<QuantumAttribute>"
+      const: String
+    sdfObject:
+      has.Component:
+        sdfRef: "#/sdfObect/<QuantumRelation"
+          sdfProperty:
+            relationType:
+              const: has
+            relatedClass:
+              const: Component
+            minItems:
+              const: 1
+      has.Component.alias:
+        sdfRef: "#/sdfObect/<QuantumRelation"
+          sdfProperty:
+            relationType:
+              const: has
+            relatedClass:
+              const: Component
+            relationSubType:
+              const: alias
+            minItems:
+              const: 1
+            maxItems:
+              const: 1
+  Component:
+    sdfRef: "#/sdfThing/<QuantumObject>"
+    sdfProperty:
+      sdfRef: "#/sdfProperty/<QuantumAttribute>"
+      const: String
+    sdfObject:
+      of.Equipment:
+        sdfRef: "#/sdfObect/<QuantumRelation"
+          sdfProperty:
+            relationType:
+              const: of
+            relatedClass:
+              const: Equipment
+            minItems:
+              const: 1
+            maxItems:
+              const: 1
+      of.Equipment.alias:
+        sdfRef: "#/sdfObect/<QuantumRelation"
+          sdfProperty:
+            relationType:
+              const: of
+            relatedClass:
+              const: Equipment
+            relationSubType:
+              const: alias
+            minItems:
+              const: 1
+            maxItems:
+              const: 1
+                   
