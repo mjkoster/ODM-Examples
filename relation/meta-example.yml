@@ -36,7 +36,7 @@ sdfData:
       has: { const: has }
       of: { const: of }
       connectedTo: { const: connectedTo }
-      connectedFron: { const: connectedFron }
+      connectedFrom: { const: connectedFrom }
 
 ---
 # Application definition conforms to SDF as schema

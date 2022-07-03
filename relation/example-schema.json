@@ -1,0 +1,84 @@
+{
+  "title": "Object Model Demo",
+  "description": "Schema for instances of an example Object MOdel ",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "Equipment": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "manufacturerName": {
+            "type": "string"
+          },
+          "ActorType": {
+            "$ref": "#/definitions/ActorTypeEnum"
+          },
+          "has.Component": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "json-pointer"
+            },
+            "relationType": "has",
+            "relatedClass": "Component",
+            "minItems": 1
+          },
+          "has.Component.alias": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "json-pointer"
+            },
+            "relationType": "has",
+            "relatedClass": "Component",
+            "relationSubType": "alias",
+            "minItems": 1,
+            "maxItems": 1
+          }
+        }
+      }
+    },
+    "Component": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "manufacturerName": {
+            "type": "string"
+          },
+          "ActorType": {
+            "$ref": "#/definitions/ActorTypeEnum"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ActorTypeEnum": {
+      "enum": [
+        "Branch",
+        "Consumer",
+        "Mixer",
+        "Path",
+        "Producer",
+        "Router",
+        "Store",
+        "Transformer",
+        "Transport",
+        "Separator"
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "f89aca57-e52e-4495-9393-1a306f5cb1d2",
+  "name": "test",
+  "description": "test",
+  "Equipment": {
+    "test": {
+      "manufacturerName": "",
+      "ActorType": "Router",
+      "has.Component": [
+        "#/Component/test"
+      ],
+      "has.Component.alias": [
+        "#/Component/test"
+      ]
+    }
+  },
+  "Component": {
+    "test": {
+      "manufacturerName": "test",
+      "ActorType": "Router"
+    }
+  }
+}
