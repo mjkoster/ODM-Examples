@@ -39,7 +39,7 @@ sdfData:
       connectedFron: { const: connectedFron }
 
 ---
-# Application definition
+# Application definition conforms to SDF as schema
 QuantumObject:
   Equipment:
     QuantumAttribute:
@@ -78,11 +78,11 @@ sdfThing:
   Equipment:
     sdfRef: "#/sdfThing/<QuantumObject>"
     sdfProperty:
-      sdfRef: "#/sdfProperty/<QuantumAttribute>"
+      sdfRef: "#/sdfThing/<QuantumObject>/sdfProperty/<QuantumAttribute>"
       const: String
     sdfObject:
       has.Component:
-        sdfRef: "#/sdfObect/<QuantumRelation"
+        sdfRef: "#/sdfThing/<QuantumObject>/sdfObect/<QuantumRelation>"
           sdfProperty:
             relationType:
               const: has
@@ -91,7 +91,7 @@ sdfThing:
             minItems:
               const: 1
       has.Component.alias:
-        sdfRef: "#/sdfObect/<QuantumRelation"
+        sdfRef: "#/sdfThing/<QuantumObject>/sdfObect/<QuantumRelation>"
           sdfProperty:
             relationType:
               const: has
@@ -106,11 +106,11 @@ sdfThing:
   Component:
     sdfRef: "#/sdfThing/<QuantumObject>"
     sdfProperty:
-      sdfRef: "#/sdfProperty/<QuantumAttribute>"
+      sdfRef: "#/sdfThing/<QuantumObject>/sdfProperty/<QuantumAttribute>"
       const: String
     sdfObject:
       of.Equipment:
-        sdfRef: "#/sdfObect/<QuantumRelation"
+        sdfRef: "#/sdfThing/<QuantumObject>/sdfObect/<QuantumRelation>"
           sdfProperty:
             relationType:
               const: of
@@ -121,7 +121,7 @@ sdfThing:
             maxItems:
               const: 1
       of.Equipment.alias:
-        sdfRef: "#/sdfObect/<QuantumRelation"
+        sdfRef: "#/sdfThing/<QuantumObject>/sdfObect/<QuantumRelation>"
           sdfProperty:
             relationType:
               const: of
