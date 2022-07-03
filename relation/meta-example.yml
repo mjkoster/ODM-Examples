@@ -1,5 +1,5 @@
 ---
-# Application meta-definition
+# Application meta-definition using <generic> syntax convention
 sdfThing:
   <QuantumObject>:
     sdfProperty:
@@ -29,7 +29,7 @@ sdfData:
       Integer:  { const: Integer }
       Float: { const: Float }
       Boolean: { const: Boolean }
-      Enum: { type: string }
+      Enum: { const: Enum }
   relationType:
     type: string
     sdfChoice:
@@ -59,6 +59,7 @@ QuantumObject:
   Component:
     QuantumAttribute:
       ManufacturerName: String
+      ActorType: Enum
     QuantumRelation:
       of.Equipment: 
         relationType: of
@@ -73,7 +74,7 @@ QuantumObject:
         maxItems: 1
 
 ---
-# resolved SDF DEfinition from the JSON definition file and the meta-definition
+# resolved SDF Definition from the Application definition and the meta-definition
 sdfThing:
   Equipment:
     sdfRef: "#/sdfThing/<QuantumObject>"
