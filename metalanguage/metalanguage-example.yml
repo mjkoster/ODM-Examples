@@ -1,0 +1,265 @@
+
+# Define the shape of the eements 
+sdfData:
+  Attribute:
+    type: string
+    sdfChoice:
+      integer: Integer
+      float: Float
+      string: String
+      boolean: Boolean
+      uuid: UUID
+      enum: EnumType
+  Relation:
+    type: object
+    properties:
+      target:
+        sdfRef: "#/sdfData/RelationTarget"
+      relationType: 
+        sdfRef: "#/sdfData/RelationType"
+      relatedClass:
+        sdfRef: "#/sdfData/ObjectType"
+      relationSubType:
+        sdfRef: "#/sdfData/RelationSubType"
+      minItems:
+        type: integer
+        minimum: 0
+      maxItems:
+        type: integer
+        minimum: 1
+  RelationTarget:
+    type: string
+    format: json-pointer
+  RelationType:
+    type: string
+    sdfChoice:
+      has: has
+      of: of
+      to: to
+      from: from
+      with: with
+  RelationSubType:
+    type: string
+    sdfChoice:
+      primary: primary
+      secondary: secondary
+      characteristic: characteristic
+  ObjectType:
+    type: string
+    sdfChoice:
+      Equipment: Equipment
+      System: System
+      Component: Component
+      Media: Media
+      Connection: Connection
+
+# Define the construction using a syntax modeled after generic variables
+sdfObject:
+  <Object>: 
+    sdfProperty:
+      <Attribute>:
+        sdfRef: "#/sdfData/Attribute"
+      <Relation>:
+        sdfRef: "#/sdfData/Relation"
+
+# A Definition for an Object of Type "Component", conforming to the meta definition 
+Object:
+  Component:
+    Attribute:
+      name: String
+      description: String
+    Relation:
+      hasMedia:
+        relationType: has
+        relatedClass: Media
+        minItems: 1
+      hasPrimaryMedia:
+        relationType: has
+        relatedClass: Media
+        relationSubType: Primary
+        minItems: 1
+        maxItems: 1
+      ofEquipment:
+        relationType: of
+        relatedClass: Equipment
+        minItems: 1
+        maxItems: 1
+       
+
+# JSON Schema generated from the construction
+{
+  "title": "Custom Vocabulary Example",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "Object": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "Attribute": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/definitions/AttributeType"
+            }
+          },
+          "Relation": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "$ref": "#/definitions/RelationTarget"
+                },
+                "relationType": {
+                  "$ref": "#/definitions/RelationType"
+                },
+                "relatedClass": {
+                  "$ref": "#/definitions/ObjectType"
+                },
+                "relationSubType": {
+                  "$ref": "#/definitions/RelationSubType"
+                },
+                "minItems": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "maxItems": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AttributeType": {
+      "type": "string",
+      "enum": [
+        "Integer",
+        "Float",
+        "String",
+        "Boolean",
+        "UUID",
+        "EnumType"
+      ]
+    },
+    "RelationTarget": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "json-pointer"
+      }
+    },
+    "RelationType": {
+      "type": "string",
+      "enum": [
+        "has",
+        "of",
+        "to",
+        "from",
+        "with"
+      ]
+    },
+    "RelationSubType": {
+      "type": "string",
+      "enum": [
+        "primary",
+        "secondary",
+        "characteristic"
+      ]
+    },
+    "ObjectType": {
+      "type": "string",
+      "enum": [
+        "Equipment",
+        "System",
+        "Component",
+        "Media",
+        "Connection"
+      ]
+    }
+  }
+}
+
+
+# A, instance schema built from the conforming Definition
+{
+  "title": "Example Object Model",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "Component": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "hasMedia": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "json-pointer"
+            },
+            "relationType": "has",
+            "relatedClass": "Media",
+            "minItems": 1
+          },
+          "hasPrimaryMedia": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "json-pointer"
+            },
+            "relationType": "has",
+            "relatedClass": "Media",
+            "relationSubType": "Primary",
+            "minItems": 1,
+            "maxItems": 1
+          },
+          "ofEquipment": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "json-pointer"
+            },
+            "relationType": "of",
+            "relatedClass": "Equipment",
+            "minItems": 1,
+            "maxItems": 1
+          }
+        }
+      }
+    }
+  }
+}
+
+# An object instance definition conforming to the instance schema
+
+{
+  "Component": {
+    "SpinnerMotor": {
+      "name": "Spinner Motor",
+      "description": "Motor that causes the mirrored sphere to rotate",
+      "hasMedia": [
+        "#/Media/SpinnerMotorElectricalPower",
+        "#/Media/SpinnerMotorTorque"
+      ],
+      "hasPrimaryMedia": [
+        "#/Media/SpinnerMotorTorque"
+      ],
+      "ofEquipment": [
+        "#/Equipment/DiscoBall"
+      ]
+    }
+  }
+}

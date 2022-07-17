@@ -74,7 +74,7 @@ QuantumObject:
         maxItems: 1
 
 ---
-# resolved SDF Definition from the Application definition and the meta-definition
+# Equivalent resolved SDF Definition from the Application definition and the meta-definition
 sdfThing:
   Equipment:
     sdfRef: "#/sdfThing/<QuantumObject>"
