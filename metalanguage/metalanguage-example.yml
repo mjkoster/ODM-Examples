@@ -1,5 +1,6 @@
 
-# Define the shape of the eements 
+# Definition of the shape of the elements 
+---
 sdfData:
   Attribute:
     type: string
@@ -17,7 +18,7 @@ sdfData:
         sdfRef: "#/sdfData/RelationTarget"
       relationType: 
         sdfRef: "#/sdfData/RelationType"
-      relatedClass:
+      relatedType:
         sdfRef: "#/sdfData/ObjectType"
       relationSubType:
         sdfRef: "#/sdfData/RelationSubType"
@@ -53,7 +54,8 @@ sdfData:
       Media: Media
       Connection: Connection
 
-# Define the construction using a syntax modeled after generic variables
+# Meta definition for construction of Objects using a syntax modeled after generic variables
+---
 sdfObject:
   <Object>: 
     sdfProperty:
@@ -62,7 +64,8 @@ sdfObject:
       <Relation>:
         sdfRef: "#/sdfData/Relation"
 
-# A Definition for an Object of Type "Component", conforming to the meta definition 
+# A Definition of an Object Type "Component", conforming to the meta definition 
+---
 Object:
   Component:
     Attribute:
@@ -71,22 +74,22 @@ Object:
     Relation:
       hasMedia:
         relationType: has
-        relatedClass: Media
+        relatedType: Media
         minItems: 1
       hasPrimaryMedia:
         relationType: has
-        relatedClass: Media
+        relatedType: Media
         relationSubType: Primary
         minItems: 1
         maxItems: 1
       ofEquipment:
         relationType: of
-        relatedClass: Equipment
+        relatedType: Equipment
         minItems: 1
         maxItems: 1
        
 
-# JSON Schema generated from the construction
+# JSON Schema for definitions of Object Types
 {
   "title": "Custom Vocabulary Example",
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -114,7 +117,7 @@ Object:
                 "relationType": {
                   "$ref": "#/definitions/RelationType"
                 },
-                "relatedClass": {
+                "relatedType": {
                   "$ref": "#/definitions/ObjectType"
                 },
                 "relationSubType": {
@@ -186,9 +189,24 @@ Object:
   }
 }
 
+# An object instance definition conforming to the Component Object Type definition
+# The Class association of the terms is already known, so the Class names are elided 
+# from the definition format
+---
+Component: 
+  SpinnerMotor:
+    name: Spinner Motor
+    description: Motor that causes the mirrored sphere to rotate
+    hasMedia:
+      - "#/Media/SpinnerMotorElectricalPower"
+      - "#/Media/SpinnerMotorTorque"
+    hasPrimaryMedia:
+      - "#/Media/SpinnerMotorTorque"
+    ofEquipment:
+      - "#/Equipment/DiscoBall"
 
-# A, instance schema built from the conforming Definition
-{
+
+# The schema to conform instances to the Component Obejct Type
   "title": "Example Object Model",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
@@ -211,7 +229,7 @@ Object:
               "format": "json-pointer"
             },
             "relationType": "has",
-            "relatedClass": "Media",
+            "relatedType": "Media",
             "minItems": 1
           },
           "hasPrimaryMedia": {
@@ -221,7 +239,7 @@ Object:
               "format": "json-pointer"
             },
             "relationType": "has",
-            "relatedClass": "Media",
+            "relatedType": "Media",
             "relationSubType": "Primary",
             "minItems": 1,
             "maxItems": 1
@@ -233,7 +251,7 @@ Object:
               "format": "json-pointer"
             },
             "relationType": "of",
-            "relatedClass": "Equipment",
+            "relatedType": "Equipment",
             "minItems": 1,
             "maxItems": 1
           }
@@ -243,7 +261,7 @@ Object:
   }
 }
 
-# An object instance definition conforming to the instance schema
+# An object instance definition conforming to the instance schema (JSON)
 
 {
   "Component": {
