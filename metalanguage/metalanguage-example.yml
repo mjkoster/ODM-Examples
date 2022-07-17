@@ -204,6 +204,16 @@ Component:
       - "#/Media/SpinnerMotorTorque"
     ofEquipment:
       - "#/Equipment/DiscoBall"
+  MotorController:
+    name: Motor Controller
+    description: Modulates the electrical power to control the rotation speed of the motor
+    hasMedia:
+      - "#/Media/ElectricalPowerToSpinnerMotor"
+      - "#/Media/ControlSignalToMotorController"
+    hasPrimaryMedia:
+      - "#/Media/ElectricalPowerToSpinnerMotor"
+    ofEquipment:
+      - "#/Equipment/DiscoBall"
 
 
 # The schema to conform instances to the Component Obejct Type
@@ -261,7 +271,7 @@ Component:
   }
 }
 
-# An object instance definition conforming to the instance schema (JSON)
+# Object instance definition conforming to the instance schema (JSON)
 
 {
   "Component": {
@@ -274,6 +284,20 @@ Component:
       ],
       "hasPrimaryMedia": [
         "#/Media/SpinnerMotorTorque"
+      ],
+      "ofEquipment": [
+        "#/Equipment/DiscoBall"
+      ]
+    },
+    "MotorController": {
+      "name": "Motor Controller",
+      "description": "Modulates the electrical power to control the rotation speed of the motor",
+      "hasMedia": [
+        "#/Media/ElectricalPowerToSpinnerMotor",
+        "#/Media/ControlSignalToMotorController"
+      ],
+      "hasPrimaryMedia": [
+        "#/Media/ElectricalPowerToSpinnerMotor"
       ],
       "ofEquipment": [
         "#/Equipment/DiscoBall"
