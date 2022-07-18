@@ -5,14 +5,14 @@ sdfData:
   Attribute:
     type: string
     sdfChoice:
-      Integer: 
-        const: Integer
-      Float: 
-        const: Float
-      String: 
-        const: String
-      Boolean: 
-        const: Boolean
+      integer: 
+        const: integer
+      float: 
+        const: float
+      string: 
+        const: string
+      boolean: 
+        const: boolean
       UUID: 
         const: UUID
       EnumType: 
@@ -88,8 +88,8 @@ sdfObject:
 Object:
   Component:
     Attribute:
-      name: String
-      description: String
+      name: string
+      description: string
     Relation:
       hasMedia:
         relationType: has
@@ -114,10 +114,10 @@ sdfObject:
     sdfProperty:
       name:        
         sdfRef: "#/sdfData/Attribute"
-        const: String
+        const: string
       description: 
         sdfRef: "#/sdfData/Attribute"
-        const: String
+        const: string
       hasMedia:
         sdfRef: "#/sdfData/Relation"
         properties:
@@ -232,10 +232,10 @@ Component:
     "AttributeType": {
       "type": "string",
       "enum": [
-        "Integer",
-        "Float",
-        "String",
-        "Boolean",
+        "integer",
+        "float",
+        "string",
+        "boolean",
         "UUID",
         "EnumType"
       ]
