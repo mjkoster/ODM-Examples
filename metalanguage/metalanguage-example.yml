@@ -54,7 +54,7 @@ sdfData:
       Media: Media
       Connection: Connection
 
-# Meta definition for construction of Objects using a syntax modeled after generic variables
+# Meta definition for construction of named Objects with named Attributes and RElations, using a syntax modeled after generic variables
 ---
 sdfObject:
   <Object>: 
