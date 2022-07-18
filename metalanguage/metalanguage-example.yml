@@ -95,28 +95,31 @@ sdfObject:
     sdfProperty:
       name:        
         sdfRef: "#/sdfData/Attribute"
-        sdfChoice: String
+        sdfChoice: { string: String }
       description: 
         sdfRef: "#/sdfData/Attribute"
-        sdfChoice: String
+        sdfChoice: { string: String }
       hasMedia:
         sdfRef: "#/sdfData/Relation"
-        relationType: has
-        relatedType: Media
-        minItems: 1
-      hasPrimaryMedia:
+        properties:
+          relationType: has
+          relatedType: Media
+          minItems: 1
+        hasPrimaryMedia:
         sdfRef: "#/sdfData/Relation"
-        relationType: has
-        relatedType: Media
-        relationSubType: Primary
-        minItems: 1
-        maxItems: 1
+        properties:
+          relationType: has
+          relatedType: Media
+          relationSubType: Primary
+          minItems: 1
+          maxItems: 1
       ofEquipment:
         sdfRef: "#/sdfData/Relation"
-        relationType: of
-        relatedType: Equipment
-        minItems: 1
-        maxItems: 1
+        properties:
+          relationType: of
+          relatedType: Equipment
+          minItems: 1
+          maxItems: 1
        
 
 # An object instance definition conforming to the Component Object Type definition
