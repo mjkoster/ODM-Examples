@@ -5,12 +5,12 @@ sdfData:
   Attribute:
     type: string
     sdfChoice:
-      integer: Integer
-      float: Float
-      string: String
-      boolean: Boolean
-      uuid: UUID
-      enum: EnumType
+      Integer: Integer
+      Float: Float
+      String: String
+      Boolean: Boolean
+      UUID: UUID
+      EnumType: EnumType
   Relation:
     type: object
     properties:
