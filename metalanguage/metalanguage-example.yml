@@ -5,12 +5,18 @@ sdfData:
   Attribute:
     type: string
     sdfChoice:
-      Integer: Integer
-      Float: Float
-      String: String
-      Boolean: Boolean
-      UUID: UUID
-      EnumType: EnumType
+      Integer: 
+        const: Integer
+      Float: 
+        const: Float
+      String: 
+        const: String
+      Boolean: 
+        const: Boolean
+      UUID: 
+        const: UUID
+      EnumType: 
+        const: EnumType
   Relation:
     type: object
     properties:
@@ -34,25 +40,38 @@ sdfData:
   RelationType:
     type: string
     sdfChoice:
-      has: has
-      of: of
-      to: to
-      from: from
-      with: with
+      has: 
+        const: has
+      of: 
+        const: of
+      to: 
+        const: to
+      from: 
+        const: from
+      with: 
+        const: with
   RelationSubType:
     type: string
     sdfChoice:
-      primary: primary
-      secondary: secondary
-      characteristic: characteristic
+      primary: 
+        const: primary
+      secondary: 
+        const: secondary
+      characteristic: 
+        const: characteristic
   ObjectType:
     type: string
     sdfChoice:
-      Equipment: Equipment
-      System: System
-      Component: Component
-      Media: Media
-      Connection: Connection
+      Equipment: 
+        const: Equipment
+      System: 
+        const: System
+      Component: 
+        const: Component
+      Media: 
+        const: Media
+      Connection: 
+        const: Connection
 
 # Meta definition for construction of named Objects with named Attributes and Relations, using a syntax modeled after generic variables
 ---
