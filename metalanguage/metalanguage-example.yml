@@ -54,7 +54,7 @@ sdfData:
       Media: Media
       Connection: Connection
 
-# Meta definition for construction of named Objects with named Attributes and RElations, using a syntax modeled after generic variables
+# Meta definition for construction of named Objects with named Attributes and Relations, using a syntax modeled after generic variables
 ---
 sdfObject:
   <Object>: 
@@ -95,31 +95,41 @@ sdfObject:
     sdfProperty:
       name:        
         sdfRef: "#/sdfData/Attribute"
-        sdfChoice: { string: String }
+        const: String
       description: 
         sdfRef: "#/sdfData/Attribute"
-        sdfChoice: { string: String }
+        const: String
       hasMedia:
         sdfRef: "#/sdfData/Relation"
         properties:
-          relationType: has
-          relatedType: Media
-          minItems: 1
-        hasPrimaryMedia:
+          relationType: 
+            const: has
+          relatedType: 
+            const: Media
+          minItems: 
+            const: 1
+      hasPrimaryMedia:
         sdfRef: "#/sdfData/Relation"
         properties:
-          relationType: has
-          relatedType: Media
-          relationSubType: Primary
+          relationType: 
+            const: has
+          relatedType: 
+            const: Media
+          relationSubType: 
+            const: Primary
           minItems: 1
           maxItems: 1
       ofEquipment:
         sdfRef: "#/sdfData/Relation"
         properties:
-          relationType: of
-          relatedType: Equipment
-          minItems: 1
-          maxItems: 1
+          relationType: 
+            const: of
+          relatedType: 
+            const: Equipment
+          minItems: 
+            const: 1
+          maxItems: 
+            const: 1
        
 
 # An object instance definition conforming to the Component Object Type definition
@@ -304,7 +314,7 @@ Component:
   }
 }
 
-# Object instance definition conforming to the instance schema for COmponent Type (Same as the YAML instance definition above)
+# Object instance definition conforming to the instance schema for Component Type (Same as the YAML instance definition above)
 
 {
   "Component": {
