@@ -87,7 +87,64 @@ Object:
         relatedType: Equipment
         minItems: 1
         maxItems: 1
+
+# Equivalent SDF syntax       
+---
+sdfObject:
+  Component:
+    sdfProperty:
+      name:        
+        sdfRef: "#/sdfData/Attribute"
+        sdfChoice: String
+      description: 
+        sdfRef: "#/sdfData/Attribute"
+        sdfChoice: String
+      hasMedia:
+        sdfRef: "#/sdfData/Relation"
+        relationType: has
+        relatedType: Media
+        minItems: 1
+      hasPrimaryMedia:
+        sdfRef: "#/sdfData/Relation"
+        relationType: has
+        relatedType: Media
+        relationSubType: Primary
+        minItems: 1
+        maxItems: 1
+      ofEquipment:
+        sdfRef: "#/sdfData/Relation"
+        relationType: of
+        relatedType: Equipment
+        minItems: 1
+        maxItems: 1
        
+
+# An object instance definition conforming to the Component Object Type definition
+# The Class association of the terms is already known, so the Class names are elided 
+# from the definition format
+---
+Component: 
+  SpinnerMotor:
+    name: Spinner Motor
+    description: Motor that causes the mirrored sphere to rotate
+    hasMedia:
+      - "#/Media/SpinnerMotorElectricalPower"
+      - "#/Media/SpinnerMotorTorque"
+    hasPrimaryMedia:
+      - "#/Media/SpinnerMotorTorque"
+    ofEquipment:
+      - "#/Equipment/DiscoBall"
+  MotorController:
+    name: Motor Controller
+    description: Modulates the electrical power to control the rotation speed of the motor
+    hasMedia:
+      - "#/Media/ElectricalPowerToSpinnerMotor"
+      - "#/Media/ControlSignalToMotorController"
+    hasPrimaryMedia:
+      - "#/Media/ElectricalPowerToSpinnerMotor"
+    ofEquipment:
+      - "#/Equipment/DiscoBall"
+
 
 # JSON Schema for definitions of Object Types
 {
@@ -189,34 +246,7 @@ Object:
   }
 }
 
-# An object instance definition conforming to the Component Object Type definition
-# The Class association of the terms is already known, so the Class names are elided 
-# from the definition format
----
-Component: 
-  SpinnerMotor:
-    name: Spinner Motor
-    description: Motor that causes the mirrored sphere to rotate
-    hasMedia:
-      - "#/Media/SpinnerMotorElectricalPower"
-      - "#/Media/SpinnerMotorTorque"
-    hasPrimaryMedia:
-      - "#/Media/SpinnerMotorTorque"
-    ofEquipment:
-      - "#/Equipment/DiscoBall"
-  MotorController:
-    name: Motor Controller
-    description: Modulates the electrical power to control the rotation speed of the motor
-    hasMedia:
-      - "#/Media/ElectricalPowerToSpinnerMotor"
-      - "#/Media/ControlSignalToMotorController"
-    hasPrimaryMedia:
-      - "#/Media/ElectricalPowerToSpinnerMotor"
-    ofEquipment:
-      - "#/Equipment/DiscoBall"
-
-
-# The schema to conform instances to the Component Obejct Type
+# JSON schema to conform instances of the Component Obejct Type
   "title": "Example Object Model",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
@@ -271,7 +301,7 @@ Component:
   }
 }
 
-# Object instance definition conforming to the instance schema (JSON)
+# Object instance definition conforming to the instance schema for COmponent Type (Same as the YAML instance definition above)
 
 {
   "Component": {
