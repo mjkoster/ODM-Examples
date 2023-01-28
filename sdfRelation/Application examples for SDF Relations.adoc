@@ -1,12 +1,11 @@
 ==Application examples for SDF links and relations
 
-DFG node models and network templates
+===Application Examples:
+- DFG node models and network templates
+- SDF-defined ontology and graph analysis tools
+- RDF bridging
 
-SDF-defined ontology and graph analysis tools
-
-RDF bridging
-
-===DFG node models and graph templates example:
+===DFG node models and graph templates:
 This example uses SDF to define a common template for nodes and connections in a DFG, to define some application node types, and to define an application graph template that is constructed from the defined nodes. 
 
 The application graph template is then resolved by generating objects for the target runtime and assigning specific routing information to the links. The example implementation targets a C++ runtime system that encapsulates node application logic inside a simple event API.
@@ -48,7 +47,7 @@ sdfData:
       TypeID: { sdfRef: /sdfData/IdRange }
       ObjectID: { sdfRef: /sdfData/IdRange }
 ```
-a link property is defined in the core model, using sdfRelation as a placeholder for the link data
+A link property is defined in the core model, using sdfRelation as a placeholder for the link data
 ```
 sdfProperty:
   inputLink:
@@ -57,7 +56,7 @@ sdfProperty:
     sdfRelation:
       relType: input
 ```
-a link property is defined in the graph template as a refinement on the model, adding a target pointer to the linked sdfObject:
+A link property is defined in the graph template as a refinement on the model, adding a target pointer to the linked sdfObject:
 ```
 sdfProperty:
   inputLink:
@@ -67,7 +66,7 @@ sdfProperty:
       relType: input
       target: /sdfThing/graph/sdfObject/gpio_10
 ```
-a link property is resolved in the graph instance as a refinement of the template, by assigning instance IDs to all of the nodes in the graph, then adding an InstanceID field to the inputLink property, containing the InstanceID of the Object pointed to by the sdfRelation:
+A link property is resolved in the graph instance as a refinement of the template, by assigning instance IDs to all of the nodes in the graph, then adding an InstanceID field to the inputLink property, containing the InstanceID of the Object pointed to by the sdfRelation:
 ```
 sdfProperty:
   inputLink:
@@ -80,3 +79,95 @@ sdfProperty:
 ```
 The tools can then map the fully resolved SDF instance definitions to the target configuration, for example C++ header files.
 
+===SDF-defined ontology and graph analysis tools
+This example uses SDF to define an ontology, which is then used to construct and validate graphs. 
+
+For the ontology, a set of object types (graph nodes) and a set of relation types (graph edges, or predicates) are defined, and the range of relation types each object type may originate (be the subject of), and the corresponding target object types for each relation type, are defined for each object type. In equivalent RDF constructs, the Subject of a triple is the originating object, the Predicate is the relation type, and the Object is the target of the relation.
+
+The object types are defined as sdfObject class with a set of sdfProperty definitions for the Data Properties that object may have. Each sdfObject definition for an object also contains a set of sdfRelation definitions that describe the relations an object may have with other objects by type.
+
+The ontology also defines cardinality constraints, or how many objects may be pointed to by a particular relation. Cardinality uses the sdfRelation minItems and maxItems qualities.
+
+Relations in the ontology may also have sub-relation types that further refine the description of the relationship. For this, the example used the sdfRelation "property" quality.
+
+```
+sdfRelation:
+  graphRelation:
+    relType: { sdfRef: /sdfData/relationTypes }
+    target: { sdfType: sdfPointer }
+    property: 
+      type: object
+      properties:
+        relationSubType: { sdfRef: /sdfData/relationSubTypes }
+        targetType: 
+          type: array
+          items: { sdfRef: /sdfData/objectTypes }
+
+sdfData:
+  relationTypes:
+    sdfChoice:
+      contains: {}
+      partOf: {}
+      connectedTo: {}
+      connectedFrom: {}
+
+  relationSubTypes:
+    sdfChoice: 
+      primary: {}
+      secondary: {}
+      parent: {}
+      child: {}
+      next: {}
+      previous: {}
+
+  objectTypes: 
+    sdfChoice:
+      System: {}
+      Equipment: {}
+      Connection: {}
+      ControlQuantity: {}
+      Media: {}
+      Property: {}
+```
+
+An example ontological definition for an Object type:
+
+```
+sdfObject:
+  Equipment:
+    sdfRef: /sdfObject/graphObject
+    sdfProperty:
+      equipmentType: 
+        sdfRef: /sdfProperty/dataProperty
+        type: string
+    sdfRelation:
+      ControlQuantity:
+        sdfRef: /sdfRelation/graphRelation
+        relType: contains
+        minItems: { const: 1 }
+        maxItems: { const: 2 }
+        property: 
+          relationSubType: 
+          targetType: 
+            const:
+              - /sdfObject/ControlQuantity
+      InputConnection:
+        sdfRef: /sdfRelation/graphRelation
+        relType: connectedFrom
+        minItems: { const: 1 }
+        maxItems: { const: 1 }
+        property: 
+          relationSubType: 
+          targetType: 
+            const:
+              - /sdfObject/Equipment
+      OutputConnection:
+        sdfRef: /sdfRelation/graphRelation
+        relType: connectedTo
+        minItems: { const: 1 }
+        property: 
+          relationSubType: 
+          targetType: 
+            const:
+              - /sdfObject/Equipment
+```
