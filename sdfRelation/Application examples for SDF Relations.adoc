@@ -1,0 +1,82 @@
+==Application examples for SDF links and relations
+
+DFG node models and network templates
+
+SDF-defined ontology and graph analysis tools
+
+RDF bridging
+
+===DFG node models and graph templates example:
+This example uses SDF to define a common template for nodes and connections in a DFG, to define some application node types, and to define an application graph template that is constructed from the defined nodes. 
+
+The application graph template is then resolved by generating objects for the target runtime and assigning specific routing information to the links. The example implementation targets a C++ runtime system that encapsulates node application logic inside a simple event API.
+
+The implementation example uses the LWM2M information model to configure nodes in the target system. Each application object type is assigned an LWM2M typeID. A set of pre-defined LWM2M Resource Types handle the communication and synchronization. The LWM2M ObjectLink type is used as a DFG connector, with input and output link sub-types defined that use the underlying ObjectLink type. An sdfProperty is used to model each LWM2M ObjectLink in an Object.  These are the LWM2M Resource types used in the ObjectFlow communication scheme:
+
+```
+// Link types for pull and push data transfer
+#define InputLinkType 27000
+#define OutputLinkType 27001
+// Value types for data connection endpoints
+#define InputValueType 27002
+#define CurrentValueType 27003
+#define OutputValueType 27004
+// Timer data types for wrap-around-safe interval activation 
+#define CurrentTimeType 27005
+#define IntervalTimeType 27006
+#define LastActivationTimeType 27007
+```
+
+====Example ofthe layered SDF definition with successive refinement:
+sdfRelation is used to model the linkages between SDF application Objects in the graph:
+```
+sdfRelation:
+  InputLink:
+    relType: { const: input }
+    target: { sdfType: sdfPointer }
+  OutputLink:
+    relType: { const: output }
+    target: { sdfType: sdfPointer }
+```
+sdfLink is used to model the lwm2m links that connect object instances:
+```
+sdfData:
+  ObjectLink:
+    type: object
+    sdfType: link
+    properties:
+      TypeID: { sdfRef: /sdfData/IdRange }
+      ObjectID: { sdfRef: /sdfData/IdRange }
+```
+a link property is defined in the core model, using sdfRelation as a placeholder for the link data
+```
+sdfProperty:
+  inputLink:
+    sdfRef: /sdfData/ObjectLink
+    TypeID: /sdfData/TypeID/InputLinkType
+    sdfRelation:
+      relType: input
+```
+a link property is defined in the graph template as a refinement on the model, adding a target pointer to the linked sdfObject:
+```
+sdfProperty:
+  inputLink:
+    sdfRef: /sdfData/ObjectLink
+    TypeID: /sdfData/TypeID/InputLinkType
+    sdfRelation:
+      relType: input
+      target: /sdfThing/graph/sdfObject/gpio_10
+```
+a link property is resolved in the graph instance as a refinement of the template, by assigning instance IDs to all of the nodes in the graph, then adding an InstanceID field to the inputLink property, containing the InstanceID of the Object pointed to by the sdfRelation:
+```
+sdfProperty:
+  inputLink:
+    sdfRef: /sdfData/ObjectLink
+    TypeID: /sdfData/TypeID/InputLinkType
+    InstanceID: { const: 13 }
+    sdfRelation:
+      relType: input
+      target: /sdfThing/graph/sdfObject/gpio_10
+```
+The tools can then map the fully resolved SDF instance definitions to the target configuration, for example C++ header files.
+
